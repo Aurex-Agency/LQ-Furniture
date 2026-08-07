@@ -8,7 +8,7 @@ web
 
 ## Stack
 
-Next.js 15 App Router, TypeScript strict, Tailwind v4, deployed on Vercel. Confirmed by the client brief. No additional runtime dependencies without asking first: no animation library, no UI component library, no icon library, no state management library.
+Next.js 16 App Router (client approved the upgrade from 15), TypeScript strict, Tailwind v4, deployed on Vercel. No additional runtime dependencies without asking first: no animation library, no UI component library, no icon library, no state management library.
 
 ## Users
 
@@ -32,7 +32,8 @@ Shoppers browse on a phone, often from a Facebook ad or post, then drive to the 
 - SMS opt-in is subject to TCPA and A2P 10DLC carrier rules. The compliance copy in the client brief (seller name, recurring-message authorization, "Consent is not a condition of purchase," msg and data rates, frequency, STOP/HELP) is binding and must not be shortened or restructured for conversion. Every submission logs consent text version, timestamp, IP, page URL, and checkbox state.
 - /privacy must state that mobile numbers and consent are not shared or sold to third parties for marketing.
 - Performance budget: LCP under 2.0s on 4G, CLS under 0.05, first-load JS under 120KB gzipped.
-- Undecided (inferred gaps, ask the client): street address, phone number, store hours, financing partner(s) and application link, SMS platform/provider, domain name.
+- Store facts (verified against the store's own Facebook posts and Google listing, Aug 2026): 589 North Coley Rd, Tupelo, MS 38801. Phone (662) 841-5959. Open Wednesday through Saturday 10am to 6pm, Sunday 12pm to 6pm, closed Monday and Tuesday. Existing domain: lqfurniture.com.
+- Undecided (ask the client): financing partner(s) and application link, SMS platform/provider.
 
 ## Brand Commitments
 
@@ -40,7 +41,8 @@ Shoppers browse on a phone, often from a Facebook ad or post, then drive to the 
 - Logo: green oval mark, white LQ with green Q counter, FURNITURE bar. Transparent PNG at assets/source/logo/lq-logo.png (1800x600).
 - Palette (client-pinned, sampled from the logo): ink #0C0C0B, ink-raised #171714, ink-line #26251F, bone #EFEDE6, ash #9B9A93, lq-green #6BB22E, lq-lime #8FC120, lq-press #588F24. The site is dark; the green fails contrast on light fields. Green is a signal, not a fill: primary button, SOLD stamp, active filter chip, days-on-floor numeral, one hairline under the wordmark. Green surfaces take ink text, never white.
 - Typography (client-pinned): Archivo display (expanded, uppercase, tight tracking), Newsreader body, DM Mono for tags and data. Via next/font/google, latin subset.
-- Client explicitly rejected anything that looks AI-generated: no gradients, glows, glassmorphism, icon feature grids, numbered marker sequences, testimonial carousels, fabricated testimonials, emoji, stock or AI imagery. Radius 0 structural, 2px max on inputs and buttons. One animated moment only: SOLD stamps landing on scroll.
+- Client explicitly rejected anything that looks AI-generated: no gradients, glows, glassmorphism, icon feature grids, numbered marker sequences, testimonial carousels, fabricated testimonials, emoji, stock or AI imagery. Radius 0 structural, 2px max on inputs and buttons.
+- Motion (client updated the original one-moment rule): unique, fun, authored animations are wanted; the experience should not feel like other furniture sites. Motion must stay in the warehouse world's grammar (stamps, tickers, freight), never generic fade-up-on-scroll on every section, and all of it disabled under prefers-reduced-motion.
 - Voice: plain, warm, direct, like a person in North Mississippi wrote it. No em dashes. No marketing filler (elevate, curated, seamless, transform, unlock, discover). Sentence case headings; display headlines uppercase. Buttons say what happens.
 
 ## Evidence on Hand
