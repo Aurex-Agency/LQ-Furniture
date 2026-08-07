@@ -97,7 +97,7 @@ export default function Home() {
                 height={1650}
                 priority
                 sizes="100vw"
-                className="h-[48svh] w-full object-cover sm:h-[50svh]"
+                className="h-[48svh] w-full object-cover sm:h-[42svh]"
               />
             </div>
             <p
@@ -109,7 +109,7 @@ export default function Home() {
           </div>
           <div className="px-5 pb-12 pt-8 sm:px-10 lg:px-16">
             <h1
-              className="display hero-rise max-w-4xl text-display text-ink"
+              className="display hero-rise max-w-6xl text-display text-ink"
               style={{ animationDelay: "150ms" }}
             >
               Limited quantities + unlimited savings

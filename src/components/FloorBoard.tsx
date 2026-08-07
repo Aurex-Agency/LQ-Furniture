@@ -130,7 +130,7 @@ export default function FloorBoard() {
               <figcaption
                 className={`absolute bottom-2 left-2 flex max-w-[calc(100%-1rem)] items-center ${thirdCls}`}
               >
-                <span className="lower-third truncate bg-lq-green px-2 py-1.5 text-[0.6875rem] text-ink sm:px-3 sm:py-2 sm:text-tag">
+                <span className="lower-third truncate sm:whitespace-normal bg-lq-green px-2 py-1.5 text-[0.6875rem] text-ink sm:px-3 sm:py-2 sm:text-tag">
                   {item.name}
                 </span>
                 <span className="lower-third hidden shrink-0 bg-paper px-3 py-2 text-tag text-ink sm:inline">
