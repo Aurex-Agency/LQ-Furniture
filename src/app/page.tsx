@@ -52,8 +52,8 @@ export default function Home() {
       />
 
       {/* Masthead */}
-      <header className="flex items-center justify-between gap-4 px-5 py-4 sm:px-10 lg:px-16">
-        <a href="#top">
+      <header className="flex flex-wrap items-center justify-between gap-x-4 px-5 py-4 sm:px-10 lg:px-16">
+        <a href="#top" className="order-1">
           <Image
             src="/brand/lq-logo.png"
             alt="LQ Furniture"
@@ -65,30 +65,30 @@ export default function Home() {
         </a>
         <nav
           aria-label="Sections"
-          className="lower-third flex items-center gap-6 text-tag"
+          className="lower-third order-3 flex w-full items-center gap-6 text-tag sm:order-2 sm:ml-auto sm:w-auto sm:pr-6"
         >
-          <a href="#floor" className="hidden min-h-12 items-center text-ink hover:text-lq-deep sm:flex">
+          <a href="#floor" className="flex min-h-12 items-center text-ink hover:text-lq-deep">
             The floor
           </a>
-          <a href="#financing" className="hidden min-h-12 items-center text-ink hover:text-lq-deep sm:flex">
+          <a href="#financing" className="flex min-h-12 items-center text-ink hover:text-lq-deep">
             Financing
           </a>
-          <a href="#visit" className="hidden min-h-12 items-center text-ink hover:text-lq-deep sm:flex">
+          <a href="#visit" className="flex min-h-12 items-center text-ink hover:text-lq-deep">
             Visit
           </a>
-          <a
-            href="#text-list"
-            className="display flex min-h-12 items-center rounded-ctl bg-lq-green px-5 text-[0.9375rem] tracking-wide text-ink shadow-lift hover:bg-lq-press active:translate-y-px"
-          >
-            Join the text list
-          </a>
         </nav>
+        <a
+          href="#text-list"
+          className="display order-2 flex min-h-12 items-center rounded-ctl bg-lq-green px-5 text-[0.9375rem] tracking-wide text-ink shadow-lift hover:bg-lq-press active:translate-y-px sm:order-3"
+        >
+          Join the text list
+        </a>
       </header>
 
       <main id="top">
         {/* Hero: the opening shot */}
         <section>
-          <div className="overflow-hidden">
+          <div className="relative overflow-hidden">
             <div className="hero-camera">
               <Image
                 src="/photos/IMG_8606.jpg"
@@ -97,11 +97,17 @@ export default function Home() {
                 height={1650}
                 priority
                 sizes="100vw"
-                className="h-[52svh] w-full object-cover sm:h-[62svh]"
+                className="h-[48svh] w-full object-cover sm:h-[50svh]"
               />
             </div>
+            <p
+              className="lower-third hero-rise absolute bottom-3 left-3 bg-lq-green px-3 py-2 text-tag text-ink sm:bottom-4 sm:left-4"
+              style={{ animationDelay: "500ms" }}
+            >
+              The floor · 589 N Coley Rd, Tupelo
+            </p>
           </div>
-          <div className="px-5 pb-14 pt-10 sm:px-10 sm:pt-12 lg:px-16">
+          <div className="px-5 pb-12 pt-8 sm:px-10 lg:px-16">
             <h1
               className="display hero-rise max-w-4xl text-display text-ink"
               style={{ animationDelay: "150ms" }}

@@ -36,7 +36,7 @@ export default function Ticker() {
   return (
     <section className="relative min-h-12 border-y border-sand bg-cream">
       <h2 className="sr-only">Store hours, location and departments</h2>
-      <div className="ticker flex min-h-12 items-center overflow-hidden pr-16">
+      <div className="ticker ticker-fade flex min-h-12 items-center overflow-hidden pr-16">
         <div
           className="ticker-track flex w-max"
           style={paused ? { animationPlayState: "paused" } : undefined}

@@ -71,6 +71,8 @@ export default function SmsForm() {
           placeholder="Your mobile number"
           value={phone}
           onChange={(e) => setPhone(e.target.value)}
+          aria-invalid={status === "error" || undefined}
+          aria-describedby={status === "error" ? "sms-error" : undefined}
           className="min-h-12 w-full rounded-ctl border border-sand bg-paper px-4 text-body text-ink placeholder:text-stone sm:max-w-xs"
         />
         <button
@@ -108,6 +110,7 @@ export default function SmsForm() {
 
       {status === "error" ? (
         <p
+          id="sms-error"
           role="alert"
           className="mt-4 max-w-xl rounded-ctl border border-sand bg-paper px-4 py-3 text-[0.9375rem] text-ink"
         >

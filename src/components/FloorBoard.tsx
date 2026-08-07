@@ -84,7 +84,12 @@ export default function FloorBoard() {
               key={f.key}
               type="button"
               aria-pressed={active}
-              onClick={() => setFilter(f.key)}
+              onClick={() => {
+                setFilter(f.key);
+                // Filtering remounts figures; stale hidden states would strand
+                // them clipped, so every figure renders static after a filter.
+                setReveals(new Map());
+              }}
               className={`lower-third min-h-12 rounded-ctl px-4 text-tag ${
                 active
                   ? "bg-lq-green text-ink"
@@ -123,12 +128,12 @@ export default function FloorBoard() {
                 />
               </div>
               <figcaption
-                className={`absolute bottom-2 left-2 flex max-w-[calc(100%-1rem)] flex-wrap items-center ${thirdCls}`}
+                className={`absolute bottom-2 left-2 flex max-w-[calc(100%-1rem)] items-center ${thirdCls}`}
               >
-                <span className="lower-third bg-lq-green px-3 py-2 text-tag text-ink">
+                <span className="lower-third truncate bg-lq-green px-2 py-1.5 text-[0.6875rem] text-ink sm:px-3 sm:py-2 sm:text-tag">
                   {item.name}
                 </span>
-                <span className="lower-third hidden bg-paper px-3 py-2 text-tag text-ink sm:inline">
+                <span className="lower-third hidden shrink-0 bg-paper px-3 py-2 text-tag text-ink sm:inline">
                   {CATEGORY_LABELS[item.category]}
                 </span>
               </figcaption>

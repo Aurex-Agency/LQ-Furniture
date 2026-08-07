@@ -183,7 +183,7 @@ export default function StyleGuide() {
             type="button"
             className="display min-h-12 rounded-ctl border-2 border-ink px-7 text-[1rem] tracking-wide text-ink hover:bg-cream"
           >
-            Get pre-approved
+            Call the store
           </button>
           <button
             type="button"

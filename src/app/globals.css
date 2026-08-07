@@ -202,6 +202,17 @@ textarea {
   animation-play-state: paused;
 }
 
+/* Words exit under a soft edge instead of hard-clipping at the Stop button. */
+.ticker-fade {
+  mask-image: linear-gradient(
+    to right,
+    transparent 0,
+    #000 1.5rem,
+    #000 calc(100% - 3.5rem),
+    transparent 100%
+  );
+}
+
 @media (prefers-reduced-motion: reduce) {
   .hero-camera,
   .hero-rise,
