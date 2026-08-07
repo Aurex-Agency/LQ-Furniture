@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import FloorBoard from "@/components/FloorBoard";
 import OpenNow from "@/components/OpenNow";
+import Reveal from "@/components/Reveal";
 import SmsForm from "@/components/SmsForm";
 import Ticker from "@/components/Ticker";
 import { HOURS, STORE } from "@/lib/store";
@@ -52,7 +53,7 @@ export default function Home() {
 
       {/* Masthead */}
       <header className="flex items-center justify-between gap-4 px-5 py-4 sm:px-10 lg:px-16">
-        <a href="#top" className="flex flex-col">
+        <a href="#top">
           <Image
             src="/brand/lq-logo.png"
             alt="LQ Furniture"
@@ -61,24 +62,23 @@ export default function Home() {
             priority
             className="h-12 w-auto sm:h-14"
           />
-          <span className="mt-2 h-px w-full max-w-16 bg-lq-green" aria-hidden />
         </a>
         <nav
           aria-label="Sections"
-          className="flex items-center gap-5 font-mono text-tag uppercase"
+          className="lower-third flex items-center gap-6 text-tag"
         >
-          <a href="#floor" className="hidden min-h-12 items-center text-ash hover:text-bone sm:flex">
+          <a href="#floor" className="hidden min-h-12 items-center text-ink hover:text-lq-deep sm:flex">
             The floor
           </a>
-          <a href="#financing" className="hidden min-h-12 items-center text-ash hover:text-bone sm:flex">
+          <a href="#financing" className="hidden min-h-12 items-center text-ink hover:text-lq-deep sm:flex">
             Financing
           </a>
-          <a href="#visit" className="hidden min-h-12 items-center text-ash hover:text-bone sm:flex">
+          <a href="#visit" className="hidden min-h-12 items-center text-ink hover:text-lq-deep sm:flex">
             Visit
           </a>
           <a
             href="#text-list"
-            className="display flex min-h-12 items-center rounded-ctl bg-lq-green px-5 text-[0.9375rem] tracking-wide text-ink hover:bg-lq-press active:translate-y-px"
+            className="display flex min-h-12 items-center rounded-ctl bg-lq-green px-5 text-[0.9375rem] tracking-wide text-ink shadow-lift hover:bg-lq-press active:translate-y-px"
           >
             Join the text list
           </a>
@@ -86,52 +86,52 @@ export default function Home() {
       </header>
 
       <main id="top">
-        {/* Hero: the roll-up door */}
+        {/* Hero: the opening shot */}
         <section>
-          <div className="hero-door">
-            <Image
-              src="/photos/IMG_8606.jpg"
-              alt="Inside the LQ Furniture warehouse in Tupelo, a long aisle of furniture and decor under string lights"
-              width={2200}
-              height={1650}
-              priority
-              sizes="100vw"
-              className="h-[62svh] w-full object-cover sm:h-[70svh]"
-            />
+          <div className="overflow-hidden">
+            <div className="hero-camera">
+              <Image
+                src="/photos/IMG_8606.jpg"
+                alt="Inside the LQ Furniture warehouse in Tupelo, a long bright aisle of furniture and decor under string lights"
+                width={2200}
+                height={1650}
+                priority
+                sizes="100vw"
+                className="h-[52svh] w-full object-cover sm:h-[62svh]"
+              />
+            </div>
           </div>
-          <div className="relative -mt-24 px-5 sm:-mt-32 sm:px-10 lg:px-16">
-            <div className="max-w-3xl bg-ink p-6 pl-0 sm:p-8 sm:pl-0">
-              <h1
-                className="display hero-rise max-w-5xl text-display text-bone"
-                style={{ animationDelay: "350ms" }}
+          <div className="px-5 pb-14 pt-10 sm:px-10 sm:pt-12 lg:px-16">
+            <h1
+              className="display hero-rise max-w-4xl text-display text-ink"
+              style={{ animationDelay: "150ms" }}
+            >
+              Limited quantities + unlimited savings
+            </h1>
+            <p
+              className="hero-rise mt-5 max-w-xl text-body-lg text-stone"
+              style={{ animationDelay: "300ms" }}
+            >
+              LQ Furniture is a warehouse full of living rooms, dining sets,
+              bedrooms and mattresses in Tupelo, Mississippi. New loads roll
+              in, prices stay low, and when something sells out, it&apos;s gone.
+            </p>
+            <div
+              className="hero-rise mt-8 flex flex-wrap items-center gap-4"
+              style={{ animationDelay: "450ms" }}
+            >
+              <a
+                href="#text-list"
+                className="display flex min-h-12 items-center rounded-ctl bg-lq-green px-7 text-[1rem] tracking-wide text-ink shadow-lift hover:bg-lq-press active:translate-y-px"
               >
-                Limited quantities + unlimited savings
-              </h1>
-              <p
-                className="hero-rise mt-5 max-w-xl text-body-lg text-ash"
-                style={{ animationDelay: "480ms" }}
+                Join the text list
+              </a>
+              <a
+                href="#financing"
+                className="display flex min-h-12 items-center rounded-ctl border-2 border-ink px-7 text-[1rem] tracking-wide text-ink hover:bg-cream"
               >
-                LQ Furniture is a warehouse full of living rooms, dining sets,
-                bedrooms and mattresses in Tupelo, Mississippi. New loads roll
-                in, prices stay low, and when something sells out, it&apos;s gone.
-              </p>
-              <div
-                className="hero-rise mt-8 flex flex-wrap items-center gap-4"
-                style={{ animationDelay: "600ms" }}
-              >
-                <a
-                  href="#text-list"
-                  className="display flex min-h-12 items-center rounded-ctl bg-lq-green px-7 text-[1rem] tracking-wide text-ink hover:bg-lq-press active:translate-y-px"
-                >
-                  Join the text list
-                </a>
-                <a
-                  href="#financing"
-                  className="display flex min-h-12 items-center rounded-ctl border border-bone px-7 text-[1rem] tracking-wide text-bone hover:bg-ink-raised"
-                >
-                  How financing works
-                </a>
-              </div>
+                How financing works
+              </a>
             </div>
           </div>
         </section>
@@ -139,29 +139,27 @@ export default function Home() {
         <Ticker />
 
         {/* The floor */}
-        <section id="floor" className="scroll-mt-6 pt-16 sm:pt-20">
+        <section id="floor" className="scroll-mt-6 pt-14 sm:pt-16">
           <div className="px-5 sm:px-10 lg:px-16">
-            <h2 className="font-display text-h2 font-semibold text-bone">
-              What&apos;s on the floor
-            </h2>
-            <p className="mt-4 max-w-xl text-body text-ash">
+            <h2 className="display text-h1 text-ink">This week&apos;s floor</h2>
+            <p className="mt-4 max-w-xl text-body text-stone">
               Real photos from our aisles, not a catalog. The floor turns over
               every week, and prices live on the tags, so the only way to know
               what something costs is to come see it.
             </p>
           </div>
-          <div className="mt-10">
+          <div className="mt-8">
             <FloorBoard />
           </div>
         </section>
 
         {/* Why the prices are low */}
-        <section className="mt-20 border-t border-ink-line px-5 py-16 sm:mt-24 sm:px-10 lg:px-16">
+        <section className="mt-16 bg-cream px-5 py-16 sm:mt-20 sm:px-10 lg:px-16">
           <div className="grid gap-10 lg:grid-cols-12">
-            <h2 className="display text-h1 text-bone lg:col-span-5">
+            <h2 className="display text-h1 text-ink lg:col-span-5">
               Why our prices look like a typo
             </h2>
-            <div className="max-w-xl space-y-6 text-body text-bone lg:col-span-6 lg:col-start-7">
+            <div className="max-w-xl space-y-6 text-body text-ink lg:col-span-6 lg:col-start-7">
               <p>
                 We buy by the truckload. Whole factory loads at volume prices,
                 rolled straight onto the floor with a warehouse markup, not a
@@ -181,9 +179,9 @@ export default function Home() {
         </section>
 
         {/* Financing */}
-        <section id="financing" className="scroll-mt-6 border-t border-ink-line">
+        <section id="financing" className="scroll-mt-6">
           <div className="grid lg:grid-cols-2">
-            <div className="relative order-2 min-h-[320px] lg:order-1">
+            <Reveal className="relative order-2 min-h-[320px] lg:order-1">
               <Image
                 src="/photos/IMG_8589.jpg"
                 alt="A gray sectional on the LQ floor beneath the store's financing available banner"
@@ -191,12 +189,12 @@ export default function Home() {
                 sizes="(min-width: 1024px) 50vw, 100vw"
                 className="object-cover"
               />
-            </div>
-            <div className="order-1 px-5 py-16 sm:px-10 lg:order-2 lg:px-16">
-              <h2 className="display max-w-2xl text-h1 text-bone">
+            </Reveal>
+            <div className="order-1 px-5 py-16 sm:px-10 lg:order-2 lg:self-center lg:px-16">
+              <h2 className="display max-w-2xl text-h1 text-ink">
                 Financing available
               </h2>
-              <p className="mt-5 max-w-md text-body text-bone">
+              <p className="mt-5 max-w-md text-body text-ink">
                 Says so on the banner in the store, and it&apos;s true. You don&apos;t
                 need perfect credit to leave with furniture. Come in or call,
                 and we&apos;ll walk you through the payment options before you buy
@@ -205,13 +203,13 @@ export default function Home() {
               <div className="mt-8 flex flex-wrap gap-4">
                 <a
                   href={STORE.phoneHref}
-                  className="display flex min-h-12 items-center rounded-ctl bg-lq-green px-7 text-[1rem] tracking-wide text-ink hover:bg-lq-press active:translate-y-px"
+                  className="display flex min-h-12 items-center rounded-ctl bg-lq-green px-7 text-[1rem] tracking-wide text-ink shadow-lift hover:bg-lq-press active:translate-y-px"
                 >
                   Call {STORE.phone}
                 </a>
                 <a
                   href="#visit"
-                  className="display flex min-h-12 items-center rounded-ctl border border-bone px-7 text-[1rem] tracking-wide text-bone hover:bg-ink-raised"
+                  className="display flex min-h-12 items-center rounded-ctl border-2 border-ink px-7 text-[1rem] tracking-wide text-ink hover:bg-cream"
                 >
                   Come see us
                 </a>
@@ -223,14 +221,14 @@ export default function Home() {
         {/* Text list */}
         <section
           id="text-list"
-          className="scroll-mt-6 border-t border-ink-line bg-ink-raised px-5 py-16 sm:px-10 lg:px-16 sm:py-20"
+          className="scroll-mt-6 bg-cream px-5 py-16 sm:px-10 sm:py-20 lg:px-16"
         >
           <div className="grid gap-10 lg:grid-cols-12">
             <div className="lg:col-span-5">
-              <h2 className="display text-h1 text-bone">
+              <h2 className="display text-h1 text-ink">
                 Hear about it before it&apos;s gone
               </h2>
-              <p className="mt-5 max-w-md text-body text-ash">
+              <p className="mt-5 max-w-md text-body text-stone">
                 New truckloads and markdowns, straight to your phone, about 4
                 to 6 texts a month. The best pieces never last the weekend, so
                 the text list hears first.
@@ -243,30 +241,28 @@ export default function Home() {
         </section>
 
         {/* Visit */}
-        <section id="visit" className="scroll-mt-6 border-t border-ink-line">
+        <section id="visit" className="scroll-mt-6">
           <div className="grid lg:grid-cols-2">
             <div className="px-5 py-16 sm:px-10 lg:px-16">
-              <h2 className="font-display text-h2 font-semibold text-bone">
-                Come walk the floor
-              </h2>
+              <h2 className="display text-h1 text-ink">Come walk the floor</h2>
               <div className="mt-6">
                 <OpenNow />
               </div>
-              <address className="mt-6 max-w-md text-body not-italic text-bone">
+              <address className="mt-6 max-w-md text-body not-italic text-ink">
                 {STORE.name}
                 <br />
                 {STORE.address}
                 <br />
                 {STORE.city}, {STORE.state} {STORE.zip}
               </address>
-              <ul className="mt-8 max-w-md border-t border-ink-line">
+              <ul className="mt-8 max-w-md border-t border-sand">
                 {HOURS.map((h) => (
                   <li
                     key={h.days}
-                    className="flex items-baseline justify-between border-b border-ink-line py-3"
+                    className="flex items-baseline justify-between border-b border-sand py-3"
                   >
-                    <span className="text-body text-bone">{h.days}</span>
-                    <span className="font-mono text-tag text-ash">{h.label}</span>
+                    <span className="text-body text-ink">{h.days}</span>
+                    <span className="lower-third text-tag text-stone">{h.label}</span>
                   </li>
                 ))}
               </ul>
@@ -275,19 +271,19 @@ export default function Home() {
                   href={STORE.directionsUrl}
                   target="_blank"
                   rel="noopener"
-                  className="display flex min-h-12 items-center rounded-ctl bg-lq-green px-7 text-[1rem] tracking-wide text-ink hover:bg-lq-press active:translate-y-px"
+                  className="display flex min-h-12 items-center rounded-ctl bg-lq-green px-7 text-[1rem] tracking-wide text-ink shadow-lift hover:bg-lq-press active:translate-y-px"
                 >
                   Get directions
                 </a>
                 <a
                   href={STORE.phoneHref}
-                  className="display flex min-h-12 items-center rounded-ctl border border-bone px-7 text-[1rem] tracking-wide text-bone hover:bg-ink-raised"
+                  className="display flex min-h-12 items-center rounded-ctl border-2 border-ink px-7 text-[1rem] tracking-wide text-ink hover:bg-cream"
                 >
                   Call the store
                 </a>
               </div>
             </div>
-            <div className="relative min-h-[320px]">
+            <Reveal className="relative min-h-[320px]">
               <Image
                 src="/photos/IMG_8608.jpg"
                 alt="Rows of reclining sofas stretching toward the back of the LQ warehouse"
@@ -295,12 +291,12 @@ export default function Home() {
                 sizes="(min-width: 1024px) 50vw, 100vw"
                 className="object-cover"
               />
-            </div>
+            </Reveal>
           </div>
         </section>
       </main>
 
-      <footer className="border-t border-ink-line px-5 py-10 sm:px-10 lg:px-16">
+      <footer className="border-t border-sand bg-cream px-5 py-10 sm:px-10 lg:px-16">
         <div className="flex flex-wrap items-end justify-between gap-6">
           <div>
             <Image
@@ -310,20 +306,20 @@ export default function Home() {
               height={548}
               className="h-10 w-auto"
             />
-            <p className="mt-4 font-mono text-tag uppercase text-ash">
+            <p className="lower-third mt-4 text-tag text-stone">
               {STORE.address} · {STORE.city}, {STORE.state} {STORE.zip} ·{" "}
-              <a href={STORE.phoneHref} className="inline-flex min-h-12 items-center hover:text-bone">
+              <a href={STORE.phoneHref} className="inline-flex min-h-12 items-center text-ink hover:text-lq-deep">
                 {STORE.phone}
               </a>
             </p>
           </div>
-          <nav aria-label="Legal" className="font-mono text-tag uppercase">
-            <a href="/privacy" className="inline-flex min-h-12 items-center text-ash underline-offset-4 hover:text-bone">
+          <nav aria-label="Legal" className="lower-third text-tag">
+            <a href="/privacy" className="inline-flex min-h-12 items-center text-ink underline-offset-4 hover:text-lq-deep">
               Privacy policy
             </a>
           </nav>
         </div>
-        <p className="mt-6 font-mono text-tag uppercase text-ash">
+        <p className="lower-third mt-4 text-tag text-stone">
           Nothing on this site is for sale online. The store is the store.
         </p>
       </footer>

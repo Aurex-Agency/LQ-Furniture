@@ -22,15 +22,15 @@ export default function Privacy() {
             className="h-12 w-auto"
           />
         </Link>
-        <h1 className="display mt-10 max-w-3xl text-h1 text-bone">
+        <h1 className="display mt-10 max-w-3xl text-h1 text-ink">
           Privacy policy
         </h1>
-        <p className="mt-4 font-mono text-tag uppercase text-ash">
+        <p className="mt-4 lower-third text-tag text-stone">
           Effective August 7, 2026
         </p>
       </header>
 
-      <div className="mt-12 max-w-2xl space-y-10 text-body text-bone">
+      <div className="mt-12 max-w-2xl space-y-10 text-body text-ink">
         <section>
           <h2 className="font-display text-h3 font-semibold">Who we are</h2>
           <p className="mt-3">
@@ -97,10 +97,10 @@ export default function Privacy() {
         </section>
       </div>
 
-      <footer className="mt-16 border-t border-ink-line pt-8">
+      <footer className="mt-16 border-t border-sand pt-8">
         <Link
           href="/"
-          className="font-mono text-tag uppercase text-ash underline-offset-4 hover:text-bone"
+          className="lower-third text-tag text-stone underline-offset-4 hover:text-ink"
         >
           Back to the homepage
         </Link>

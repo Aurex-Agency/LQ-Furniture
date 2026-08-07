@@ -7,49 +7,39 @@ export const metadata: Metadata = {
 };
 
 const palette = [
-  { token: "ink", hex: "#0C0C0B", role: "page field", cls: "bg-ink" },
-  {
-    token: "ink-raised",
-    hex: "#171714",
-    role: "raised surfaces, tag backgrounds",
-    cls: "bg-ink-raised",
-  },
-  {
-    token: "ink-line",
-    hex: "#26251F",
-    role: "hairlines, dividers, input borders",
-    cls: "bg-ink-line",
-  },
-  { token: "bone", hex: "#EFEDE6", role: "primary text on dark", cls: "bg-bone" },
-  { token: "ash", hex: "#9B9A93", role: "secondary text", cls: "bg-ash" },
+  { token: "paper", hex: "#FAF7F1", role: "page field", cls: "bg-paper" },
+  { token: "cream", hex: "#F1EBDF", role: "raised bands and surfaces", cls: "bg-cream" },
+  { token: "sand", hex: "#E2D9C7", role: "borders, dividers, hover fills", cls: "bg-sand" },
+  { token: "ink", hex: "#1B1A16", role: "primary text", cls: "bg-ink" },
+  { token: "stone", hex: "#6D675A", role: "secondary text", cls: "bg-stone" },
 ] as const;
 
 const greens = [
-  { token: "lq-green", hex: "#6BB22E", role: "brand green, signal only", cls: "bg-lq-green" },
-  { token: "lq-lime", hex: "#8FC120", role: "lives inside the logo asset only", cls: "bg-lq-lime" },
+  { token: "lq-green", hex: "#6BB22E", role: "action color, always ink text", cls: "bg-lq-green" },
   { token: "lq-press", hex: "#588F24", role: "pressed and hover on green", cls: "bg-lq-press" },
+  { token: "lq-deep", hex: "#3E6B1A", role: "the only green used as text", cls: "bg-lq-deep" },
 ] as const;
 
 const contrast = [
-  { pair: "bone on ink", ratio: "16.7 : 1" },
-  { pair: "ash on ink", ratio: "6.9 : 1" },
-  { pair: "lq-green on ink", ratio: "7.5 : 1" },
-  { pair: "ink on lq-green", ratio: "7.5 : 1" },
-  { pair: "white on lq-green", ratio: "2.6 : 1, never used" },
+  { pair: "ink on paper", ratio: "16.2 : 1" },
+  { pair: "stone on paper", ratio: "5.3 : 1" },
+  { pair: "stone on cream", ratio: "4.8 : 1" },
+  { pair: "ink on lq-green", ratio: "6.8 : 1" },
+  { pair: "lq-deep on paper", ratio: "5.9 : 1" },
+  { pair: "lq-green as text on paper", ratio: "2.4 : 1, never used" },
 ] as const;
 
-const greenRules = [
-  "the primary button",
-  "the SOLD stamp",
-  "the active filter chip",
-  "the days-on-floor numeral",
-  "one hairline under the wordmark",
+const motion = [
+  "the hero's slow settle zoom, once on load",
+  "photos wipe in once, like a segment cut",
+  "lower-third labels slide up behind them",
+  "the SOLD badge pops on arrival",
+  "the ticker runs until you hit Stop",
 ] as const;
 
 export default function StyleGuide() {
   return (
     <main className="min-h-screen">
-      {/* Wordmark */}
       <header className="px-5 pt-14 sm:px-10 lg:px-16">
         <Image
           src="/brand/lq-logo.png"
@@ -59,238 +49,159 @@ export default function StyleGuide() {
           priority
           className="h-24 w-auto sm:h-32"
         />
-        <div className="mt-6 h-px w-40 bg-lq-green" aria-hidden />
-        <p className="mt-6 font-mono text-tag uppercase text-ash">
+        <p className="lower-third mt-6 text-tag text-stone">
           Brand foundation · Tupelo, Mississippi
         </p>
       </header>
 
-      {/* Tagline as display type proof */}
-      <section className="px-5 pt-20 sm:px-10 lg:px-16">
-        <h1 className="display max-w-5xl text-display text-bone">
+      <section className="px-5 pt-16 sm:px-10 lg:px-16">
+        <h1 className="display max-w-5xl text-display text-ink">
           Limited quantities + unlimited savings
         </h1>
-        <p className="mt-8 max-w-xl text-body-lg text-ash">
-          Their words, not ours. This is the display voice: Archivo, expanded
-          wide, set tight, on the ink field. It only has to do one job, and
-          that job is volume.
+        <p className="mt-8 max-w-xl text-body-lg text-stone">
+          Their words, not ours. The set is bright and warm so the floor
+          photography does the selling. Green is the action color, and it
+          always carries ink text.
         </p>
       </section>
 
       {/* Palette */}
-      <section className="mt-24 border-t border-ink-line px-5 py-16 sm:px-10 lg:px-16">
-        <h2 className="font-display text-h2 font-semibold text-bone">The palette</h2>
-        <p className="mt-4 max-w-xl text-body text-ash">
-          The site is dark because the brand green is unreadable on a light
-          field. Five working neutrals carry everything. Green appears on
-          about two percent of the pixels, and that restraint is what makes
-          it loud.
+      <section className="mt-20 border-t border-sand px-5 py-14 sm:px-10 lg:px-16">
+        <h2 className="display text-h1 text-ink">The palette</h2>
+        <p className="mt-4 max-w-xl text-body text-stone">
+          Warm paper, cream and sand doing the quiet work, warm ink talking,
+          and one working green. Bright green never appears as text on the
+          light field; lq-deep carries that job.
         </p>
 
-        <div className="mt-10 grid grid-cols-1 gap-px bg-ink-line sm:grid-cols-5">
+        <div className="mt-10 grid grid-cols-1 gap-3 sm:grid-cols-5">
           {palette.map((c) => (
-            <div key={c.token} className="bg-ink">
-              <div className={`h-28 border border-ink-line ${c.cls}`} />
-              <div className="px-3 py-4">
-                <p className="font-mono text-tag uppercase text-bone">{c.token}</p>
-                <p className="mt-1 font-mono text-tag text-ash">{c.hex}</p>
-                <p className="mt-2 text-[0.9375rem] leading-snug text-ash">{c.role}</p>
-              </div>
+            <div key={c.token}>
+              <div className={`h-24 rounded-ctl border border-sand ${c.cls}`} />
+              <p className="lower-third mt-3 text-tag text-ink">{c.token}</p>
+              <p className="mt-1 text-[0.9375rem] text-stone">{c.hex}</p>
+              <p className="mt-1 text-[0.9375rem] leading-snug text-stone">{c.role}</p>
             </div>
           ))}
         </div>
 
-        <div className="mt-px grid grid-cols-1 gap-px bg-ink-line sm:max-w-[60%] sm:grid-cols-3">
+        <div className="mt-6 grid grid-cols-3 gap-3 sm:max-w-[60%]">
           {greens.map((c) => (
-            <div key={c.token} className="bg-ink">
-              <div className={`h-14 border border-ink-line ${c.cls}`} />
-              <div className="px-3 py-4">
-                <p className="font-mono text-tag uppercase text-bone">{c.token}</p>
-                <p className="mt-1 font-mono text-tag text-ash">{c.hex}</p>
-                <p className="mt-2 text-[0.9375rem] leading-snug text-ash">{c.role}</p>
-              </div>
+            <div key={c.token}>
+              <div className={`h-14 rounded-ctl border border-sand ${c.cls}`} />
+              <p className="lower-third mt-3 text-tag text-ink">{c.token}</p>
+              <p className="mt-1 text-[0.9375rem] text-stone">{c.hex}</p>
+              <p className="mt-1 text-[0.9375rem] leading-snug text-stone">{c.role}</p>
             </div>
           ))}
         </div>
 
         <div className="mt-12 max-w-md">
-          <h3 className="font-mono text-tag uppercase text-ash">Measured contrast</h3>
-          <ul className="mt-4 border-t border-ink-line">
+          <h3 className="lower-third text-tag text-stone">Measured contrast</h3>
+          <ul className="mt-4 border-t border-sand">
             {contrast.map((c) => (
               <li
                 key={c.pair}
-                className="flex items-baseline justify-between gap-6 border-b border-ink-line py-3"
+                className="flex items-baseline justify-between gap-6 border-b border-sand py-3"
               >
-                <span className="text-body text-bone">{c.pair}</span>
-                <span className="font-mono text-tag text-ash">{c.ratio}</span>
+                <span className="text-body text-ink">{c.pair}</span>
+                <span className="lower-third text-tag text-stone">{c.ratio}</span>
               </li>
             ))}
           </ul>
-        </div>
-
-        <div className="mt-12 max-w-md">
-          <h3 className="font-mono text-tag uppercase text-ash">
-            Where green is allowed
-          </h3>
-          <ul className="mt-4 border-t border-ink-line">
-            {greenRules.map((rule) => (
-              <li key={rule} className="border-b border-ink-line py-3 text-body text-bone">
-                {rule}
-              </li>
-            ))}
-          </ul>
-          <p className="mt-4 text-body text-ash">
-            Nowhere else. Not icons, not borders, not headings, not hover
-            states on things that are not already green.
-          </p>
         </div>
       </section>
 
-      {/* Type scale */}
-      <section className="border-t border-ink-line px-5 py-16 sm:px-10 lg:px-16">
-        <h2 className="font-display text-h2 font-semibold text-bone">The type scale</h2>
-        <p className="mt-4 max-w-xl text-body text-ash">
-          Three voices. Archivo expanded shouts the headlines, Newsreader
-          talks like a person, DM Mono keeps the books. The steps are far
-          apart on purpose.
+      {/* Type */}
+      <section className="border-t border-sand px-5 py-14 sm:px-10 lg:px-16">
+        <h2 className="display text-h1 text-ink">The type</h2>
+        <p className="mt-4 max-w-xl text-body text-stone">
+          Two voices. Archivo, set a touch wide, handles episode titles and
+          the lower-third caption bars. Newsreader talks like a person.
         </p>
 
-        <div className="mt-12 space-y-14">
+        <div className="mt-12 space-y-12">
           <div>
-            <p className="font-mono text-tag uppercase text-ash">
-              display · Archivo expanded · 48 to 96px
+            <p className="lower-third text-tag text-stone">
+              display · Archivo wide · 40 to 88px
             </p>
-            <p className="display mt-3 text-display text-bone">Warehouse prices</p>
+            <p className="display mt-3 text-display text-ink">Warehouse prices</p>
           </div>
 
           <div>
-            <p className="font-mono text-tag uppercase text-ash">
-              h1 · Archivo expanded · 40 to 64px
+            <p className="lower-third text-tag text-stone">
+              h1 · Archivo wide · 36 to 60px
             </p>
-            <p className="display mt-3 text-h1 text-bone">
+            <p className="display mt-3 text-h1 text-ink">
               When it&apos;s gone, it&apos;s gone
             </p>
           </div>
 
-          <div>
-            <p className="font-mono text-tag uppercase text-ash">
-              h2 · Archivo · 28 to 40px · sentence case
-            </p>
-            <p className="mt-3 font-display text-h2 font-semibold text-bone">
-              What&apos;s on the floor this week
-            </p>
-          </div>
-
           <div className="max-w-2xl">
-            <p className="font-mono text-tag uppercase text-ash">
-              body · Newsreader · 18px
-            </p>
-            <p className="mt-3 text-body text-bone">
+            <p className="lower-third text-tag text-stone">body · Newsreader · 18px</p>
+            <p className="mt-3 text-body text-ink">
               The floor turns over fast. A sectional that came in on Tuesday
               can be loaded in somebody&apos;s truck by Saturday, and when the
               last one sells, it is gone. That is the whole deal. Volume
               buying keeps the price down, limited quantities keep it honest.
             </p>
-            <p className="mt-4 text-body italic text-ash">
-              The italic voice is Newsreader too, kept for asides like this
-              one and nothing louder.
-            </p>
           </div>
 
           <div>
-            <p className="font-mono text-tag uppercase text-ash">
-              tag · DM Mono · 13px · tags and data
+            <p className="lower-third text-tag text-stone">
+              lower-third · Archivo semibold · labels on photos
             </p>
-            <p className="mt-3 font-mono text-tag uppercase text-bone">
-              Sectionals · Dining · Bedroom · Recliners · Mattresses
-            </p>
-          </div>
-
-          <div>
-            <p className="font-mono text-tag uppercase text-ash">
-              days-on-floor numeral · DM Mono · green signal
-            </p>
-            <p className="mt-3 font-mono text-h1 text-lq-green">
-              14<span className="ml-3 text-h3 text-ash">days on the floor</span>
+            <p className="mt-3 flex flex-wrap items-center gap-px">
+              <span className="lower-third bg-lq-green px-3 py-2 text-tag text-ink">
+                Driftwood bedroom set
+              </span>
+              <span className="lower-third bg-paper px-3 py-2 text-tag text-ink shadow-lift">
+                Bedroom
+              </span>
             </p>
           </div>
-        </div>
-      </section>
-
-      {/* Photo treatment */}
-      <section className="border-t border-ink-line pt-16">
-        <div className="px-5 sm:px-10 lg:px-16">
-          <h2 className="font-display text-h2 font-semibold text-bone">Photographs run edge to edge</h2>
-          <p className="mt-4 max-w-xl text-body text-ash">
-            Real photos of the real floor, full bleed, never boxed in a
-            padded card. The warehouse is the proof.
-          </p>
-        </div>
-        <div className="relative mt-10">
-          <Image
-            src="/photos/IMG_8606.jpg"
-            alt="The LQ Furniture warehouse floor in Tupelo, aisles of furniture under string lights"
-            width={2200}
-            height={1650}
-            sizes="100vw"
-            className="h-[420px] w-full object-cover sm:h-[520px]"
-          />
-          <p className="pointer-events-none absolute bottom-4 left-5 bg-ink-raised px-3 py-2 font-mono text-tag uppercase text-bone sm:left-10 lg:left-16">
-            The floor · Tupelo, MS
-          </p>
-          {/* The SOLD stamp: the site's single animated moment lands here in a
-              later phase. Static form shown for approval. */}
-          <p
-            className="display pointer-events-none absolute right-8 top-10 -rotate-6 border-4 border-lq-green bg-ink px-4 py-1 text-h2 text-lq-green sm:right-16"
-            aria-hidden
-          >
-            Sold
-          </p>
         </div>
       </section>
 
       {/* Controls */}
-      <section className="border-t border-ink-line px-5 py-16 sm:px-10 lg:px-16">
-        <h2 className="font-display text-h2 font-semibold text-bone">Controls</h2>
-        <p className="mt-4 max-w-xl text-body text-ash">
-          Buttons say what happens. Green takes ink text, never white. Corners
-          stay at 2px, tap targets stay at 48px, and the focus ring is always
-          visible from the keyboard.
+      <section className="border-t border-sand px-5 py-14 sm:px-10 lg:px-16">
+        <h2 className="display text-h1 text-ink">Controls</h2>
+        <p className="mt-4 max-w-xl text-body text-stone">
+          Buttons say what happens. Green takes ink text, never white.
+          Corners stay at 6px, tap targets stay at 48px, and the focus ring
+          is always visible from the keyboard.
         </p>
 
         <div className="mt-10 flex flex-wrap items-center gap-4">
           <button
             type="button"
-            className="display min-h-12 rounded-ctl bg-lq-green px-7 text-[1rem] tracking-wide text-ink hover:bg-lq-press active:translate-y-px active:bg-lq-press"
+            className="display min-h-12 rounded-ctl bg-lq-green px-7 text-[1rem] tracking-wide text-ink shadow-lift hover:bg-lq-press active:translate-y-px"
           >
             Join the text list
           </button>
           <button
             type="button"
-            className="display min-h-12 rounded-ctl border border-bone px-7 text-[1rem] tracking-wide text-bone hover:bg-ink-raised"
+            className="display min-h-12 rounded-ctl border-2 border-ink px-7 text-[1rem] tracking-wide text-ink hover:bg-cream"
           >
             Get pre-approved
           </button>
           <button
             type="button"
-            className="min-h-12 rounded-ctl border border-ink-line bg-ink-raised px-5 font-mono text-tag uppercase text-bone"
+            className="lower-third min-h-12 rounded-ctl bg-cream px-4 text-tag text-ink hover:bg-sand"
           >
             Sectionals
           </button>
           <button
             type="button"
             aria-pressed="true"
-            className="min-h-12 rounded-ctl border border-lq-green bg-ink-raised px-5 font-mono text-tag uppercase text-lq-green"
+            className="lower-third min-h-12 rounded-ctl bg-lq-green px-4 text-tag text-ink"
           >
             Dining · active
           </button>
         </div>
 
         <div className="mt-12 max-w-sm">
-          <label
-            htmlFor="phone-sample"
-            className="font-mono text-tag uppercase text-ash"
-          >
+          <label htmlFor="phone-sample" className="lower-third text-tag text-stone">
             Mobile number
           </label>
           <input
@@ -299,20 +210,31 @@ export default function StyleGuide() {
             inputMode="tel"
             autoComplete="tel"
             placeholder="Your mobile number"
-            className="mt-2 block min-h-12 w-full rounded-ctl border border-ink-line bg-ink-raised px-4 text-body text-bone placeholder:text-ash"
+            className="mt-2 block min-h-12 w-full rounded-ctl border border-sand bg-paper px-4 text-body text-ink placeholder:text-stone"
           />
-          <p className="mt-3 text-[0.9375rem] text-ash">
-            The full opt-in form ships with its TCPA disclosure and an
-            unchecked checkbox beside it. That copy is fixed and does not get
-            shortened for looks.
-          </p>
         </div>
       </section>
 
-      <footer className="border-t border-ink-line px-5 py-10 sm:px-10 lg:px-16">
-        <p className="font-mono text-tag uppercase text-ash">
-          Phase 1 of the build. Pages come next, after this foundation is
-          approved.
+      {/* Motion */}
+      <section className="border-t border-sand px-5 py-14 sm:px-10 lg:px-16">
+        <h2 className="display text-h1 text-ink">Motion</h2>
+        <p className="mt-4 max-w-xl text-body text-stone">
+          The reveal grammar, borrowed from the shows this audience already
+          watches. Five moments, nothing else moves, and all of it goes
+          still when a visitor asks for reduced motion.
+        </p>
+        <ul className="mt-8 max-w-md border-t border-sand">
+          {motion.map((m) => (
+            <li key={m} className="border-b border-sand py-3 text-body text-ink">
+              {m}
+            </li>
+          ))}
+        </ul>
+      </section>
+
+      <footer className="border-t border-sand px-5 py-10 sm:px-10 lg:px-16">
+        <p className="lower-third text-tag text-stone">
+          The living record of this system is DESIGN.md at the repo root.
         </p>
       </footer>
     </main>
