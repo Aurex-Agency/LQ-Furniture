@@ -40,8 +40,8 @@ const directionContract = `<!--
 THESIS: A warehouse floor that moves fast, shown honestly on a near-black field. Refuses the cream-and-serif furniture-boutique template and the e-commerce grid it can never be.
 OWN-WORLD: Ink field #0C0C0B, bone text, ash secondary, one working green #6BB22E used only as signal (primary button, SOLD stamp, active chip, days-on-floor numeral, one hairline). Archivo expanded uppercase display, Newsreader body, DM Mono data. Radius 0 structural, 2px controls. Full-bleed photography, no cards, no gradients.
 STORY: A North Mississippi family on a phone sees real inventory moving, believes the savings are real because the scarcity is real, and either joins the text list or gets pre-approved before driving to Tupelo.
-FIRST VIEWPORT: Established per page in later phases; Phase 1 ships tokens and the style guide.
-FORM: Brief-pinned world from the client; no concept roll. Guide route: /style-guide.
+FIRST VIEWPORT: Homepage opens on the real floor, full bleed, revealed like a roll-up door; an ink plate carries the tagline as headline with the two conversion doors (text list, financing); a conveyor ticker of store facts separates it from the filterable deal board.
+FORM: Visual world brief-pinned by the client. Homepage structure assigned by concept roll, seed key 6e5352b2: the deal board, from the weekly furniture circular, candidate 7 of the grounded list. Guide route: /style-guide.
 FINISH: unreviewed and undocumented is unfinished; this build ends with the finish review, the verdict, and DESIGN.md
 -->`;
 

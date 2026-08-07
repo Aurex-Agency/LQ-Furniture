@@ -64,10 +64,10 @@ export default function OpenNow() {
     };
   }, []);
 
-  if (!line) return null;
+  // Always one line tall so the hydrated status never shifts the column.
   return (
-    <p className="font-mono text-tag uppercase text-bone" aria-live="polite">
-      {line}
+    <p className="min-h-[1.4em] font-mono text-tag uppercase text-bone" aria-live="polite">
+      {line || " "}
     </p>
   );
 }

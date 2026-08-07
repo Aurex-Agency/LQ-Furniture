@@ -1,3 +1,7 @@
+"use client";
+
+import { useState } from "react";
+
 const ITEMS = [
   "Open Wed thru Sat 10 to 6, Sun 12 to 6",
   "589 N Coley Rd, Tupelo",
@@ -12,7 +16,7 @@ const ITEMS = [
 
 function TickerRun() {
   return (
-    <span className="ticker-run flex shrink-0 items-center">
+    <span className="flex shrink-0 items-center">
       {ITEMS.map((item) => (
         <span
           key={item}
@@ -27,17 +31,30 @@ function TickerRun() {
 }
 
 export default function Ticker() {
+  const [paused, setPaused] = useState(false);
+
   return (
-    <div
-      className="ticker overflow-hidden border-y border-ink-line bg-ink-raised py-3"
-      aria-label="Store hours, location and departments"
-    >
-      <div className="ticker-track flex w-max">
-        <TickerRun />
-        <span aria-hidden="true" className="contents">
+    <section className="relative border-y border-ink-line bg-ink-raised">
+      <h2 className="sr-only">Store hours, location and departments</h2>
+      <div className="ticker overflow-hidden py-3 pr-14">
+        <div
+          className="ticker-track flex w-max"
+          style={paused ? { animationPlayState: "paused" } : undefined}
+        >
           <TickerRun />
-        </span>
+          <span aria-hidden="true" className="contents">
+            <TickerRun />
+          </span>
+        </div>
       </div>
-    </div>
+      <button
+        type="button"
+        onClick={() => setPaused((p) => !p)}
+        aria-pressed={paused}
+        className="absolute inset-y-0 right-0 min-w-12 border-l border-ink-line bg-ink-raised px-3 font-mono text-tag uppercase text-ash hover:text-bone"
+      >
+        {paused ? "Play" : "Stop"}
+      </button>
+    </section>
   );
 }

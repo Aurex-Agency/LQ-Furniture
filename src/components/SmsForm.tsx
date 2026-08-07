@@ -82,7 +82,10 @@ export default function SmsForm() {
         </button>
       </div>
 
-      <div className="mt-5 flex max-w-xl items-start gap-3">
+      <label
+        htmlFor="sms-consent"
+        className="mt-5 flex min-h-12 max-w-xl cursor-pointer items-start gap-3 py-2"
+      >
         <input
           id="sms-consent"
           name="consent"
@@ -91,14 +94,14 @@ export default function SmsForm() {
           onChange={(e) => setConsented(e.target.checked)}
           className="mt-1 size-5 shrink-0 accent-(--color-bone)"
         />
-        <label htmlFor="sms-consent" className="text-[0.9375rem] leading-relaxed text-ash">
+        <span className="text-[0.9375rem] leading-relaxed text-ash">
           {SMS_CONSENT_TEXT}{" "}
           <a href="/privacy" className="underline underline-offset-4 hover:text-bone">
             Privacy policy
           </a>
           .
-        </label>
-      </div>
+        </span>
+      </label>
 
       {status === "error" ? (
         <p role="alert" className="mt-4 max-w-xl border border-ink-line bg-ink-raised px-4 py-3 text-[0.9375rem] text-bone">

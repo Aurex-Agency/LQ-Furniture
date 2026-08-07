@@ -28,6 +28,11 @@ export type FloorItem = {
 
 // Every photo below was shot on the LQ floor. The board rotates as the
 // floor does; sold pieces keep their stamp until the next refresh.
+//
+// PLACEHOLDER DATA: the `sold` flags are authored to demonstrate the stamp
+// moment and are not live inventory status. Confirm which pieces are
+// actually gone with LQ before launch, and keep the flags in sync with the
+// floor after that.
 export const FLOOR_ITEMS: FloorItem[] = [
   {
     id: "8587",

@@ -67,13 +67,13 @@ export default function Home() {
           aria-label="Sections"
           className="flex items-center gap-5 font-mono text-tag uppercase"
         >
-          <a href="#floor" className="hidden py-3 text-ash hover:text-bone sm:block">
+          <a href="#floor" className="hidden min-h-12 items-center text-ash hover:text-bone sm:flex">
             The floor
           </a>
-          <a href="#financing" className="hidden py-3 text-ash hover:text-bone sm:block">
+          <a href="#financing" className="hidden min-h-12 items-center text-ash hover:text-bone sm:flex">
             Financing
           </a>
-          <a href="#visit" className="hidden py-3 text-ash hover:text-bone sm:block">
+          <a href="#visit" className="hidden min-h-12 items-center text-ash hover:text-bone sm:flex">
             Visit
           </a>
           <a
@@ -103,13 +103,13 @@ export default function Home() {
             <div className="max-w-3xl bg-ink p-6 pl-0 sm:p-8 sm:pl-0">
               <h1
                 className="display hero-rise max-w-5xl text-display text-bone"
-                style={{ animationDelay: "600ms" }}
+                style={{ animationDelay: "350ms" }}
               >
                 Limited quantities + unlimited savings
               </h1>
               <p
                 className="hero-rise mt-5 max-w-xl text-body-lg text-ash"
-                style={{ animationDelay: "750ms" }}
+                style={{ animationDelay: "480ms" }}
               >
                 LQ Furniture is a warehouse full of living rooms, dining sets,
                 bedrooms and mattresses in Tupelo, Mississippi. New loads roll
@@ -117,7 +117,7 @@ export default function Home() {
               </p>
               <div
                 className="hero-rise mt-8 flex flex-wrap items-center gap-4"
-                style={{ animationDelay: "880ms" }}
+                style={{ animationDelay: "600ms" }}
               >
                 <a
                   href="#text-list"
@@ -312,13 +312,13 @@ export default function Home() {
             />
             <p className="mt-4 font-mono text-tag uppercase text-ash">
               {STORE.address} · {STORE.city}, {STORE.state} {STORE.zip} ·{" "}
-              <a href={STORE.phoneHref} className="hover:text-bone">
+              <a href={STORE.phoneHref} className="inline-flex min-h-12 items-center hover:text-bone">
                 {STORE.phone}
               </a>
             </p>
           </div>
           <nav aria-label="Legal" className="font-mono text-tag uppercase">
-            <a href="/privacy" className="py-3 text-ash underline-offset-4 hover:text-bone">
+            <a href="/privacy" className="inline-flex min-h-12 items-center text-ash underline-offset-4 hover:text-bone">
               Privacy policy
             </a>
           </nav>

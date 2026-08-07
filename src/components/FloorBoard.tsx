@@ -111,6 +111,8 @@ export default function FloorBoard() {
             : !armed || landed.has(item.id)
               ? "landed"
               : "hidden";
+          const lgShare = item.span.includes("lg:col-span-3") ? 50 : 34;
+          const baseShare = item.span.startsWith("col-span-1") ? "50vw" : "100vw";
           return (
             <figure key={item.id} className={`relative m-0 bg-ink ${item.span}`}>
               <Image
@@ -118,7 +120,7 @@ export default function FloorBoard() {
                 alt={item.alt}
                 width={2200}
                 height={1650}
-                sizes="(min-width: 1024px) 50vw, 100vw"
+                sizes={`(min-width: 1024px) ${lgShare}vw, (min-width: 640px) 50vw, ${baseShare}`}
                 className="aspect-[4/3] h-full w-full object-cover"
               />
               <figcaption className="absolute bottom-0 left-0 flex max-w-full items-center gap-px">
