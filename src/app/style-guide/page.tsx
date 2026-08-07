@@ -26,7 +26,7 @@ const palette = [
 
 const greens = [
   { token: "lq-green", hex: "#6BB22E", role: "brand green, signal only", cls: "bg-lq-green" },
-  { token: "lq-lime", hex: "#8FC120", role: "logo highlight, tiny accents", cls: "bg-lq-lime" },
+  { token: "lq-lime", hex: "#8FC120", role: "lives inside the logo asset only", cls: "bg-lq-lime" },
   { token: "lq-press", hex: "#588F24", role: "pressed and hover on green", cls: "bg-lq-press" },
 ] as const;
 
@@ -100,7 +100,7 @@ export default function StyleGuide() {
           ))}
         </div>
 
-        <div className="mt-px grid grid-cols-3 gap-px bg-ink-line sm:max-w-[60%]">
+        <div className="mt-px grid grid-cols-1 gap-px bg-ink-line sm:max-w-[60%] sm:grid-cols-3">
           {greens.map((c) => (
             <div key={c.token} className="bg-ink">
               <div className={`h-14 border border-ink-line ${c.cls}`} />
@@ -191,6 +191,10 @@ export default function StyleGuide() {
               last one sells, it is gone. That is the whole deal. Volume
               buying keeps the price down, limited quantities keep it honest.
             </p>
+            <p className="mt-4 text-body italic text-ash">
+              The italic voice is Newsreader too, kept for asides like this
+              one and nothing louder.
+            </p>
           </div>
 
           <div>
@@ -257,13 +261,13 @@ export default function StyleGuide() {
         <div className="mt-10 flex flex-wrap items-center gap-4">
           <button
             type="button"
-            className="display min-h-12 rounded-ctl bg-lq-green px-7 text-[1rem] tracking-wide text-ink hover:bg-lq-press active:bg-lq-press"
+            className="display min-h-12 rounded-ctl bg-lq-green px-7 text-[1rem] tracking-wide text-ink hover:bg-lq-press active:translate-y-px active:bg-lq-press"
           >
             Join the text list
           </button>
           <button
             type="button"
-            className="display min-h-12 rounded-ctl border border-bone px-7 text-[1rem] tracking-wide text-bone hover:border-ash hover:text-ash"
+            className="display min-h-12 rounded-ctl border border-bone px-7 text-[1rem] tracking-wide text-bone hover:bg-ink-raised"
           >
             Get pre-approved
           </button>

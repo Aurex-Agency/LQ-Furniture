@@ -68,7 +68,7 @@ body {
 
 input,
 textarea {
-  caret-color: var(--color-lq-green);
+  caret-color: var(--color-bone);
 }
 
 :focus-visible {
