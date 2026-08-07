@@ -1,0 +1,181 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-08-07T00:00:00Z",
+  "title": "Design System: LQ Furniture",
+  "extensions": {
+    "colorMeta": {
+      "ink": {
+        "role": "neutral",
+        "displayName": "Ink",
+        "canonical": "#0C0C0B",
+        "tonalRamp": ["oklch(15% 0.004 110)", "oklch(26% 0.004 110)", "oklch(37% 0.004 110)", "oklch(49% 0.004 110)", "oklch(60% 0.004 110)", "oklch(72% 0.004 110)", "oklch(83% 0.004 110)", "oklch(95% 0.004 110)"]
+      },
+      "ink-raised": {
+        "role": "neutral",
+        "displayName": "Ink Raised",
+        "canonical": "#171714",
+        "tonalRamp": ["oklch(15% 0.006 110)", "oklch(26% 0.006 110)", "oklch(37% 0.006 110)", "oklch(49% 0.006 110)", "oklch(60% 0.006 110)", "oklch(72% 0.006 110)", "oklch(83% 0.006 110)", "oklch(95% 0.006 110)"]
+      },
+      "ink-line": {
+        "role": "neutral",
+        "displayName": "Ink Line",
+        "canonical": "#26251F",
+        "tonalRamp": ["oklch(15% 0.012 105)", "oklch(26% 0.012 105)", "oklch(37% 0.012 105)", "oklch(49% 0.012 105)", "oklch(60% 0.012 105)", "oklch(72% 0.012 105)", "oklch(83% 0.012 105)", "oklch(95% 0.012 105)"]
+      },
+      "bone": {
+        "role": "neutral",
+        "displayName": "Bone",
+        "canonical": "#EFEDE6",
+        "tonalRamp": ["oklch(15% 0.011 95)", "oklch(26% 0.011 95)", "oklch(37% 0.011 95)", "oklch(49% 0.011 95)", "oklch(60% 0.011 95)", "oklch(72% 0.011 95)", "oklch(83% 0.011 95)", "oklch(95% 0.011 95)"]
+      },
+      "ash": {
+        "role": "neutral",
+        "displayName": "Ash",
+        "canonical": "#9B9A93",
+        "tonalRamp": ["oklch(15% 0.007 100)", "oklch(26% 0.007 100)", "oklch(37% 0.007 100)", "oklch(49% 0.007 100)", "oklch(60% 0.007 100)", "oklch(72% 0.007 100)", "oklch(83% 0.007 100)", "oklch(95% 0.007 100)"]
+      },
+      "lq-green": {
+        "role": "primary",
+        "displayName": "LQ Green",
+        "canonical": "#6BB22E",
+        "tonalRamp": ["oklch(15% 0.17 131)", "oklch(26% 0.17 131)", "oklch(37% 0.17 131)", "oklch(49% 0.17 131)", "oklch(60% 0.17 131)", "oklch(72% 0.17 131)", "oklch(83% 0.17 131)", "oklch(95% 0.17 131)"]
+      },
+      "lq-lime": {
+        "role": "primary",
+        "displayName": "LQ Lime (logo asset only)",
+        "canonical": "#8FC120",
+        "tonalRamp": ["oklch(15% 0.19 125)", "oklch(26% 0.19 125)", "oklch(37% 0.19 125)", "oklch(49% 0.19 125)", "oklch(60% 0.19 125)", "oklch(72% 0.19 125)", "oklch(83% 0.19 125)", "oklch(95% 0.19 125)"]
+      },
+      "lq-press": {
+        "role": "primary",
+        "displayName": "LQ Press",
+        "canonical": "#588F24",
+        "tonalRamp": ["oklch(15% 0.15 133)", "oklch(26% 0.15 133)", "oklch(37% 0.15 133)", "oklch(49% 0.15 133)", "oklch(60% 0.15 133)", "oklch(72% 0.15 133)", "oklch(83% 0.15 133)", "oklch(95% 0.15 133)"]
+      }
+    },
+    "typographyMeta": {
+      "display": { "displayName": "Display", "purpose": "Hero headline and tagline. Archivo stretched to 125% width, bold, uppercase, via the .display class." },
+      "h1": { "displayName": "H1", "purpose": "Big section headlines and page titles; same .display voice one step down." },
+      "h2": { "displayName": "H2", "purpose": "Working section headings. Semibold Archivo at normal width, sentence case, never uppercase." },
+      "h3": { "displayName": "H3", "purpose": "Subsection headings on prose pages; also the stamp and confirmation-plate size in the display voice." },
+      "body-lg": { "displayName": "Body Large", "purpose": "The hero standfirst paragraph only." },
+      "body": { "displayName": "Body", "purpose": "All running copy, Newsreader 18px; italic Newsreader for asides and nothing louder. Max width ~36rem." },
+      "tag": { "displayName": "Tag", "purpose": "DM Mono 13px uppercase for labels, captions, nav, hours, ticker items, chips, footer lines." }
+    },
+    "motion": [
+      { "name": "door-up", "value": "clip-path inset(55% 0 0 0) -> inset(0); 700ms cubic-bezier(0.65, 0, 0.25, 1) both", "purpose": "Hero photo reveals like a roll-up freight door; starts 45% open so the LCP image paints on frame one. Class .hero-door." },
+      { "name": "rise-in", "value": "translateY(22px) + fade; 650ms cubic-bezier(0.2, 0.8, 0.2, 1) both", "purpose": "Hero headline, standfirst, and buttons follow the door, staggered at 350/480/600ms. Class .hero-rise." },
+      { "name": "ticker-scroll", "value": "translateX(0) -> translateX(-50%); 36s linear infinite", "purpose": "Conveyor ticker of store facts. Pauses on hover, focus-within, and the Stop/Play button. Class .ticker-track." },
+      { "name": "stamp-land", "value": "scale(1.8) rotate(3deg) -> scale(0.92) rotate(-8deg) at 65% -> scale(1) rotate(-6deg); 480ms cubic-bezier(0.16, 1, 0.3, 1) both", "purpose": "SOLD stamp lands once per item at 60% viewport intersection. Stamps render visible for no-JS visitors. Class .stamp-land, paired with .stamp-hidden." },
+      { "name": "reduced-motion", "value": "animation: none on all four classes; .hero-rise and .stamp-hidden forced visible; stamps keep rotate(-6deg); global 0.01ms duration clamp", "purpose": "The entire motion system zeroes under prefers-reduced-motion with no content loss." }
+    ],
+    "breakpoints": [
+      { "name": "sm", "value": "640px" },
+      { "name": "lg", "value": "1024px" }
+    ]
+  },
+  "components": [
+    {
+      "name": "Primary Button",
+      "kind": "button",
+      "refersTo": "button-primary",
+      "description": "The green door. One of the five allowlisted uses of green; always ink text, never white.",
+      "html": "<button class=\"ds-btn-primary\">Join the text list</button>",
+      "css": ".ds-btn-primary { display: inline-flex; align-items: center; min-height: 48px; background: var(--color-lq-green, #6BB22E); color: var(--color-ink, #0C0C0B); font-family: Archivo, sans-serif; font-stretch: 125%; font-weight: 700; text-transform: uppercase; font-size: 1rem; letter-spacing: 0.025em; padding: 0 28px; border: none; border-radius: 2px; cursor: pointer; } .ds-btn-primary:hover { background: var(--color-lq-press, #588F24); } .ds-btn-primary:active { background: var(--color-lq-press, #588F24); transform: translateY(1px); } .ds-btn-primary:focus-visible { outline: 2px solid var(--color-bone, #EFEDE6); outline-offset: 2px; } .ds-btn-primary:disabled { opacity: 0.6; }"
+    },
+    {
+      "name": "Secondary Button",
+      "kind": "button",
+      "refersTo": "button-secondary",
+      "description": "Bone-bordered ghost for the second door on a screen; hover fills with raised ink.",
+      "html": "<button class=\"ds-btn-secondary\">How financing works</button>",
+      "css": ".ds-btn-secondary { display: inline-flex; align-items: center; min-height: 48px; background: transparent; color: var(--color-bone, #EFEDE6); font-family: Archivo, sans-serif; font-stretch: 125%; font-weight: 700; text-transform: uppercase; font-size: 1rem; letter-spacing: 0.025em; padding: 0 28px; border: 1px solid var(--color-bone, #EFEDE6); border-radius: 2px; cursor: pointer; } .ds-btn-secondary:hover { background: var(--color-ink-raised, #171714); } .ds-btn-secondary:focus-visible { outline: 2px solid var(--color-bone, #EFEDE6); outline-offset: 2px; }"
+    },
+    {
+      "name": "Filter Chip",
+      "kind": "chip",
+      "refersTo": "chip",
+      "description": "Board filter at rest: transparent, hairline border, mono uppercase label. Hover moves the border to ash.",
+      "html": "<button class=\"ds-chip\" aria-pressed=\"false\">Sectionals</button>",
+      "css": ".ds-chip { display: inline-flex; align-items: center; min-height: 48px; background: transparent; color: var(--color-bone, #EFEDE6); font-family: 'DM Mono', monospace; font-size: 0.8125rem; letter-spacing: 0.04em; text-transform: uppercase; padding: 0 16px; border: 1px solid var(--color-ink-line, #26251F); border-radius: 2px; cursor: pointer; } .ds-chip:hover { border-color: var(--color-ash, #9B9A93); } .ds-chip:focus-visible { outline: 2px solid var(--color-bone, #EFEDE6); outline-offset: 2px; }"
+    },
+    {
+      "name": "Filter Chip (Active)",
+      "kind": "chip",
+      "refersTo": "chip-active",
+      "description": "The allowlisted active-chip signal: green border and green text, no fill change.",
+      "html": "<button class=\"ds-chip-active\" aria-pressed=\"true\">Dining</button>",
+      "css": ".ds-chip-active { display: inline-flex; align-items: center; min-height: 48px; background: transparent; color: var(--color-lq-green, #6BB22E); font-family: 'DM Mono', monospace; font-size: 0.8125rem; letter-spacing: 0.04em; text-transform: uppercase; padding: 0 16px; border: 1px solid var(--color-lq-green, #6BB22E); border-radius: 2px; cursor: pointer; } .ds-chip-active:focus-visible { outline: 2px solid var(--color-bone, #EFEDE6); outline-offset: 2px; }"
+    },
+    {
+      "name": "Text Input",
+      "kind": "input",
+      "refersTo": "input",
+      "description": "Phone field: hairline border, 2px radius, 48px tall, bone text and caret, ash placeholder.",
+      "html": "<input class=\"ds-input\" type=\"tel\" placeholder=\"Your mobile number\" />",
+      "css": ".ds-input { display: block; min-height: 48px; width: 100%; max-width: 320px; background: var(--color-ink, #0C0C0B); color: var(--color-bone, #EFEDE6); caret-color: var(--color-bone, #EFEDE6); font-family: Newsreader, Georgia, serif; font-size: 1.125rem; padding: 0 16px; border: 1px solid var(--color-ink-line, #26251F); border-radius: 2px; } .ds-input::placeholder { color: var(--color-ash, #9B9A93); } .ds-input:focus-visible { outline: 2px solid var(--color-bone, #EFEDE6); outline-offset: 2px; }"
+    },
+    {
+      "name": "Caption Plate",
+      "kind": "custom",
+      "refersTo": "caption-plate",
+      "description": "Hard-edged ink rectangle carrying mono uppercase text; sits flush on a photo's bottom-left edge in place of any card.",
+      "html": "<span class=\"ds-caption-plate\">The floor · Tupelo, MS</span>",
+      "css": ".ds-caption-plate { display: inline-block; background: var(--color-ink, #0C0C0B); color: var(--color-bone, #EFEDE6); font-family: 'DM Mono', monospace; font-size: 0.8125rem; letter-spacing: 0.04em; text-transform: uppercase; line-height: 1.4; padding: 8px 12px; }"
+    },
+    {
+      "name": "SOLD Stamp",
+      "kind": "custom",
+      "refersTo": "stamp",
+      "description": "The scarcity signal: green display type on ink with a 3px green border, resting at -6deg on a photo's top-right corner. Lands with the stamp-land animation on scroll.",
+      "html": "<span class=\"ds-stamp\">Sold</span>",
+      "css": ".ds-stamp { display: inline-block; background: var(--color-ink, #0C0C0B); color: var(--color-lq-green, #6BB22E); font-family: Archivo, sans-serif; font-stretch: 125%; font-weight: 700; text-transform: uppercase; font-size: 1.5rem; line-height: 1.3; padding: 2px 12px; border: 3px solid var(--color-lq-green, #6BB22E); transform: rotate(-6deg); }"
+    },
+    {
+      "name": "Ticker",
+      "kind": "custom",
+      "refersTo": "",
+      "description": "Conveyor band of store facts between hero and board: raised ink, hairline borders, mono items separated by 4px squares, with a flush-right Stop/Play control.",
+      "html": "<div class=\"ds-ticker\"><div class=\"ds-ticker-track\"><span class=\"ds-ticker-item\">Open Wed thru Sat 10 to 6, Sun 12 to 6<span class=\"ds-ticker-dot\"></span></span><span class=\"ds-ticker-item\">589 N Coley Rd, Tupelo<span class=\"ds-ticker-dot\"></span></span><span class=\"ds-ticker-item\">Limited Quantities + Unlimited Savings<span class=\"ds-ticker-dot\"></span></span></div><button class=\"ds-ticker-stop\" aria-pressed=\"false\">Stop</button></div>",
+      "css": ".ds-ticker { position: relative; display: flex; align-items: center; min-height: 48px; overflow: hidden; background: var(--color-ink-raised, #171714); border-top: 1px solid var(--color-ink-line, #26251F); border-bottom: 1px solid var(--color-ink-line, #26251F); padding-right: 56px; } .ds-ticker-track { display: flex; width: max-content; animation: ds-ticker-scroll 36s linear infinite; } .ds-ticker:hover .ds-ticker-track, .ds-ticker:focus-within .ds-ticker-track { animation-play-state: paused; } .ds-ticker-item { display: flex; align-items: center; white-space: nowrap; font-family: 'DM Mono', monospace; font-size: 0.8125rem; letter-spacing: 0.04em; text-transform: uppercase; color: var(--color-ash, #9B9A93); } .ds-ticker-dot { display: inline-block; width: 4px; height: 4px; margin: 0 24px; background: var(--color-ink-line, #26251F); } .ds-ticker-stop { position: absolute; top: 0; right: 0; bottom: 0; min-width: 48px; background: var(--color-ink-raised, #171714); color: var(--color-ash, #9B9A93); font-family: 'DM Mono', monospace; font-size: 0.8125rem; letter-spacing: 0.04em; text-transform: uppercase; padding: 0 12px; border: none; border-left: 1px solid var(--color-ink-line, #26251F); cursor: pointer; } .ds-ticker-stop:hover { color: var(--color-bone, #EFEDE6); } .ds-ticker-stop:focus-visible { outline: 2px solid var(--color-bone, #EFEDE6); outline-offset: 2px; } @keyframes ds-ticker-scroll { from { transform: translateX(0); } to { transform: translateX(-50%); } }"
+    }
+  ],
+  "narrative": {
+    "northStar": "The Deal Board",
+    "overview": "The site is the weekly furniture circular, reprinted on a warehouse wall. A near-black ink field carries full-bleed photographs of the real floor in Tupelo; type does the selling in three distinct voices (a shouting expanded display face, a talking serif, a bookkeeping mono); one working green, sampled from the LQ logo, appears only where something is happening. Nothing is decorated: no cards, no gradients, no glows, no blur, no icons, no shadows. Depth is a second shade of ink and a one-pixel hairline. Motion is three authored moments in warehouse grammar, and nothing else: the hero opens like a roll-up freight door, a conveyor ticker runs store facts under it, and SOLD stamps land on photographs as they scroll into view. Every animation zeroes out under prefers-reduced-motion, with stamps left visible.",
+    "keyCharacteristics": [
+      "Dark ink field (#0C0C0B) everywhere; light surfaces do not exist in this world",
+      "Green is a signal with a five-item allowlist, never a fill; it covers roughly 2% of any screen",
+      "Three type voices with deliberately far-apart scale steps: display shouts, body talks, mono keeps the books",
+      "Full-bleed photography of the actual floor; photos are never boxed, padded, or carded",
+      "Flat construction: hairlines and a single raised ink shade instead of shadows or borders-as-decoration",
+      "Exactly three motion moments, all in freight/warehouse grammar, all reduced-motion safe"
+    ],
+    "rules": [
+      { "name": "The Signal Green Rule", "body": "Green appears in exactly five places: the primary button, the SOLD stamp, the active filter chip, the days-on-floor numeral, and one hairline under the wordmark. Nowhere else. Not icons, not borders, not headings, not hover states on things that are not already green. New surfaces inherit the allowlist, not the color.", "section": "colors" },
+      { "name": "The Ink-on-Green Rule", "body": "Green surfaces always take ink text (7.5:1). White on green measures 2.6:1 and is never used.", "section": "colors" },
+      { "name": "The Dark Field Rule", "body": "The site is dark because the brand green is unreadable on a light field. There is no light theme and no light section; every page sits on ink.", "section": "colors" },
+      { "name": "The Far-Apart Steps Rule", "body": "The scale steps are deliberately distant: data whispers at 13px, body talks at 18px, display shouts at up to 96px. Do not invent in-between sizes to smooth the jump; the jump is the design.", "section": "typography" },
+      { "name": "The Sentence Case Rule", "body": "Display and H1 are uppercase via .display. H2 and everything below are sentence case. Uppercase outside the display voice happens only in DM Mono tag text.", "section": "typography" },
+      { "name": "The Flat World Rule", "body": "If a surface needs to come forward, it becomes ink-raised or gains a 1px ink-line border. It never gains a shadow, a gradient, or a blur.", "section": "elevation" },
+      { "name": "The Three Moments Rule", "body": "New motion must be one of these three moments or speak their freight grammar (stamps, tickers, doors, loads). Generic fade-up-on-scroll, parallax, and hover zooms are outside the world.", "section": "components" },
+      { "name": "The Reduced Motion Rule", "body": "Under prefers-reduced-motion: reduce, all four animation classes are set to animation: none, .hero-rise and .stamp-hidden resolve to fully visible, stamps keep their resting -6deg rotation, and a global rule zeroes all remaining animation and transition durations. Content is never lost when motion is off.", "section": "components" }
+    ],
+    "dos": [
+      "Do keep the TCPA/SMS consent language verbatim from src/lib/consent.ts (SMS_CONSENT_TEXT, versioned as SMS_CONSENT_VERSION). It is regulated content: never shortened, reworded, or restructured for conversion, always beside an unchecked checkbox, with the version bumped on any legally reviewed change.",
+      "Do give every interactive element a 48px minimum tap target (min-h-12 / min-w-12), even inline footer links, and rely on the global 2px bone focus ring.",
+      "Do run photography full bleed and real: photos are shot on the LQ floor (IMG_8587-8637 set, 2200px wide, 4:3 crop, object-cover), never stock, never AI, never boxed in a padded card.",
+      "Do write copy in the store's voice: plain, warm, direct, sentence case, their words not ours (the tagline is Limited Quantities + Unlimited Savings). Buttons say what happens. Urgency must be factually true.",
+      "Do end every page at one of the two doors: join the text list or get pre-approved/financing. The store is the store; the site sells the visit.",
+      "Do keep pages light: no animation, UI, icon, or state libraries; rural 4G is the baseline (LCP < 2.0s, CLS < 0.05, first-load JS < 120KB gzipped)."
+    ],
+    "donts": [
+      "Don't use green outside the five allowlisted signals, and never put white text on green.",
+      "Don't add gradients, glows, shadows, blur, glassmorphism, icons, emoji, carousels, numbered marker sequences, or icon feature grids. All are confirmed client rejections.",
+      "Don't round structural corners; 2px on controls is the ceiling. Never rounded-xl.",
+      "Don't imply anything can be bought online, show prices, or fabricate testimonials, reviews, or scarcity.",
+      "Don't use em dashes or marketing filler (elevate, curated, seamless, transform, unlock, discover) in copy.",
+      "Don't add scroll-triggered motion beyond the three moments, and don't ship any motion that survives prefers-reduced-motion."
+    ]
+  }
+}
