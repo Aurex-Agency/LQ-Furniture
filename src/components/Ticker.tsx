@@ -20,10 +20,10 @@ function TickerRun() {
       {ITEMS.map((item) => (
         <span
           key={item}
-          className="flex items-center whitespace-nowrap font-mono text-tag uppercase text-ash"
+          className="lower-third flex items-center whitespace-nowrap text-tag text-ink"
         >
           {item}
-          <span className="mx-6 inline-block h-1 w-1 bg-ink-line" aria-hidden />
+          <span className="mx-6 inline-block h-1.5 w-1.5 rounded-full bg-lq-green" aria-hidden />
         </span>
       ))}
     </span>
@@ -34,9 +34,9 @@ export default function Ticker() {
   const [paused, setPaused] = useState(false);
 
   return (
-    <section className="relative min-h-12 border-y border-ink-line bg-ink-raised">
+    <section className="relative min-h-12 border-y border-sand bg-cream">
       <h2 className="sr-only">Store hours, location and departments</h2>
-      <div className="ticker flex min-h-12 items-center overflow-hidden pr-14">
+      <div className="ticker ticker-fade flex min-h-12 items-center overflow-hidden pr-16">
         <div
           className="ticker-track flex w-max"
           style={paused ? { animationPlayState: "paused" } : undefined}
@@ -51,7 +51,7 @@ export default function Ticker() {
         type="button"
         onClick={() => setPaused((p) => !p)}
         aria-pressed={paused}
-        className="absolute inset-y-0 right-0 min-h-12 min-w-12 border-l border-ink-line bg-ink-raised px-3 font-mono text-tag uppercase text-ash hover:text-bone"
+        className="lower-third absolute inset-y-0 right-0 min-h-12 min-w-12 border-l border-sand bg-cream px-3 text-tag text-ink hover:bg-sand"
       >
         {paused ? "Play" : "Stop"}
       </button>

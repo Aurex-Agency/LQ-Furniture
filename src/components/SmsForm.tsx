@@ -46,9 +46,9 @@ export default function SmsForm() {
 
   if (status === "done") {
     return (
-      <div className="border border-ink-line bg-ink-raised p-6">
-        <p className="display text-h3 text-bone">You&apos;re on the list</p>
-        <p className="mt-3 text-body text-ash">
+      <div className="rounded-ctl bg-paper p-6 shadow-lift">
+        <p className="display text-h3 text-ink">You&apos;re on the list</p>
+        <p className="mt-3 text-body text-stone">
           Watch for a text from us. Reply STOP any time and we stop.
         </p>
       </div>
@@ -57,7 +57,7 @@ export default function SmsForm() {
 
   return (
     <form onSubmit={submit} noValidate>
-      <label htmlFor="sms-phone" className="font-mono text-tag uppercase text-ash">
+      <label htmlFor="sms-phone" className="lower-third text-tag text-stone">
         Mobile number
       </label>
       <div className="mt-2 flex flex-col gap-3 sm:flex-row">
@@ -71,12 +71,14 @@ export default function SmsForm() {
           placeholder="Your mobile number"
           value={phone}
           onChange={(e) => setPhone(e.target.value)}
-          className="min-h-12 w-full rounded-ctl border border-ink-line bg-ink px-4 text-body text-bone placeholder:text-ash sm:max-w-xs"
+          aria-invalid={status === "error" || undefined}
+          aria-describedby={status === "error" ? "sms-error" : undefined}
+          className="min-h-12 w-full rounded-ctl border border-sand bg-paper px-4 text-body text-ink placeholder:text-stone sm:max-w-xs"
         />
         <button
           type="submit"
           disabled={status === "sending"}
-          className="display min-h-12 shrink-0 rounded-ctl bg-lq-green px-7 text-[1rem] tracking-wide text-ink hover:bg-lq-press active:translate-y-px active:bg-lq-press disabled:opacity-60"
+          className="display min-h-12 shrink-0 rounded-ctl bg-lq-green px-7 text-[1rem] tracking-wide text-ink shadow-lift hover:bg-lq-press active:translate-y-px active:bg-lq-press disabled:opacity-60"
         >
           {status === "sending" ? "Joining" : "Join the text list"}
         </button>
@@ -92,11 +94,14 @@ export default function SmsForm() {
           type="checkbox"
           checked={consented}
           onChange={(e) => setConsented(e.target.checked)}
-          className="mt-1 size-5 shrink-0 accent-(--color-bone)"
+          className="mt-1 size-5 shrink-0 accent-(--color-lq-press)"
         />
-        <span className="text-[0.9375rem] leading-relaxed text-ash">
+        <span className="text-[0.9375rem] leading-relaxed text-stone">
           {SMS_CONSENT_TEXT}{" "}
-          <a href="/privacy" className="underline underline-offset-4 hover:text-bone">
+          <a
+            href="/privacy"
+            className="text-ink underline underline-offset-4 hover:text-lq-deep"
+          >
             Privacy policy
           </a>
           .
@@ -104,7 +109,11 @@ export default function SmsForm() {
       </label>
 
       {status === "error" ? (
-        <p role="alert" className="mt-4 max-w-xl border border-ink-line bg-ink-raised px-4 py-3 text-[0.9375rem] text-bone">
+        <p
+          id="sms-error"
+          role="alert"
+          className="mt-4 max-w-xl rounded-ctl border border-sand bg-paper px-4 py-3 text-[0.9375rem] text-ink"
+        >
           {message}
         </p>
       ) : null}
