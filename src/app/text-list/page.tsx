@@ -16,7 +16,7 @@ export default function TextList() {
       <main>
         <section className="pool px-5 pt-16 sm:px-10 sm:pt-20 lg:px-16">
           <p className="neon-box neon neon-on label inline-block rounded-ctl px-4 py-3">
-            The text list
+            Sign up here
           </p>
           <h1 className="display mt-6 max-w-3xl text-display text-lamp">
             Hear about it before it&apos;s gone

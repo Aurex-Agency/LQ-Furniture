@@ -3,10 +3,20 @@
 import { useState } from "react";
 
 type Status = "idle" | "sending" | "done" | "error";
+type Field = "name" | "phone" | "message";
 
 export default function ContactForm() {
   const [status, setStatus] = useState<Status>("idle");
   const [message, setMessage] = useState("");
+  const [badField, setBadField] = useState<Field | null>(null);
+
+  function fieldProps(field: Field) {
+    const bad = status === "error" && badField === field;
+    return {
+      "aria-invalid": bad || undefined,
+      "aria-describedby": bad ? "ct-error" : undefined,
+    };
+  }
 
   async function submit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
@@ -15,23 +25,44 @@ export default function ContactForm() {
     const name = String(data.get("name") ?? "").trim();
     const phone = String(data.get("phone") ?? "").trim();
     const body = String(data.get("message") ?? "").trim();
-    if (!name || !body) {
+    if (!name) {
       setStatus("error");
-      setMessage("Give us your name and a message, and we'll take it from there.");
+      setBadField("name");
+      setMessage("Tell us your name so we know who to ask for.");
+      return;
+    }
+    const digits = phone.replace(/\D/g, "");
+    if (digits.length !== 10 && !(digits.length === 11 && digits.startsWith("1"))) {
+      setStatus("error");
+      setBadField("phone");
+      setMessage("We call back rather than email, so we need a ten digit number.");
+      return;
+    }
+    if (!body) {
+      setStatus("error");
+      setBadField("message");
+      setMessage("Tell us what you need and we'll take it from there.");
       return;
     }
     setStatus("sending");
+    setBadField(null);
     setMessage("");
     try {
       const res = await fetch("/api/contact", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ name, phone, message: body, pageUrl: window.location.href }),
+        body: JSON.stringify({
+          name,
+          phone: digits.slice(-10),
+          message: body,
+          pageUrl: window.location.href,
+        }),
       });
       if (!res.ok) throw new Error(String(res.status));
       setStatus("done");
     } catch {
       setStatus("error");
+      setBadField(null);
       setMessage("Something broke on our end. Try again, or just call us.");
     }
   }
@@ -41,9 +72,9 @@ export default function ContactForm() {
       <div className="border border-night-3 bg-night-2 p-7">
         <p className="display text-h3 text-lamp">Got it</p>
         <p className="mt-3 text-body text-fog">
-          We read these during store hours and we&apos;ll get back to you. If
-          it&apos;s about a piece on the floor, call instead. Furniture moves
-          faster than messages.
+          We&apos;ll call you back at the number you left, during store hours.
+          If it&apos;s about a piece on the floor, call us instead. Furniture
+          moves faster than messages.
         </p>
       </div>
     );
@@ -60,10 +91,11 @@ export default function ContactForm() {
         type="text"
         autoComplete="name"
         required
+        {...fieldProps("name")}
         className="mt-2 block min-h-12 w-full rounded-ctl border border-night-3 bg-night-2 px-4 text-body text-lamp"
       />
       <label htmlFor="ct-phone" className="label mt-5 block text-fog">
-        Phone, if you want a call back
+        Phone number for the call back
       </label>
       <input
         id="ct-phone"
@@ -71,6 +103,8 @@ export default function ContactForm() {
         type="tel"
         inputMode="tel"
         autoComplete="tel"
+        required
+        {...fieldProps("phone")}
         className="mt-2 block min-h-12 w-full rounded-ctl border border-night-3 bg-night-2 px-4 text-body text-lamp"
       />
       <label htmlFor="ct-message" className="label mt-5 block text-fog">
@@ -81,6 +115,7 @@ export default function ContactForm() {
         name="message"
         rows={5}
         required
+        {...fieldProps("message")}
         className="mt-2 block w-full rounded-ctl border border-night-3 bg-night-2 px-4 py-3 text-body text-lamp"
       />
       <button
@@ -92,6 +127,7 @@ export default function ContactForm() {
       </button>
       {status === "error" ? (
         <p
+          id="ct-error"
           role="alert"
           className="mt-4 max-w-xl rounded-ctl border border-night-3 bg-night-2 px-4 py-3 text-[0.9375rem] text-lamp"
         >

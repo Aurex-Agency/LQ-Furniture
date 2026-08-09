@@ -43,10 +43,12 @@ export default async function PostPage({
       <SiteHeader current="/blog" />
       <main>
         <article className="pool px-5 pt-16 sm:px-10 sm:pt-20 lg:px-16">
-          <p className="label text-fog">{fmtDate(post.date)}</p>
-          <h1 className="display mt-4 max-w-3xl text-h1 text-lamp">
+          <h1 className="display max-w-3xl text-h1 text-lamp">
             {post.title}
           </h1>
+          <p className="mt-3 text-[0.9375rem] italic text-fog">
+            {fmtDate(post.date)}
+          </p>
           <div className="mt-10 max-w-2xl pb-16">
             {post.body.map((block, i) =>
               block.startsWith("## ") ? (
@@ -54,7 +56,7 @@ export default async function PostPage({
                   {block.slice(3)}
                 </h2>
               ) : (
-                <p key={i} className="mt-5 text-body-lg leading-relaxed text-fog">
+                <p key={i} className="mt-5 text-body-lg leading-relaxed text-lamp">
                   {block}
                 </p>
               ),

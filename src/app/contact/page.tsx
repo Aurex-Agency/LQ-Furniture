@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import ContactForm from "@/components/ContactForm";
+import Reveal from "@/components/Reveal";
 import OpenNow from "@/components/OpenNow";
 import SiteFooter from "@/components/SiteFooter";
 import SiteHeader from "@/components/SiteHeader";
@@ -21,8 +23,9 @@ export default function Contact() {
             Talk to a person
           </h1>
           <p className="mt-6 max-w-xl text-body-lg text-fog">
-            The fastest answer is always the phone during store hours. For
-            everything else, leave a message and we&apos;ll get back to you.
+            The fastest answer is always the phone during store hours,
+            especially about a piece on the floor. For everything else,
+            leave a number and we&apos;ll call you back.
           </p>
         </section>
 
@@ -59,6 +62,18 @@ export default function Contact() {
               <ContactForm />
             </div>
           </div>
+        </section>
+
+        <section className="border-t border-night-3">
+          <Reveal className="relative min-h-[300px] sm:min-h-[380px]">
+            <Image
+              src="/photos/IMG_8605.jpg"
+              alt="The lamp wall at LQ Furniture, shelves of lit table lamps in every color"
+              fill
+              sizes="100vw"
+              className="object-cover"
+            />
+          </Reveal>
         </section>
       </main>
       <SiteFooter />

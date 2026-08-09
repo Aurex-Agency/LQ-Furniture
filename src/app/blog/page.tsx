@@ -38,8 +38,7 @@ export default function Blog() {
           <ul className="max-w-3xl border-t border-night-3">
             {POSTS.map((post) => (
               <li key={post.slug} className="border-b border-night-3 py-10">
-                <p className="label text-fog">{fmtDate(post.date)}</p>
-                <h2 className="display mt-3 text-h2 text-lamp">
+                <h2 className="display text-h2 text-lamp">
                   <Link
                     href={`/blog/${post.slug}`}
                     className="underline-offset-8 hover:underline"
@@ -47,6 +46,9 @@ export default function Blog() {
                     {post.title}
                   </Link>
                 </h2>
+                <p className="mt-2 text-[0.9375rem] italic text-fog">
+                  {fmtDate(post.date)}
+                </p>
                 <p className="mt-4 max-w-xl text-body text-fog">
                   {post.description}
                 </p>

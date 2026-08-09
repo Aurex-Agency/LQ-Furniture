@@ -36,26 +36,26 @@ typography:
     lineHeight: 1.25
     letterSpacing: "-0.005em"
   body-lg:
-    fontFamily: "Hanken Grotesk, system-ui, sans-serif"
+    fontFamily: "Libre Caslon Text, Georgia, serif"
     fontSize: "1.25rem"
     fontWeight: 400
     lineHeight: 1.65
   body:
-    fontFamily: "Hanken Grotesk, system-ui, sans-serif"
+    fontFamily: "Libre Caslon Text, Georgia, serif"
     fontSize: "1.0625rem"
     fontWeight: 400
     lineHeight: 1.7
   small:
-    fontFamily: "Hanken Grotesk, system-ui, sans-serif"
+    fontFamily: "Libre Caslon Text, Georgia, serif"
     fontSize: "0.9375rem"
     fontWeight: 400
     lineHeight: 1.625
   label:
-    fontFamily: "Hanken Grotesk, system-ui, sans-serif"
+    fontFamily: "Libre Caslon Text, Georgia, serif"
     fontSize: "0.75rem"
     fontWeight: 600
     lineHeight: 1.4
-    letterSpacing: "0.14em"
+    letterSpacing: "0.12em"
 rounded:
   ctl: "4px"
 spacing:
@@ -108,7 +108,7 @@ The architecture is multi-page by client demand: home, /the-floor (a deal-board 
 
 **Key Characteristics:**
 - Warm charcoal night field, always lit by radial lamp pools, never flat black
-- Serif display voice in sentence case over a working grotesk with tracked-caps labels
+- One Caslon family: display voice in sentence case over Libre Caslon Text body with small engraved-caps labels
 - LQ green appears only as the primary action and the single neon sign per page
 - Photographs presented as lit window displays: square-cornered, deep soft shadows
 - Motion is lighting, not decoration: each moment happens once, then the room holds still
@@ -144,7 +144,7 @@ Measured contrast (recorded on /style-guide): lamp on night 16.6:1, fog on night
 ## Typography
 
 **Display Font:** Libre Caslon Display (with Georgia, serif), weight 400 only, loaded via next/font/google as `--font-caslon`
-**Body Font:** Hanken Grotesk (with system-ui, sans-serif), loaded via next/font/google as `--font-hanken`
+**Body Font:** Libre Caslon Text 400/700 with italic (Georgia, serif fallback), loaded via next/font/google as `--font-caslon-text`
 
 **Character:** An old-style serif speaking quietly in sentence case over a plainspoken working grotesk. The serif carries warmth and permanence; the grotesk does the labor and the small tracked signage.
 
@@ -156,7 +156,7 @@ Measured contrast (recorded on /style-guide): lamp on night 16.6:1, fog on night
 - **Body Large** (400, 20px, 1.65): the supporting paragraph directly under a display heading. Fog colored.
 - **Body** (400, 17px, 1.7): running text, max width around `max-w-xl` (36rem). Fog for supporting text, lamp for content the visitor came to read (privacy body, hours table).
 - **Small** (400, 15px, relaxed): footer text, TCPA consent copy, form error messages.
-- **Label** (600, 12px, 0.14em tracking, uppercase): the `.label` voice. Nav links, buttons, form labels, captions, the neon sign text, status lines. The only uppercase in the system.
+- **Label** (700, 12px, 0.12em tracking, uppercase): the `.label` voice, engraved serif caps like brass signage. Nav links, buttons, form labels, captions, the neon sign text, status lines. The only uppercase in the system.
 
 ### Named Rules
 **The Sentence Case Rule.** The Caslon display voice is always sentence case, never uppercase, never bold (the face loads at 400 only). Uppercase belongs exclusively to the 12px tracked `.label` voice.

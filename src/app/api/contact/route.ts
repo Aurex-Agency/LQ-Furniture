@@ -24,7 +24,8 @@ export async function POST(req: NextRequest) {
   if (typeof message !== "string" || message.length === 0 || message.length > 5000) {
     return NextResponse.json({ ok: false, error: "invalid_message" }, { status: 400 });
   }
-  if (phone !== undefined && (typeof phone !== "string" || phone.length > 40)) {
+  if (typeof phone !== "string" || !/^\d{10}$/.test(phone)) {
+    // The page promises a call back, so a reachable number is required.
     return NextResponse.json({ ok: false, error: "invalid_phone" }, { status: 400 });
   }
   if (typeof pageUrl !== "string" || pageUrl.length > 500) {
@@ -35,7 +36,7 @@ export async function POST(req: NextRequest) {
     JSON.stringify({
       type: "contact_message",
       name,
-      phone: phone ?? "",
+      phone,
       message,
       pageUrl,
       timestamp: new Date().toISOString(),
