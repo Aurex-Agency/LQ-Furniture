@@ -42,6 +42,9 @@ export default function SiteFooter() {
             <br />
             Closed Monday and Tuesday
           </p>
+          <p className="neon-box neon label mt-5 inline-block rounded-ctl px-3 py-2">
+            Open Wed thru Sun
+          </p>
         </div>
         <div>
           <p className="label text-fog">Pages</p>

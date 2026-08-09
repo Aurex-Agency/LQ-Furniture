@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import FaqList from "@/components/FaqList";
+import NeonIcon from "@/components/NeonIcon";
 import NeonSign from "@/components/NeonSign";
 import OpenNow from "@/components/OpenNow";
 import Reveal from "@/components/Reveal";
@@ -76,23 +77,28 @@ export default function Home() {
       <SiteHeader />
 
       <main>
-        {/* Hero: the lit window */}
+        {/* Hero: the lit window. Stacked on phones, overlaid from sm up. */}
         <section className="relative">
           <div className="relative overflow-hidden">
-            <div className="settle">
-              <Image
-                src="/photos/IMG_8606.jpg"
-                alt="Inside the LQ Furniture warehouse in Tupelo at night, aisles of furniture under string lights"
-                width={2200}
-                height={1650}
-                priority
-                sizes="100vw"
-                className="h-[68svh] w-full object-cover sm:h-[76svh]"
-              />
+            <div className="relative">
+              <div className="settle">
+                <Image
+                  src="/photos/IMG_8606.jpg"
+                  alt="Inside the LQ Furniture warehouse in Tupelo at night, aisles of furniture under string lights"
+                  width={2200}
+                  height={1650}
+                  priority
+                  sizes="100vw"
+                  className="h-[38svh] w-full object-cover sm:h-[76svh]"
+                />
+              </div>
+              <div className="absolute bottom-3 right-3 sm:bottom-auto sm:right-10 sm:top-8">
+                <NeonSign />
+              </div>
             </div>
             {/* The room goes dark at the edges so the floor reads as lit. */}
             <div
-              className="absolute inset-0"
+              className="absolute inset-0 hidden sm:block"
               style={{
                 background:
                   "radial-gradient(110% 85% at 68% 22%, transparent 22%, rgb(19 19 17 / 0.62) 62%, rgb(19 19 17 / 0.97) 100%)",
@@ -100,19 +106,15 @@ export default function Home() {
               aria-hidden
             />
             <div
-              className="absolute inset-x-0 bottom-0 h-[80%] sm:h-[55%]"
+              className="absolute inset-x-0 bottom-0 hidden h-[80%] sm:block sm:h-[55%]"
               style={{
                 background:
                   "linear-gradient(to bottom, transparent 0%, rgb(19 19 17 / 0.5) 32%, rgb(19 19 17 / 0.93) 100%)",
               }}
               aria-hidden
             />
-            <div className="absolute right-5 top-5 sm:right-10 sm:top-8">
-              <NeonSign />
-            </div>
             <div
-              className="absolute inset-x-0 bottom-0 px-5 pb-12 sm:px-10 lg:px-16"
-              style={{ textShadow: "0 2px 28px rgb(0 0 0 / 0.65)" }}
+              className="px-5 pb-10 pt-8 sm:absolute sm:inset-x-0 sm:bottom-0 sm:px-10 sm:pb-12 sm:pt-0 sm:[text-shadow:0_2px_28px_rgb(0_0_0/0.65)] lg:px-16"
             >
               <h1
                 className="display line-rise max-w-3xl text-display text-lamp"
@@ -136,13 +138,13 @@ export default function Home() {
               >
                 <Link
                   href="/the-floor"
-                  className="label flex min-h-12 items-center btn-glow rounded-ctl bg-lq-green px-7 text-night hover:bg-lq-press active:translate-y-px"
+                  className="label flex min-h-12 w-full items-center justify-center btn-glow rounded-ctl bg-lq-green px-7 text-night hover:bg-lq-press active:translate-y-px sm:w-auto"
                 >
                   Walk the floor
                 </Link>
                 <Link
                   href="/financing"
-                  className="label flex min-h-12 items-center rounded-ctl border border-lamp/60 px-7 text-lamp hover:border-lamp hover:bg-night-2"
+                  className="label flex min-h-12 w-full items-center justify-center rounded-ctl border border-lamp/60 px-7 text-lamp hover:border-lamp hover:bg-night-2 sm:w-auto"
                 >
                   How financing works
                 </Link>
@@ -152,7 +154,7 @@ export default function Home() {
         </section>
 
         {/* Editorial intro */}
-        <section className="px-5 py-20 sm:px-10 sm:py-24 lg:px-16">
+        <section className="px-5 py-14 sm:px-10 sm:py-24 lg:px-16">
           <div className="grid gap-10 lg:grid-cols-12">
             <h2 className="display text-h1 text-lamp lg:col-span-6">
               The floor changes every week. The prices are the reason people
@@ -176,7 +178,10 @@ export default function Home() {
         {/* Floor preview */}
         <section className="px-5 pb-20 sm:px-10 sm:pb-24 lg:px-16">
           <div className="flex flex-wrap items-baseline justify-between gap-4">
-            <h2 className="display text-h2 text-lamp">On the floor right now</h2>
+            <h2 className="display flex items-center gap-4 text-h2 text-lamp">
+              <NeonIcon kind="sofa" className="w-10 shrink-0 sm:w-12" />
+              On the floor right now
+            </h2>
             <Link
               href="/the-floor"
               className="label inline-flex min-h-12 items-center gap-2 text-fog hover:text-lamp"
@@ -209,7 +214,7 @@ export default function Home() {
         </section>
 
         {/* Gone already */}
-        <section className="border-t border-night-3 px-5 py-20 sm:px-10 lg:px-16">
+        <section className="border-t border-night-3 px-5 py-14 sm:px-10 sm:py-20 lg:px-16">
           <div className="grid gap-10 lg:grid-cols-12">
             <div className="lg:col-span-4">
               <h2 className="display text-h1 text-lamp">
@@ -237,7 +242,7 @@ export default function Home() {
                     sizes="(min-width: 1024px) 22vw, 33vw"
                     className="window-photo aspect-[3/4] w-full object-cover opacity-55 saturate-[0.6]"
                   />
-                  <figcaption className="mt-3 text-[0.9375rem] text-lamp">
+                  <figcaption className="mt-2 truncate text-[0.6875rem] text-lamp sm:mt-3 sm:text-[0.9375rem]">
                     {item.name}
                     <span className="ml-2 italic text-fog">sold</span>
                   </figcaption>
@@ -321,7 +326,7 @@ export default function Home() {
         </section>
 
         {/* Straight answers */}
-        <section className="border-t border-night-3 px-5 py-20 sm:px-10 lg:px-16">
+        <section className="border-t border-night-3 px-5 py-14 sm:px-10 sm:py-20 lg:px-16">
           <div className="grid gap-10 lg:grid-cols-12">
             <div className="lg:col-span-4">
               <h2 className="display text-h1 text-lamp">Straight answers</h2>
@@ -337,7 +342,7 @@ export default function Home() {
         </section>
 
         {/* Text list */}
-        <section id="text-list" className="scroll-mt-6 px-5 py-20 sm:px-10 sm:py-24 lg:px-16">
+        <section id="text-list" className="scroll-mt-6 px-5 py-14 sm:px-10 sm:py-24 lg:px-16">
           <div className="grid gap-10 lg:grid-cols-12">
             <div className="lg:col-span-5">
               <h2 className="display mt-4 text-h1 text-lamp">

@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
+import NeonIcon from "@/components/NeonIcon";
 import SiteFooter from "@/components/SiteFooter";
 import SiteHeader from "@/components/SiteHeader";
 import { POSTS } from "@/lib/posts";
@@ -25,8 +26,9 @@ export default function Blog() {
     <>
       <SiteHeader current="/blog" />
       <main>
-        <section className="px-5 pt-16 sm:px-10 sm:pt-20 lg:px-16">
-          <h1 className="display max-w-3xl text-display text-lamp">
+        <section className="px-5 pt-10 sm:px-10 sm:pt-20 lg:px-16">
+          <NeonIcon kind="lamp" className="w-14 sm:w-16" />
+          <h1 className="display mt-5 max-w-3xl text-display text-lamp">
             Notes from the floor
           </h1>
           <p className="mt-6 max-w-xl text-body-lg text-fog">

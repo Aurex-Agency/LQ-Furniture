@@ -18,7 +18,7 @@ export default function Visit() {
     <>
       <SiteHeader current="/visit" />
       <main>
-        <section className="px-5 pt-16 sm:px-10 sm:pt-20 lg:px-16">
+        <section className="px-5 pt-10 sm:px-10 sm:pt-20 lg:px-16">
           <NeonSign big />
           <h1 className="display mt-6 max-w-3xl text-display text-lamp">
             Come walk the floor

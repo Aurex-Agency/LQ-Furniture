@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import Image from "next/image";
 import FloorBoard from "@/components/FloorBoard";
+import NeonIcon from "@/components/NeonIcon";
 import SiteFooter from "@/components/SiteFooter";
 import SiteHeader from "@/components/SiteHeader";
 import { STORE } from "@/lib/store";
@@ -19,7 +20,7 @@ export default function TheFloor() {
     <>
       <SiteHeader current="/the-floor" />
       <main>
-        <section className="px-5 pt-16 sm:px-10 sm:pt-20 lg:px-16">
+        <section className="px-5 pt-10 sm:px-10 sm:pt-20 lg:px-16">
           <p className="neon-box neon neon-on label inline-block rounded-ctl px-4 py-3">
             New loads weekly
           </p>
@@ -32,7 +33,15 @@ export default function TheFloor() {
             what something costs is to come see it.
           </p>
         </section>
-        <div className="mt-12 pb-20">
+        <div aria-hidden className="mt-10 flex flex-wrap items-center gap-x-8 gap-y-4 px-5 sm:gap-x-12 sm:px-10 lg:px-16">
+          <NeonIcon kind="sofa" className="w-12 sm:w-16" />
+          <NeonIcon kind="dining" className="w-12 sm:w-16" />
+          <NeonIcon kind="bed" className="w-12 sm:w-16" />
+          <NeonIcon kind="recliner" className="w-12 sm:w-16" />
+          <NeonIcon kind="mattress" className="w-12 sm:w-16" />
+          <NeonIcon kind="lamp" className="w-12 sm:w-16" />
+        </div>
+        <div className="mt-10 pb-20 sm:mt-12">
           <FloorBoard />
         </div>
         {/* The running record */}

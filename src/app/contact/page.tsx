@@ -18,7 +18,7 @@ export default function Contact() {
     <>
       <SiteHeader current="/contact" />
       <main>
-        <section className="px-5 pt-16 sm:px-10 sm:pt-20 lg:px-16">
+        <section className="px-5 pt-10 sm:px-10 sm:pt-20 lg:px-16">
           <h1 className="display max-w-3xl text-display text-lamp">
             Talk to a person
           </h1>
@@ -35,7 +35,7 @@ export default function Contact() {
               <OpenNow />
               <a
                 href={STORE.phoneHref}
-                className="display mt-4 block text-h2 text-lamp underline-offset-8 hover:underline"
+                className="neon-box neon neon-on display mt-4 inline-block rounded-[10px] px-5 py-4 text-h2 leading-none hover:opacity-90"
               >
                 {STORE.phone}
               </a>

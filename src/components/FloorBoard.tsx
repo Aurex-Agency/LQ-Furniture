@@ -153,8 +153,8 @@ export default function FloorBoard() {
                     width={2200}
                     height={1650}
                     sizes={wide ? "(min-width: 1024px) 67vw, 100vw" : "(min-width: 1024px) 34vw, (min-width: 640px) 50vw, 100vw"}
-                    className={`window-photo w-full object-cover ${
-                      wide ? "aspect-[3/2]" : portrait ? "aspect-[3/4]" : "aspect-[4/3]"
+                    className={`window-photo aspect-[4/3] w-full object-cover ${
+                      wide ? "sm:aspect-[3/2]" : portrait ? "sm:aspect-[3/4]" : ""
                     } ${item.sold ? "opacity-55 saturate-[0.6]" : "transition-[filter] duration-500 group-hover:brightness-110"}`}
                   />
                 </span>
