@@ -43,16 +43,16 @@ Shoppers browse on a phone, often from a Facebook ad or post, then drive to the 
 - Typography (client asked for "better fonts"): Libre Caslon Display for sentence-case display, Hanken Grotesk for body and tracked-caps labels. Archivo, Newsreader and DM Mono are all retired. Via next/font/google, latin subset.
 - Visual world: the showroom at night (direction roll e1b2fdb5, third world). Premium after-hours retail: lit charcoal room, photographs presented like window displays with deep soft shadows, serif statements in sentence case, one neon sign per page, motion as lighting (lights up, settle, mask reveals, blur-to-sharp rises, one neon flicker). Chosen after the client demanded a premium, unique, multi-page site with no cream; treat as standing until the client says otherwise.
 - The site is multi-page by client demand: home, /the-floor, /financing, /visit, /privacy.
-- Client explicitly rejected anything that looks AI-generated: no gradients, glows, glassmorphism, icon feature grids, numbered marker sequences, testimonial carousels, fabricated testimonials, emoji, stock or AI imagery. Radius 0 structural, 2px max on inputs and buttons.
-- Motion (client updated the original one-moment rule): unique, fun, authored animations are wanted; the experience should not feel like other furniture sites. Motion must stay in the warehouse world's grammar (stamps, tickers, freight), never generic fade-up-on-scroll on every section, and all of it disabled under prefers-reduced-motion.
-- Voice: plain, warm, direct, like a person in North Mississippi wrote it. No em dashes. No marketing filler (elevate, curated, seamless, transform, unlock, discover). Sentence case headings; display headlines uppercase. Buttons say what happens.
+- Client explicitly rejected anything that looks AI-generated: no glassmorphism or backdrop blur, no icon feature grids, no numbered marker sequences, no testimonial carousels, no fabricated testimonials, no emoji, no stock or AI imagery. Decorative gradient washes stay banned; the night world's radial lamp pools and the neon device are lighting from the subject's world, not decoration, and are the only exceptions. Structural corners square, 4px on controls.
+- Motion (client demanded better, more realistic animation and flow): authored moments in the world's own grammar (lighting, settling weight), never a generic fade-up on every section, each moment once per page, all of it disabled under prefers-reduced-motion with content left visible.
+- Voice: plain, warm, direct, like a person in North Mississippi wrote it. No em dashes. No marketing filler (elevate, curated, seamless, transform, unlock, discover). Headings and display are sentence case in this world. Buttons say what happens.
 
 ## Evidence on Hand
 
 - 51 real showroom photos at assets/photos/IMG_8587.jpg through IMG_8637.jpg (converted from HEIC, 2200px wide). Sectionals, dining sets, recliners, bedroom sets, Shema Sleep mattress gallery, lamp walls, wide warehouse aisles.
 - Transparent logo at assets/source/logo/lq-logo.png.
 - No testimonials, press, or case studies on hand. Do not fabricate any.
-- No street address, phone, or hours on hand yet. Do not invent them; ask.
+- Store facts are verified and recorded under Capabilities and Constraints; the sold flags in src/lib/floor.ts are placeholder demonstration data pending the client's real board.
 
 ## Product Principles
 
@@ -64,4 +64,4 @@ Shoppers browse on a phone, often from a Facebook ad or post, then drive to the 
 
 ## Accessibility & Inclusion
 
-All tap targets at least 48x48px with at least 8px spacing. Visible keyboard focus rings on everything interactive. All motion disabled under prefers-reduced-motion. Contrast: green only on near-black (7.49:1); green buttons take ink text (white on green fails at 2.61:1).
+All tap targets at least 48x48px with at least 8px spacing. Visible keyboard focus rings on everything interactive. All motion disabled under prefers-reduced-motion. Contrast law: green surfaces carry night text, never white (white on the brand green fails at 2.6:1); measured ratios for the current palette live in DESIGN.md and on /style-guide.
