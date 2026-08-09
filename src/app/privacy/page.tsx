@@ -22,17 +22,17 @@ export default function Privacy() {
             className="h-12 w-auto"
           />
         </Link>
-        <h1 className="display mt-10 max-w-3xl text-h1 text-ink">
+        <h1 className="display mt-10 max-w-3xl text-h1 text-lamp">
           Privacy policy
         </h1>
-        <p className="mt-4 lower-third text-tag text-stone">
+        <p className="mt-4 label text-fog">
           Effective August 7, 2026
         </p>
       </header>
 
-      <div className="mt-12 max-w-2xl space-y-10 text-body text-ink">
+      <div className="mt-12 max-w-2xl space-y-10 text-body text-lamp">
         <section>
-          <h2 className="font-display text-h3 font-semibold">Who we are</h2>
+          <h2 className="display text-h3 text-lamp">Who we are</h2>
           <p className="mt-3">
             LQ Furniture is a furniture store at {STORE.address}, {STORE.city},{" "}
             {STORE.state} {STORE.zip}. You can reach us at {STORE.phone}. This
@@ -41,7 +41,7 @@ export default function Privacy() {
         </section>
 
         <section>
-          <h2 className="font-display text-h3 font-semibold">What we collect</h2>
+          <h2 className="display text-h3 text-lamp">What we collect</h2>
           <p className="mt-3">
             If you join our text list, we collect the mobile number you give
             us, plus a record of your consent: the version of the consent
@@ -57,7 +57,7 @@ export default function Privacy() {
         </section>
 
         <section>
-          <h2 className="font-display text-h3 font-semibold">
+          <h2 className="display text-h3 text-lamp">
             Text messages and your consent
           </h2>
           <p className="mt-3">
@@ -75,7 +75,7 @@ export default function Privacy() {
         </section>
 
         <section>
-          <h2 className="font-display text-h3 font-semibold">
+          <h2 className="display text-h3 text-lamp">
             What we never do with your number
           </h2>
           <p className="mt-3">
@@ -88,7 +88,7 @@ export default function Privacy() {
         </section>
 
         <section>
-          <h2 className="font-display text-h3 font-semibold">Questions</h2>
+          <h2 className="display text-h3 text-lamp">Questions</h2>
           <p className="mt-3">
             Call us at {STORE.phone} or come by the store. We are at{" "}
             {STORE.address} in {STORE.city}, open Wednesday through Saturday
@@ -97,10 +97,10 @@ export default function Privacy() {
         </section>
       </div>
 
-      <footer className="mt-16 border-t border-sand pt-8">
+      <footer className="mt-16 border-t border-night-3 pt-8">
         <Link
           href="/"
-          className="lower-third text-tag text-stone underline-offset-4 hover:text-ink"
+          className="label text-fog underline-offset-4 hover:text-lamp"
         >
           Back to the homepage
         </Link>

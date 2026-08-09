@@ -1,18 +1,17 @@
 import type { Metadata, Viewport } from "next";
-import { Archivo, Newsreader } from "next/font/google";
+import { Libre_Caslon_Display, Hanken_Grotesk } from "next/font/google";
 import "./globals.css";
 
-const archivo = Archivo({
+const caslon = Libre_Caslon_Display({
   subsets: ["latin"],
-  axes: ["wdth"],
-  variable: "--font-archivo",
+  weight: "400",
+  variable: "--font-caslon",
   display: "swap",
 });
 
-const newsreader = Newsreader({
+const hanken = Hanken_Grotesk({
   subsets: ["latin"],
-  style: ["normal", "italic"],
-  variable: "--font-newsreader",
+  variable: "--font-hanken",
   display: "swap",
 });
 
@@ -26,15 +25,15 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  themeColor: "#FAF7F1",
+  themeColor: "#131311",
 };
 
 const directionContract = `<!--
-THESIS: The furniture makeover show, playing on a bright set. A warehouse whose floor changes weekly, shown the way this audience already watches rooms come to life on TV. Refuses both the dark brutalist rendition the client rejected and the generic white e-commerce grid.
-OWN-WORLD: Warm paper field #FAF7F1, cream and sand surfaces, warm ink text, one working green #6BB22E as the action color that always carries ink text (#3E6B1A is its only text form on light). Archivo wide for episode-title display and lower-third caption bars, Newsreader for warm body. 6px control radius, square full-bleed photography, soft lift shadows only on raised controls.
-STORY: A North Mississippi family on a phone sees the floor like a reveal segment, believes the savings because the scarcity is real, and either joins the text list or calls about financing before driving to Tupelo.
-FIRST VIEWPORT: Full-bleed floor photo with a slow settle zoom, headline block on the paper field beneath it, both conversion doors in view; a ticker of store facts runs under it like a broadcast strip.
-FORM: Replacement world assigned by direction roll, seed key 3f585062: the HGTV reveal grammar, candidate 5 of the grounded list. Homepage structure retained from surface roll 6e5352b2 (the deal board). Guide route: /style-guide.
+THESIS: The showroom at night. A warehouse of real furniture presented like lit window displays after hours, premium and unhurried. Refuses the flat brutalist ink build, the bright cream build, and the white e-commerce grid, all three now dead.
+OWN-WORLD: Warm charcoal night #131311 lit in radial lamp pools, never flat. Lamp white text, fog secondary. LQ green exists as the neon sign and the primary action only; green surfaces carry night text. Libre Caslon Display sentence-case display over Hanken Grotesk body and tracked-caps labels. 4px controls, deep soft shadows under photographs, square imagery.
+STORY: A North Mississippi family window-shops the lit floor from their phone at night, feels the quality, and either joins the text list, calls about financing, or drives to Tupelo when the sign turns on.
+FIRST VIEWPORT: A spotlit floor photograph in the dark with the serif statement over it, the neon hours sign burning in the corner, both conversion doors beneath.
+FORM: Third world, assigned by direction roll e1b2fdb5: the night showroom, candidate 7. Deal-board structure retained on /the-floor (surface roll 6e5352b2). Multi-page: home, the-floor, financing, visit, privacy.
 FINISH: unreviewed and undocumented is unfinished; this build ends with the finish review, the verdict, and DESIGN.md
 -->`;
 
@@ -42,7 +41,7 @@ export default function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="en" className={`${archivo.variable} ${newsreader.variable}`}>
+    <html lang="en" className={`${caslon.variable} ${hanken.variable}`}>
       <body>
         <span hidden dangerouslySetInnerHTML={{ __html: directionContract }} />
         {children}

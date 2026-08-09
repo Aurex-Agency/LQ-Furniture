@@ -26,7 +26,7 @@ export default function FloorBoard() {
   const [filter, setFilter] = useState<Filter>("all");
   const boardRef = useRef<HTMLDivElement>(null);
   // Figures render visible for no-JS visitors; once mounted, figures still
-  // below the viewport get the reveal treatment when scrolled into view.
+  // below the viewport open like lit displays when scrolled into view.
   const [reveals, setReveals] = useState<Map<string, RevealState>>(new Map());
 
   useEffect(() => {
@@ -60,7 +60,7 @@ export default function FloorBoard() {
           }
         }
       },
-      { threshold: 0.35 },
+      { threshold: 0.3 },
     );
     for (const el of below) observer.observe(el);
     return () => observer.disconnect();
@@ -73,7 +73,7 @@ export default function FloorBoard() {
   return (
     <div ref={boardRef}>
       <div
-        className="flex flex-wrap gap-2 px-5 sm:px-10 lg:px-16"
+        className="flex flex-wrap gap-x-7 gap-y-1 px-5 sm:px-10 lg:px-16"
         role="group"
         aria-label="Filter the floor by department"
       >
@@ -86,14 +86,14 @@ export default function FloorBoard() {
               aria-pressed={active}
               onClick={() => {
                 setFilter(f.key);
-                // Filtering remounts figures; stale hidden states would strand
-                // them clipped, so every figure renders static after a filter.
+                // Filtering remounts figures; stale hidden states would
+                // strand them clipped, so everything renders static after.
                 setReveals(new Map());
               }}
-              className={`lower-third min-h-12 rounded-ctl px-4 text-tag ${
+              className={`label min-h-12 border-b-2 pt-0.5 ${
                 active
-                  ? "bg-lq-green text-ink"
-                  : "bg-cream text-ink hover:bg-sand"
+                  ? "border-lq-green text-lamp"
+                  : "border-transparent text-fog hover:text-lamp"
               }`}
             >
               {f.label}
@@ -102,54 +102,52 @@ export default function FloorBoard() {
         })}
       </div>
 
-      <div className="mt-8 grid grid-cols-2 gap-2 px-2 sm:grid-cols-4 sm:gap-3 sm:px-3 lg:grid-cols-6">
-        {visible.map((item) => {
+      <div className="mt-10 grid grid-cols-1 gap-x-6 gap-y-12 px-5 sm:grid-cols-2 sm:px-10 lg:grid-cols-3 lg:gap-x-8 lg:px-16">
+        {visible.map((item, i) => {
           const state = reveals.get(item.id) ?? "static";
-          const wipeCls =
-            state === "hidden" ? "wipe-hidden" : state === "revealed" ? "wipe-in" : "";
-          const thirdCls =
-            state === "hidden" ? "third-hidden" : state === "revealed" ? "third-up" : "";
-          const soldCls =
-            state === "hidden" ? "sold-hidden" : state === "revealed" ? "sold-pop" : "-rotate-3";
+          const maskCls =
+            state === "hidden" ? "mask-hidden" : state === "revealed" ? "mask-open" : "";
+          const capCls =
+            state === "hidden" ? "rise-hidden" : state === "revealed" ? "rise-go" : "";
           return (
             <figure
               key={item.id}
               data-floor-id={item.id}
-              className={`relative m-0 ${item.span}`}
+              className={`m-0 ${i % 5 === 0 ? "sm:col-span-2 lg:col-span-2" : ""}`}
             >
-              <div className={wipeCls}>
+              <div className={maskCls}>
                 <Image
                   src={item.src}
                   alt={item.alt}
                   width={2200}
                   height={1650}
-                  sizes={`(min-width: 1024px) ${item.span.includes("lg:col-span-3") ? 50 : 34}vw, (min-width: 640px) 50vw, ${item.span.startsWith("col-span-1") ? "50vw" : "100vw"}`}
-                  className="aspect-[4/3] h-full w-full object-cover"
+                  sizes="(min-width: 1024px) 34vw, (min-width: 640px) 50vw, 100vw"
+                  className={`window-photo aspect-[4/3] w-full object-cover ${
+                    item.sold ? "opacity-55 saturate-[0.6]" : ""
+                  }`}
                 />
               </div>
               <figcaption
-                className={`absolute bottom-2 left-2 flex max-w-[calc(100%-1rem)] items-center ${thirdCls}`}
+                className={`mt-4 flex items-baseline justify-between gap-4 ${capCls}`}
               >
-                <span className="lower-third truncate sm:whitespace-normal bg-lq-green px-2 py-1.5 text-[0.6875rem] text-ink sm:px-3 sm:py-2 sm:text-tag">
+                <span className="display text-h3 text-lamp">
                   {item.name}
+                  {item.sold ? (
+                    <span className="ml-3 font-body text-body italic text-fog">
+                      sold
+                    </span>
+                  ) : null}
                 </span>
-                <span className="lower-third hidden shrink-0 bg-paper px-3 py-2 text-tag text-ink sm:inline">
+                <span className="label shrink-0 text-fog">
                   {CATEGORY_LABELS[item.category]}
                 </span>
               </figcaption>
-              {item.sold ? (
-                <span
-                  className={`display absolute right-3 top-3 border-[3px] border-lq-press bg-paper px-3 py-0.5 text-h3 text-lq-deep ${soldCls}`}
-                >
-                  Sold
-                </span>
-              ) : null}
             </figure>
           );
         })}
       </div>
 
-      <p className="lower-third px-5 pt-5 text-tag text-stone sm:px-10 lg:px-16">
+      <p className="label px-5 pt-10 text-fog sm:px-10 lg:px-16">
         Shot on our floor. Sold means somebody beat you to it.
       </p>
     </div>

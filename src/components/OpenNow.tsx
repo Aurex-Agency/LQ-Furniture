@@ -66,7 +66,7 @@ export default function OpenNow() {
 
   // Always one line tall so the hydrated status never shifts the column.
   return (
-    <p className="lower-third min-h-[1.4em] text-tag text-lq-deep" aria-live="polite">
+    <p className={`label min-h-[1.4em] ${line.startsWith("Open") ? "neon" : "text-fog"}`} aria-live="polite">
       {line || " "}
     </p>
   );

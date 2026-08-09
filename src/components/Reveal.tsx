@@ -2,17 +2,19 @@
 
 import { useEffect, useRef, useState } from "react";
 
-// Wraps a section photo in the one-time wipe reveal. Renders visible for
+// Wraps a photograph in the one-time mask reveal. Renders visible for
 // no-JS visitors; once mounted, anything still below the viewport is hidden
-// and wipes in when scrolled to. The observed outer div stays unclipped;
-// the clip lives on an inner wrapper, because Chromium computes
+// and opens when scrolled to. The observed outer div stays unclipped; the
+// clip lives on an inner wrapper, because Chromium computes
 // IntersectionObserver geometry after clip-path.
 export default function Reveal({
   children,
   className = "",
+  inner = "absolute inset-0",
 }: {
   children: React.ReactNode;
   className?: string;
+  inner?: string;
 }) {
   const ref = useRef<HTMLDivElement>(null);
   const [state, setState] = useState<"static" | "hidden" | "revealed">("static");
@@ -31,7 +33,7 @@ export default function Reveal({
           }
         }
       },
-      { threshold: 0.35 },
+      { threshold: 0.3 },
     );
     observer.observe(el);
     return () => observer.disconnect();
@@ -40,8 +42,8 @@ export default function Reveal({
   return (
     <div ref={ref} className={className}>
       <div
-        className={`absolute inset-0 ${
-          state === "hidden" ? "wipe-hidden" : state === "revealed" ? "wipe-in" : ""
+        className={`${inner} ${
+          state === "hidden" ? "mask-hidden" : state === "revealed" ? "mask-open" : ""
         }`}
       >
         {children}
