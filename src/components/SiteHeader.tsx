@@ -11,7 +11,7 @@ const LINKS = [
 
 export default function SiteHeader({ current }: { current?: string }) {
   return (
-    <header className="flex flex-wrap items-center justify-between gap-x-6 border-b border-night-3 px-5 py-4 sm:px-10 lg:px-16">
+    <header className="sticky top-0 z-40 flex flex-wrap items-center justify-between gap-x-6 border-b border-night-3 bg-night px-5 py-4 sm:px-10 lg:px-16">
       <Link href="/" className="order-1">
         <Image
           src="/brand/lq-logo.png"

@@ -119,7 +119,7 @@ export default function FloorBoard() {
             <figure
               key={item.id}
               data-floor-id={item.id}
-              className={`m-0 ${wide ? "sm:col-span-2" : ""}`}
+              className={`group m-0 ${wide ? "sm:col-span-2" : ""}`}
             >
               <div className={maskCls}>
                 <Image
@@ -130,7 +130,7 @@ export default function FloorBoard() {
                   sizes={wide ? "(min-width: 1024px) 67vw, 100vw" : "(min-width: 1024px) 34vw, (min-width: 640px) 50vw, 100vw"}
                   className={`window-photo w-full object-cover ${
                     wide ? "aspect-[3/2]" : portrait ? "aspect-[3/4]" : "aspect-[4/3]"
-                  } ${item.sold ? "opacity-55 saturate-[0.6]" : ""}`}
+                  } ${item.sold ? "opacity-55 saturate-[0.6]" : "transition-[filter] duration-500 group-hover:brightness-110"}`}
                 />
               </div>
               <figcaption

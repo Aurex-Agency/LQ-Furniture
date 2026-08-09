@@ -232,14 +232,54 @@ textarea {
   animation: neon-on 1600ms 400ms ease-in both;
 }
 
+/* The camera drifts as you walk the room: large photographs pan slowly
+   with scroll. Progressive enhancement; browsers without scroll-driven
+   animations just see the still photograph. */
+@keyframes drift {
+  from {
+    transform: scale(1.12) translateY(-3.5%);
+  }
+  to {
+    transform: scale(1.12) translateY(3.5%);
+  }
+}
+
+@supports (animation-timeline: view()) {
+  .drift {
+    animation: drift linear both;
+    animation-timeline: view();
+  }
+}
+
+/* The debossed signage marquee: the department names at display scale,
+   carved dark-on-dark, drifting once across the home page. This is the
+   world's single looping element. */
+@keyframes marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+.marquee-track {
+  animation: marquee 80s linear infinite;
+}
+
 @media (prefers-reduced-motion: reduce) {
   .lights-up,
   .settle,
   .line-rise,
   .mask-open,
   .rise-go,
-  .neon-on {
+  .neon-on,
+  .drift,
+  .marquee-track {
     animation: none;
+  }
+  .drift {
+    transform: none;
   }
   .lights-up,
   .line-rise,

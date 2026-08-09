@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
 import SiteFooter from "@/components/SiteFooter";
 import SiteHeader from "@/components/SiteHeader";
@@ -38,7 +39,19 @@ export default function Blog() {
           <ul className="max-w-3xl border-t border-night-3">
             {POSTS.map((post) => (
               <li key={post.slug} className="border-b border-night-3 py-10">
-                <h2 className="display text-h2 text-lamp">
+                <Link href={`/blog/${post.slug}`} className="group block">
+                  <span className="block overflow-hidden">
+                    <Image
+                      src={post.image.src}
+                      alt={post.image.alt}
+                      width={2200}
+                      height={1650}
+                      sizes="(min-width: 1024px) 48rem, 100vw"
+                      className="window-photo aspect-[5/2] w-full object-cover transition-[filter] duration-500 group-hover:brightness-110"
+                    />
+                  </span>
+                </Link>
+                <h2 className="display mt-6 text-h2 text-lamp">
                   <Link
                     href={`/blog/${post.slug}`}
                     className="underline-offset-8 hover:underline"

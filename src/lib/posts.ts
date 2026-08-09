@@ -3,6 +3,7 @@ export type Post = {
   title: string;
   date: string;
   description: string;
+  image: { src: string; alt: string };
   // Paragraphs of plain text; headings are marked with a leading "## ".
   body: string[];
 };
@@ -17,6 +18,10 @@ export const POSTS: Post[] = [
     date: "2026-08-09",
     description:
       "The honest math behind LQ's prices: truckload buying, fast turnover, and a building that works for a living.",
+    image: {
+      src: "/photos/IMG_8607.jpg",
+      alt: "A long aisle of the LQ warehouse stacked with furniture and decor",
+    },
     body: [
       "People walk our floor, look at a tag, and ask the same question: what's wrong with it? Nothing is wrong with it. The math is just different here.",
       "## We buy whole loads",
@@ -35,6 +40,10 @@ export const POSTS: Post[] = [
     date: "2026-08-09",
     description:
       "Measure first, come early in the week's run, and know what you're sitting on. A short guide to shopping the LQ floor like a regular.",
+    image: {
+      src: "/photos/IMG_8609.jpg",
+      alt: "Rows of reclining sofas stretching down a warehouse aisle",
+    },
     body: [
       "Warehouse shopping rewards people who show up ready. Here's what our regulars know.",
       "## Measure before you drive",

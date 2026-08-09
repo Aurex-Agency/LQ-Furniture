@@ -156,6 +156,24 @@ export default function Home() {
           </div>
         </section>
 
+        {/* The signage marquee */}
+        <div aria-hidden className="overflow-hidden border-y border-night-3 py-6">
+          <div className="marquee-track flex w-max">
+            {[0, 1].map((run) => (
+              <span key={run} className="flex shrink-0 items-center whitespace-nowrap">
+                {["Sectionals", "Dining", "Bedroom", "Recliners", "Mattresses", "Lamps"].map(
+                  (d) => (
+                    <span key={d} className="display flex items-center text-[clamp(3rem,7vw,6rem)] italic leading-none text-night-3">
+                      {d}
+                      <span className="mx-8 inline-block h-2 w-2 rounded-full bg-night-3" />
+                    </span>
+                  ),
+                )}
+              </span>
+            ))}
+          </div>
+        </div>
+
         {/* Floor preview */}
         <section className="px-5 pb-20 sm:px-10 sm:pb-24 lg:px-16">
           <div className="flex flex-wrap items-baseline justify-between gap-4">
@@ -169,7 +187,7 @@ export default function Home() {
           </div>
           <div className="mt-10 grid grid-cols-1 gap-x-6 gap-y-12 sm:grid-cols-2 lg:gap-x-8">
             {preview.map((item, i) => (
-              <figure key={item.id} className={`m-0 ${i === 0 || i === 3 ? "sm:mt-16" : ""}`}>
+              <figure key={item.id} className={`group m-0 ${i === 0 || i === 3 ? "sm:mt-16" : ""}`}>
                 <Reveal className="relative" inner="">
                   <Image
                     src={item.src}
@@ -177,7 +195,7 @@ export default function Home() {
                     width={2200}
                     height={1650}
                     sizes="(min-width: 640px) 50vw, 100vw"
-                    className="window-photo aspect-[4/3] w-full object-cover"
+                    className="window-photo aspect-[4/3] w-full object-cover transition-[filter] duration-500 group-hover:brightness-110"
                   />
                 </Reveal>
                 <figcaption className="mt-4 flex items-baseline justify-between gap-4">
@@ -188,6 +206,40 @@ export default function Home() {
                 </figcaption>
               </figure>
             ))}
+          </div>
+        </section>
+
+        {/* The lamp wall */}
+        <section className="relative overflow-hidden">
+          <Image
+            src="/photos/IMG_8605.jpg"
+            alt="The lamp wall at LQ Furniture, shelves of lit table lamps in every color"
+            width={2200}
+            height={1650}
+            sizes="100vw"
+            className="drift h-[56svh] w-full object-cover"
+          />
+          <div
+            className="absolute inset-0"
+            style={{
+              background:
+                "radial-gradient(110% 90% at 50% 30%, transparent 35%, rgb(19 19 17 / 0.5) 70%, rgb(19 19 17 / 0.92) 100%)",
+            }}
+            aria-hidden
+          />
+          <div className="absolute inset-x-0 bottom-0 flex flex-wrap items-end justify-between gap-6 px-5 pb-10 sm:px-10 lg:px-16">
+            <h2
+              className="display max-w-2xl text-h1 text-lamp"
+              style={{ textShadow: "0 2px 24px rgb(0 0 0 / 0.7)" }}
+            >
+              The lamp wall runs the back of the building.
+            </h2>
+            <Link
+              href="/the-floor"
+              className="label flex min-h-12 items-center rounded-ctl bg-lq-green px-7 text-night hover:bg-lq-press active:translate-y-px"
+            >
+              Walk the floor
+            </Link>
           </div>
         </section>
 
@@ -250,7 +302,10 @@ export default function Home() {
 
         {/* Visit strip */}
         <section className="border-t border-night-3 px-5 py-16 sm:px-10 lg:px-16">
-          <div className="flex flex-wrap items-center justify-between gap-8">
+          <p className="display max-w-4xl text-display text-lamp">
+            See you Wednesday.
+          </p>
+          <div className="mt-10 flex flex-wrap items-center justify-between gap-8 border-t border-night-3 pt-10">
             <div>
               <OpenNow />
               <p className="display mt-3 text-h2 text-lamp">

@@ -48,14 +48,14 @@ export default function TheFloor() {
           </p>
           <div className="mt-10 grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-4">
             {ARCHIVE_ITEMS.map((item) => (
-              <figure key={item.id} className="m-0">
+              <figure key={item.id} className="group m-0">
                 <Image
                   src={item.src}
                   alt={item.alt}
                   width={2200}
                   height={1650}
                   sizes="(min-width: 1024px) 25vw, (min-width: 640px) 34vw, 50vw"
-                  className="window-photo aspect-square w-full object-cover"
+                  className="window-photo aspect-square w-full object-cover transition-[filter] duration-500 group-hover:brightness-110"
                 />
                 <figcaption className="mt-2 flex items-baseline justify-between gap-3">
                   <span className="text-[0.9375rem] text-lamp">{item.name}</span>

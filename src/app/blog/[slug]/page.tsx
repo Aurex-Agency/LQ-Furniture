@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import SiteFooter from "@/components/SiteFooter";
@@ -49,7 +50,18 @@ export default async function PostPage({
           <p className="mt-3 text-[0.9375rem] italic text-fog">
             {fmtDate(post.date)}
           </p>
-          <div className="mt-10 max-w-2xl pb-16">
+          <div className="mt-10 overflow-hidden">
+            <Image
+              src={post.image.src}
+              alt={post.image.alt}
+              width={2200}
+              height={1650}
+              sizes="(min-width: 1024px) 75vw, 100vw"
+              priority
+              className="drift window-photo max-h-[52svh] w-full object-cover"
+            />
+          </div>
+          <div className="mt-12 max-w-2xl pb-16">
             {post.body.map((block, i) =>
               block.startsWith("## ") ? (
                 <h2 key={i} className="display mt-10 text-h3 text-lamp">
