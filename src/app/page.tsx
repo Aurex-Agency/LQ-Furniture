@@ -46,7 +46,7 @@ const jsonLd = {
       closes: "18:00",
     },
   ],
-  image: "/photos/IMG_8606.jpg",
+  image: "/photos/IMG_8587.jpg",
 };
 
 const faqJsonLd = {
@@ -59,7 +59,7 @@ const faqJsonLd = {
   })),
 };
 
-const previewIds = ["8587", "8620", "8602", "8610"];
+const previewIds = ["8617", "8620", "8602", "8610"];
 
 export default function Home() {
   const preview = FLOOR_ITEMS.filter((i) => previewIds.includes(i.id));
@@ -83,8 +83,8 @@ export default function Home() {
             <div className="relative">
               <div className="settle">
                 <Image
-                  src="/photos/IMG_8606.jpg"
-                  alt="Inside the LQ Furniture warehouse in Tupelo at night, aisles of furniture under string lights"
+                  src="/photos/IMG_8587.jpg"
+                  alt="An oversized sectional on the LQ Furniture floor in Tupelo, string lights running deep into the warehouse behind it"
                   width={2200}
                   height={1650}
                   priority
@@ -101,7 +101,7 @@ export default function Home() {
               className="absolute inset-0 hidden sm:block"
               style={{
                 background:
-                  "radial-gradient(110% 85% at 68% 22%, transparent 22%, rgb(19 19 17 / 0.62) 62%, rgb(19 19 17 / 0.97) 100%)",
+                  "radial-gradient(115% 90% at 60% 18%, transparent 20%, rgb(19 19 17 / 0.55) 58%, rgb(19 19 17 / 0.95) 100%)",
               }}
               aria-hidden
             />
@@ -109,7 +109,7 @@ export default function Home() {
               className="absolute inset-x-0 bottom-0 hidden h-[80%] sm:block sm:h-[55%]"
               style={{
                 background:
-                  "linear-gradient(to bottom, transparent 0%, rgb(19 19 17 / 0.5) 32%, rgb(19 19 17 / 0.93) 100%)",
+                  "linear-gradient(to bottom, transparent 0%, rgb(19 19 17 / 0.65) 35%, rgb(19 19 17 / 0.97) 100%)",
               }}
               aria-hidden
             />
