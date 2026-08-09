@@ -22,8 +22,6 @@ export type FloorItem = {
   name: string;
   category: FloorCategory;
   sold: boolean;
-  // Tailwind span classes; the board is asymmetric on purpose.
-  span: string;
 };
 
 // Every photo below was shot on the LQ floor. The board rotates as the
@@ -41,7 +39,6 @@ export const FLOOR_ITEMS: FloorItem[] = [
     name: "Oversized gray sectional with ottoman",
     category: "living",
     sold: false,
-    span: "col-span-2 sm:col-span-2 lg:col-span-3",
   },
   {
     id: "8594",
@@ -50,7 +47,6 @@ export const FLOOR_ITEMS: FloorItem[] = [
     name: "Black counter-height dining set",
     category: "dining",
     sold: true,
-    span: "col-span-2 sm:col-span-2 lg:col-span-3",
   },
   {
     id: "8617",
@@ -59,7 +55,6 @@ export const FLOOR_ITEMS: FloorItem[] = [
     name: "Caramel leather modular sectional",
     category: "living",
     sold: false,
-    span: "col-span-1 sm:col-span-2 lg:col-span-2",
   },
   {
     id: "8600",
@@ -68,7 +63,6 @@ export const FLOOR_ITEMS: FloorItem[] = [
     name: "Light oak dining set",
     category: "dining",
     sold: false,
-    span: "col-span-1 sm:col-span-2 lg:col-span-2",
   },
   {
     id: "8605",
@@ -77,7 +71,6 @@ export const FLOOR_ITEMS: FloorItem[] = [
     name: "The lamp wall",
     category: "lamps",
     sold: false,
-    span: "col-span-2 sm:col-span-2 lg:col-span-2",
   },
   {
     id: "8620",
@@ -86,7 +79,6 @@ export const FLOOR_ITEMS: FloorItem[] = [
     name: "Driftwood bedroom set",
     category: "bedroom",
     sold: false,
-    span: "col-span-2 sm:col-span-2 lg:col-span-3",
   },
   {
     id: "8610",
@@ -95,7 +87,6 @@ export const FLOOR_ITEMS: FloorItem[] = [
     name: "Gray power reclining set",
     category: "recliners",
     sold: false,
-    span: "col-span-2 sm:col-span-2 lg:col-span-3",
   },
   {
     id: "8632",
@@ -104,7 +95,6 @@ export const FLOOR_ITEMS: FloorItem[] = [
     name: "Cream sofa with wood trim",
     category: "living",
     sold: true,
-    span: "col-span-1 sm:col-span-2 lg:col-span-2",
   },
   {
     id: "8627",
@@ -113,7 +103,6 @@ export const FLOOR_ITEMS: FloorItem[] = [
     name: "Shema Sleep pillow-top",
     category: "mattresses",
     sold: false,
-    span: "col-span-1 sm:col-span-2 lg:col-span-2",
   },
   {
     id: "8622",
@@ -122,7 +111,6 @@ export const FLOOR_ITEMS: FloorItem[] = [
     name: "Panel bed and chest",
     category: "bedroom",
     sold: false,
-    span: "col-span-2 sm:col-span-2 lg:col-span-2",
   },
   {
     id: "8602",
@@ -131,7 +119,6 @@ export const FLOOR_ITEMS: FloorItem[] = [
     name: "Round walnut dining set",
     category: "dining",
     sold: false,
-    span: "col-span-2 sm:col-span-2 lg:col-span-3",
   },
   {
     id: "8612",
@@ -140,6 +127,5 @@ export const FLOOR_ITEMS: FloorItem[] = [
     name: "Brown leather power recliners",
     category: "recliners",
     sold: true,
-    span: "col-span-2 sm:col-span-2 lg:col-span-3",
   },
 ];

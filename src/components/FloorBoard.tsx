@@ -103,17 +103,23 @@ export default function FloorBoard() {
       </div>
 
       <div className="mt-10 grid grid-cols-1 gap-x-6 gap-y-12 px-5 sm:grid-cols-2 sm:px-10 lg:grid-cols-3 lg:gap-x-8 lg:px-16">
-        {visible.map((item) => {
+        {visible.map((item, i) => {
           const state = reveals.get(item.id) ?? "static";
           const maskCls =
             state === "hidden" ? "mask-hidden" : state === "revealed" ? "mask-open" : "";
           const capCls =
             state === "hidden" ? "rise-hidden" : state === "revealed" ? "rise-go" : "";
+          // The board keeps the deal-sheet rhythm without voids: paired rows
+          // of one wide 3:2 piece and one 3:4 portrait at matched heights,
+          // every third row a plain trio, sides alternating.
+          const slot = i % 6;
+          const wide = slot === 0 || slot === 4;
+          const portrait = slot === 1 || slot === 3;
           return (
             <figure
               key={item.id}
               data-floor-id={item.id}
-              className="m-0"
+              className={`m-0 ${wide ? "sm:col-span-2" : ""}`}
             >
               <div className={maskCls}>
                 <Image
@@ -121,10 +127,10 @@ export default function FloorBoard() {
                   alt={item.alt}
                   width={2200}
                   height={1650}
-                  sizes="(min-width: 1024px) 34vw, (min-width: 640px) 50vw, 100vw"
-                  className={`window-photo aspect-[4/3] w-full object-cover ${
-                    item.sold ? "opacity-55 saturate-[0.6]" : ""
-                  }`}
+                  sizes={wide ? "(min-width: 1024px) 67vw, 100vw" : "(min-width: 1024px) 34vw, (min-width: 640px) 50vw, 100vw"}
+                  className={`window-photo w-full object-cover ${
+                    wide ? "aspect-[3/2]" : portrait ? "aspect-[3/4]" : "aspect-[4/3]"
+                  } ${item.sold ? "opacity-55 saturate-[0.6]" : ""}`}
                 />
               </div>
               <figcaption

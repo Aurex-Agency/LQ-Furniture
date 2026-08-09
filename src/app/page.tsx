@@ -70,7 +70,7 @@ export default function Home() {
                 height={1650}
                 priority
                 sizes="100vw"
-                className="h-[76svh] w-full object-cover"
+                className="h-[68svh] w-full object-cover sm:h-[76svh]"
               />
             </div>
             {/* The room goes dark at the edges so the floor reads as lit. */}
@@ -83,10 +83,10 @@ export default function Home() {
               aria-hidden
             />
             <div
-              className="absolute inset-x-0 bottom-0 h-[55%]"
+              className="absolute inset-x-0 bottom-0 h-[80%] sm:h-[55%]"
               style={{
                 background:
-                  "linear-gradient(to bottom, transparent 0%, rgb(19 19 17 / 0.55) 45%, rgb(19 19 17 / 0.92) 100%)",
+                  "linear-gradient(to bottom, transparent 0%, rgb(19 19 17 / 0.5) 32%, rgb(19 19 17 / 0.93) 100%)",
               }}
               aria-hidden
             />
