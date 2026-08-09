@@ -135,7 +135,7 @@ Measured contrast (recorded on /style-guide): lamp on night 16.6:1, fog on night
 ### Named Rules
 **The Night Text Rule.** Green surfaces always carry night text, never white. White on LQ green fails contrast at 2.6:1; night on LQ green passes at 7.3:1. There are no exceptions on any surface.
 
-**The One Sign Rule.** Exactly one neon element per page: `neon-box` + `neon` + `label`, flickering on once via `neon-on`. It is a lit object from the store's world (an hours sign, a "Financing available" sign), not a decorative accent. A second neon element on a page is a defect.
+**The Sign Rule (amended by the client, who asked to lean into the gas-station sign look).** Neon is still a lit object from the store's world, never a decorative accent, but the device family grew: the live NeonSign (lit and humming via `neon-buzz` during store hours, tubes dark via `neon-dim` with the next lighting-up time when closed), static signs (`neon-box` + `neon` + `neon-on`), and the drawn tube arrow (`neon-stroke`) pointing at a conversion. One primary sign per page; the arrow may accompany it. Neon text or borders on things that are not signs remain defects.
 
 **The Lit Field Rule.** The night field must never read flat. At least one section per page carries a lamp pool (`.pool`: radial `rgb(244 232 205 / 0.13)` fading from the top center; `.pool-left`: the same light from the upper left), or the section sits against a lit photograph. Decorative gradient washes stay banned; these radials are the room's own overhead lighting and are the only sanctioned gradients besides photo scrims.
 

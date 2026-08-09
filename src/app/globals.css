@@ -251,20 +251,45 @@ textarea {
   }
 }
 
-/* The debossed signage marquee: the department names at display scale,
-   carved dark-on-dark, drifting once across the home page. This is the
-   world's single looping element. */
-@keyframes marquee {
-  from {
-    transform: translateX(0);
+/* The tubes hum. A barely-there flicker that makes a lit sign feel like
+   glass and gas instead of a CSS border. */
+@keyframes neon-buzz {
+  0%,
+  100% {
+    opacity: 1;
   }
-  to {
-    transform: translateX(-50%);
+  92% {
+    opacity: 1;
+  }
+  93% {
+    opacity: 0.93;
+  }
+  94% {
+    opacity: 1;
+  }
+  97% {
+    opacity: 0.96;
+  }
+  98% {
+    opacity: 1;
   }
 }
 
-.marquee-track {
-  animation: marquee 80s linear infinite;
+.neon-buzz {
+  animation: neon-buzz 6s 2200ms linear infinite;
+}
+
+/* An unlit sign: the tubes are there, the gas is off. */
+.neon-dim {
+  color: rgb(163 160 148 / 0.75);
+  border: 1.5px solid rgb(163 160 148 / 0.35);
+}
+
+/* Neon arrow: a drawn tube pointing at the thing that matters. */
+.neon-stroke {
+  stroke: var(--color-neon);
+  filter: drop-shadow(0 0 5px rgb(138 222 74 / 0.6))
+    drop-shadow(0 0 16px rgb(107 178 46 / 0.35));
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -275,7 +300,7 @@ textarea {
   .rise-go,
   .neon-on,
   .drift,
-  .marquee-track {
+  .neon-buzz {
     animation: none;
   }
   .drift {

@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Image from "next/image";
-import OpenNow from "@/components/OpenNow";
+import NeonSign from "@/components/NeonSign";
 import Reveal from "@/components/Reveal";
 import SiteFooter from "@/components/SiteFooter";
 import SiteHeader from "@/components/SiteHeader";
@@ -18,9 +18,7 @@ export default function Visit() {
       <SiteHeader current="/visit" />
       <main>
         <section className="pool px-5 pt-16 sm:px-10 sm:pt-20 lg:px-16">
-          <p className="neon-box neon neon-on label inline-block rounded-ctl px-4 py-3">
-            Open Wed thru Sun
-          </p>
+          <NeonSign big />
           <h1 className="display mt-6 max-w-3xl text-display text-lamp">
             Come walk the floor
           </h1>
@@ -33,8 +31,7 @@ export default function Visit() {
 
         <section className="mt-14 grid lg:grid-cols-2">
           <div className="px-5 pb-16 sm:px-10 lg:px-16">
-            <OpenNow />
-            <address className="display mt-4 max-w-md text-h2 not-italic text-lamp">
+            <address className="display max-w-md text-h2 not-italic text-lamp">
               {STORE.address}
               <br />
               {STORE.city}, {STORE.state} {STORE.zip}

@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
+import NeonSign from "@/components/NeonSign";
 import OpenNow from "@/components/OpenNow";
 import Reveal from "@/components/Reveal";
 import SiteFooter from "@/components/SiteFooter";
@@ -90,9 +91,9 @@ export default function Home() {
               }}
               aria-hidden
             />
-            <p className="neon-box neon neon-on label absolute right-5 top-5 rounded-ctl bg-night/80 px-4 py-3 sm:right-10 sm:top-8">
-              Open Wed thru Sun
-            </p>
+            <div className="absolute right-5 top-5 sm:right-10 sm:top-8">
+              <NeonSign />
+            </div>
             <div
               className="absolute inset-x-0 bottom-0 px-5 pb-12 sm:px-10 lg:px-16"
               style={{ textShadow: "0 2px 28px rgb(0 0 0 / 0.65)" }}
@@ -156,24 +157,6 @@ export default function Home() {
           </div>
         </section>
 
-        {/* The signage marquee */}
-        <div aria-hidden className="overflow-hidden border-y border-night-3 py-6">
-          <div className="marquee-track flex w-max">
-            {[0, 1].map((run) => (
-              <span key={run} className="flex shrink-0 items-center whitespace-nowrap">
-                {["Sectionals", "Dining", "Bedroom", "Recliners", "Mattresses", "Lamps"].map(
-                  (d) => (
-                    <span key={d} className="display flex items-center text-[clamp(3rem,7vw,6rem)] italic leading-none text-night-3">
-                      {d}
-                      <span className="mx-8 inline-block h-2 w-2 rounded-full bg-night-3" />
-                    </span>
-                  ),
-                )}
-              </span>
-            ))}
-          </div>
-        </div>
-
         {/* Floor preview */}
         <section className="px-5 pb-20 sm:px-10 sm:pb-24 lg:px-16">
           <div className="flex flex-wrap items-baseline justify-between gap-4">
@@ -206,6 +189,45 @@ export default function Home() {
                 </figcaption>
               </figure>
             ))}
+          </div>
+        </section>
+
+        {/* Gone already */}
+        <section className="border-t border-night-3 px-5 py-20 sm:px-10 lg:px-16">
+          <div className="grid gap-10 lg:grid-cols-12">
+            <div className="lg:col-span-4">
+              <h2 className="display text-h1 text-lamp">
+                When it&apos;s gone, it&apos;s gone.
+              </h2>
+              <p className="mt-5 max-w-sm text-body text-fog">
+                These didn&apos;t wait around. Most sets never come back, so the
+                people who hear first take home the best of every load.
+              </p>
+              <Link
+                href="/text-list"
+                className="label mt-8 inline-flex min-h-12 items-center rounded-ctl bg-lq-green px-7 text-night hover:bg-lq-press active:translate-y-px"
+              >
+                Hear about the next load
+              </Link>
+            </div>
+            <div className="grid grid-cols-3 gap-4 lg:col-span-8 lg:gap-6">
+              {FLOOR_ITEMS.filter((i) => i.sold).slice(0, 3).map((item) => (
+                <figure key={item.id} className="m-0">
+                  <Image
+                    src={item.src}
+                    alt={item.alt}
+                    width={2200}
+                    height={1650}
+                    sizes="(min-width: 1024px) 22vw, 33vw"
+                    className="window-photo aspect-[3/4] w-full object-cover opacity-55 saturate-[0.6]"
+                  />
+                  <figcaption className="mt-3 text-[0.9375rem] text-lamp">
+                    {item.name}
+                    <span className="ml-2 italic text-fog">sold</span>
+                  </figcaption>
+                </figure>
+              ))}
+            </div>
           </div>
         </section>
 
@@ -282,6 +304,43 @@ export default function Home() {
           </div>
         </section>
 
+        {/* Straight answers */}
+        <section className="border-t border-night-3 px-5 py-20 sm:px-10 lg:px-16">
+          <h2 className="display max-w-2xl text-h1 text-lamp">
+            Straight answers
+          </h2>
+          <dl className="mt-10 max-w-3xl border-t border-night-3">
+            {[
+              {
+                q: "Is the tag price the price?",
+                a: "Yes. The tag price is the price, and everything on the floor is priced to leave.",
+              },
+              {
+                q: "Do y'all really do financing?",
+                a: "Yes. The banner in the store says financing available, and it's true. Ask at the counter and you'll know where you stand before you buy a thing.",
+              },
+              {
+                q: "Can I take it home the same day?",
+                a: "If it fits your vehicle, we'll help you load it. If it doesn't, we'll hold it while you sort out delivery.",
+              },
+              {
+                q: "Why is it so cheap?",
+                a: "Truckload buying and a building that's a warehouse instead of a showroom. Nothing is wrong with it. The math is just different here.",
+              },
+            ].map((row) => (
+              <div
+                key={row.q}
+                className="grid gap-2 border-b border-night-3 py-6 sm:grid-cols-12 sm:gap-6"
+              >
+                <dt className="display text-h3 text-lamp sm:col-span-5">
+                  {row.q}
+                </dt>
+                <dd className="m-0 text-body text-fog sm:col-span-7">{row.a}</dd>
+              </div>
+            ))}
+          </dl>
+        </section>
+
         {/* Text list */}
         <section id="text-list" className="scroll-mt-6 px-5 py-20 sm:px-10 sm:py-24 lg:px-16">
           <div className="grid gap-10 lg:grid-cols-12">
@@ -294,7 +353,21 @@ export default function Home() {
                 to 6 texts a month. The best pieces never last the weekend.
               </p>
             </div>
-            <div className="lg:col-span-6 lg:col-start-7">
+            <div className="relative lg:col-span-6 lg:col-start-7">
+              <svg
+                aria-hidden
+                viewBox="0 0 120 48"
+                className="absolute -left-28 top-2 hidden w-24 lg:block"
+              >
+                <path
+                  d="M4 24h96m0 0-18-14m18 14-18 14"
+                  fill="none"
+                  strokeWidth="4"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  className="neon-stroke"
+                />
+              </svg>
               <SmsForm />
             </div>
           </div>
