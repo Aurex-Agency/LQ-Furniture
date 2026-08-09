@@ -72,9 +72,9 @@ export default function ContactForm() {
       <div className="border border-night-3 bg-night-2 p-7">
         <p className="display text-h3 text-lamp">Got it</p>
         <p className="mt-3 text-body text-fog">
-          We&apos;ll call you back at the number you left, during store hours.
-          If it&apos;s about a piece on the floor, call us instead. Furniture
-          moves faster than messages.
+          Your message and number are in. For anything quick, the phone is
+          faster: call us during store hours. Furniture moves faster than
+          messages.
         </p>
       </div>
     );

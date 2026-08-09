@@ -25,7 +25,7 @@ export default function Contact() {
           <p className="mt-6 max-w-xl text-body-lg text-fog">
             The fastest answer is always the phone during store hours,
             especially about a piece on the floor. For everything else,
-            leave a number and we&apos;ll call you back.
+            leave a message with your number.
           </p>
         </section>
 

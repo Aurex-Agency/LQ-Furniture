@@ -53,7 +53,7 @@ typography:
   label:
     fontFamily: "Libre Caslon Text, Georgia, serif"
     fontSize: "0.75rem"
-    fontWeight: 600
+    fontWeight: 700
     lineHeight: 1.4
     letterSpacing: "0.12em"
 rounded:
@@ -146,7 +146,7 @@ Measured contrast (recorded on /style-guide): lamp on night 16.6:1, fog on night
 **Display Font:** Libre Caslon Display (with Georgia, serif), weight 400 only, loaded via next/font/google as `--font-caslon`
 **Body Font:** Libre Caslon Text 400/700 with italic (Georgia, serif fallback), loaded via next/font/google as `--font-caslon-text`
 
-**Character:** An old-style serif speaking quietly in sentence case over a plainspoken working grotesk. The serif carries warmth and permanence; the grotesk does the labor and the small tracked signage.
+**Character:** One old-style family end to end. The display face speaks quietly in sentence case; the text face carries warmth through the body copy and stiffens into small engraved caps for the signage. Nothing on the page steps outside the Caslon voice.
 
 ### Hierarchy
 - **Display** (400, clamp 44 to 92px, 1.02): the page statement. One per page, in the hero or page header. Sentence case, `.display` class, -0.005em tracking.

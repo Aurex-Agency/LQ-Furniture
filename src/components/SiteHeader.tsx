@@ -24,7 +24,7 @@ export default function SiteHeader({ current }: { current?: string }) {
       </Link>
       <nav
         aria-label="Pages"
-        className="order-3 flex w-full items-center gap-x-6 gap-y-0 sm:order-2 flex-wrap sm:ml-auto sm:w-auto sm:pr-8"
+        className="order-3 grid w-full grid-cols-3 items-center gap-x-3 sm:order-2 sm:ml-auto sm:flex sm:w-auto sm:gap-x-6 sm:pr-8"
       >
         {LINKS.map((l) => (
           <Link
