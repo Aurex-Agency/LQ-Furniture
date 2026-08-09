@@ -5,6 +5,8 @@ const LINKS = [
   { href: "/the-floor", label: "The floor" },
   { href: "/financing", label: "Financing" },
   { href: "/visit", label: "Visit" },
+  { href: "/blog", label: "Blog" },
+  { href: "/contact", label: "Contact" },
 ] as const;
 
 export default function SiteHeader({ current }: { current?: string }) {
@@ -22,7 +24,7 @@ export default function SiteHeader({ current }: { current?: string }) {
       </Link>
       <nav
         aria-label="Pages"
-        className="order-3 flex w-full items-center gap-7 sm:order-2 sm:ml-auto sm:w-auto sm:pr-8"
+        className="order-3 flex w-full items-center gap-x-6 gap-y-0 sm:order-2 flex-wrap sm:ml-auto sm:w-auto sm:pr-8"
       >
         {LINKS.map((l) => (
           <Link
@@ -40,7 +42,7 @@ export default function SiteHeader({ current }: { current?: string }) {
         ))}
       </nav>
       <Link
-        href="/#text-list"
+        href="/text-list"
         className="label order-2 flex min-h-12 items-center rounded-ctl bg-lq-green px-5 text-night hover:bg-lq-press active:translate-y-px sm:order-3"
       >
         Join the text list

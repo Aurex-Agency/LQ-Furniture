@@ -49,7 +49,10 @@ export default function SiteFooter() {
             {[
               { href: "/the-floor", label: "The floor" },
               { href: "/financing", label: "Financing" },
+              { href: "/text-list", label: "Join the text list" },
               { href: "/visit", label: "Visit the store" },
+              { href: "/blog", label: "Notes from the floor" },
+              { href: "/contact", label: "Contact us" },
               { href: "/privacy", label: "Privacy policy" },
             ].map((l) => (
               <li key={l.href}>

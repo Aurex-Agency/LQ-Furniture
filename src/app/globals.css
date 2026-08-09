@@ -15,7 +15,7 @@
   --color-neon: #8ade4a;
 
   --font-display: var(--font-caslon);
-  --font-body: var(--font-hanken);
+  --font-body: var(--font-caslon-text);
 
   --text-label: 0.75rem;
   --text-label--line-height: 1.4;
@@ -79,12 +79,12 @@ textarea {
   letter-spacing: -0.005em;
 }
 
-/* Label voice: small tracked caps in the grotesk. */
+/* Label voice: small engraved serif caps, like brass signage. */
 .label {
   font-family: var(--font-body);
-  font-weight: 600;
+  font-weight: 700;
   text-transform: uppercase;
-  letter-spacing: 0.14em;
+  letter-spacing: 0.12em;
   font-size: var(--text-label);
   line-height: 1.4;
 }
