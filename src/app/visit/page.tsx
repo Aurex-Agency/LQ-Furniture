@@ -18,7 +18,7 @@ export default function Visit() {
       <SiteHeader current="/visit" />
       <main>
         <section className="pool px-5 pt-16 sm:px-10 sm:pt-20 lg:px-16">
-          <p className="neon-box neon label inline-block rounded-ctl px-4 py-3">
+          <p className="neon-box neon neon-on label inline-block rounded-ctl px-4 py-3">
             Open Wed thru Sun
           </p>
           <h1 className="display mt-6 max-w-3xl text-display text-lamp">
@@ -92,8 +92,7 @@ export default function Visit() {
               the price.
             </p>
             <p className="text-body text-fog">
-              See something you love, tell somebody in a green shirt and
-              it&apos;s yours. We&apos;ll help you load it or hold it while you sort
+              See something you love, tell one of us and it&apos;s yours. We&apos;ll help you load it or hold it while you sort
               out delivery. And if you&apos;re financing, give yourself a few
               extra minutes at the counter on the way in.
             </p>

@@ -73,7 +73,7 @@ export default function FloorBoard() {
   return (
     <div ref={boardRef}>
       <div
-        className="flex flex-wrap gap-x-7 gap-y-1 px-5 sm:px-10 lg:px-16"
+        className="flex flex-wrap gap-x-7 gap-y-2 px-5 sm:px-10 lg:px-16"
         role="group"
         aria-label="Filter the floor by department"
       >
@@ -103,7 +103,7 @@ export default function FloorBoard() {
       </div>
 
       <div className="mt-10 grid grid-cols-1 gap-x-6 gap-y-12 px-5 sm:grid-cols-2 sm:px-10 lg:grid-cols-3 lg:gap-x-8 lg:px-16">
-        {visible.map((item, i) => {
+        {visible.map((item) => {
           const state = reveals.get(item.id) ?? "static";
           const maskCls =
             state === "hidden" ? "mask-hidden" : state === "revealed" ? "mask-open" : "";
@@ -113,7 +113,7 @@ export default function FloorBoard() {
             <figure
               key={item.id}
               data-floor-id={item.id}
-              className={`m-0 ${i % 5 === 0 ? "sm:col-span-2 lg:col-span-2" : ""}`}
+              className="m-0"
             >
               <div className={maskCls}>
                 <Image

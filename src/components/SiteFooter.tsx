@@ -45,7 +45,7 @@ export default function SiteFooter() {
         </div>
         <div>
           <p className="label text-fog">Pages</p>
-          <ul className="mt-3 space-y-1">
+          <ul className="mt-3 space-y-2">
             {[
               { href: "/the-floor", label: "The floor" },
               { href: "/financing", label: "Financing" },
@@ -55,7 +55,7 @@ export default function SiteFooter() {
               <li key={l.href}>
                 <Link
                   href={l.href}
-                  className="inline-flex min-h-9 items-center text-[0.9375rem] text-lamp underline-offset-4 hover:underline"
+                  className="inline-flex min-h-12 items-center text-[0.9375rem] text-lamp underline-offset-4 hover:underline"
                 >
                   {l.label}
                 </Link>

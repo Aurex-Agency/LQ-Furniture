@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
-import Link from "next/link";
-import Image from "next/image";
+import SiteFooter from "@/components/SiteFooter";
+import SiteHeader from "@/components/SiteHeader";
 import { STORE } from "@/lib/store";
 
 export const metadata: Metadata = {
@@ -11,18 +11,11 @@ export const metadata: Metadata = {
 
 export default function Privacy() {
   return (
+    <>
+    <SiteHeader />
     <main className="px-5 py-14 sm:px-10 lg:px-16">
       <header>
-        <Link href="/">
-          <Image
-            src="/brand/lq-logo.png"
-            alt="LQ Furniture"
-            width={712}
-            height={548}
-            className="h-12 w-auto"
-          />
-        </Link>
-        <h1 className="display mt-10 max-w-3xl text-h1 text-lamp">
+        <h1 className="display max-w-3xl text-h1 text-lamp">
           Privacy policy
         </h1>
         <p className="mt-4 label text-fog">
@@ -97,14 +90,8 @@ export default function Privacy() {
         </section>
       </div>
 
-      <footer className="mt-16 border-t border-night-3 pt-8">
-        <Link
-          href="/"
-          className="label text-fog underline-offset-4 hover:text-lamp"
-        >
-          Back to the homepage
-        </Link>
-      </footer>
     </main>
+    <SiteFooter />
+    </>
   );
 }

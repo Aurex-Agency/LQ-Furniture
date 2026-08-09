@@ -17,7 +17,9 @@ export default function TheFloor() {
       <SiteHeader current="/the-floor" />
       <main>
         <section className="pool px-5 pt-16 sm:px-10 sm:pt-20 lg:px-16">
-          <p className="label text-fog">The floor</p>
+          <p className="neon-box neon neon-on label inline-block rounded-ctl px-4 py-3">
+            New loads weekly
+          </p>
           <h1 className="display mt-4 max-w-3xl text-display text-lamp">
             What&apos;s here this week
           </h1>

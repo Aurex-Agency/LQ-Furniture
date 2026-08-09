@@ -17,7 +17,9 @@ export default function Financing() {
       <SiteHeader current="/financing" />
       <main>
         <section className="pool px-5 pt-16 sm:px-10 sm:pt-20 lg:px-16">
-          <p className="label text-fog">Financing</p>
+          <p className="neon-box neon neon-on label inline-block rounded-ctl px-4 py-3">
+            Financing available
+          </p>
           <h1 className="display mt-4 max-w-3xl text-display text-lamp">
             Take it home now. Pay as you go.
           </h1>
@@ -47,8 +49,8 @@ export default function Financing() {
               <p>
                 Come in with a photo ID and a few minutes. We&apos;ll sit down at
                 the counter, look at the payment options together, and you
-                pick what fits. Approval happens the same day, before you buy
-                a thing.
+                pick what fits. You&apos;ll know where you stand before you buy a
+                thing.
               </p>
               <p>
                 Rather sort it out before you drive over? Call us. We&apos;ll tell
@@ -78,10 +80,10 @@ export default function Financing() {
         <section className="border-t border-night-3 px-5 py-16 sm:px-10 lg:px-16">
           <div className="grid gap-8 sm:grid-cols-3">
             <div>
-              <h3 className="display text-h3 text-lamp">Same day</h3>
+              <h3 className="display text-h3 text-lamp">At the counter</h3>
               <p className="mt-3 max-w-xs text-body text-fog">
-                The paperwork happens at the counter while you shop. Most
-                folks walk out with a plan the day they walk in.
+                The paperwork happens at the counter while you shop, not in
+                a portal you fight with at home.
               </p>
             </div>
             <div>

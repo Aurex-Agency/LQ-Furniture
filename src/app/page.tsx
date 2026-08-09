@@ -82,7 +82,15 @@ export default function Home() {
               }}
               aria-hidden
             />
-            <p className="neon-box neon label absolute right-5 top-5 rounded-ctl bg-night/80 px-4 py-3 sm:right-10 sm:top-8">
+            <div
+              className="absolute inset-x-0 bottom-0 h-[55%]"
+              style={{
+                background:
+                  "linear-gradient(to bottom, transparent 0%, rgb(19 19 17 / 0.55) 45%, rgb(19 19 17 / 0.92) 100%)",
+              }}
+              aria-hidden
+            />
+            <p className="neon-box neon neon-on label absolute right-5 top-5 rounded-ctl bg-night/80 px-4 py-3 sm:right-10 sm:top-8">
               Open Wed thru Sun
             </p>
             <div
@@ -196,7 +204,6 @@ export default function Home() {
               />
             </Reveal>
             <div className="pool-left px-5 py-20 sm:px-10 lg:self-center lg:px-16">
-              <p className="label text-fog">Financing</p>
               <h2 className="display mt-4 max-w-xl text-h1 text-lamp">
                 You don&apos;t need perfect credit to leave with furniture.
               </h2>
@@ -227,7 +234,6 @@ export default function Home() {
         <section id="text-list" className="scroll-mt-6 px-5 py-20 sm:px-10 sm:py-24 lg:px-16">
           <div className="grid gap-10 lg:grid-cols-12">
             <div className="lg:col-span-5">
-              <p className="label text-fog">The text list</p>
               <h2 className="display mt-4 text-h1 text-lamp">
                 Hear about it before it&apos;s gone.
               </h2>
