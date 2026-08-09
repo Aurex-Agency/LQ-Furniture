@@ -18,7 +18,7 @@ export default function Contact() {
     <>
       <SiteHeader current="/contact" />
       <main>
-        <section className="pool px-5 pt-16 sm:px-10 sm:pt-20 lg:px-16">
+        <section className="px-5 pt-16 sm:px-10 sm:pt-20 lg:px-16">
           <h1 className="display max-w-3xl text-display text-lamp">
             Talk to a person
           </h1>
@@ -53,7 +53,7 @@ export default function Contact() {
                 href={STORE.directionsUrl}
                 target="_blank"
                 rel="noopener"
-                className="label mt-8 inline-flex min-h-12 items-center rounded-ctl bg-lq-green px-7 text-night hover:bg-lq-press active:translate-y-px"
+                className="label mt-8 inline-flex min-h-12 items-center btn-glow rounded-ctl bg-lq-green px-7 text-night hover:bg-lq-press active:translate-y-px"
               >
                 Get directions
               </a>

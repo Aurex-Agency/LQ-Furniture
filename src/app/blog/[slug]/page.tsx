@@ -43,7 +43,7 @@ export default async function PostPage({
     <>
       <SiteHeader current="/blog" />
       <main>
-        <article className="pool px-5 pt-16 sm:px-10 sm:pt-20 lg:px-16">
+        <article className="px-5 pt-16 sm:px-10 sm:pt-20 lg:px-16">
           <h1 className="display max-w-3xl text-h1 text-lamp">
             {post.title}
           </h1>
@@ -83,7 +83,7 @@ export default async function PostPage({
             <div className="flex flex-wrap gap-4">
               <Link
                 href="/text-list"
-                className="label flex min-h-12 items-center rounded-ctl bg-lq-green px-7 text-night hover:bg-lq-press active:translate-y-px"
+                className="label flex min-h-12 items-center btn-glow rounded-ctl bg-lq-green px-7 text-night hover:bg-lq-press active:translate-y-px"
               >
                 Join the text list
               </Link>

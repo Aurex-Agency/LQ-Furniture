@@ -1,10 +1,11 @@
 import type { Metadata } from "next";
 import Image from "next/image";
+import HoursTable from "@/components/HoursTable";
 import NeonSign from "@/components/NeonSign";
 import Reveal from "@/components/Reveal";
 import SiteFooter from "@/components/SiteFooter";
 import SiteHeader from "@/components/SiteHeader";
-import { HOURS, STORE } from "@/lib/store";
+import { STORE } from "@/lib/store";
 
 export const metadata: Metadata = {
   title: "Visit the store",
@@ -17,7 +18,7 @@ export default function Visit() {
     <>
       <SiteHeader current="/visit" />
       <main>
-        <section className="pool px-5 pt-16 sm:px-10 sm:pt-20 lg:px-16">
+        <section className="px-5 pt-16 sm:px-10 sm:pt-20 lg:px-16">
           <NeonSign big />
           <h1 className="display mt-6 max-w-3xl text-display text-lamp">
             Come walk the floor
@@ -36,23 +37,15 @@ export default function Visit() {
               <br />
               {STORE.city}, {STORE.state} {STORE.zip}
             </address>
-            <ul className="mt-8 max-w-md border-t border-night-3">
-              {HOURS.map((h) => (
-                <li
-                  key={h.days}
-                  className="flex items-baseline justify-between border-b border-night-3 py-3"
-                >
-                  <span className="text-body text-lamp">{h.days}</span>
-                  <span className="label text-fog">{h.label}</span>
-                </li>
-              ))}
-            </ul>
+            <div className="mt-8">
+              <HoursTable />
+            </div>
             <div className="mt-8 flex flex-wrap gap-4">
               <a
                 href={STORE.directionsUrl}
                 target="_blank"
                 rel="noopener"
-                className="label flex min-h-12 items-center rounded-ctl bg-lq-green px-7 text-night hover:bg-lq-press active:translate-y-px"
+                className="label flex min-h-12 items-center btn-glow rounded-ctl bg-lq-green px-7 text-night hover:bg-lq-press active:translate-y-px"
               >
                 Get directions
               </a>

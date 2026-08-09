@@ -25,7 +25,7 @@ export default function Blog() {
     <>
       <SiteHeader current="/blog" />
       <main>
-        <section className="pool px-5 pt-16 sm:px-10 sm:pt-20 lg:px-16">
+        <section className="px-5 pt-16 sm:px-10 sm:pt-20 lg:px-16">
           <h1 className="display max-w-3xl text-display text-lamp">
             Notes from the floor
           </h1>

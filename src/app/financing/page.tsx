@@ -4,6 +4,8 @@ import Reveal from "@/components/Reveal";
 import SiteFooter from "@/components/SiteFooter";
 import SiteHeader from "@/components/SiteHeader";
 import { STORE } from "@/lib/store";
+import FaqList from "@/components/FaqList";
+import { FAQS } from "@/lib/faq";
 
 export const metadata: Metadata = {
   title: "Financing",
@@ -16,7 +18,7 @@ export default function Financing() {
     <>
       <SiteHeader current="/financing" />
       <main>
-        <section className="pool px-5 pt-16 sm:px-10 sm:pt-20 lg:px-16">
+        <section className="px-5 pt-16 sm:px-10 sm:pt-20 lg:px-16">
           <p className="neon-box neon neon-on label inline-block rounded-ctl px-4 py-3">
             Financing available
           </p>
@@ -41,7 +43,7 @@ export default function Financing() {
               priority
             />
           </Reveal>
-          <div className="pool-left px-5 py-16 sm:px-10 lg:self-center lg:px-16">
+          <div className="px-5 py-16 sm:px-10 lg:self-center lg:px-16">
             <h2 className="display max-w-xl text-h2 text-lamp">
               How it works in the store
             </h2>
@@ -61,7 +63,7 @@ export default function Financing() {
             <div className="mt-8 flex flex-wrap gap-4">
               <a
                 href={STORE.phoneHref}
-                className="label flex min-h-12 items-center rounded-ctl bg-lq-green px-7 text-night hover:bg-lq-press active:translate-y-px"
+                className="label flex min-h-12 items-center btn-glow rounded-ctl bg-lq-green px-7 text-night hover:bg-lq-press active:translate-y-px"
               >
                 Call {STORE.phone}
               </a>
@@ -100,6 +102,18 @@ export default function Financing() {
                 person who helps with the plan.
               </p>
             </div>
+          </div>
+        </section>
+        <section className="border-t border-night-3 px-5 py-16 sm:px-10 lg:px-16">
+          <h2 className="display max-w-2xl text-h2 text-lamp">
+            Asked at the counter
+          </h2>
+          <div className="mt-8 max-w-3xl">
+            <FaqList
+              items={FAQS.filter((f) =>
+                ["Do y'all really do financing?", "Is the tag price the price?", "Can I take it home the same day?"].includes(f.q),
+              )}
+            />
           </div>
         </section>
       </main>

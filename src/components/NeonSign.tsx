@@ -60,6 +60,7 @@ function readClock(now: Date): SignState {
 // plain lit hours sign until the clock hydrates, so nothing shifts.
 export default function NeonSign({ big = false }: { big?: boolean }) {
   const [state, setState] = useState<SignState>({ lit: null });
+  const [flickerKey, setFlickerKey] = useState(0);
 
   useEffect(() => {
     const update = () => setState(readClock(new Date()));
@@ -78,9 +79,13 @@ export default function NeonSign({ big = false }: { big?: boolean }) {
     state.lit === null ? "10 to 6 · Sun 12 to 6" : state.line;
 
   return (
-    <div
+    <button
+      type="button"
       aria-live="polite"
-      className={`inline-block rounded-[10px] px-5 py-4 text-center ${
+      key={flickerKey}
+      onClick={() => setFlickerKey((k) => k + 1)}
+      title="Give the sign a tap"
+      className={`inline-block cursor-pointer rounded-[10px] px-5 py-4 text-center ${
         lit ? "neon-box neon neon-on neon-buzz bg-night/80" : "neon-dim bg-night/80"
       }`}
     >
@@ -90,6 +95,6 @@ export default function NeonSign({ big = false }: { big?: boolean }) {
         {headline}
       </p>
       <p className={`label mt-2 ${lit ? "" : "opacity-80"}`}>{subline}</p>
-    </div>
+    </button>
   );
 }

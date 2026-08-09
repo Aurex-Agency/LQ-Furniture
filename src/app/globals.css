@@ -1,39 +1,39 @@
 @import "tailwindcss";
 
 @theme {
-  /* The showroom at night. A warm charcoal field lit in pools, never flat
-     black. Green is the neon: the sign, the primary action, nothing else.
-     Green surfaces always carry night text; night-lit green text appears
-     only as the neon device. */
+  /* The lit sign on a clean shop. Crisp charcoal, hairline structure, and
+     one working green. Neon belongs to signs and primary actions; green
+     surfaces always carry night text. */
   --color-night: #131311;
-  --color-night-2: #1c1c19;
-  --color-night-3: #2a2a25;
+  --color-night-2: #1b1b18;
+  --color-night-3: #2b2b26;
   --color-lamp: #f4f2ec;
   --color-fog: #a3a094;
   --color-lq-green: #6bb22e;
   --color-lq-press: #7ec93c;
   --color-neon: #8ade4a;
 
-  --font-display: var(--font-caslon);
-  --font-body: var(--font-caslon-text);
+  --font-body: var(--font-schibsted);
 
   --text-label: 0.75rem;
   --text-label--line-height: 1.4;
-  --text-label--letter-spacing: 0.12em;
+  --text-label--letter-spacing: 0.08em;
   --text-body: 1.0625rem;
-  --text-body--line-height: 1.7;
-  --text-body-lg: 1.25rem;
-  --text-body-lg--line-height: 1.65;
-  --text-h3: 1.625rem;
+  --text-body--line-height: 1.65;
+  --text-body-lg: 1.1875rem;
+  --text-body-lg--line-height: 1.6;
+  --text-h3: 1.375rem;
   --text-h3--line-height: 1.25;
-  --text-h2: clamp(1.875rem, 1.2rem + 2.4vw, 2.75rem);
-  --text-h2--line-height: 1.12;
-  --text-h1: clamp(2.5rem, 1.4rem + 4.2vw, 4.25rem);
-  --text-h1--line-height: 1.05;
-  --text-display: clamp(2.75rem, 1.2rem + 6vw, 5.75rem);
-  --text-display--line-height: 1.02;
+  --text-h2: clamp(1.75rem, 1.2rem + 2.2vw, 2.5rem);
+  --text-h2--line-height: 1.1;
+  --text-h1: clamp(2.25rem, 1.3rem + 3.8vw, 3.75rem);
+  --text-h1--line-height: 1.02;
+  --text-h1--letter-spacing: -0.02em;
+  --text-display: clamp(2.75rem, 1.2rem + 5.6vw, 5.25rem);
+  --text-display--line-height: 0.98;
+  --text-display--letter-spacing: -0.025em;
 
-  --radius-ctl: 4px;
+  --radius-ctl: 6px;
 
   --shadow-deep: 0 2px 6px rgb(0 0 0 / 0.4), 0 24px 64px rgb(0 0 0 / 0.5);
 }
@@ -72,44 +72,25 @@ textarea {
   outline-offset: 3px;
 }
 
-/* Display voice: Caslon, sentence case, generous. */
+/* Display voice: the same grotesk at full weight, set tight, sentence case. */
 .display {
-  font-family: var(--font-display);
-  font-weight: 400;
-  letter-spacing: -0.005em;
+  font-family: var(--font-body);
+  font-weight: 800;
+  letter-spacing: -0.02em;
 }
 
-/* Label voice: small engraved serif caps, like brass signage. */
+/* Label voice: small semibold caps. */
 .label {
   font-family: var(--font-body);
-  font-weight: 700;
+  font-weight: 600;
   text-transform: uppercase;
-  letter-spacing: 0.12em;
+  letter-spacing: 0.08em;
   font-size: var(--text-label);
   line-height: 1.4;
 }
 
-/* Lighting. The page is lit, not painted: each pool is a soft radial of
-   lamp light over the charcoal, from the showroom's own overheads. */
-.pool {
-  background-image: radial-gradient(
-    120% 90% at 50% 0%,
-    rgb(244 232 205 / 0.13) 0%,
-    rgb(244 232 205 / 0.045) 45%,
-    transparent 78%
-  );
-}
-
-.pool-left {
-  background-image: radial-gradient(
-    90% 100% at 12% 8%,
-    rgb(244 232 205 / 0.12) 0%,
-    rgb(244 232 205 / 0.03) 50%,
-    transparent 75%
-  );
-}
-
-/* The neon device: LQ green as a lit tube. Used for the sign only. */
+/* The neon sign system: lit tubes, dark tubes, drawn arrows, and glow on
+   the actions that matter. This is where the character lives. */
 .neon {
   color: var(--color-neon);
   text-shadow:
@@ -124,50 +105,60 @@ textarea {
     inset 0 0 10px rgb(107 178 46 / 0.2);
 }
 
+.neon-dim {
+  color: rgb(163 160 148 / 0.75);
+  border: 1.5px solid rgb(163 160 148 / 0.35);
+}
+
+.neon-stroke {
+  stroke: var(--color-neon);
+  filter: drop-shadow(0 0 5px rgb(138 222 74 / 0.6))
+    drop-shadow(0 0 16px rgb(107 178 46 / 0.35));
+}
+
+/* Primary actions borrow the tube glow on approach. */
+.btn-glow {
+  transition: box-shadow 250ms ease, background-color 250ms ease;
+}
+
+.btn-glow:hover {
+  box-shadow:
+    0 0 12px rgb(107 178 46 / 0.45),
+    0 0 32px rgb(107 178 46 / 0.25);
+}
+
 /* Photographs sit in the dark like lit displays. */
 .window-photo {
   box-shadow: var(--shadow-deep);
 }
 
-/* Motion. The showroom lights up once and everything after moves like
-   weight: images settle from a slight zoom behind a mask, text lines rise
-   with the blur of eyes adjusting, the neon flickers on once. */
-
-@keyframes lights-up {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
-}
+/* Motion: crisp and physical. The sign flickers on and hums, photographs
+   open once and drift gently with scroll, content rises without fog. */
 
 @keyframes settle {
   from {
-    transform: scale(1.08);
+    transform: scale(1.06);
   }
   to {
     transform: scale(1);
   }
 }
 
-@keyframes line-rise {
+@keyframes rise {
   from {
     opacity: 0;
-    transform: translateY(18px);
-    filter: blur(6px);
+    transform: translateY(14px);
   }
   to {
     opacity: 1;
     transform: none;
-    filter: blur(0);
   }
 }
 
 @keyframes mask-open {
   from {
-    clip-path: inset(6% 6% 6% 6%);
-    opacity: 0.4;
+    clip-path: inset(4% 4% 4% 4%);
+    opacity: 0.5;
   }
   to {
     clip-path: inset(0 0 0 0);
@@ -199,60 +190,6 @@ textarea {
   }
 }
 
-.lights-up {
-  animation: lights-up 1100ms ease-out both;
-}
-
-.settle {
-  animation: settle 1400ms cubic-bezier(0.16, 1, 0.3, 1) both;
-}
-
-.line-rise {
-  animation: line-rise 800ms cubic-bezier(0.16, 1, 0.3, 1) both;
-}
-
-.mask-hidden {
-  clip-path: inset(6% 6% 6% 6%);
-  opacity: 0.4;
-}
-
-.mask-open {
-  animation: mask-open 900ms cubic-bezier(0.65, 0, 0.25, 1) both;
-}
-
-.rise-hidden {
-  opacity: 0;
-}
-
-.rise-go {
-  animation: line-rise 700ms cubic-bezier(0.16, 1, 0.3, 1) both;
-}
-
-.neon-on {
-  animation: neon-on 1600ms 400ms ease-in both;
-}
-
-/* The camera drifts as you walk the room: large photographs pan slowly
-   with scroll. Progressive enhancement; browsers without scroll-driven
-   animations just see the still photograph. */
-@keyframes drift {
-  from {
-    transform: scale(1.12) translateY(-3.5%);
-  }
-  to {
-    transform: scale(1.12) translateY(3.5%);
-  }
-}
-
-@supports (animation-timeline: view()) {
-  .drift {
-    animation: drift linear both;
-    animation-timeline: view();
-  }
-}
-
-/* The tubes hum. A barely-there flicker that makes a lit sign feel like
-   glass and gas instead of a CSS border. */
 @keyframes neon-buzz {
   0%,
   100% {
@@ -275,38 +212,99 @@ textarea {
   }
 }
 
+@keyframes drift {
+  from {
+    transform: scale(1.12) translateY(-3.5%);
+  }
+  to {
+    transform: scale(1.12) translateY(3.5%);
+  }
+}
+
+.settle {
+  animation: settle 1200ms cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+.line-rise {
+  animation: rise 550ms cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+.mask-hidden {
+  clip-path: inset(4% 4% 4% 4%);
+  opacity: 0.5;
+}
+
+.mask-open {
+  animation: mask-open 700ms cubic-bezier(0.65, 0, 0.25, 1) both;
+}
+
+.rise-hidden {
+  opacity: 0;
+}
+
+.rise-go {
+  animation: rise 500ms cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+.neon-on {
+  animation: neon-on 1600ms 400ms ease-in both;
+}
+
 .neon-buzz {
   animation: neon-buzz 6s 2200ms linear infinite;
 }
 
-/* An unlit sign: the tubes are there, the gas is off. */
-.neon-dim {
-  color: rgb(163 160 148 / 0.75);
-  border: 1.5px solid rgb(163 160 148 / 0.35);
+@supports (animation-timeline: view()) {
+  .drift {
+    animation: drift linear both;
+    animation-timeline: view();
+  }
 }
 
-/* Neon arrow: a drawn tube pointing at the thing that matters. */
-.neon-stroke {
-  stroke: var(--color-neon);
-  filter: drop-shadow(0 0 5px rgb(138 222 74 / 0.6))
-    drop-shadow(0 0 16px rgb(107 178 46 / 0.35));
+/* FAQ accordions: native details/summary with a smooth open. */
+.faq-body {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows 300ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+details[open] > .faq-body {
+  grid-template-rows: 1fr;
+}
+
+.faq-body > div {
+  overflow: hidden;
+}
+
+.faq-mark {
+  transition: transform 250ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+details[open] .faq-mark {
+  transform: rotate(45deg);
+}
+
+details > summary {
+  list-style: none;
+}
+
+details > summary::-webkit-details-marker {
+  display: none;
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .lights-up,
   .settle,
   .line-rise,
   .mask-open,
   .rise-go,
   .neon-on,
-  .drift,
-  .neon-buzz {
+  .neon-buzz,
+  .drift {
     animation: none;
   }
   .drift {
     transform: none;
   }
-  .lights-up,
   .line-rise,
   .rise-hidden,
   .rise-go,
@@ -317,6 +315,9 @@ textarea {
   .mask-open {
     clip-path: none;
     opacity: 1;
+  }
+  .faq-body {
+    transition: none;
   }
 }
 

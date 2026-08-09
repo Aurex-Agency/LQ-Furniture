@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
+import FaqList from "@/components/FaqList";
 import NeonSign from "@/components/NeonSign";
 import OpenNow from "@/components/OpenNow";
 import Reveal from "@/components/Reveal";
@@ -9,6 +10,7 @@ import SiteHeader from "@/components/SiteHeader";
 import SmsForm from "@/components/SmsForm";
 import { STORE } from "@/lib/store";
 import { FLOOR_ITEMS } from "@/lib/floor";
+import { FAQS } from "@/lib/faq";
 
 export const metadata: Metadata = {
   description:
@@ -46,6 +48,16 @@ const jsonLd = {
   image: "/photos/IMG_8606.jpg",
 };
 
+const faqJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: FAQS.map((f) => ({
+    "@type": "Question",
+    name: f.q,
+    acceptedAnswer: { "@type": "Answer", text: f.a },
+  })),
+};
+
 const previewIds = ["8587", "8620", "8602", "8610"];
 
 export default function Home() {
@@ -57,12 +69,16 @@ export default function Home() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
+      />
       <SiteHeader />
 
       <main>
         {/* Hero: the lit window */}
         <section className="relative">
-          <div className="lights-up relative overflow-hidden">
+          <div className="relative overflow-hidden">
             <div className="settle">
               <Image
                 src="/photos/IMG_8606.jpg"
@@ -120,7 +136,7 @@ export default function Home() {
               >
                 <Link
                   href="/the-floor"
-                  className="label flex min-h-12 items-center rounded-ctl bg-lq-green px-7 text-night hover:bg-lq-press active:translate-y-px"
+                  className="label flex min-h-12 items-center btn-glow rounded-ctl bg-lq-green px-7 text-night hover:bg-lq-press active:translate-y-px"
                 >
                   Walk the floor
                 </Link>
@@ -136,7 +152,7 @@ export default function Home() {
         </section>
 
         {/* Editorial intro */}
-        <section className="pool px-5 py-20 sm:px-10 sm:py-24 lg:px-16">
+        <section className="px-5 py-20 sm:px-10 sm:py-24 lg:px-16">
           <div className="grid gap-10 lg:grid-cols-12">
             <h2 className="display text-h1 text-lamp lg:col-span-6">
               The floor changes every week. The prices are the reason people
@@ -205,7 +221,7 @@ export default function Home() {
               </p>
               <Link
                 href="/text-list"
-                className="label mt-8 inline-flex min-h-12 items-center rounded-ctl bg-lq-green px-7 text-night hover:bg-lq-press active:translate-y-px"
+                className="label mt-8 inline-flex min-h-12 items-center btn-glow rounded-ctl bg-lq-green px-7 text-night hover:bg-lq-press active:translate-y-px"
               >
                 Hear about the next load
               </Link>
@@ -258,7 +274,7 @@ export default function Home() {
             </h2>
             <Link
               href="/the-floor"
-              className="label flex min-h-12 items-center rounded-ctl bg-lq-green px-7 text-night hover:bg-lq-press active:translate-y-px"
+              className="label flex min-h-12 items-center btn-glow rounded-ctl bg-lq-green px-7 text-night hover:bg-lq-press active:translate-y-px"
             >
               Walk the floor
             </Link>
@@ -277,7 +293,7 @@ export default function Home() {
                 className="object-cover"
               />
             </Reveal>
-            <div className="pool-left px-5 py-20 sm:px-10 lg:self-center lg:px-16">
+            <div className="px-5 py-20 sm:px-10 lg:self-center lg:px-16">
               <h2 className="display mt-4 max-w-xl text-h1 text-lamp">
                 You don&apos;t need perfect credit to leave with furniture.
               </h2>
@@ -289,7 +305,7 @@ export default function Home() {
               <div className="mt-8 flex flex-wrap gap-4">
                 <Link
                   href="/financing"
-                  className="label flex min-h-12 items-center rounded-ctl bg-lq-green px-7 text-night hover:bg-lq-press active:translate-y-px"
+                  className="label flex min-h-12 items-center btn-glow rounded-ctl bg-lq-green px-7 text-night hover:bg-lq-press active:translate-y-px"
                 >
                   How it works
                 </Link>
@@ -306,39 +322,18 @@ export default function Home() {
 
         {/* Straight answers */}
         <section className="border-t border-night-3 px-5 py-20 sm:px-10 lg:px-16">
-          <h2 className="display max-w-2xl text-h1 text-lamp">
-            Straight answers
-          </h2>
-          <dl className="mt-10 max-w-3xl border-t border-night-3">
-            {[
-              {
-                q: "Is the tag price the price?",
-                a: "Yes. The tag price is the price, and everything on the floor is priced to leave.",
-              },
-              {
-                q: "Do y'all really do financing?",
-                a: "Yes. The banner in the store says financing available, and it's true. Ask at the counter and you'll know where you stand before you buy a thing.",
-              },
-              {
-                q: "Can I take it home the same day?",
-                a: "If it fits your vehicle, we'll help you load it. If it doesn't, we'll hold it while you sort out delivery.",
-              },
-              {
-                q: "Why is it so cheap?",
-                a: "Truckload buying and a building that's a warehouse instead of a showroom. Nothing is wrong with it. The math is just different here.",
-              },
-            ].map((row) => (
-              <div
-                key={row.q}
-                className="grid gap-2 border-b border-night-3 py-6 sm:grid-cols-12 sm:gap-6"
-              >
-                <dt className="display text-h3 text-lamp sm:col-span-5">
-                  {row.q}
-                </dt>
-                <dd className="m-0 text-body text-fog sm:col-span-7">{row.a}</dd>
-              </div>
-            ))}
-          </dl>
+          <div className="grid gap-10 lg:grid-cols-12">
+            <div className="lg:col-span-4">
+              <h2 className="display text-h1 text-lamp">Straight answers</h2>
+              <p className="mt-5 max-w-sm text-body text-fog">
+                The questions we hear at the counter every week, answered the
+                way we&apos;d answer them in person.
+              </p>
+            </div>
+            <div className="lg:col-span-8">
+              <FaqList items={FAQS} />
+            </div>
+          </div>
         </section>
 
         {/* Text list */}
@@ -393,7 +388,7 @@ export default function Home() {
                 href={STORE.directionsUrl}
                 target="_blank"
                 rel="noopener"
-                className="label flex min-h-12 items-center rounded-ctl bg-lq-green px-7 text-night hover:bg-lq-press active:translate-y-px"
+                className="label flex min-h-12 items-center btn-glow rounded-ctl bg-lq-green px-7 text-night hover:bg-lq-press active:translate-y-px"
               >
                 Get directions
               </a>

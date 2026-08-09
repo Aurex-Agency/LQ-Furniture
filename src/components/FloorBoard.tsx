@@ -6,6 +6,7 @@ import {
   CATEGORY_LABELS,
   FLOOR_ITEMS,
   type FloorCategory,
+  type FloorItem,
 } from "@/lib/floor";
 
 type Filter = FloorCategory | "all";
@@ -20,11 +21,18 @@ const FILTERS: Array<{ key: Filter; label: string }> = [
   { key: "lamps", label: "Lamps" },
 ];
 
+function countFor(key: Filter): number {
+  if (key === "all") return FLOOR_ITEMS.length;
+  return FLOOR_ITEMS.filter((i) => i.category === key).length;
+}
+
 type RevealState = "static" | "hidden" | "revealed";
 
 export default function FloorBoard() {
   const [filter, setFilter] = useState<Filter>("all");
   const boardRef = useRef<HTMLDivElement>(null);
+  const dialogRef = useRef<HTMLDialogElement>(null);
+  const [openItem, setOpenItem] = useState<FloorItem | null>(null);
   // Figures render visible for no-JS visitors; once mounted, figures still
   // below the viewport open like lit displays when scrolled into view.
   const [reveals, setReveals] = useState<Map<string, RevealState>>(new Map());
@@ -66,6 +74,15 @@ export default function FloorBoard() {
     return () => observer.disconnect();
   }, []);
 
+  function openLightbox(item: FloorItem) {
+    setOpenItem(item);
+    dialogRef.current?.showModal();
+  }
+
+  function closeLightbox() {
+    dialogRef.current?.close();
+  }
+
   const visible = FLOOR_ITEMS.filter(
     (item) => filter === "all" || item.category === filter,
   );
@@ -73,7 +90,7 @@ export default function FloorBoard() {
   return (
     <div ref={boardRef}>
       <div
-        className="flex flex-wrap gap-x-7 gap-y-2 px-5 sm:px-10 lg:px-16"
+        className="flex flex-wrap gap-x-6 gap-y-2 px-5 sm:px-10 lg:px-16"
         role="group"
         aria-label="Filter the floor by department"
       >
@@ -90,13 +107,16 @@ export default function FloorBoard() {
                 // strand them clipped, so everything renders static after.
                 setReveals(new Map());
               }}
-              className={`label min-h-12 border-b-2 pt-0.5 ${
+              className={`label flex min-h-12 items-center gap-2 border-b-2 pt-0.5 ${
                 active
                   ? "border-lq-green text-lamp"
                   : "border-transparent text-fog hover:text-lamp"
               }`}
             >
               {f.label}
+              <span className={active ? "text-lq-press" : "text-fog/70"}>
+                {countFor(f.key)}
+              </span>
             </button>
           );
         })}
@@ -109,9 +129,8 @@ export default function FloorBoard() {
             state === "hidden" ? "mask-hidden" : state === "revealed" ? "mask-open" : "";
           const capCls =
             state === "hidden" ? "rise-hidden" : state === "revealed" ? "rise-go" : "";
-          // The board keeps the deal-sheet rhythm without voids: paired rows
-          // of one wide 3:2 piece and one 3:4 portrait at matched heights,
-          // every third row a plain trio, sides alternating.
+          // Paired rows of one wide 3:2 piece and one 3:4 portrait at
+          // matched heights, every third row a plain trio.
           const slot = i % 6;
           const wide = slot === 0 || slot === 4;
           const portrait = slot === 1 || slot === 3;
@@ -121,25 +140,32 @@ export default function FloorBoard() {
               data-floor-id={item.id}
               className={`group m-0 ${wide ? "sm:col-span-2" : ""}`}
             >
-              <div className={maskCls}>
-                <Image
-                  src={item.src}
-                  alt={item.alt}
-                  width={2200}
-                  height={1650}
-                  sizes={wide ? "(min-width: 1024px) 67vw, 100vw" : "(min-width: 1024px) 34vw, (min-width: 640px) 50vw, 100vw"}
-                  className={`window-photo w-full object-cover ${
-                    wide ? "aspect-[3/2]" : portrait ? "aspect-[3/4]" : "aspect-[4/3]"
-                  } ${item.sold ? "opacity-55 saturate-[0.6]" : "transition-[filter] duration-500 group-hover:brightness-110"}`}
-                />
-              </div>
+              <button
+                type="button"
+                onClick={() => openLightbox(item)}
+                aria-label={`See ${item.name} bigger`}
+                className="block w-full cursor-zoom-in"
+              >
+                <span className={`block ${maskCls}`}>
+                  <Image
+                    src={item.src}
+                    alt={item.alt}
+                    width={2200}
+                    height={1650}
+                    sizes={wide ? "(min-width: 1024px) 67vw, 100vw" : "(min-width: 1024px) 34vw, (min-width: 640px) 50vw, 100vw"}
+                    className={`window-photo w-full object-cover ${
+                      wide ? "aspect-[3/2]" : portrait ? "aspect-[3/4]" : "aspect-[4/3]"
+                    } ${item.sold ? "opacity-55 saturate-[0.6]" : "transition-[filter] duration-500 group-hover:brightness-110"}`}
+                  />
+                </span>
+              </button>
               <figcaption
                 className={`mt-4 flex items-baseline justify-between gap-4 ${capCls}`}
               >
                 <span className="display text-h3 text-lamp">
                   {item.name}
                   {item.sold ? (
-                    <span className="ml-3 font-body text-body italic text-fog">
+                    <span className="ml-3 text-body font-normal italic text-fog">
                       sold
                     </span>
                   ) : null}
@@ -154,8 +180,52 @@ export default function FloorBoard() {
       </div>
 
       <p className="label px-5 pt-10 text-fog sm:px-10 lg:px-16">
-        Shot on our floor. Sold means somebody beat you to it.
+        Tap a photo to see it bigger. Sold means somebody beat you to it.
       </p>
+
+      <dialog
+        ref={dialogRef}
+        onClose={() => setOpenItem(null)}
+        onClick={(e) => {
+          if (e.target === dialogRef.current) closeLightbox();
+        }}
+        className="m-auto w-[min(96vw,1100px)] bg-night p-0 backdrop:bg-night/90"
+      >
+        {openItem ? (
+          <div className="p-3 sm:p-4">
+            <Image
+              src={openItem.src}
+              alt={openItem.alt}
+              width={2200}
+              height={1650}
+              sizes="96vw"
+              className="max-h-[78svh] w-full object-contain"
+            />
+            <div className="flex items-center justify-between gap-4 px-1 py-4">
+              <p className="display text-h3 text-lamp">
+                {openItem.name}
+                {openItem.sold ? (
+                  <span className="ml-3 text-body font-normal italic text-fog">
+                    sold
+                  </span>
+                ) : null}
+              </p>
+              <div className="flex items-center gap-4">
+                <span className="label hidden text-fog sm:inline">
+                  {CATEGORY_LABELS[openItem.category]}
+                </span>
+                <button
+                  type="button"
+                  onClick={closeLightbox}
+                  className="label min-h-12 rounded-ctl border border-night-3 px-5 text-lamp hover:border-fog"
+                >
+                  Close
+                </button>
+              </div>
+            </div>
+          </div>
+        ) : null}
+      </dialog>
     </div>
   );
 }

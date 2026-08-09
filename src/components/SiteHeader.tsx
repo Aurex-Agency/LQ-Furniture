@@ -43,7 +43,7 @@ export default function SiteHeader({ current }: { current?: string }) {
       </nav>
       <Link
         href="/text-list"
-        className="label order-2 flex min-h-12 items-center rounded-ctl bg-lq-green px-5 text-night hover:bg-lq-press active:translate-y-px sm:order-3"
+        className="label order-2 flex min-h-12 items-center btn-glow rounded-ctl bg-lq-green px-5 text-night hover:bg-lq-press active:translate-y-px sm:order-3"
       >
         Join the text list
       </Link>

@@ -121,7 +121,7 @@ export default function ContactForm() {
       <button
         type="submit"
         disabled={status === "sending"}
-        className="label mt-6 min-h-12 rounded-ctl bg-lq-green px-7 text-night hover:bg-lq-press active:translate-y-px disabled:opacity-60"
+        className="label mt-6 min-h-12 btn-glow rounded-ctl bg-lq-green px-7 text-night hover:bg-lq-press active:translate-y-px disabled:opacity-60"
       >
         {status === "sending" ? "Sending" : "Send the message"}
       </button>

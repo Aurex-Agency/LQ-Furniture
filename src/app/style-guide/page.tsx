@@ -14,7 +14,7 @@ const palette = [
   { token: "fog", hex: "#A3A094", role: "secondary text", cls: "bg-fog" },
   { token: "lq-green", hex: "#6BB22E", role: "primary action, night text on it", cls: "bg-lq-green" },
   { token: "lq-press", hex: "#7EC93C", role: "hover on green", cls: "bg-lq-press" },
-  { token: "neon", hex: "#8ADE4A", role: "the lit sign, nowhere else", cls: "bg-neon" },
+  { token: "neon", hex: "#8ADE4A", role: "sign devices and glow only", cls: "bg-neon" },
 ] as const;
 
 const contrast = [
@@ -26,17 +26,17 @@ const contrast = [
 ] as const;
 
 const motion = [
-  "the room lights up once on arrival",
+  "the sign flickers on, then hums",
   "the hero photograph settles from a slight zoom",
   "photographs open like lit displays, once each",
-  "text lines rise as the eyes adjust",
-  "the neon sign flickers on, once",
+  "content rises clean, once per section",
+  "tap the sign and it flickers again",
 ] as const;
 
 export default function StyleGuide() {
   return (
     <main className="min-h-screen">
-      <header className="pool px-5 pt-14 sm:px-10 lg:px-16">
+      <header className="px-5 pt-14 sm:px-10 lg:px-16">
         <Image
           src="/brand/lq-logo.png"
           alt="LQ Furniture"
@@ -46,15 +46,15 @@ export default function StyleGuide() {
           className="h-24 w-auto sm:h-28"
         />
         <p className="label mt-6 text-fog">
-          Brand foundation · The showroom at night
+          Brand foundation · The lit sign on a clean shop
         </p>
         <h1 className="display mt-10 max-w-4xl text-display text-lamp">
           Limited quantities. Unlimited savings.
         </h1>
         <p className="mt-6 max-w-xl text-body-lg text-fog">
-          Their words, set in Caslon under lamp light. The site is the
-          showroom after hours: a warm charcoal room, photographs lit like
-          window displays, and one green neon sign.
+          Their words, set heavy and tight on crisp charcoal. The character
+          lives in the working neon: signs that know the store clock,
+          fixtures you can tap, glow on the buttons that matter.
         </p>
       </header>
 
@@ -89,24 +89,25 @@ export default function StyleGuide() {
       <section className="border-t border-night-3 px-5 py-14 sm:px-10 lg:px-16">
         <h2 className="display text-h1 text-lamp">The type</h2>
         <p className="mt-4 max-w-xl text-body text-fog">
-          Libre Caslon Display speaks in sentence case, never all caps.
-          Hanken Grotesk does the working text and the small tracked labels.
+          One family, Schibsted Grotesk. Display runs at 800, set tight, in
+          sentence case. Body runs regular, and the small caps labels do the
+          signage.
         </p>
         <div className="mt-12 space-y-12">
           <div>
-            <p className="label text-fog">display · Libre Caslon · 44 to 92px</p>
+            <p className="label text-fog">display · Schibsted 800 · 44 to 84px</p>
             <p className="display mt-3 text-display text-lamp">
               Warehouse prices, showroom floor
             </p>
           </div>
           <div>
-            <p className="label text-fog">h2 · Libre Caslon · 30 to 44px</p>
+            <p className="label text-fog">h2 · Schibsted 800 · 28 to 40px</p>
             <p className="display mt-3 text-h2 text-lamp">
               When it&apos;s gone, it&apos;s gone
             </p>
           </div>
           <div className="max-w-2xl">
-            <p className="label text-fog">body · Hanken Grotesk · 17px</p>
+            <p className="label text-fog">body · Schibsted · 17px</p>
             <p className="mt-3 text-body text-lamp">
               The floor turns over fast. A sectional that came in on Tuesday
               can be loaded in somebody&apos;s truck by Saturday, and when the
@@ -115,11 +116,11 @@ export default function StyleGuide() {
             </p>
           </div>
           <div>
-            <p className="label text-fog">label · Hanken caps · tracked wide</p>
+            <p className="label text-fog">label · Schibsted semibold caps</p>
             <p className="label mt-3 text-lamp">Priced on the floor · Tupelo, MS</p>
           </div>
           <div>
-            <p className="label text-fog">the neon sign · once per page</p>
+            <p className="label text-fog">the sign family · lit, dark, and drawn</p>
             <p className="neon-box neon label mt-3 inline-block rounded-ctl px-4 py-3">
               Open Wed thru Sun
             </p>
@@ -132,7 +133,7 @@ export default function StyleGuide() {
         <div className="mt-10 flex flex-wrap items-center gap-4">
           <button
             type="button"
-            className="label min-h-12 rounded-ctl bg-lq-green px-7 text-night hover:bg-lq-press active:translate-y-px"
+            className="label min-h-12 btn-glow rounded-ctl bg-lq-green px-7 text-night hover:bg-lq-press active:translate-y-px"
           >
             Join the text list
           </button>
@@ -174,8 +175,9 @@ export default function StyleGuide() {
       <section className="border-t border-night-3 px-5 py-14 sm:px-10 lg:px-16">
         <h2 className="display text-h1 text-lamp">Motion</h2>
         <p className="mt-4 max-w-xl text-body text-fog">
-          The lights come up, the eyes adjust, and after that the room holds
-          still. Five moments, each once, all gone under reduced motion.
+          Crisp and physical: the sign flickers on and hums, photographs
+          open once and drift gently with scroll, content rises clean. All
+          of it goes still under reduced motion.
         </p>
         <ul className="mt-8 max-w-md border-t border-night-3">
           {motion.map((m) => (

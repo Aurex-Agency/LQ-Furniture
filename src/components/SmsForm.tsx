@@ -78,7 +78,7 @@ export default function SmsForm() {
         <button
           type="submit"
           disabled={status === "sending"}
-          className="label min-h-12 shrink-0 rounded-ctl bg-lq-green px-7 text-night hover:bg-lq-press active:translate-y-px disabled:opacity-60"
+          className="label min-h-12 shrink-0 btn-glow rounded-ctl bg-lq-green px-7 text-night hover:bg-lq-press active:translate-y-px disabled:opacity-60"
         >
           {status === "sending" ? "Joining" : "Join the text list"}
         </button>

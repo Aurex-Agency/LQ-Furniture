@@ -1,19 +1,11 @@
 import type { Metadata, Viewport } from "next";
-import { Libre_Caslon_Display, Libre_Caslon_Text } from "next/font/google";
+import { Schibsted_Grotesk } from "next/font/google";
 import "./globals.css";
 
-const caslon = Libre_Caslon_Display({
+const schibsted = Schibsted_Grotesk({
   subsets: ["latin"],
-  weight: "400",
-  variable: "--font-caslon",
-  display: "swap",
-});
-
-const caslonText = Libre_Caslon_Text({
-  subsets: ["latin"],
-  weight: ["400", "700"],
   style: ["normal", "italic"],
-  variable: "--font-caslon-text",
+  variable: "--font-schibsted",
   display: "swap",
 });
 
@@ -31,11 +23,11 @@ export const viewport: Viewport = {
 };
 
 const directionContract = `<!--
-THESIS: The showroom at night. A warehouse of real furniture presented like lit window displays after hours, premium and unhurried. Refuses the flat brutalist ink build, the bright cream build, and the white e-commerce grid, all three now dead.
-OWN-WORLD: Warm charcoal night #131311 lit in radial lamp pools, never flat. Lamp white text, fog secondary. LQ green exists as the neon sign and the primary action only; green surfaces carry night text. One family: Libre Caslon Display for sentence-case display, Libre Caslon Text for body and small engraved-caps labels. 4px controls, deep soft shadows under photographs, square imagery.
-STORY: A North Mississippi family window-shops the lit floor from their phone at night, feels the quality, and either joins the text list, calls about financing, or drives to Tupelo when the sign turns on.
-FIRST VIEWPORT: A spotlit floor photograph in the dark with the serif statement over it, the neon hours sign burning in the corner, both conversion doors beneath.
-FORM: Third world, assigned by direction roll e1b2fdb5: the night showroom, candidate 7. Deal-board structure retained on /the-floor (surface roll 6e5352b2). Multi-page: home, the-floor, financing, visit, privacy.
+THESIS: The lit sign on a clean shop. A professional, crisply structured dark site whose character lives in working neon: signs that know the store clock, fixtures you can touch. Refuses the moody serif showroom, the cream build, and the brutalist ink build.
+OWN-WORLD: Night charcoal field with crisp hairline structure, no atmospheric pools. Lamp text, fog secondary. One family, Schibsted Grotesk: heavy tight display in sentence case, medium body, small caps labels. Neon green sign system: the live open/closed sign with tube buzz, static signs, the tube arrow, glow on primary actions. 6px controls, deep shadows under photographs only.
+STORY: A North Mississippi family gets a clean, fast, obviously professional site with a lit sign burning in the corner, plays with the floor filters and the FAQ, and either joins the text list, calls about financing, or drives to Tupelo.
+FIRST VIEWPORT: Full-bleed floor photo, heavy grotesk statement, the live sign burning top right, both doors beneath.
+FORM: Client-pinned refinement of the night world (rolls e1b2fdb5, 6e5352b2 retained): neon vibe, clean and professional, character, interactive. Pages: home, the-floor, financing, text-list, visit, blog, contact, privacy.
 FINISH: unreviewed and undocumented is unfinished; this build ends with the finish review, the verdict, and DESIGN.md
 -->`;
 
@@ -43,7 +35,7 @@ export default function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="en" className={`${caslon.variable} ${caslonText.variable}`}>
+    <html lang="en" className={schibsted.variable}>
       <body>
         <span hidden dangerouslySetInnerHTML={{ __html: directionContract }} />
         {children}

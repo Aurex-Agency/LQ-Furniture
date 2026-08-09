@@ -19,7 +19,7 @@ export default function TheFloor() {
     <>
       <SiteHeader current="/the-floor" />
       <main>
-        <section className="pool px-5 pt-16 sm:px-10 sm:pt-20 lg:px-16">
+        <section className="px-5 pt-16 sm:px-10 sm:pt-20 lg:px-16">
           <p className="neon-box neon neon-on label inline-block rounded-ctl px-4 py-3">
             New loads weekly
           </p>
@@ -76,7 +76,7 @@ export default function TheFloor() {
             <div className="flex flex-wrap gap-4">
               <Link
                 href="/text-list"
-                className="label flex min-h-12 items-center rounded-ctl bg-lq-green px-7 text-night hover:bg-lq-press active:translate-y-px"
+                className="label flex min-h-12 items-center btn-glow rounded-ctl bg-lq-green px-7 text-night hover:bg-lq-press active:translate-y-px"
               >
                 Join the text list
               </Link>
