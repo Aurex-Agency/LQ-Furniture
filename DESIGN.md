@@ -12,41 +12,41 @@ colors:
   neon: "#8ade4a"
 typography:
   display:
-    fontFamily: "Schibsted Grotesk"
+    fontFamily: "Bebas Neue, sans-serif"
     fontSize: "clamp(2.75rem, 1.2rem + 5.6vw, 5.25rem)"
     fontWeight: 800
     lineHeight: 0.98
     letterSpacing: "-0.02em"
   h1:
-    fontFamily: "Schibsted Grotesk"
+    fontFamily: "Bebas Neue, sans-serif"
     fontSize: "clamp(2.25rem, 1.3rem + 3.8vw, 3.75rem)"
     fontWeight: 800
     lineHeight: 1.02
     letterSpacing: "-0.02em"
   h2:
-    fontFamily: "Schibsted Grotesk"
+    fontFamily: "Bebas Neue, sans-serif"
     fontSize: "clamp(1.75rem, 1.2rem + 2.2vw, 2.5rem)"
     fontWeight: 800
     lineHeight: 1.1
     letterSpacing: "-0.02em"
   h3:
-    fontFamily: "Schibsted Grotesk"
+    fontFamily: "Bebas Neue, sans-serif"
     fontSize: "1.375rem"
     fontWeight: 800
     lineHeight: 1.25
     letterSpacing: "-0.02em"
   body-lg:
-    fontFamily: "Schibsted Grotesk"
+    fontFamily: "Bebas Neue, sans-serif"
     fontSize: "1.1875rem"
     fontWeight: 400
     lineHeight: 1.6
   body:
-    fontFamily: "Schibsted Grotesk"
+    fontFamily: "Bebas Neue, sans-serif"
     fontSize: "1.0625rem"
     fontWeight: 400
     lineHeight: 1.65
   label:
-    fontFamily: "Schibsted Grotesk"
+    fontFamily: "Bebas Neue, sans-serif"
     fontSize: "0.75rem"
     fontWeight: 600
     lineHeight: 1.4
@@ -103,7 +103,7 @@ The architecture is multi-page: home, /the-floor, /financing, /text-list, /visit
 
 **Key Characteristics:**
 - Crisp flat charcoal field with hairline night-3 structure; no atmospheric pools, no washes
-- One family, Schibsted Grotesk (variable, with italic): heavy tight display in sentence case, regular body, small semibold caps labels
+- One family, Bebas Neue (display) / Switzer (body) (variable, with italic): heavy tight display in sentence case, regular body, small semibold caps labels
 - A working neon sign system is the character: the live tappable sign, static signs, the tube arrow, glow on primary green actions
 - Photographs presented as lit displays: square-cornered, deep soft shadows, brightness lift on hover
 - Interactive fixtures built on native elements: details/summary FAQs, a dialog lightbox, data-driven filter counts, a Central-time clock
@@ -136,7 +136,7 @@ A single warm-dark neutral family under lamp-colored text, with one brand green 
 
 ## Typography
 
-**One Font:** Schibsted Grotesk (variable, normal + italic), loaded via next/font/google as `--font-schibsted`. There is no second family.
+**One Font:** Bebas Neue (display) / Switzer (body) (variable, normal + italic), loaded via next/font/google as `--font-schibsted`. There is no second family.
 
 **Character:** One grotesk doing every job. At 800 and tight tracking it is the heavy painted shop-sign statement; at 400 it is plain, warm running text; at 600 small caps it is the label stenciled on the door. Italic appears only in small annotations (the lowercase "sold" stamp, blog dates).
 

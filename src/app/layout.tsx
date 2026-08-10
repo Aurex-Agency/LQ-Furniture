@@ -1,11 +1,16 @@
 import type { Metadata, Viewport } from "next";
-import { Schibsted_Grotesk } from "next/font/google";
+import localFont from "next/font/local";
 import "./globals.css";
 
-const schibsted = Schibsted_Grotesk({
-  subsets: ["latin"],
-  style: ["normal", "italic"],
-  variable: "--font-schibsted",
+const bebas = localFont({
+  src: "../fonts/BebasNeue-Regular.otf",
+  variable: "--font-bebas",
+  display: "swap",
+});
+
+const switzer = localFont({
+  src: "../fonts/Switzer-Regular.otf",
+  variable: "--font-switzer",
   display: "swap",
 });
 
@@ -24,7 +29,7 @@ export const viewport: Viewport = {
 
 const directionContract = `<!--
 THESIS: The lit sign on a clean shop. A professional, crisply structured dark site whose character lives in working neon: signs that know the store clock, fixtures you can touch. Refuses the moody serif showroom, the cream build, and the brutalist ink build.
-OWN-WORLD: Night charcoal field with crisp hairline structure, no atmospheric pools. Lamp text, fog secondary. One family, Schibsted Grotesk: heavy tight display in sentence case, medium body, small caps labels. Neon green sign system: the live open/closed sign with tube buzz, static signs, the tube arrow, glow on primary actions. 6px controls, deep shadows under photographs only.
+OWN-WORLD: Night charcoal field with crisp hairline structure, no atmospheric pools. Lamp text, fog secondary. Client-supplied pairing: Bebas Neue, the American signage letter, for display and the signs; Switzer for body and small tracked labels. Neon green sign system: the live open/closed sign with tube buzz, static signs, the tube arrow, glow on primary actions. 6px controls, deep shadows under photographs only.
 STORY: A North Mississippi family gets a clean, fast, obviously professional site with a lit sign burning in the corner, plays with the floor filters and the FAQ, and either joins the text list, calls about financing, or drives to Tupelo.
 FIRST VIEWPORT: Full-bleed floor photo, heavy grotesk statement, the live sign burning top right, both doors beneath.
 FORM: Client-pinned refinement of the night world (rolls e1b2fdb5, 6e5352b2 retained): neon vibe, clean and professional, character, interactive. Pages: home, the-floor, financing, text-list, visit, blog, contact, privacy.
@@ -35,7 +40,7 @@ export default function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="en" className={schibsted.variable}>
+    <html lang="en" className={`${bebas.variable} ${switzer.variable}`}>
       <body>
         <span hidden dangerouslySetInnerHTML={{ __html: directionContract }} />
         {children}

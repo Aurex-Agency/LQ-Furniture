@@ -89,25 +89,25 @@ export default function StyleGuide() {
       <section className="border-t border-night-3 px-5 py-14 sm:px-10 lg:px-16">
         <h2 className="display text-h1 text-lamp">The type</h2>
         <p className="mt-4 max-w-xl text-body text-fog">
-          One family, Schibsted Grotesk. Display runs at 800, set tight, in
-          sentence case. Body runs regular, and the small caps labels do the
-          signage.
+          The client&apos;s pairing: Bebas Neue, the American signage letter,
+          for display and the signs. Switzer, clean and quiet, for body and
+          the small tracked labels.
         </p>
         <div className="mt-12 space-y-12">
           <div>
-            <p className="label text-fog">display · Schibsted 800 · 44 to 84px</p>
+            <p className="label text-fog">display · Bebas Neue · 56 to 108px</p>
             <p className="display mt-3 text-display text-lamp">
               Warehouse prices, showroom floor
             </p>
           </div>
           <div>
-            <p className="label text-fog">h2 · Schibsted 800 · 28 to 40px</p>
+            <p className="label text-fog">h2 · Bebas Neue · 32 to 48px</p>
             <p className="display mt-3 text-h2 text-lamp">
               When it&apos;s gone, it&apos;s gone
             </p>
           </div>
           <div className="max-w-2xl">
-            <p className="label text-fog">body · Schibsted · 17px</p>
+            <p className="label text-fog">body · Switzer · 17px</p>
             <p className="mt-3 text-body text-lamp">
               The floor turns over fast. A sectional that came in on Tuesday
               can be loaded in somebody&apos;s truck by Saturday, and when the
@@ -116,7 +116,7 @@ export default function StyleGuide() {
             </p>
           </div>
           <div>
-            <p className="label text-fog">label · Schibsted semibold caps</p>
+            <p className="label text-fog">label · Switzer caps, tracked wide</p>
             <p className="label mt-3 text-lamp">Priced on the floor · Tupelo, MS</p>
           </div>
           <div>
