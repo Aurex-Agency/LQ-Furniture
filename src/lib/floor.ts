@@ -69,13 +69,6 @@ export const FLOOR_ITEMS: FloorItem[] = [
     category: "bedroom",
   },
   {
-    id: "8610",
-    src: "/photos/IMG_8610.jpg",
-    alt: "Gray power reclining sofa and loveseat under warehouse lights",
-    name: "Gray power reclining set",
-    category: "recliners",
-  },
-  {
     id: "8632",
     src: "/photos/IMG_8632.jpg",
     alt: "Cream sofa with exposed wood trim and nailhead detail",

@@ -59,7 +59,7 @@ const faqJsonLd = {
   })),
 };
 
-const previewIds = ["8617", "8620", "8602", "8610"];
+const previewIds = ["8617", "8620", "8602", "8627"];
 const urgencyIds = ["8594", "8632", "8612"];
 
 export default function Home() {
@@ -115,32 +115,24 @@ export default function Home() {
               }}
               aria-hidden
             />
-            {/* The store's own slogan art, posted on the window like a
-                fresh decal. Sits above the scrims so it keeps its punch;
-                the baked white outline carries it over the photo. */}
-            <div className="slap-in absolute left-4 top-4 w-40 sm:left-10 sm:top-10 sm:w-[min(26vw,23rem)]">
-              <Image
-                src="/brand/never-pay-retail.png"
-                alt="Never pay retail again!"
-                width={1606}
-                height={534}
-                priority
-                sizes="(min-width: 640px) 26vw, 160px"
-                className="h-auto w-full"
-              />
-            </div>
             <div
               className="px-5 pb-10 pt-8 sm:absolute sm:inset-x-0 sm:bottom-0 sm:px-10 sm:pb-12 sm:pt-0 sm:[text-shadow:0_2px_28px_rgb(0_0_0/0.65)] lg:px-16"
             >
-              <h1 className="display max-w-3xl text-display text-lamp">
+              {/* The client's slogan art is the headline. It hoists in
+                  like the old display lines did; the baked white outline
+                  keeps it crisp over the photo. */}
+              <h1 className="max-w-2xl">
                 <span className="line-mask">
                   <span style={{ animationDelay: "450ms" }}>
-                    Limited quantities.
-                  </span>
-                </span>
-                <span className="line-mask">
-                  <span style={{ animationDelay: "600ms" }}>
-                    Unlimited savings.
+                    <Image
+                      src="/brand/never-pay-retail.png"
+                      alt="Never pay retail again!"
+                      width={1606}
+                      height={534}
+                      priority
+                      sizes="(min-width: 640px) 42rem, 100vw"
+                      className="h-auto w-full"
+                    />
                   </span>
                 </span>
               </h1>
