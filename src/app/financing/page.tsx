@@ -4,13 +4,14 @@ import Reveal from "@/components/Reveal";
 import SiteFooter from "@/components/SiteFooter";
 import SiteHeader from "@/components/SiteHeader";
 import { STORE } from "@/lib/store";
+import { FINANCING_PARTNERS } from "@/lib/financing";
 import FaqList from "@/components/FaqList";
 import { FAQS } from "@/lib/faq";
 
 export const metadata: Metadata = {
   title: "Financing",
   description:
-    "Financing is available in the store at LQ Furniture in Tupelo, MS. You don't need perfect credit to leave with furniture. Come in or call (662) 841-5959 and we'll walk you through the options.",
+    "Four ways to finance furniture at LQ Furniture in Tupelo, MS: Synchrony and Tower Loans with up to 12 months no interest, plus Acima and Snap with no credit check. Apply online or at the counter.",
 };
 
 export default function Financing() {
@@ -26,9 +27,51 @@ export default function Financing() {
             Take it home now. Pay as you go.
           </h1>
           <p className="mt-6 max-w-xl text-body-lg text-fog">
-            The banner in the store says financing available, and it&apos;s true.
-            You don&apos;t need perfect credit, and you don&apos;t need to figure it
-            out alone.
+            Four partners, four ways to say yes. Up to 12 months with no
+            interest if you have credit, and two roads that never run a
+            credit check if you don&apos;t.
+          </p>
+        </section>
+
+        {/* The partner board: the same four applications behind the QR
+            codes at the counter. */}
+        <section className="px-5 pt-14 sm:px-10 lg:px-16">
+          <div className="grid gap-6 sm:grid-cols-2">
+            {FINANCING_PARTNERS.map((p) => (
+              <div
+                key={p.name}
+                className="flex flex-col rounded-ctl border border-night-3 bg-night-2 p-6 sm:p-8"
+              >
+                <div className="flex items-baseline justify-between gap-4">
+                  <h2 className="display text-h3 text-lamp">{p.name}</h2>
+                  <span
+                    className={`label shrink-0 ${
+                      p.kind === "No credit check" ? "text-lq-press" : "text-fog"
+                    }`}
+                  >
+                    {p.kind}
+                  </span>
+                </div>
+                <p className="display mt-5 text-h2 text-lamp">{p.headline}</p>
+                <p className="mt-4 max-w-md grow text-body text-fog">
+                  {p.detail}
+                </p>
+                <a
+                  href={p.applyUrl}
+                  target="_blank"
+                  rel="noopener"
+                  className="label mt-8 flex min-h-12 items-center justify-center self-start btn-glow rounded-ctl bg-lq-green px-7 text-night hover:bg-lq-press active:translate-y-px"
+                >
+                  Apply with {p.name}
+                </a>
+              </div>
+            ))}
+          </div>
+          <p className="mt-6 max-w-2xl text-body text-fog">
+            These are the same applications behind the QR codes at the
+            counter. Exact terms depend on your application and your ticket,
+            and we&apos;ll go over them with you line by line before you sign
+            anything.
           </p>
         </section>
 
@@ -49,10 +92,10 @@ export default function Financing() {
             </h2>
             <div className="mt-6 max-w-md space-y-5 text-body text-fog">
               <p>
-                Come in with a photo ID and a few minutes. We&apos;ll sit down at
-                the counter, look at the payment options together, and you
-                pick what fits. You&apos;ll know where you stand before you buy a
-                thing.
+                Apply from your couch with the links above, or come in with a
+                photo ID and a few minutes. We&apos;ll sit down at the counter,
+                look at the options together, and you pick what fits. You&apos;ll
+                know where you stand before you buy a thing.
               </p>
               <p>
                 Rather sort it out before you drive over? Call us. We&apos;ll tell
@@ -82,10 +125,10 @@ export default function Financing() {
         <section className="border-t border-night-3 px-5 py-16 sm:px-10 lg:px-16">
           <div className="grid gap-8 sm:grid-cols-3">
             <div>
-              <h3 className="display text-h3 text-lamp">At the counter</h3>
+              <h3 className="display text-h3 text-lamp">Start anywhere</h3>
               <p className="mt-3 max-w-xs text-body text-fog">
-                The paperwork happens at the counter while you shop, not in
-                a portal you fight with at home.
+                Apply from your phone before you visit or at the counter
+                while you shop. Same applications either way.
               </p>
             </div>
             <div>
@@ -98,8 +141,8 @@ export default function Financing() {
             <div>
               <h3 className="display text-h3 text-lamp">Real people</h3>
               <p className="mt-3 max-w-xs text-body text-fog">
-                No portals, no hold music. The person who rings you up is the
-                person who helps with the plan.
+                The person who rings you up is the person who helps with the
+                plan, and nobody gets left guessing at the terms.
               </p>
             </div>
           </div>

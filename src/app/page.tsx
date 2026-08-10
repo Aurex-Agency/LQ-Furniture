@@ -60,6 +60,7 @@ const faqJsonLd = {
 };
 
 const previewIds = ["8617", "8620", "8602", "8610"];
+const urgencyIds = ["8594", "8632", "8612"];
 
 export default function Home() {
   const preview = FLOOR_ITEMS.filter((i) => previewIds.includes(i.id));
@@ -114,6 +115,20 @@ export default function Home() {
               }}
               aria-hidden
             />
+            {/* The store's own slogan art, posted on the window like a
+                fresh decal. Sits above the scrims so it keeps its punch;
+                the baked white outline carries it over the photo. */}
+            <div className="slap-in absolute left-4 top-4 w-40 sm:left-10 sm:top-10 sm:w-[min(26vw,23rem)]">
+              <Image
+                src="/brand/never-pay-retail.png"
+                alt="Never pay retail again!"
+                width={1606}
+                height={534}
+                priority
+                sizes="(min-width: 640px) 26vw, 160px"
+                className="h-auto w-full"
+              />
+            </div>
             <div
               className="px-5 pb-10 pt-8 sm:absolute sm:inset-x-0 sm:bottom-0 sm:px-10 sm:pb-12 sm:pt-0 sm:[text-shadow:0_2px_28px_rgb(0_0_0/0.65)] lg:px-16"
             >
@@ -226,8 +241,9 @@ export default function Home() {
                 When it&apos;s gone, it&apos;s gone.
               </h2>
               <p className="mt-5 max-w-sm text-body text-fog">
-                These didn&apos;t wait around. Most sets never come back, so the
-                people who hear first take home the best of every load.
+                Every set on the floor is the last few of its load. When the
+                last one sells, most never come back, so the people who hear
+                first take home the best of every truck.
               </p>
               <Link
                 href="/text-list"
@@ -237,7 +253,7 @@ export default function Home() {
               </Link>
             </div>
             <div className="grid grid-cols-3 gap-4 lg:col-span-8 lg:gap-6">
-              {FLOOR_ITEMS.filter((i) => i.sold).slice(0, 3).map((item, i) => (
+              {FLOOR_ITEMS.filter((i) => urgencyIds.includes(i.id)).map((item, i) => (
                 <figure key={item.id} className="m-0">
                   <Reveal className="relative" inner="" delay={i * 140}>
                     <Image
@@ -246,12 +262,11 @@ export default function Home() {
                       width={2200}
                       height={1650}
                       sizes="(min-width: 1024px) 22vw, 33vw"
-                      className="window-photo aspect-[3/4] w-full object-cover opacity-55 saturate-[0.6]"
+                      className="window-photo aspect-[3/4] w-full object-cover"
                     />
                   </Reveal>
                   <figcaption className="mt-2 truncate text-[0.6875rem] text-lamp sm:mt-3 sm:text-[0.9375rem]">
                     {item.name}
-                    <span className="ml-2 italic text-fog">sold</span>
                   </figcaption>
                 </figure>
               ))}
@@ -310,16 +325,16 @@ export default function Home() {
                 You don&apos;t need perfect credit to leave with furniture.
               </h2>
               <p className="mt-5 max-w-md text-body text-fog">
-                Financing is available in the store, same day. Come in or
-                call, and we&apos;ll walk you through the payment options before
-                you buy a thing.
+                Four financing partners, including two that never run a
+                credit check. Up to 12 months with no interest, and you can
+                apply from your phone before you ever drive over.
               </p>
               <div className="mt-8 flex flex-wrap gap-4">
                 <Link
                   href="/financing"
                   className="label flex min-h-12 items-center btn-glow rounded-ctl bg-lq-green px-7 text-night hover:bg-lq-press active:translate-y-px"
                 >
-                  How it works
+                  See your options
                 </Link>
                 <a
                   href={STORE.phoneHref}

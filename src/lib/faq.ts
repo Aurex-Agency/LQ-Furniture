@@ -11,7 +11,7 @@ export const FAQS: Faq[] = [
   },
   {
     q: "Do y'all really do financing?",
-    a: "Yes. The banner in the store says financing available, and it's true. Ask at the counter and you'll know where you stand before you buy a thing. You don't need perfect credit.",
+    a: "Yes, four ways. Synchrony and Tower Loans run up to 12 months with no interest, and Acima and Snap say yes without a credit check, with 90 to 100 days no interest. Apply on the financing page or at the counter, and you'll know where you stand before you buy a thing.",
   },
   {
     q: "Why is it so cheap? What's wrong with it?",

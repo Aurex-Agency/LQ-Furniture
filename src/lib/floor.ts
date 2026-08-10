@@ -21,16 +21,10 @@ export type FloorItem = {
   alt: string;
   name: string;
   category: FloorCategory;
-  sold: boolean;
 };
 
 // Every photo below was shot on the LQ floor. The board rotates as the
-// floor does; sold pieces keep their stamp until the next refresh.
-//
-// PLACEHOLDER DATA: the `sold` flags are authored to demonstrate the stamp
-// moment and are not live inventory status. Confirm which pieces are
-// actually gone with LQ before launch, and keep the flags in sync with the
-// floor after that.
+// floor does; refresh this list as loads come and go.
 export const FLOOR_ITEMS: FloorItem[] = [
   {
     id: "8587",
@@ -38,7 +32,6 @@ export const FLOOR_ITEMS: FloorItem[] = [
     alt: "Oversized light gray sectional with chaise and ottoman on the LQ showroom floor",
     name: "Oversized gray sectional with ottoman",
     category: "living",
-    sold: false,
   },
   {
     id: "8594",
@@ -46,7 +39,6 @@ export const FLOOR_ITEMS: FloorItem[] = [
     alt: "Black counter-height dining table with six upholstered chairs",
     name: "Black counter-height dining set",
     category: "dining",
-    sold: true,
   },
   {
     id: "8617",
@@ -54,7 +46,6 @@ export const FLOOR_ITEMS: FloorItem[] = [
     alt: "Caramel leather modular sectional arranged in an L on a woven rug",
     name: "Caramel leather modular sectional",
     category: "living",
-    sold: false,
   },
   {
     id: "8600",
@@ -62,7 +53,6 @@ export const FLOOR_ITEMS: FloorItem[] = [
     alt: "Light oak dining table with woven-back chairs, staged with lamps behind it",
     name: "Light oak dining set",
     category: "dining",
-    sold: false,
   },
   {
     id: "8605",
@@ -70,7 +60,6 @@ export const FLOOR_ITEMS: FloorItem[] = [
     alt: "Wall of shelves stacked with dozens of table lamps in reds, greens and golds",
     name: "The lamp wall",
     category: "lamps",
-    sold: false,
   },
   {
     id: "8620",
@@ -78,7 +67,6 @@ export const FLOOR_ITEMS: FloorItem[] = [
     alt: "Driftwood-finish bedroom set with dresser, mirror and upholstered bed",
     name: "Driftwood bedroom set",
     category: "bedroom",
-    sold: false,
   },
   {
     id: "8610",
@@ -86,7 +74,6 @@ export const FLOOR_ITEMS: FloorItem[] = [
     alt: "Gray power reclining sofa and loveseat under warehouse lights",
     name: "Gray power reclining set",
     category: "recliners",
-    sold: false,
   },
   {
     id: "8632",
@@ -94,7 +81,6 @@ export const FLOOR_ITEMS: FloorItem[] = [
     alt: "Cream sofa with exposed wood trim and nailhead detail",
     name: "Cream sofa with wood trim",
     category: "living",
-    sold: true,
   },
   {
     id: "8627",
@@ -102,7 +88,6 @@ export const FLOOR_ITEMS: FloorItem[] = [
     alt: "Pillow-top mattress on an adjustable base in the Shema Sleep gallery",
     name: "Shema Sleep pillow-top",
     category: "mattresses",
-    sold: false,
   },
   {
     id: "8622",
@@ -110,7 +95,6 @@ export const FLOOR_ITEMS: FloorItem[] = [
     alt: "Bed made up in a burnt orange comforter beside a five-drawer chest",
     name: "Panel bed and chest",
     category: "bedroom",
-    sold: false,
   },
   {
     id: "8602",
@@ -118,7 +102,6 @@ export const FLOOR_ITEMS: FloorItem[] = [
     alt: "Round walnut dining table with cream upholstered chairs",
     name: "Round walnut dining set",
     category: "dining",
-    sold: false,
   },
   {
     id: "8612",
@@ -126,6 +109,5 @@ export const FLOOR_ITEMS: FloorItem[] = [
     alt: "Brown leather power recliners with console and cup holders",
     name: "Brown leather power recliners",
     category: "recliners",
-    sold: true,
   },
 ];

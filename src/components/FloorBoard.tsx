@@ -155,21 +155,14 @@ export default function FloorBoard() {
                     sizes={wide ? "(min-width: 1024px) 67vw, 100vw" : "(min-width: 1024px) 34vw, (min-width: 640px) 50vw, 100vw"}
                     className={`window-photo aspect-[4/3] w-full object-cover ${
                       wide ? "sm:aspect-[3/2]" : portrait ? "sm:aspect-[3/4]" : ""
-                    } ${item.sold ? "opacity-55 saturate-[0.6]" : "transition-[filter] duration-500 group-hover:brightness-110"}`}
+                    } transition-[filter] duration-500 group-hover:brightness-110`}
                   />
                 </span>
               </button>
               <figcaption
                 className={`mt-4 flex items-baseline justify-between gap-4 ${capCls}`}
               >
-                <span className="display text-h3 text-lamp">
-                  {item.name}
-                  {item.sold ? (
-                    <span className="ml-3 text-body font-normal italic text-fog">
-                      sold
-                    </span>
-                  ) : null}
-                </span>
+                <span className="display text-h3 text-lamp">{item.name}</span>
                 <span className="label shrink-0 text-fog">
                   {CATEGORY_LABELS[item.category]}
                 </span>
@@ -180,7 +173,7 @@ export default function FloorBoard() {
       </div>
 
       <p className="label px-5 pt-10 text-fog sm:px-10 lg:px-16">
-        Tap a photo to see it bigger. Sold means somebody beat you to it.
+        Tap a photo to see it bigger. Every piece is priced on the floor.
       </p>
 
       <dialog
@@ -202,14 +195,7 @@ export default function FloorBoard() {
               className="max-h-[78svh] w-full object-contain"
             />
             <div className="flex items-center justify-between gap-4 px-1 py-4">
-              <p className="display text-h3 text-lamp">
-                {openItem.name}
-                {openItem.sold ? (
-                  <span className="ml-3 text-body font-normal italic text-fog">
-                    sold
-                  </span>
-                ) : null}
-              </p>
+              <p className="display text-h3 text-lamp">{openItem.name}</p>
               <div className="flex items-center gap-4">
                 <span className="label hidden text-fog sm:inline">
                   {CATEGORY_LABELS[openItem.category]}
