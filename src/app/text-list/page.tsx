@@ -1,4 +1,6 @@
 import type { Metadata } from "next";
+import Image from "next/image";
+import Reveal from "@/components/Reveal";
 import SiteFooter from "@/components/SiteFooter";
 import SiteHeader from "@/components/SiteHeader";
 import SmsForm from "@/components/SmsForm";
@@ -28,12 +30,21 @@ export default function TextList() {
           </p>
         </section>
 
-        <section className="px-5 py-14 sm:px-10 lg:px-16">
-          <div className="grid gap-12 lg:grid-cols-12">
-            <div className="lg:col-span-6">
-              <SmsForm />
-            </div>
-            <div className="max-w-md lg:col-span-5 lg:col-start-8">
+        {/* The stakes, in a photograph: a whole row of the last load. */}
+        <section className="mt-14 grid lg:grid-cols-2">
+          <Reveal className="relative min-h-[300px] sm:min-h-[420px]">
+            <Image
+              src="/photos/IMG_8609.jpg"
+              alt="Rows of gray reclining sofas down a warehouse aisle at LQ Furniture"
+              fill
+              sizes="(min-width: 1024px) 50vw, 100vw"
+              className="object-cover"
+              priority
+            />
+          </Reveal>
+          <div className="px-5 py-14 sm:px-10 lg:self-center lg:px-16">
+            <SmsForm />
+            <div className="mt-12 max-w-md">
               <h2 className="display text-h3 text-lamp">What you&apos;ll get</h2>
               <ul className="mt-4 border-t border-night-3">
                 <li className="border-b border-night-3 py-3 text-body text-lamp">

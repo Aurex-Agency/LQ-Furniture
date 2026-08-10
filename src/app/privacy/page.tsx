@@ -1,4 +1,6 @@
 import type { Metadata } from "next";
+import Image from "next/image";
+import Reveal from "@/components/Reveal";
 import SiteFooter from "@/components/SiteFooter";
 import SiteHeader from "@/components/SiteHeader";
 import { STORE } from "@/lib/store";
@@ -91,6 +93,17 @@ export default function Privacy() {
       </div>
 
     </main>
+    <section className="border-t border-night-3">
+      <Reveal className="relative min-h-[260px] sm:min-h-[340px]">
+        <Image
+          src="/photos/IMG_8606.jpg"
+          alt="The accessories aisle at LQ Furniture, crate tables of lamps and decor under string lights"
+          fill
+          sizes="100vw"
+          className="object-cover"
+        />
+      </Reveal>
+    </section>
     <SiteFooter />
     </>
   );
