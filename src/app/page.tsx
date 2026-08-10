@@ -80,8 +80,8 @@ export default function Home() {
         {/* Hero: the lit window. Stacked on phones, overlaid from sm up. */}
         <section className="relative">
           <div className="relative overflow-hidden">
-            <div className="relative">
-              <div className="settle">
+            <div className="relative overflow-hidden">
+              <div className="hero-lit">
                 <Image
                   src="/photos/IMG_8587.jpg"
                   alt="An oversized sectional on the LQ Furniture floor in Tupelo, string lights running deep into the warehouse behind it"
@@ -92,6 +92,7 @@ export default function Home() {
                   className="h-[38svh] w-full object-cover sm:h-[76svh]"
                 />
               </div>
+              <span className="sweep" aria-hidden />
               <div className="absolute bottom-3 right-3 sm:bottom-auto sm:right-10 sm:top-8">
                 <NeonSign />
               </div>
@@ -116,17 +117,21 @@ export default function Home() {
             <div
               className="px-5 pb-10 pt-8 sm:absolute sm:inset-x-0 sm:bottom-0 sm:px-10 sm:pb-12 sm:pt-0 sm:[text-shadow:0_2px_28px_rgb(0_0_0/0.65)] lg:px-16"
             >
-              <h1
-                className="display line-rise max-w-3xl text-display text-lamp"
-                style={{ animationDelay: "350ms" }}
-              >
-                Limited quantities.
-                <br />
-                Unlimited savings.
+              <h1 className="display max-w-3xl text-display text-lamp">
+                <span className="line-mask">
+                  <span style={{ animationDelay: "450ms" }}>
+                    Limited quantities.
+                  </span>
+                </span>
+                <span className="line-mask">
+                  <span style={{ animationDelay: "600ms" }}>
+                    Unlimited savings.
+                  </span>
+                </span>
               </h1>
               <p
                 className="line-rise mt-5 max-w-xl text-body-lg text-lamp/85"
-                style={{ animationDelay: "550ms" }}
+                style={{ animationDelay: "900ms" }}
               >
                 A warehouse full of living rooms, dining sets, bedrooms and
                 mattresses in Tupelo, Mississippi. When the last one sells,
@@ -134,7 +139,7 @@ export default function Home() {
               </p>
               <div
                 className="line-rise mt-8 flex flex-wrap items-center gap-4"
-                style={{ animationDelay: "750ms" }}
+                style={{ animationDelay: "1100ms" }}
               >
                 <Link
                   href="/the-floor"
@@ -192,7 +197,7 @@ export default function Home() {
           <div className="mt-10 grid grid-cols-1 gap-x-6 gap-y-12 sm:grid-cols-2 lg:gap-x-8">
             {preview.map((item, i) => (
               <figure key={item.id} className={`group m-0 ${i === 0 || i === 3 ? "sm:mt-16" : ""}`}>
-                <Reveal className="relative" inner="">
+                <Reveal className="relative" inner="" delay={(i % 2) * 140}>
                   <Image
                     src={item.src}
                     alt={item.alt}
@@ -232,16 +237,18 @@ export default function Home() {
               </Link>
             </div>
             <div className="grid grid-cols-3 gap-4 lg:col-span-8 lg:gap-6">
-              {FLOOR_ITEMS.filter((i) => i.sold).slice(0, 3).map((item) => (
+              {FLOOR_ITEMS.filter((i) => i.sold).slice(0, 3).map((item, i) => (
                 <figure key={item.id} className="m-0">
-                  <Image
-                    src={item.src}
-                    alt={item.alt}
-                    width={2200}
-                    height={1650}
-                    sizes="(min-width: 1024px) 22vw, 33vw"
-                    className="window-photo aspect-[3/4] w-full object-cover opacity-55 saturate-[0.6]"
-                  />
+                  <Reveal className="relative" inner="" delay={i * 140}>
+                    <Image
+                      src={item.src}
+                      alt={item.alt}
+                      width={2200}
+                      height={1650}
+                      sizes="(min-width: 1024px) 22vw, 33vw"
+                      className="window-photo aspect-[3/4] w-full object-cover opacity-55 saturate-[0.6]"
+                    />
+                  </Reveal>
                   <figcaption className="mt-2 truncate text-[0.6875rem] text-lamp sm:mt-3 sm:text-[0.9375rem]">
                     {item.name}
                     <span className="ml-2 italic text-fog">sold</span>

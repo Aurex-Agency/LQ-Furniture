@@ -126,7 +126,7 @@ export default function FloorBoard() {
         {visible.map((item, i) => {
           const state = reveals.get(item.id) ?? "static";
           const maskCls =
-            state === "hidden" ? "mask-hidden" : state === "revealed" ? "mask-open" : "";
+            state === "hidden" ? "lit-hidden" : state === "revealed" ? "lit-go" : "";
           const capCls =
             state === "hidden" ? "rise-hidden" : state === "revealed" ? "rise-go" : "";
           // Paired rows of one wide 3:2 piece and one 3:4 portrait at
