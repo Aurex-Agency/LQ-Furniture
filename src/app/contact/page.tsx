@@ -45,6 +45,13 @@ export default function Contact() {
                 {STORE.address}
                 <br />
                 {STORE.city}, {STORE.state} {STORE.zip}
+                <br />
+                <a
+                  href={`mailto:${STORE.email}`}
+                  className="underline-offset-4 hover:underline"
+                >
+                  {STORE.email}
+                </a>
               </address>
               <p className="mt-6 text-body text-fog">
                 Wed thru Sat 10 to 6 · Sun 12 to 6

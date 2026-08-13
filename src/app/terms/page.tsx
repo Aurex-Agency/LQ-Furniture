@@ -27,9 +27,10 @@ export default function Terms() {
           <section>
             <h2 className="display text-h3 text-lamp">Who we are</h2>
             <p className="mt-3">
-              LQ Furniture is a furniture store at {STORE.address},{" "}
-              {STORE.city}, {STORE.state} {STORE.zip}. You can reach us at{" "}
-              {STORE.phone}. These terms cover this website and the LQ
+              LQ Furniture, a trade name of {STORE.legalName}, is a furniture
+              store at {STORE.address}, {STORE.city}, {STORE.state}{" "}
+              {STORE.zip}. You can reach us at {STORE.phone} or{" "}
+              {STORE.email}. These terms cover this website and the LQ
               Furniture text message program. By using the site or joining
               the text list, you agree to them.
             </p>

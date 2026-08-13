@@ -28,9 +28,15 @@ export default function SiteFooter() {
           </address>
           <a
             href={STORE.phoneHref}
-            className="mt-2 inline-flex min-h-12 items-center text-[0.9375rem] text-lamp underline-offset-4 hover:underline"
+            className="mt-2 flex min-h-12 items-center text-[0.9375rem] text-lamp underline-offset-4 hover:underline"
           >
             {STORE.phone}
+          </a>
+          <a
+            href={`mailto:${STORE.email}`}
+            className="flex min-h-12 items-center text-[0.9375rem] text-lamp underline-offset-4 hover:underline"
+          >
+            {STORE.email}
           </a>
         </div>
         <div>
