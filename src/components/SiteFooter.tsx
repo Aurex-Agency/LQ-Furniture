@@ -57,6 +57,7 @@ export default function SiteFooter() {
               { href: "/blog", label: "Notes from the floor" },
               { href: "/contact", label: "Contact us" },
               { href: "/privacy", label: "Privacy policy" },
+              { href: "/terms", label: "Terms and conditions" },
             ].map((l) => (
               <li key={l.href}>
                 <Link

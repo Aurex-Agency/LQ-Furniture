@@ -4,7 +4,7 @@ import { POSTS } from "@/lib/posts";
 const BASE = "https://lqfurniture.com";
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const pages = ["", "/the-floor", "/financing", "/text-list", "/visit", "/blog", "/contact", "/privacy"].map(
+  const pages = ["", "/the-floor", "/financing", "/text-list", "/visit", "/blog", "/contact", "/privacy", "/terms"].map(
     (path) => ({
       url: `${BASE}${path}`,
       changeFrequency: (path === "/the-floor" ? "weekly" : "monthly") as "weekly" | "monthly",

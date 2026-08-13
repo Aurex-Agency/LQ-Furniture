@@ -99,10 +99,17 @@ export default function SmsForm() {
         <span className="text-[0.9375rem] leading-relaxed text-fog">
           {SMS_CONSENT_TEXT}{" "}
           <a
+            href="/terms"
+            className="text-lamp underline underline-offset-4 hover:text-lq-press"
+          >
+            Terms and conditions
+          </a>{" "}
+          and{" "}
+          <a
             href="/privacy"
             className="text-lamp underline underline-offset-4 hover:text-lq-press"
           >
-            Privacy policy
+            privacy policy
           </a>
           .
         </span>

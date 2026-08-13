@@ -21,7 +21,7 @@ export default function Privacy() {
           Privacy policy
         </h1>
         <p className="mt-4 label text-fog">
-          Effective August 7, 2026
+          Effective August 13, 2026
         </p>
       </header>
 
@@ -44,6 +44,12 @@ export default function Privacy() {
             on, your IP address, and the state of the consent checkbox. We
             keep that record so we can prove you asked for the texts and so we
             can honor your opt-out.
+          </p>
+          <p className="mt-3">
+            If you send a message through the contact page, we collect the
+            name, phone number, and message you give us so we can call you
+            back. We use that information to answer you and for nothing
+            else.
           </p>
           <p className="mt-3">
             We do not sell anything online, so this site never collects
@@ -74,11 +80,33 @@ export default function Privacy() {
             What we never do with your number
           </h2>
           <p className="mt-3">
-            Mobile phone numbers and text messaging consent are not shared
-            with or sold to third parties or affiliates for their marketing
-            purposes. Your number is used for the LQ Furniture text program
-            and nothing else. Service providers that deliver our texts may
-            process your number solely to send messages on our behalf.
+            No mobile information will be shared with third parties or
+            affiliates for marketing or promotional purposes. All the above
+            categories exclude text messaging originator opt-in data and
+            consent; this information will not be shared with or sold to
+            any third parties.
+          </p>
+          <p className="mt-3">
+            Your number is used for the LQ Furniture text program and
+            nothing else. Service providers that deliver our texts may
+            process your number solely to send messages on our behalf, and
+            are not permitted to use it for their own purposes.
+          </p>
+        </section>
+
+        <section>
+          <h2 className="display text-h3 text-lamp">Terms of the program</h2>
+          <p className="mt-3">
+            The full terms of the text message program, including message
+            frequency, opt-out keywords, and carrier disclosures, are in
+            our{" "}
+            <a
+              href="/terms"
+              className="text-lamp underline underline-offset-4 hover:text-lq-press"
+            >
+              terms and conditions
+            </a>
+            .
           </p>
         </section>
 
