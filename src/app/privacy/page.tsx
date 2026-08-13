@@ -59,6 +59,31 @@ export default function Privacy() {
         </section>
 
         <section>
+          <h2 className="display text-h3 text-lamp">Cookies and tracking</h2>
+          <p className="mt-3">
+            This website does not use tracking cookies, advertising pixels,
+            or third-party analytics to follow you around the web. We don&apos;t
+            build an ad profile on you, because we don&apos;t collect the
+            browsing data that would take. If that ever changes, we&apos;ll
+            update this policy first and say so plainly.
+          </p>
+        </section>
+
+        <section>
+          <h2 className="display text-h3 text-lamp">
+            How we protect your information
+          </h2>
+          <p className="mt-3">
+            Every page on this site, including the sign-up form, is served
+            over an encrypted HTTPS connection, so anything you submit is
+            encrypted in transit. Consent records and contact submissions
+            are stored within our hosting provider&apos;s secured systems, and
+            access is limited to the people at LQ Furniture and our website
+            operator who need it to run the store and the text program.
+          </p>
+        </section>
+
+        <section>
           <h2 className="display text-h3 text-lamp">
             Text messages and your consent
           </h2>
