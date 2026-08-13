@@ -21,18 +21,10 @@ export type FloorItem = {
   alt: string;
   name: string;
   category: FloorCategory;
-  sold: boolean;
-  // Tailwind span classes; the board is asymmetric on purpose.
-  span: string;
 };
 
 // Every photo below was shot on the LQ floor. The board rotates as the
-// floor does; sold pieces keep their stamp until the next refresh.
-//
-// PLACEHOLDER DATA: the `sold` flags are authored to demonstrate the stamp
-// moment and are not live inventory status. Confirm which pieces are
-// actually gone with LQ before launch, and keep the flags in sync with the
-// floor after that.
+// floor does; refresh this list as loads come and go.
 export const FLOOR_ITEMS: FloorItem[] = [
   {
     id: "8587",
@@ -40,8 +32,6 @@ export const FLOOR_ITEMS: FloorItem[] = [
     alt: "Oversized light gray sectional with chaise and ottoman on the LQ showroom floor",
     name: "Oversized gray sectional with ottoman",
     category: "living",
-    sold: false,
-    span: "col-span-2 sm:col-span-2 lg:col-span-3",
   },
   {
     id: "8594",
@@ -49,8 +39,6 @@ export const FLOOR_ITEMS: FloorItem[] = [
     alt: "Black counter-height dining table with six upholstered chairs",
     name: "Black counter-height dining set",
     category: "dining",
-    sold: true,
-    span: "col-span-2 sm:col-span-2 lg:col-span-3",
   },
   {
     id: "8617",
@@ -58,8 +46,6 @@ export const FLOOR_ITEMS: FloorItem[] = [
     alt: "Caramel leather modular sectional arranged in an L on a woven rug",
     name: "Caramel leather modular sectional",
     category: "living",
-    sold: false,
-    span: "col-span-1 sm:col-span-2 lg:col-span-2",
   },
   {
     id: "8600",
@@ -67,8 +53,6 @@ export const FLOOR_ITEMS: FloorItem[] = [
     alt: "Light oak dining table with woven-back chairs, staged with lamps behind it",
     name: "Light oak dining set",
     category: "dining",
-    sold: false,
-    span: "col-span-1 sm:col-span-2 lg:col-span-2",
   },
   {
     id: "8605",
@@ -76,8 +60,6 @@ export const FLOOR_ITEMS: FloorItem[] = [
     alt: "Wall of shelves stacked with dozens of table lamps in reds, greens and golds",
     name: "The lamp wall",
     category: "lamps",
-    sold: false,
-    span: "col-span-2 sm:col-span-2 lg:col-span-2",
   },
   {
     id: "8620",
@@ -85,17 +67,6 @@ export const FLOOR_ITEMS: FloorItem[] = [
     alt: "Driftwood-finish bedroom set with dresser, mirror and upholstered bed",
     name: "Driftwood bedroom set",
     category: "bedroom",
-    sold: false,
-    span: "col-span-2 sm:col-span-2 lg:col-span-3",
-  },
-  {
-    id: "8610",
-    src: "/photos/IMG_8610.jpg",
-    alt: "Gray power reclining sofa and loveseat under warehouse lights",
-    name: "Gray power reclining set",
-    category: "recliners",
-    sold: false,
-    span: "col-span-2 sm:col-span-2 lg:col-span-3",
   },
   {
     id: "8632",
@@ -103,8 +74,6 @@ export const FLOOR_ITEMS: FloorItem[] = [
     alt: "Cream sofa with exposed wood trim and nailhead detail",
     name: "Cream sofa with wood trim",
     category: "living",
-    sold: true,
-    span: "col-span-1 sm:col-span-2 lg:col-span-2",
   },
   {
     id: "8627",
@@ -112,8 +81,6 @@ export const FLOOR_ITEMS: FloorItem[] = [
     alt: "Pillow-top mattress on an adjustable base in the Shema Sleep gallery",
     name: "Shema Sleep pillow-top",
     category: "mattresses",
-    sold: false,
-    span: "col-span-1 sm:col-span-2 lg:col-span-2",
   },
   {
     id: "8622",
@@ -121,8 +88,6 @@ export const FLOOR_ITEMS: FloorItem[] = [
     alt: "Bed made up in a burnt orange comforter beside a five-drawer chest",
     name: "Panel bed and chest",
     category: "bedroom",
-    sold: false,
-    span: "col-span-2 sm:col-span-2 lg:col-span-2",
   },
   {
     id: "8602",
@@ -130,8 +95,6 @@ export const FLOOR_ITEMS: FloorItem[] = [
     alt: "Round walnut dining table with cream upholstered chairs",
     name: "Round walnut dining set",
     category: "dining",
-    sold: false,
-    span: "col-span-2 sm:col-span-2 lg:col-span-3",
   },
   {
     id: "8612",
@@ -139,7 +102,5 @@ export const FLOOR_ITEMS: FloorItem[] = [
     alt: "Brown leather power recliners with console and cup holders",
     name: "Brown leather power recliners",
     category: "recliners",
-    sold: true,
-    span: "col-span-2 sm:col-span-2 lg:col-span-3",
   },
 ];

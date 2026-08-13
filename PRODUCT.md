@@ -33,25 +33,28 @@ Shoppers browse on a phone, often from a Facebook ad or post, then drive to the 
 - /privacy must state that mobile numbers and consent are not shared or sold to third parties for marketing.
 - Performance budget: LCP under 2.0s on 4G, CLS under 0.05, first-load JS under 120KB gzipped.
 - Store facts (verified against the store's own Facebook posts and Google listing, Aug 2026): 589 North Coley Rd, Tupelo, MS 38801. Phone (662) 841-5959. Open Wednesday through Saturday 10am to 6pm, Sunday 12pm to 6pm, closed Monday and Tuesday. Existing domain: lqfurniture.com.
-- Undecided (ask the client): financing partner(s) and application link, SMS platform/provider.
+- Financing partners (client-confirmed, links in src/lib/financing.ts, same links as the in-store QR codes): Synchrony (up to 12 months no interest over $2,000, shorter windows below), Tower Loans (12 months no interest, occasional limited-time 24-month promos), Acima (90 days no interest, no credit check), Snap (100 days no interest, no credit check).
+- Undecided (ask the client): SMS platform/provider.
 
 ## Brand Commitments
 
 - Name: LQ Furniture. Tagline: "Limited Quantities + Unlimited Savings." Use their language, not invented language.
 - Logo: green oval mark, white LQ with green Q counter, FURNITURE bar. Transparent PNG at assets/source/logo/lq-logo.png (1800x600).
-- Palette (replacement world, August 2026): the client rejected the original dark rendition after seeing it built, which supersedes the earlier dark mandate. The site now runs on a bright warm field: paper #FAF7F1, cream #F1EBDF, sand #E2D9C7, ink #1B1A16 text, stone #6D675A secondary, lq-green #6BB22E as the action color, lq-press #588F24 pressed, lq-deep #3E6B1A as the only green used as text on light. Bright green never appears as text on the light field (2.4:1). Green surfaces always take ink text, never white.
-- Typography: Archivo display (a touch wide at 115%, uppercase for display and the lower-third caption bars), Newsreader body. DM Mono was retired with the dark world. Via next/font/google, latin subset.
-- Visual world: the HGTV reveal grammar (direction roll 3f585062). Bright lit-set field, big warm floor photography, lower-third labels on photos, wipe reveals, the SOLD badge pop. Chosen unattended after the client rejected the dark build and the structured direction question went unanswered; treat as standing until the client says otherwise.
-- Client explicitly rejected anything that looks AI-generated: no gradients, glows, glassmorphism, icon feature grids, numbered marker sequences, testimonial carousels, fabricated testimonials, emoji, stock or AI imagery. Radius 0 structural, 2px max on inputs and buttons.
-- Motion (client updated the original one-moment rule): unique, fun, authored animations are wanted; the experience should not feel like other furniture sites. Motion must stay in the warehouse world's grammar (stamps, tickers, freight), never generic fade-up-on-scroll on every section, and all of it disabled under prefers-reduced-motion.
-- Voice: plain, warm, direct, like a person in North Mississippi wrote it. No em dashes. No marketing filler (elevate, curated, seamless, transform, unlock, discover). Sentence case headings; display headlines uppercase. Buttons say what happens.
+- Palette (third world, August 2026): the client rejected both the dark brutalist build and the bright cream build ("no cream color crap", "looks ai"). The site now runs on the clean-shop night palette: crisp charcoal night #131311 with hairline structure (no atmospheric pools), night-2 #1B1B18 raised, night-3 #2B2B26 lines, lamp #F4F2EC text, fog #A3A094 secondary, lq-green #6BB22E primary action with night text, lq-press #7EC93C hover, neon #8ADE4A reserved for sign devices: the live open/closed NeonSign, static signs, and the tube arrow (client asked to lean into the gas-station sign look, August 2026). Green surfaces always carry night text.
+- Typography (fifth iteration, fonts supplied by the client): Bebas Neue for display and sign lettering (the American signage letter, inherently caps), Switzer for body and small tracked labels. Self-hosted via next/font/local from src/fonts. The client also supplied Zodiak and Boska; both serifs sit unused because the serif register was already rejected. All previous families retired.
+- Visual world: the lit sign on a clean shop (client-pinned refinement of the night world, rolls e1b2fdb5 and 6e5352b2 retained). Crisp charcoal with hairline structure, no atmospheric pools, photographs as lit displays, heavy tight grotesk statements. The character lives in the working neon: the live tappable open/closed sign with tube buzz, static signs, the tube arrow, glow on primary actions. The site is interactive by client demand: FAQ accordions, floor lightbox, live filter counts, today-highlighted hours.
+- FAQ content in src/lib/faq.ts must stay inside verified facts and established positioning; no operational claims without confirming with LQ.
+- The site is multi-page by client demand: home, /the-floor (with the What Came Through archive), /financing, /text-list, /visit, /blog with typed posts, /contact, /privacy.
+- Client explicitly rejected anything that looks AI-generated: no glassmorphism or backdrop blur, no icon feature grids, no numbered marker sequences, no testimonial carousels, no fabricated testimonials, no emoji, no stock or AI imagery. Decorative gradient washes stay banned; the night world's radial lamp pools and the neon device are lighting from the subject's world, not decoration, and are the only exceptions. Structural corners square, 4px on controls.
+- Motion (client demanded better, more realistic animation and flow): authored moments in the world's own grammar (lighting, settling weight), never a generic fade-up on every section, each moment once per page, all of it disabled under prefers-reduced-motion with content left visible.
+- Voice: plain, warm, direct, like a person in North Mississippi wrote it. No em dashes. No marketing filler (elevate, curated, seamless, transform, unlock, discover). Headings and display are sentence case in this world. Buttons say what happens.
 
 ## Evidence on Hand
 
 - 51 real showroom photos at assets/photos/IMG_8587.jpg through IMG_8637.jpg (converted from HEIC, 2200px wide). Sectionals, dining sets, recliners, bedroom sets, Shema Sleep mattress gallery, lamp walls, wide warehouse aisles.
 - Transparent logo at assets/source/logo/lq-logo.png.
 - No testimonials, press, or case studies on hand. Do not fabricate any.
-- No street address, phone, or hours on hand yet. Do not invent them; ask.
+- Store facts are verified and recorded under Capabilities and Constraints; the sold flags in src/lib/floor.ts are placeholder demonstration data pending the client's real board.
 
 ## Product Principles
 
@@ -63,4 +66,4 @@ Shoppers browse on a phone, often from a Facebook ad or post, then drive to the 
 
 ## Accessibility & Inclusion
 
-All tap targets at least 48x48px with at least 8px spacing. Visible keyboard focus rings on everything interactive. All motion disabled under prefers-reduced-motion. Contrast: green only on near-black (7.49:1); green buttons take ink text (white on green fails at 2.61:1).
+All tap targets at least 48x48px with at least 8px spacing. Visible keyboard focus rings on everything interactive. All motion disabled under prefers-reduced-motion. Contrast law: green surfaces carry night text, never white (white on the brand green fails at 2.6:1); measured ratios for the current palette live in DESIGN.md and on /style-guide.

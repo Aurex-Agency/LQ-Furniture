@@ -3,12 +3,14 @@
 
 export const STORE = {
   name: "LQ Furniture",
+  legalName: "LQ, LLC",
   address: "589 North Coley Rd",
   city: "Tupelo",
   state: "MS",
   zip: "38801",
   phone: "(662) 841-5959",
   phoneHref: "tel:+16628415959",
+  email: "businessoffice@lqfurniture.com",
   directionsUrl:
     "https://www.google.com/maps/dir/?api=1&destination=LQ+Furniture+589+N+Coley+Rd+Tupelo+MS+38801",
   tagline: "Limited Quantities + Unlimited Savings",

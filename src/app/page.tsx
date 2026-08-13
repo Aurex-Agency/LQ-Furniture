@@ -1,11 +1,17 @@
 import type { Metadata } from "next";
 import Image from "next/image";
-import FloorBoard from "@/components/FloorBoard";
+import Link from "next/link";
+import FaqList from "@/components/FaqList";
+import NeonIcon from "@/components/NeonIcon";
+import NeonSign from "@/components/NeonSign";
 import OpenNow from "@/components/OpenNow";
 import Reveal from "@/components/Reveal";
+import SiteFooter from "@/components/SiteFooter";
+import SiteHeader from "@/components/SiteHeader";
 import SmsForm from "@/components/SmsForm";
-import Ticker from "@/components/Ticker";
-import { HOURS, STORE } from "@/lib/store";
+import { STORE } from "@/lib/store";
+import { FLOOR_ITEMS } from "@/lib/floor";
+import { FAQS } from "@/lib/faq";
 
 export const metadata: Metadata = {
   description:
@@ -40,154 +46,264 @@ const jsonLd = {
       closes: "18:00",
     },
   ],
-  image: "/photos/IMG_8606.jpg",
+  image: "/photos/IMG_8587.jpg",
 };
 
+const faqJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: FAQS.map((f) => ({
+    "@type": "Question",
+    name: f.q,
+    acceptedAnswer: { "@type": "Answer", text: f.a },
+  })),
+};
+
+const previewIds = ["8617", "8620", "8602", "8627"];
+const urgencyIds = ["8594", "8632", "8612"];
+
 export default function Home() {
+  const preview = FLOOR_ITEMS.filter((i) => previewIds.includes(i.id));
+
   return (
     <>
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
+      />
+      <SiteHeader />
 
-      {/* Masthead */}
-      <header className="flex flex-wrap items-center justify-between gap-x-4 px-5 py-4 sm:px-10 lg:px-16">
-        <a href="#top" className="order-1">
-          <Image
-            src="/brand/lq-logo.png"
-            alt="LQ Furniture"
-            width={712}
-            height={548}
-            priority
-            className="h-12 w-auto sm:h-14"
-          />
-        </a>
-        <nav
-          aria-label="Sections"
-          className="lower-third order-3 flex w-full items-center gap-6 text-tag sm:order-2 sm:ml-auto sm:w-auto sm:pr-6"
-        >
-          <a href="#floor" className="flex min-h-12 items-center text-ink hover:text-lq-deep">
-            The floor
-          </a>
-          <a href="#financing" className="flex min-h-12 items-center text-ink hover:text-lq-deep">
-            Financing
-          </a>
-          <a href="#visit" className="flex min-h-12 items-center text-ink hover:text-lq-deep">
-            Visit
-          </a>
-        </nav>
-        <a
-          href="#text-list"
-          className="display order-2 flex min-h-12 items-center rounded-ctl bg-lq-green px-5 text-[0.9375rem] tracking-wide text-ink shadow-lift hover:bg-lq-press active:translate-y-px sm:order-3"
-        >
-          Join the text list
-        </a>
-      </header>
-
-      <main id="top">
-        {/* Hero: the opening shot */}
-        <section>
+      <main>
+        {/* Hero: the lit window. Stacked on phones, overlaid from sm up. */}
+        <section className="relative">
           <div className="relative overflow-hidden">
-            <div className="hero-camera">
-              <Image
-                src="/photos/IMG_8606.jpg"
-                alt="Inside the LQ Furniture warehouse in Tupelo, a long bright aisle of furniture and decor under string lights"
-                width={2200}
-                height={1650}
-                priority
-                sizes="100vw"
-                className="h-[48svh] w-full object-cover sm:h-[42svh]"
-              />
+            <div className="relative overflow-hidden">
+              <div className="hero-lit">
+                <Image
+                  src="/photos/IMG_8587.jpg"
+                  alt="An oversized sectional on the LQ Furniture floor in Tupelo, string lights running deep into the warehouse behind it"
+                  width={2200}
+                  height={1650}
+                  priority
+                  sizes="100vw"
+                  className="h-[38svh] w-full object-cover sm:h-[76svh]"
+                />
+              </div>
+              <span className="sweep" aria-hidden />
+              <div className="absolute bottom-3 right-3 sm:bottom-auto sm:right-10 sm:top-8">
+                <NeonSign />
+              </div>
             </div>
-            <p
-              className="lower-third hero-rise absolute bottom-3 left-3 bg-lq-green px-3 py-2 text-tag text-ink sm:bottom-4 sm:left-4"
-              style={{ animationDelay: "500ms" }}
-            >
-              The floor · 589 N Coley Rd, Tupelo
-            </p>
-          </div>
-          <div className="px-5 pb-12 pt-8 sm:px-10 lg:px-16">
-            <h1
-              className="display hero-rise max-w-6xl text-display text-ink"
-              style={{ animationDelay: "150ms" }}
-            >
-              Limited quantities + unlimited savings
-            </h1>
-            <p
-              className="hero-rise mt-5 max-w-xl text-body-lg text-stone"
-              style={{ animationDelay: "300ms" }}
-            >
-              LQ Furniture is a warehouse full of living rooms, dining sets,
-              bedrooms and mattresses in Tupelo, Mississippi. New loads roll
-              in, prices stay low, and when something sells out, it&apos;s gone.
-            </p>
+            {/* The room goes dark at the edges so the floor reads as lit. */}
             <div
-              className="hero-rise mt-8 flex flex-wrap items-center gap-4"
-              style={{ animationDelay: "450ms" }}
+              className="absolute inset-0 hidden sm:block"
+              style={{
+                background:
+                  "radial-gradient(115% 90% at 60% 18%, transparent 20%, rgb(19 19 17 / 0.55) 58%, rgb(19 19 17 / 0.95) 100%)",
+              }}
+              aria-hidden
+            />
+            <div
+              className="absolute inset-x-0 bottom-0 hidden h-[80%] sm:block sm:h-[55%]"
+              style={{
+                background:
+                  "linear-gradient(to bottom, transparent 0%, rgb(19 19 17 / 0.65) 35%, rgb(19 19 17 / 0.97) 100%)",
+              }}
+              aria-hidden
+            />
+            <div
+              className="px-5 pb-10 pt-8 sm:absolute sm:inset-x-0 sm:bottom-0 sm:px-10 sm:pb-12 sm:pt-0 sm:[text-shadow:0_2px_28px_rgb(0_0_0/0.65)] lg:px-16"
             >
-              <a
-                href="#text-list"
-                className="display flex min-h-12 items-center rounded-ctl bg-lq-green px-7 text-[1rem] tracking-wide text-ink shadow-lift hover:bg-lq-press active:translate-y-px"
+              {/* The client's slogan art is the headline. It hoists in
+                  like the old display lines did; the baked white outline
+                  keeps it crisp over the photo. */}
+              <h1 className="max-w-2xl">
+                <span className="line-mask">
+                  <span style={{ animationDelay: "450ms" }}>
+                    <Image
+                      src="/brand/never-pay-retail.png"
+                      alt="Never pay retail again!"
+                      width={1606}
+                      height={534}
+                      priority
+                      sizes="(min-width: 640px) 42rem, 100vw"
+                      className="h-auto w-full"
+                    />
+                  </span>
+                </span>
+              </h1>
+              <p
+                className="line-rise mt-5 max-w-xl text-body-lg text-lamp/85"
+                style={{ animationDelay: "900ms" }}
               >
-                Join the text list
-              </a>
-              <a
-                href="#financing"
-                className="display flex min-h-12 items-center rounded-ctl border-2 border-ink px-7 text-[1rem] tracking-wide text-ink hover:bg-cream"
+                A warehouse full of living rooms, dining sets, bedrooms and
+                mattresses in Tupelo, Mississippi. When the last one sells,
+                it&apos;s gone.
+              </p>
+              <div
+                className="line-rise mt-8 flex flex-wrap items-center gap-4"
+                style={{ animationDelay: "1100ms" }}
               >
-                How financing works
-              </a>
+                <Link
+                  href="/the-floor"
+                  className="label flex min-h-12 w-full items-center justify-center btn-glow rounded-ctl bg-lq-green px-7 text-night hover:bg-lq-press active:translate-y-px sm:w-auto"
+                >
+                  Walk the floor
+                </Link>
+                <Link
+                  href="/financing"
+                  className="label flex min-h-12 w-full items-center justify-center rounded-ctl border border-lamp/60 px-7 text-lamp hover:border-lamp hover:bg-night-2 sm:w-auto"
+                >
+                  How financing works
+                </Link>
+              </div>
             </div>
           </div>
         </section>
 
-        <Ticker />
-
-        {/* The floor */}
-        <section id="floor" className="scroll-mt-6 pt-14 sm:pt-16">
-          <div className="px-5 sm:px-10 lg:px-16">
-            <h2 className="display text-h1 text-ink">This week&apos;s floor</h2>
-            <p className="mt-4 max-w-xl text-body text-stone">
-              Real photos from our aisles, not a catalog. The floor turns over
-              every week, and prices live on the tags, so the only way to know
-              what something costs is to come see it.
-            </p>
-          </div>
-          <div className="mt-8">
-            <FloorBoard />
-          </div>
-        </section>
-
-        {/* Why the prices are low */}
-        <section className="mt-16 bg-cream px-5 py-16 sm:mt-20 sm:px-10 lg:px-16">
+        {/* Editorial intro */}
+        <section className="px-5 py-14 sm:px-10 sm:py-24 lg:px-16">
           <div className="grid gap-10 lg:grid-cols-12">
-            <h2 className="display text-h1 text-ink lg:col-span-5">
-              Why our prices look like a typo
+            <h2 className="display text-h1 text-lamp lg:col-span-6">
+              The floor changes every week. The prices are the reason people
+              keep coming back.
             </h2>
-            <div className="max-w-xl space-y-6 text-body text-ink lg:col-span-6 lg:col-start-7">
+            <div className="max-w-xl space-y-6 text-body text-fog lg:col-span-5 lg:col-start-8">
               <p>
-                We buy by the truckload. Whole factory loads at volume prices,
-                rolled straight onto the floor with a warehouse markup, not a
-                showroom markup.
+                We buy whole factory loads at volume prices and roll them
+                straight onto the floor with a warehouse markup, not a
+                showroom markup. Furniture that sits costs money, so we price
+                it to leave.
               </p>
               <p>
-                We don&apos;t sit on stock. Furniture that sits costs money, so we
-                price it to leave. That&apos;s why the floor looks different every
-                time you come in.
-              </p>
-              <p>
-                And when the last one sells, it&apos;s gone. Most sets never come
-                back. If you love it, today is the day.
+                That&apos;s the whole trick. There isn&apos;t one. Come walk the
+                aisles and read the tags yourself.
               </p>
             </div>
+          </div>
+        </section>
+
+        {/* Floor preview */}
+        <section className="px-5 pb-20 sm:px-10 sm:pb-24 lg:px-16">
+          <div className="flex flex-wrap items-baseline justify-between gap-4">
+            <h2 className="display flex items-center gap-4 text-h2 text-lamp">
+              <NeonIcon kind="sofa" className="w-10 shrink-0 sm:w-12" />
+              On the floor right now
+            </h2>
+            <Link
+              href="/the-floor"
+              className="label inline-flex min-h-12 items-center gap-2 text-fog hover:text-lamp"
+            >
+              See everything
+            </Link>
+          </div>
+          <div className="mt-10 grid grid-cols-1 gap-x-6 gap-y-12 sm:grid-cols-2 lg:gap-x-8">
+            {preview.map((item, i) => (
+              <figure key={item.id} className={`group m-0 ${i === 0 || i === 3 ? "sm:mt-16" : ""}`}>
+                <Reveal className="relative" inner="" delay={(i % 2) * 140}>
+                  <Image
+                    src={item.src}
+                    alt={item.alt}
+                    width={2200}
+                    height={1650}
+                    sizes="(min-width: 640px) 50vw, 100vw"
+                    className="window-photo aspect-[4/3] w-full object-cover transition-[filter] duration-500 group-hover:brightness-110"
+                  />
+                </Reveal>
+                <figcaption className="mt-4 flex items-baseline justify-between gap-4">
+                  <span className="display text-h3 text-lamp">{item.name}</span>
+                  <span className="label shrink-0 text-fog">
+                    Priced on the floor
+                  </span>
+                </figcaption>
+              </figure>
+            ))}
+          </div>
+        </section>
+
+        {/* Gone already */}
+        <section className="border-t border-night-3 px-5 py-14 sm:px-10 sm:py-20 lg:px-16">
+          <div className="grid gap-10 lg:grid-cols-12">
+            <div className="lg:col-span-4">
+              <h2 className="display text-h1 text-lamp">
+                When it&apos;s gone, it&apos;s gone.
+              </h2>
+              <p className="mt-5 max-w-sm text-body text-fog">
+                Every set on the floor is the last few of its load. When the
+                last one sells, most never come back, so the people who hear
+                first take home the best of every truck.
+              </p>
+              <Link
+                href="/text-list"
+                className="label mt-8 inline-flex min-h-12 items-center btn-glow rounded-ctl bg-lq-green px-7 text-night hover:bg-lq-press active:translate-y-px"
+              >
+                Hear about the next load
+              </Link>
+            </div>
+            <div className="grid grid-cols-3 gap-4 lg:col-span-8 lg:gap-6">
+              {FLOOR_ITEMS.filter((i) => urgencyIds.includes(i.id)).map((item, i) => (
+                <figure key={item.id} className="m-0">
+                  <Reveal className="relative" inner="" delay={i * 140}>
+                    <Image
+                      src={item.src}
+                      alt={item.alt}
+                      width={2200}
+                      height={1650}
+                      sizes="(min-width: 1024px) 22vw, 33vw"
+                      className="window-photo aspect-[3/4] w-full object-cover"
+                    />
+                  </Reveal>
+                  <figcaption className="mt-2 truncate text-[0.6875rem] text-lamp sm:mt-3 sm:text-[0.9375rem]">
+                    {item.name}
+                  </figcaption>
+                </figure>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* The lamp wall */}
+        <section className="relative overflow-hidden">
+          <Image
+            src="/photos/IMG_8605.jpg"
+            alt="The lamp wall at LQ Furniture, shelves of lit table lamps in every color"
+            width={2200}
+            height={1650}
+            sizes="100vw"
+            className="drift h-[56svh] w-full object-cover"
+          />
+          <div
+            className="absolute inset-0"
+            style={{
+              background:
+                "radial-gradient(110% 90% at 50% 30%, transparent 35%, rgb(19 19 17 / 0.5) 70%, rgb(19 19 17 / 0.92) 100%)",
+            }}
+            aria-hidden
+          />
+          <div className="absolute inset-x-0 bottom-0 flex flex-wrap items-end justify-between gap-6 px-5 pb-10 sm:px-10 lg:px-16">
+            <h2
+              className="display max-w-2xl text-h1 text-lamp"
+              style={{ textShadow: "0 2px 24px rgb(0 0 0 / 0.7)" }}
+            >
+              The lamp wall runs the back of the building.
+            </h2>
+            <Link
+              href="/the-floor"
+              className="label flex min-h-12 items-center btn-glow rounded-ctl bg-lq-green px-7 text-night hover:bg-lq-press active:translate-y-px"
+            >
+              Walk the floor
+            </Link>
           </div>
         </section>
 
         {/* Financing */}
-        <section id="financing" className="scroll-mt-6">
+        <section className="border-y border-night-3">
           <div className="grid lg:grid-cols-2">
-            <Reveal className="relative order-2 min-h-[320px] lg:order-1">
+            <Reveal className="relative min-h-[340px]">
               <Image
                 src="/photos/IMG_8589.jpg"
                 alt="A gray sectional on the LQ floor beneath the store's financing available banner"
@@ -196,139 +312,117 @@ export default function Home() {
                 className="object-cover"
               />
             </Reveal>
-            <div className="order-1 px-5 py-16 sm:px-10 lg:order-2 lg:self-center lg:px-16">
-              <h2 className="display max-w-2xl text-h1 text-ink">
-                Financing available
+            <div className="px-5 py-20 sm:px-10 lg:self-center lg:px-16">
+              <h2 className="display mt-4 max-w-xl text-h1 text-lamp">
+                You don&apos;t need perfect credit to leave with furniture.
               </h2>
-              <p className="mt-5 max-w-md text-body text-ink">
-                Says so on the banner in the store, and it&apos;s true. You don&apos;t
-                need perfect credit to leave with furniture. Come in or call,
-                and we&apos;ll walk you through the payment options before you buy
-                a thing.
+              <p className="mt-5 max-w-md text-body text-fog">
+                Four financing partners, including two that never run a
+                credit check. Up to 12 months with no interest, and you can
+                apply from your phone before you ever drive over.
               </p>
               <div className="mt-8 flex flex-wrap gap-4">
+                <Link
+                  href="/financing"
+                  className="label flex min-h-12 items-center btn-glow rounded-ctl bg-lq-green px-7 text-night hover:bg-lq-press active:translate-y-px"
+                >
+                  See your options
+                </Link>
                 <a
                   href={STORE.phoneHref}
-                  className="display flex min-h-12 items-center rounded-ctl bg-lq-green px-7 text-[1rem] tracking-wide text-ink shadow-lift hover:bg-lq-press active:translate-y-px"
+                  className="label flex min-h-12 items-center rounded-ctl border border-lamp/60 px-7 text-lamp hover:border-lamp hover:bg-night-2"
                 >
                   Call {STORE.phone}
                 </a>
-                <a
-                  href="#visit"
-                  className="display flex min-h-12 items-center rounded-ctl border-2 border-ink px-7 text-[1rem] tracking-wide text-ink hover:bg-cream"
-                >
-                  Come see us
-                </a>
               </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Straight answers */}
+        <section className="border-t border-night-3 px-5 py-14 sm:px-10 sm:py-20 lg:px-16">
+          <div className="grid gap-10 lg:grid-cols-12">
+            <div className="lg:col-span-4">
+              <h2 className="display text-h1 text-lamp">Straight answers</h2>
+              <p className="mt-5 max-w-sm text-body text-fog">
+                The questions we hear at the counter every week, answered the
+                way we&apos;d answer them in person.
+              </p>
+            </div>
+            <div className="lg:col-span-8">
+              <FaqList items={FAQS} />
             </div>
           </div>
         </section>
 
         {/* Text list */}
-        <section
-          id="text-list"
-          className="scroll-mt-6 bg-cream px-5 py-16 sm:px-10 sm:py-20 lg:px-16"
-        >
+        <section id="text-list" className="scroll-mt-6 px-5 py-14 sm:px-10 sm:py-24 lg:px-16">
           <div className="grid gap-10 lg:grid-cols-12">
             <div className="lg:col-span-5">
-              <h2 className="display text-h1 text-ink">
-                Hear about it before it&apos;s gone
+              <h2 className="display mt-4 text-h1 text-lamp">
+                Hear about it before it&apos;s gone.
               </h2>
-              <p className="mt-5 max-w-md text-body text-stone">
+              <p className="mt-5 max-w-md text-body text-fog">
                 New truckloads and markdowns, straight to your phone, about 4
-                to 6 texts a month. The best pieces never last the weekend, so
-                the text list hears first.
+                to 6 texts a month. The best pieces never last the weekend.
               </p>
             </div>
-            <div className="lg:col-span-6 lg:col-start-7">
+            <div className="relative lg:col-span-6 lg:col-start-7">
+              <svg
+                aria-hidden
+                viewBox="0 0 120 48"
+                className="absolute -left-28 top-2 hidden w-24 lg:block"
+              >
+                <path
+                  d="M4 24h96m0 0-18-14m18 14-18 14"
+                  fill="none"
+                  strokeWidth="4"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  className="neon-stroke"
+                />
+              </svg>
               <SmsForm />
             </div>
           </div>
         </section>
 
-        {/* Visit */}
-        <section id="visit" className="scroll-mt-6">
-          <div className="grid lg:grid-cols-2">
-            <div className="px-5 py-16 sm:px-10 lg:px-16">
-              <h2 className="display text-h1 text-ink">Come walk the floor</h2>
-              <div className="mt-6">
-                <OpenNow />
-              </div>
-              <address className="mt-6 max-w-md text-body not-italic text-ink">
-                {STORE.name}
-                <br />
-                {STORE.address}
-                <br />
-                {STORE.city}, {STORE.state} {STORE.zip}
-              </address>
-              <ul className="mt-8 max-w-md border-t border-sand">
-                {HOURS.map((h) => (
-                  <li
-                    key={h.days}
-                    className="flex items-baseline justify-between border-b border-sand py-3"
-                  >
-                    <span className="text-body text-ink">{h.days}</span>
-                    <span className="lower-third text-tag text-stone">{h.label}</span>
-                  </li>
-                ))}
-              </ul>
-              <div className="mt-8 flex flex-wrap gap-4">
-                <a
-                  href={STORE.directionsUrl}
-                  target="_blank"
-                  rel="noopener"
-                  className="display flex min-h-12 items-center rounded-ctl bg-lq-green px-7 text-[1rem] tracking-wide text-ink shadow-lift hover:bg-lq-press active:translate-y-px"
-                >
-                  Get directions
-                </a>
-                <a
-                  href={STORE.phoneHref}
-                  className="display flex min-h-12 items-center rounded-ctl border-2 border-ink px-7 text-[1rem] tracking-wide text-ink hover:bg-cream"
-                >
-                  Call the store
-                </a>
-              </div>
+        {/* Visit strip */}
+        <section className="border-t border-night-3 px-5 py-16 sm:px-10 lg:px-16">
+          <p className="display max-w-4xl text-display text-lamp">
+            See you Wednesday.
+          </p>
+          <div className="mt-10 flex flex-wrap items-center justify-between gap-8 border-t border-night-3 pt-10">
+            <div>
+              <OpenNow />
+              <p className="display mt-3 text-h2 text-lamp">
+                {STORE.address}, {STORE.city}
+              </p>
+              <p className="mt-2 text-body text-fog">
+                Wed thru Sat 10 to 6 · Sun 12 to 6
+              </p>
             </div>
-            <Reveal className="relative min-h-[320px]">
-              <Image
-                src="/photos/IMG_8608.jpg"
-                alt="Rows of reclining sofas stretching toward the back of the LQ warehouse"
-                fill
-                sizes="(min-width: 1024px) 50vw, 100vw"
-                className="object-cover"
-              />
-            </Reveal>
+            <div className="flex flex-wrap gap-4">
+              <a
+                href={STORE.directionsUrl}
+                target="_blank"
+                rel="noopener"
+                className="label flex min-h-12 items-center btn-glow rounded-ctl bg-lq-green px-7 text-night hover:bg-lq-press active:translate-y-px"
+              >
+                Get directions
+              </a>
+              <Link
+                href="/visit"
+                className="label flex min-h-12 items-center rounded-ctl border border-lamp/60 px-7 text-lamp hover:border-lamp hover:bg-night-2"
+              >
+                Plan a visit
+              </Link>
+            </div>
           </div>
         </section>
       </main>
 
-      <footer className="border-t border-sand bg-cream px-5 py-10 sm:px-10 lg:px-16">
-        <div className="flex flex-wrap items-end justify-between gap-6">
-          <div>
-            <Image
-              src="/brand/lq-logo.png"
-              alt="LQ Furniture"
-              width={712}
-              height={548}
-              className="h-10 w-auto"
-            />
-            <p className="lower-third mt-4 text-tag text-stone">
-              {STORE.address} · {STORE.city}, {STORE.state} {STORE.zip} ·{" "}
-              <a href={STORE.phoneHref} className="inline-flex min-h-12 items-center text-ink hover:text-lq-deep">
-                {STORE.phone}
-              </a>
-            </p>
-          </div>
-          <nav aria-label="Legal" className="lower-third text-tag">
-            <a href="/privacy" className="inline-flex min-h-12 items-center text-ink underline-offset-4 hover:text-lq-deep">
-              Privacy policy
-            </a>
-          </nav>
-        </div>
-        <p className="lower-third mt-4 text-tag text-stone">
-          Nothing on this site is for sale online. The store is the store.
-        </p>
-      </footer>
+      <SiteFooter />
     </>
   );
 }

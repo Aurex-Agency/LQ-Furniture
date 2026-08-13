@@ -1,18 +1,16 @@
 import type { Metadata, Viewport } from "next";
-import { Archivo, Newsreader } from "next/font/google";
+import localFont from "next/font/local";
 import "./globals.css";
 
-const archivo = Archivo({
-  subsets: ["latin"],
-  axes: ["wdth"],
-  variable: "--font-archivo",
+const bebas = localFont({
+  src: "../fonts/BebasNeue-Regular.otf",
+  variable: "--font-bebas",
   display: "swap",
 });
 
-const newsreader = Newsreader({
-  subsets: ["latin"],
-  style: ["normal", "italic"],
-  variable: "--font-newsreader",
+const switzer = localFont({
+  src: "../fonts/Switzer-Regular.otf",
+  variable: "--font-switzer",
   display: "swap",
 });
 
@@ -26,15 +24,15 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  themeColor: "#FAF7F1",
+  themeColor: "#131311",
 };
 
 const directionContract = `<!--
-THESIS: The furniture makeover show, playing on a bright set. A warehouse whose floor changes weekly, shown the way this audience already watches rooms come to life on TV. Refuses both the dark brutalist rendition the client rejected and the generic white e-commerce grid.
-OWN-WORLD: Warm paper field #FAF7F1, cream and sand surfaces, warm ink text, one working green #6BB22E as the action color that always carries ink text (#3E6B1A is its only text form on light). Archivo wide for episode-title display and lower-third caption bars, Newsreader for warm body. 6px control radius, square full-bleed photography, soft lift shadows only on raised controls.
-STORY: A North Mississippi family on a phone sees the floor like a reveal segment, believes the savings because the scarcity is real, and either joins the text list or calls about financing before driving to Tupelo.
-FIRST VIEWPORT: Full-bleed floor photo with a slow settle zoom, headline block on the paper field beneath it, both conversion doors in view; a ticker of store facts runs under it like a broadcast strip.
-FORM: Replacement world assigned by direction roll, seed key 3f585062: the HGTV reveal grammar, candidate 5 of the grounded list. Homepage structure retained from surface roll 6e5352b2 (the deal board). Guide route: /style-guide.
+THESIS: The lit sign on a clean shop. A professional, crisply structured dark site whose character lives in working neon: signs that know the store clock, fixtures you can touch. Refuses the moody serif showroom, the cream build, and the brutalist ink build.
+OWN-WORLD: Night charcoal field with crisp hairline structure, no atmospheric pools. Lamp text, fog secondary. Client-supplied pairing: Bebas Neue, the American signage letter, for display and the signs; Switzer for body and small tracked labels. Neon green sign system: the live open/closed sign with tube buzz, static signs, the tube arrow, glow on primary actions. 6px controls, deep shadows under photographs only.
+STORY: A North Mississippi family gets a clean, fast, obviously professional site with a lit sign burning in the corner, plays with the floor filters and the FAQ, and either joins the text list, calls about financing, or drives to Tupelo.
+FIRST VIEWPORT: Full-bleed floor photo, heavy grotesk statement, the live sign burning top right, both doors beneath.
+FORM: Client-pinned refinement of the night world (rolls e1b2fdb5, 6e5352b2 retained): neon vibe, clean and professional, character, interactive. Pages: home, the-floor, financing, text-list, visit, blog, contact, privacy.
 FINISH: unreviewed and undocumented is unfinished; this build ends with the finish review, the verdict, and DESIGN.md
 -->`;
 
@@ -42,7 +40,7 @@ export default function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="en" className={`${archivo.variable} ${newsreader.variable}`}>
+    <html lang="en" className={`${bebas.variable} ${switzer.variable}`}>
       <body>
         <span hidden dangerouslySetInnerHTML={{ __html: directionContract }} />
         {children}

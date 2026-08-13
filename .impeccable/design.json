@@ -1,78 +1,83 @@
 {
   "schemaVersion": 2,
-  "generatedAt": "2026-08-07T00:00:00Z",
+  "generatedAt": "2026-08-09T00:00:00Z",
   "title": "Design System: LQ Furniture",
   "extensions": {
     "colorMeta": {
+      "night": {
+        "role": "neutral",
+        "displayName": "Night",
+        "canonical": "#131311",
+        "tonalRamp": ["oklch(15% 0.006 107)", "oklch(26% 0.006 107)", "oklch(37% 0.006 107)", "oklch(49% 0.006 107)", "oklch(60% 0.006 107)", "oklch(72% 0.006 107)", "oklch(83% 0.006 107)", "oklch(95% 0.006 107)"]
+      },
+      "night-2": {
+        "role": "neutral",
+        "displayName": "Night 2",
+        "canonical": "#1b1b18",
+        "tonalRamp": ["oklch(15% 0.007 107)", "oklch(26% 0.007 107)", "oklch(37% 0.007 107)", "oklch(49% 0.007 107)", "oklch(60% 0.007 107)", "oklch(72% 0.007 107)", "oklch(83% 0.007 107)", "oklch(95% 0.007 107)"]
+      },
+      "night-3": {
+        "role": "neutral",
+        "displayName": "Night 3",
+        "canonical": "#2b2b26",
+        "tonalRamp": ["oklch(15% 0.009 107)", "oklch(26% 0.009 107)", "oklch(37% 0.009 107)", "oklch(49% 0.009 107)", "oklch(60% 0.009 107)", "oklch(72% 0.009 107)", "oklch(83% 0.009 107)", "oklch(95% 0.009 107)"]
+      },
+      "lamp": {
+        "role": "neutral",
+        "displayName": "Lamp",
+        "canonical": "#f4f2ec",
+        "tonalRamp": ["oklch(15% 0.011 97)", "oklch(26% 0.011 97)", "oklch(37% 0.011 97)", "oklch(49% 0.011 97)", "oklch(60% 0.011 97)", "oklch(72% 0.011 97)", "oklch(83% 0.011 97)", "oklch(95% 0.011 97)"]
+      },
+      "fog": {
+        "role": "neutral",
+        "displayName": "Fog",
+        "canonical": "#a3a094",
+        "tonalRamp": ["oklch(15% 0.017 100)", "oklch(26% 0.017 100)", "oklch(37% 0.017 100)", "oklch(49% 0.017 100)", "oklch(60% 0.017 100)", "oklch(72% 0.017 100)", "oklch(83% 0.017 100)", "oklch(95% 0.017 100)"]
+      },
       "lq-green": {
         "role": "primary",
         "displayName": "LQ Green",
-        "canonical": "#6BB22E",
-        "tonalRamp": ["oklch(15% 0.17 131)", "oklch(26% 0.17 131)", "oklch(37% 0.17 131)", "oklch(49% 0.17 131)", "oklch(60% 0.17 131)", "oklch(72% 0.17 131)", "oklch(83% 0.17 131)", "oklch(95% 0.17 131)"]
+        "canonical": "#6bb22e",
+        "tonalRamp": ["oklch(20% 0.08 131)", "oklch(30% 0.11 131)", "oklch(40% 0.13 131)", "oklch(50% 0.15 131)", "oklch(60% 0.16 131)", "oklch(70% 0.17 131)", "oklch(82% 0.14 131)", "oklch(94% 0.07 131)"]
       },
       "lq-press": {
         "role": "primary",
         "displayName": "LQ Press",
-        "canonical": "#588F24",
-        "tonalRamp": ["oklch(15% 0.15 133)", "oklch(26% 0.15 133)", "oklch(37% 0.15 133)", "oklch(49% 0.15 133)", "oklch(60% 0.15 133)", "oklch(72% 0.15 133)", "oklch(83% 0.15 133)", "oklch(95% 0.15 133)"]
+        "canonical": "#7ec93c",
+        "tonalRamp": ["oklch(20% 0.08 132)", "oklch(30% 0.11 132)", "oklch(40% 0.14 132)", "oklch(50% 0.16 132)", "oklch(62% 0.18 132)", "oklch(74% 0.19 132)", "oklch(84% 0.15 132)", "oklch(95% 0.07 132)"]
       },
-      "lq-deep": {
+      "neon": {
         "role": "primary",
-        "displayName": "LQ Deep (only green used as text on light)",
-        "canonical": "#3E6B1A",
-        "tonalRamp": ["oklch(15% 0.12 134)", "oklch(26% 0.12 134)", "oklch(37% 0.12 134)", "oklch(49% 0.12 134)", "oklch(60% 0.12 134)", "oklch(72% 0.12 134)", "oklch(83% 0.12 134)", "oklch(95% 0.12 134)"]
-      },
-      "paper": {
-        "role": "neutral",
-        "displayName": "Paper",
-        "canonical": "#FAF7F1",
-        "tonalRamp": ["oklch(15% 0.012 90)", "oklch(26% 0.012 90)", "oklch(37% 0.012 90)", "oklch(49% 0.012 90)", "oklch(60% 0.012 90)", "oklch(72% 0.012 90)", "oklch(83% 0.012 90)", "oklch(97% 0.012 90)"]
-      },
-      "cream": {
-        "role": "neutral",
-        "displayName": "Cream",
-        "canonical": "#F1EBDF",
-        "tonalRamp": ["oklch(15% 0.02 88)", "oklch(26% 0.02 88)", "oklch(37% 0.02 88)", "oklch(49% 0.02 88)", "oklch(60% 0.02 88)", "oklch(72% 0.02 88)", "oklch(83% 0.02 88)", "oklch(95% 0.02 88)"]
-      },
-      "sand": {
-        "role": "neutral",
-        "displayName": "Sand",
-        "canonical": "#E2D9C7",
-        "tonalRamp": ["oklch(15% 0.032 87)", "oklch(26% 0.032 87)", "oklch(37% 0.032 87)", "oklch(49% 0.032 87)", "oklch(60% 0.032 87)", "oklch(72% 0.032 87)", "oklch(83% 0.032 87)", "oklch(95% 0.032 87)"]
-      },
-      "ink": {
-        "role": "neutral",
-        "displayName": "Ink",
-        "canonical": "#1B1A16",
-        "tonalRamp": ["oklch(15% 0.01 100)", "oklch(26% 0.01 100)", "oklch(37% 0.01 100)", "oklch(49% 0.01 100)", "oklch(60% 0.01 100)", "oklch(72% 0.01 100)", "oklch(83% 0.01 100)", "oklch(95% 0.01 100)"]
-      },
-      "stone": {
-        "role": "neutral",
-        "displayName": "Stone",
-        "canonical": "#6D675A",
-        "tonalRamp": ["oklch(15% 0.022 95)", "oklch(26% 0.022 95)", "oklch(37% 0.022 95)", "oklch(49% 0.022 95)", "oklch(60% 0.022 95)", "oklch(72% 0.022 95)", "oklch(83% 0.022 95)", "oklch(95% 0.022 95)"]
+        "displayName": "Neon",
+        "canonical": "#8ade4a",
+        "tonalRamp": ["oklch(22% 0.09 133)", "oklch(33% 0.12 133)", "oklch(44% 0.15 133)", "oklch(55% 0.18 133)", "oklch(66% 0.2 133)", "oklch(80% 0.21 133)", "oklch(88% 0.16 133)", "oklch(96% 0.08 133)"]
       }
     },
     "typographyMeta": {
-      "display": { "displayName": "Display", "purpose": "The episode title: hero headline. Archivo at 115% width, bold, uppercase, via the .display class. One per page." },
-      "h1": { "displayName": "H1", "purpose": "Section headlines and interior page titles, same .display voice one step down." },
-      "h2": { "displayName": "H2", "purpose": "Declared middle step reserved for denser interior pages; the shipped homepage jumps from h1 to h3." },
-      "h3": { "displayName": "H3", "purpose": "Prose subsection headings (semibold, sentence case), the confirmation-plate heading, and the SOLD badge size in the display voice." },
-      "body-lg": { "displayName": "Body Large", "purpose": "The hero standfirst paragraph only." },
-      "body": { "displayName": "Body", "purpose": "All running copy, Newsreader 18px, max width ~36rem." },
-      "tag": { "displayName": "Tag (lower-third)", "purpose": "Always paired with the .lower-third class: Archivo 110% width, semibold, uppercase, 0.06em tracking. Caption bars, nav, hours, labels, ticker, chips." }
+      "display": { "displayName": "Display", "purpose": "The page statement, one per page. Schibsted Grotesk at 800, set tight (-0.02em, line-height 0.98), always sentence case." },
+      "h1": { "displayName": "H1", "purpose": "Major section statements. Same heavy display voice via the .display class." },
+      "h2": { "displayName": "H2", "purpose": "Section headings, closing CTA statements, the big sign headline." },
+      "h3": { "displayName": "H3", "purpose": "Item names, FAQ questions, form success headlines." },
+      "body-lg": { "displayName": "Body Large", "purpose": "The fog-colored supporting paragraph directly under a display heading." },
+      "body": { "displayName": "Body", "purpose": "Running text, capped around 36rem. Fog for support, lamp for content." },
+      "label": { "displayName": "Label", "purpose": "The small semibold caps voice (600, 0.08em): nav, buttons, form labels, filter tabs, sign sublines. The only uppercase in the system." }
     },
     "shadows": [
-      { "name": "lift", "value": "0 1px 2px rgb(27 26 22 / 0.06), 0 8px 24px rgb(27 26 22 / 0.1)", "purpose": "The only shadow: a soft warm-ink lift under raised controls and plates (green buttons, paper caption/confirmation plates). Never on sections, photos, or text." }
+      { "name": "deep", "value": "0 2px 6px rgb(0 0 0 / 0.4), 0 24px 64px rgb(0 0 0 / 0.5)", "purpose": "The .window-photo treatment. Seats gallery photographs in the dark; used under photographs only, never UI chrome." },
+      { "name": "neon-box-glow", "value": "0 0 10px rgb(107 178 46 / 0.35), inset 0 0 10px rgb(107 178 46 / 0.2)", "purpose": "The lit sign's tube emission, paired with a 1.5px neon border." },
+      { "name": "neon-text-glow", "value": "text-shadow: 0 0 6px rgb(138 222 74 / 0.55), 0 0 24px rgb(107 178 46 / 0.4)", "purpose": "The .neon lit-tube text treatment." },
+      { "name": "btn-glow-hover", "value": "0 0 12px rgb(107 178 46 / 0.45), 0 0 32px rgb(107 178 46 / 0.25)", "purpose": "Primary green actions borrow the tube glow on hover (250ms ease). Rest state has no shadow." }
     ],
     "motion": [
-      { "name": "hero-settle", "value": "scale(1.06) -> scale(1); 9s cubic-bezier(0.2, 0.6, 0.3, 1) both", "purpose": "The hero photo settles like a locked-off camera move, once on load. Class .hero-camera." },
-      { "name": "rise-in", "value": "translateY(20px) + fade; 650ms cubic-bezier(0.2, 0.8, 0.2, 1) both", "purpose": "Hero headline, standfirst, buttons, and plate follow the settle, staggered at 150/300/450/500ms. Class .hero-rise." },
-      { "name": "wipe-in", "value": "clip-path inset(0 92% 0 0) -> inset(0); 750ms cubic-bezier(0.65, 0, 0.25, 1) both", "purpose": "Photos wipe in once like a segment cut at 0.35 viewport intersection; only elements below the viewport at mount ever hide. The clip lives on an inner wrapper because Chromium computes IntersectionObserver geometry after clip-path; never clip the observed element. Classes .wipe-hidden / .wipe-in." },
-      { "name": "third-up", "value": "translateY(12px) + fade; 450ms cubic-bezier(0.2, 0.8, 0.2, 1) both, 350ms delay", "purpose": "The lower-third caption plate rises behind its photo's wipe. Classes .third-hidden / .third-up." },
-      { "name": "sold-pop", "value": "scale(1.6) rotate(4deg) -> scale(0.95) rotate(-3deg) at 70% -> scale(1) rotate(-3deg); 480ms cubic-bezier(0.16, 1, 0.3, 1) both, 500ms delay", "purpose": "The SOLD badge pops onto the photo after the wipe. Classes .sold-hidden / .sold-pop." },
-      { "name": "ticker-scroll", "value": "translateX(0) -> translateX(-50%); 36s linear infinite", "purpose": "The broadcast ticker of store facts. Pauses on hover, focus-within, and the Stop/Play button; a mask fade (.ticker-fade) softens the exit edge. Class .ticker-track." },
-      { "name": "reduced-motion", "value": "animation: none on all six classes; hidden states forced visible; clip-path: none; SOLD keeps rotate(-3deg); global 0.01ms duration clamp", "purpose": "The entire motion system collapses under prefers-reduced-motion with no content loss." }
+      { "name": "ease-standard", "value": "cubic-bezier(0.16, 1, 0.3, 1)", "purpose": "Default ease for settle, rise, FAQ open, and the faq-mark rotation." },
+      { "name": "ease-mask", "value": "cubic-bezier(0.65, 0, 0.25, 1)", "purpose": "The mask-open photo reveal." },
+      { "name": "settle", "value": "settle 1200ms both (scale 1.06 to 1)", "purpose": "Hero photo settling on arrival, once." },
+      { "name": "rise", "value": "rise 500-550ms both (opacity 0, translateY 14px, no blur)", "purpose": "Text rise: hero lines staggered 350/550/750ms via inline animationDelay, and revealed captions (.rise-go)." },
+      { "name": "mask-open", "value": "mask-open 700ms both (clip-path inset 4%, opacity 0.5 to 1)", "purpose": "One-time photo reveal on scroll; clip lives on an inner wrapper, never the observed element (Chromium IntersectionObserver caveat)." },
+      { "name": "neon-on", "value": "neon-on 1600ms 400ms ease-in both", "purpose": "The sign flickering on, once per mount; NeonSign re-runs it on tap via a key bump." },
+      { "name": "neon-buzz", "value": "neon-buzz 6s 2200ms linear infinite", "purpose": "The subtle opacity hum of the lit sign. The only looping animation, on the live sign only." },
+      { "name": "drift", "value": "drift linear both; animation-timeline: view()", "purpose": "Scroll-driven vertical drift on the lamp-wall photo, gated behind @supports (animation-timeline: view())." },
+      { "name": "reduced-motion", "value": "prefers-reduced-motion: reduce collapses all of the above", "purpose": "Every animation removed with content fully visible: opacity 1, clip removed, transitions off." }
     ],
     "breakpoints": [
       { "name": "sm", "value": "640px" },
@@ -84,104 +89,105 @@
       "name": "Primary Button",
       "kind": "button",
       "refersTo": "button-primary",
-      "description": "The green door. Green always carries ink text, never white; hover presses to lq-press, active nudges down 1px.",
+      "description": "The green door. Says what happens; glows like the sign on hover; night text always.",
       "html": "<button class=\"ds-btn-primary\">Join the text list</button>",
-      "css": ".ds-btn-primary { display: inline-flex; align-items: center; min-height: 48px; background: var(--color-lq-green, #6BB22E); color: var(--color-ink, #1B1A16); font-family: Archivo, sans-serif; font-stretch: 115%; font-weight: 700; text-transform: uppercase; font-size: 1rem; letter-spacing: 0.025em; padding: 0 28px; border: none; border-radius: 6px; box-shadow: 0 1px 2px rgb(27 26 22 / 0.06), 0 8px 24px rgb(27 26 22 / 0.1); cursor: pointer; } .ds-btn-primary:hover { background: var(--color-lq-press, #588F24); } .ds-btn-primary:active { background: var(--color-lq-press, #588F24); transform: translateY(1px); } .ds-btn-primary:focus-visible { outline: 2px solid var(--color-ink, #1B1A16); outline-offset: 2px; } .ds-btn-primary:disabled { opacity: 0.6; }"
+      "css": ".ds-btn-primary { display: inline-flex; align-items: center; min-height: 48px; padding: 0 28px; background: var(--color-lq-green, #6bb22e); color: var(--color-night, #131311); border: none; border-radius: 6px; font-family: 'Schibsted Grotesk', system-ui, sans-serif; font-size: 0.75rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; cursor: pointer; transition: box-shadow 250ms ease, background-color 250ms ease; } .ds-btn-primary:hover { background: var(--color-lq-press, #7ec93c); box-shadow: 0 0 12px rgb(107 178 46 / 0.45), 0 0 32px rgb(107 178 46 / 0.25); } .ds-btn-primary:active { transform: translateY(1px); } .ds-btn-primary:focus-visible { outline: 2px solid var(--color-lamp, #f4f2ec); outline-offset: 3px; }"
     },
     {
-      "name": "Secondary Button",
+      "name": "Ghost Button",
       "kind": "button",
-      "refersTo": "button-secondary",
-      "description": "The second door: 2px ink border on the bright field, no shadow, hover fills cream.",
-      "html": "<button class=\"ds-btn-secondary\">How financing works</button>",
-      "css": ".ds-btn-secondary { display: inline-flex; align-items: center; min-height: 48px; background: transparent; color: var(--color-ink, #1B1A16); font-family: Archivo, sans-serif; font-stretch: 115%; font-weight: 700; text-transform: uppercase; font-size: 1rem; letter-spacing: 0.025em; padding: 0 28px; border: 2px solid var(--color-ink, #1B1A16); border-radius: 6px; cursor: pointer; } .ds-btn-secondary:hover { background: var(--color-cream, #F1EBDF); } .ds-btn-secondary:focus-visible { outline: 2px solid var(--color-ink, #1B1A16); outline-offset: 2px; }"
-    },
-    {
-      "name": "Filter Chip",
-      "kind": "chip",
-      "refersTo": "chip",
-      "description": "Board filter at rest: cream fill, ink lower-third label, no border. Hover fills sand.",
-      "html": "<button class=\"ds-chip\" aria-pressed=\"false\">Sectionals</button>",
-      "css": ".ds-chip { display: inline-flex; align-items: center; min-height: 48px; background: var(--color-cream, #F1EBDF); color: var(--color-ink, #1B1A16); font-family: Archivo, sans-serif; font-stretch: 110%; font-weight: 600; font-size: 0.8125rem; letter-spacing: 0.06em; text-transform: uppercase; padding: 0 16px; border: none; border-radius: 6px; cursor: pointer; } .ds-chip:hover { background: var(--color-sand, #E2D9C7); } .ds-chip:focus-visible { outline: 2px solid var(--color-ink, #1B1A16); outline-offset: 2px; }"
-    },
-    {
-      "name": "Filter Chip (Active)",
-      "kind": "chip",
-      "refersTo": "chip-active",
-      "description": "The active filter goes green with ink text, marked by aria-pressed.",
-      "html": "<button class=\"ds-chip-active\" aria-pressed=\"true\">Dining</button>",
-      "css": ".ds-chip-active { display: inline-flex; align-items: center; min-height: 48px; background: var(--color-lq-green, #6BB22E); color: var(--color-ink, #1B1A16); font-family: Archivo, sans-serif; font-stretch: 110%; font-weight: 600; font-size: 0.8125rem; letter-spacing: 0.06em; text-transform: uppercase; padding: 0 16px; border: none; border-radius: 6px; cursor: pointer; } .ds-chip-active:focus-visible { outline: 2px solid var(--color-ink, #1B1A16); outline-offset: 2px; }"
+      "refersTo": "button-ghost",
+      "description": "The second door beside every green one. Lamp border at 60%, full on hover, no glow.",
+      "html": "<button class=\"ds-btn-ghost\">How financing works</button>",
+      "css": ".ds-btn-ghost { display: inline-flex; align-items: center; min-height: 48px; padding: 0 28px; background: transparent; color: var(--color-lamp, #f4f2ec); border: 1px solid rgb(244 242 236 / 0.6); border-radius: 6px; font-family: 'Schibsted Grotesk', system-ui, sans-serif; font-size: 0.75rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; cursor: pointer; transition: border-color 200ms ease, background-color 200ms ease; } .ds-btn-ghost:hover { border-color: var(--color-lamp, #f4f2ec); background: var(--color-night-2, #1b1b18); } .ds-btn-ghost:focus-visible { outline: 2px solid var(--color-lamp, #f4f2ec); outline-offset: 3px; }"
     },
     {
       "name": "Text Input",
       "kind": "input",
       "refersTo": "input",
-      "description": "Phone field: sand hairline border, 6px radius, 48px tall, paper fill, ink text, stone placeholder, lq-press caret.",
+      "description": "Night-2 fill on hairline night-3, green caret, fog placeholder.",
       "html": "<input class=\"ds-input\" type=\"tel\" placeholder=\"Your mobile number\" />",
-      "css": ".ds-input { display: block; min-height: 48px; width: 100%; max-width: 320px; background: var(--color-paper, #FAF7F1); color: var(--color-ink, #1B1A16); caret-color: var(--color-lq-press, #588F24); font-family: Newsreader, Georgia, serif; font-size: 1.125rem; padding: 0 16px; border: 1px solid var(--color-sand, #E2D9C7); border-radius: 6px; } .ds-input::placeholder { color: var(--color-stone, #6D675A); } .ds-input:focus-visible { outline: 2px solid var(--color-ink, #1B1A16); outline-offset: 2px; }"
+      "css": ".ds-input { min-height: 48px; width: 100%; max-width: 20rem; padding: 0 16px; background: var(--color-night-2, #1b1b18); color: var(--color-lamp, #f4f2ec); border: 1px solid var(--color-night-3, #2b2b26); border-radius: 6px; font-family: 'Schibsted Grotesk', system-ui, sans-serif; font-size: 1.0625rem; caret-color: var(--color-lq-green, #6bb22e); } .ds-input::placeholder { color: var(--color-fog, #a3a094); } .ds-input:focus-visible { outline: 2px solid var(--color-lamp, #f4f2ec); outline-offset: 3px; }"
     },
     {
-      "name": "Lower-Third Caption",
-      "kind": "custom",
-      "refersTo": "lower-third-name",
-      "description": "The TV caption bar that labels every photo: green name plate plus a lifted paper category plate, pinned bottom-left.",
-      "html": "<span class=\"ds-third\"><span class=\"ds-third-name\">Driftwood bedroom set</span><span class=\"ds-third-cat\">Bedroom</span></span>",
-      "css": ".ds-third { display: inline-flex; align-items: center; gap: 1px; } .ds-third-name { display: inline-block; background: var(--color-lq-green, #6BB22E); color: var(--color-ink, #1B1A16); font-family: Archivo, sans-serif; font-stretch: 110%; font-weight: 600; font-size: 0.8125rem; letter-spacing: 0.06em; text-transform: uppercase; line-height: 1.4; padding: 8px 12px; } .ds-third-cat { display: inline-block; background: var(--color-paper, #FAF7F1); color: var(--color-ink, #1B1A16); font-family: Archivo, sans-serif; font-stretch: 110%; font-weight: 600; font-size: 0.8125rem; letter-spacing: 0.06em; text-transform: uppercase; line-height: 1.4; padding: 8px 12px; box-shadow: 0 1px 2px rgb(27 26 22 / 0.06), 0 8px 24px rgb(27 26 22 / 0.1); }"
+      "name": "Filter Tab",
+      "kind": "nav",
+      "refersTo": "button-ghost",
+      "description": "Nav links and floor filters share it: label voice, 2px underline, live count from data on the floor board.",
+      "html": "<div class=\"ds-tabs\"><button class=\"ds-tab ds-tab-active\" aria-pressed=\"true\">Everything <span class=\"ds-tab-count\">18</span></button><button class=\"ds-tab\" aria-pressed=\"false\">Living room <span class=\"ds-tab-count-idle\">6</span></button></div>",
+      "css": ".ds-tabs { display: flex; gap: 24px; background: var(--color-night, #131311); padding: 8px 4px; } .ds-tab { display: inline-flex; align-items: center; gap: 8px; min-height: 48px; padding-top: 2px; background: none; border: none; border-bottom: 2px solid transparent; color: var(--color-fog, #a3a094); font-family: 'Schibsted Grotesk', system-ui, sans-serif; font-size: 0.75rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; cursor: pointer; } .ds-tab:hover { color: var(--color-lamp, #f4f2ec); } .ds-tab-active { border-bottom-color: var(--color-lq-green, #6bb22e); color: var(--color-lamp, #f4f2ec); } .ds-tab-count { color: var(--color-lq-press, #7ec93c); } .ds-tab-count-idle { color: rgb(163 160 148 / 0.7); }"
     },
     {
-      "name": "SOLD Badge",
+      "name": "Neon Sign (lit)",
       "kind": "custom",
-      "refersTo": "sold-badge",
-      "description": "The scarcity stamp: lq-deep display text on paper with a 3px lq-press border, resting at -3deg on a photo's top-right corner. Pops in with sold-pop; sold flags are placeholder data until synced with the real floor.",
-      "html": "<span class=\"ds-sold\">Sold</span>",
-      "css": ".ds-sold { display: inline-block; background: var(--color-paper, #FAF7F1); color: var(--color-lq-deep, #3E6B1A); font-family: Archivo, sans-serif; font-stretch: 115%; font-weight: 700; text-transform: uppercase; font-size: 1.5rem; line-height: 1.3; padding: 2px 12px; border: 3px solid var(--color-lq-press, #588F24); transform: rotate(-3deg); }"
+      "description": "The live sign while the store is open: glowing tube box, flicker-on, endless faint buzz. A tappable button that re-flickers on tap.",
+      "html": "<button class=\"ds-sign-lit\" title=\"Give the sign a tap\"><span class=\"ds-sign-head\">We're open</span><span class=\"ds-sign-sub\">Til 6pm today</span></button>",
+      "css": ".ds-sign-lit { display: inline-flex; flex-direction: column; align-items: center; gap: 8px; padding: 16px 20px; background: rgb(19 19 17 / 0.8); border: 1.5px solid var(--color-neon, #8ade4a); border-radius: 10px; box-shadow: 0 0 10px rgb(107 178 46 / 0.35), inset 0 0 10px rgb(107 178 46 / 0.2); color: var(--color-neon, #8ade4a); text-shadow: 0 0 6px rgb(138 222 74 / 0.55), 0 0 24px rgb(107 178 46 / 0.4); cursor: pointer; animation: ds-buzz 6s 2200ms linear infinite; } .ds-sign-head { font-family: 'Schibsted Grotesk', system-ui, sans-serif; font-size: 1.375rem; font-weight: 800; letter-spacing: -0.02em; line-height: 1; } .ds-sign-sub { font-family: 'Schibsted Grotesk', system-ui, sans-serif; font-size: 0.75rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; } @keyframes ds-buzz { 0%, 92%, 94%, 98%, 100% { opacity: 1; } 93% { opacity: 0.93; } 97% { opacity: 0.96; } }"
     },
     {
-      "name": "Ticker",
+      "name": "Neon Sign (dark)",
       "kind": "custom",
-      "refersTo": "",
-      "description": "Broadcast strip of store facts under the hero: cream band, sand borders, lower-third ink items separated by green dots, mask-faded edge, flush-right Stop/Play control.",
-      "html": "<div class=\"ds-ticker\"><div class=\"ds-ticker-track\"><span class=\"ds-ticker-item\">Open Wed thru Sat 10 to 6, Sun 12 to 6<span class=\"ds-ticker-dot\"></span></span><span class=\"ds-ticker-item\">589 N Coley Rd, Tupelo<span class=\"ds-ticker-dot\"></span></span><span class=\"ds-ticker-item\">Limited Quantities + Unlimited Savings<span class=\"ds-ticker-dot\"></span></span></div><button class=\"ds-ticker-stop\" aria-pressed=\"false\">Stop</button></div>",
-      "css": ".ds-ticker { position: relative; display: flex; align-items: center; min-height: 48px; overflow: hidden; background: var(--color-cream, #F1EBDF); border-top: 1px solid var(--color-sand, #E2D9C7); border-bottom: 1px solid var(--color-sand, #E2D9C7); padding-right: 64px; mask-image: linear-gradient(to right, transparent 0, #000 1.5rem, #000 calc(100% - 3.5rem), transparent 100%); } .ds-ticker-track { display: flex; width: max-content; animation: ds-ticker-scroll 36s linear infinite; } .ds-ticker:hover .ds-ticker-track, .ds-ticker:focus-within .ds-ticker-track { animation-play-state: paused; } .ds-ticker-item { display: flex; align-items: center; white-space: nowrap; font-family: Archivo, sans-serif; font-stretch: 110%; font-weight: 600; font-size: 0.8125rem; letter-spacing: 0.06em; text-transform: uppercase; color: var(--color-ink, #1B1A16); } .ds-ticker-dot { display: inline-block; width: 6px; height: 6px; margin: 0 24px; border-radius: 9999px; background: var(--color-lq-green, #6BB22E); } .ds-ticker-stop { position: absolute; top: 0; right: 0; bottom: 0; min-width: 48px; background: var(--color-cream, #F1EBDF); color: var(--color-ink, #1B1A16); font-family: Archivo, sans-serif; font-stretch: 110%; font-weight: 600; font-size: 0.8125rem; letter-spacing: 0.06em; text-transform: uppercase; padding: 0 12px; border: none; border-left: 1px solid var(--color-sand, #E2D9C7); cursor: pointer; } .ds-ticker-stop:hover { background: var(--color-sand, #E2D9C7); } .ds-ticker-stop:focus-visible { outline: 2px solid var(--color-ink, #1B1A16); outline-offset: 2px; } @keyframes ds-ticker-scroll { from { transform: translateX(0); } to { transform: translateX(-50%); } }"
+      "description": "The same sign after hours: tubes off, fog at reduced alpha, next lighting-up time underneath.",
+      "html": "<button class=\"ds-sign-dark\" title=\"Give the sign a tap\"><span class=\"ds-sign-dark-head\">Closed</span><span class=\"ds-sign-dark-sub\">Back on tomorrow 10am</span></button>",
+      "css": ".ds-sign-dark { display: inline-flex; flex-direction: column; align-items: center; gap: 8px; padding: 16px 20px; background: rgb(19 19 17 / 0.8); border: 1.5px solid rgb(163 160 148 / 0.35); border-radius: 10px; color: rgb(163 160 148 / 0.75); cursor: pointer; } .ds-sign-dark-head { font-family: 'Schibsted Grotesk', system-ui, sans-serif; font-size: 1.375rem; font-weight: 800; letter-spacing: -0.02em; line-height: 1; } .ds-sign-dark-sub { font-family: 'Schibsted Grotesk', system-ui, sans-serif; font-size: 0.75rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; opacity: 0.8; }"
+    },
+    {
+      "name": "FAQ Item",
+      "kind": "custom",
+      "description": "Native details/summary in a hairline stack; body opens via the 0fr-to-1fr grid trick, the + mark rotates 45 degrees.",
+      "html": "<details class=\"ds-faq\"><summary class=\"ds-faq-q\"><span>Is the tag price the price?</span><span class=\"ds-faq-mark\" aria-hidden=\"true\">+</span></summary><div class=\"ds-faq-body\"><div><p class=\"ds-faq-a\">Yes. The tag price is the price, and everything on the floor is priced to leave.</p></div></div></details>",
+      "css": ".ds-faq { border-top: 1px solid var(--color-night-3, #2b2b26); border-bottom: 1px solid var(--color-night-3, #2b2b26); background: var(--color-night, #131311); } .ds-faq-q { display: flex; align-items: center; justify-content: space-between; gap: 24px; min-height: 48px; padding: 20px 0; cursor: pointer; list-style: none; color: var(--color-lamp, #f4f2ec); font-family: 'Schibsted Grotesk', system-ui, sans-serif; font-size: 1.375rem; font-weight: 800; letter-spacing: -0.02em; } .ds-faq-q::-webkit-details-marker { display: none; } .ds-faq-q:hover { color: var(--color-lq-press, #7ec93c); } .ds-faq-mark { color: var(--color-fog, #a3a094); line-height: 1; transition: transform 250ms cubic-bezier(0.16, 1, 0.3, 1); } .ds-faq[open] .ds-faq-mark { transform: rotate(45deg); } .ds-faq-body { display: grid; grid-template-rows: 0fr; transition: grid-template-rows 300ms cubic-bezier(0.16, 1, 0.3, 1); } .ds-faq[open] .ds-faq-body { grid-template-rows: 1fr; } .ds-faq-body > div { overflow: hidden; } .ds-faq-a { padding-bottom: 24px; margin: 0; color: var(--color-fog, #a3a094); font-family: 'Schibsted Grotesk', system-ui, sans-serif; font-size: 1.0625rem; line-height: 1.65; }"
+    },
+    {
+      "name": "Success Panel",
+      "kind": "card",
+      "description": "The done/error surface: night-2 fill, hairline border, display headline, plain words. No shadow, no icon, no red.",
+      "html": "<div class=\"ds-panel\"><p class=\"ds-panel-head\">You're on the list</p><p class=\"ds-panel-body\">Watch for a text from us. Reply STOP any time and we stop.</p></div>",
+      "css": ".ds-panel { max-width: 28rem; padding: 28px; background: var(--color-night-2, #1b1b18); border: 1px solid var(--color-night-3, #2b2b26); } .ds-panel-head { margin: 0; color: var(--color-lamp, #f4f2ec); font-family: 'Schibsted Grotesk', system-ui, sans-serif; font-size: 1.375rem; font-weight: 800; letter-spacing: -0.02em; } .ds-panel-body { margin: 12px 0 0; color: var(--color-fog, #a3a094); font-family: 'Schibsted Grotesk', system-ui, sans-serif; font-size: 1.0625rem; line-height: 1.65; }"
     }
   ],
   "narrative": {
-    "northStar": "The Lit Set",
-    "overview": "The site is the furniture makeover show, playing on a bright set. This world replaced an earlier dark ink-field rendition that the client rejected after seeing it built; nothing from that world survives here. A warm paper field carries big square photographs of the real warehouse floor in Tupelo, and the whole system exists to make that photography glow: cream and sand do the quiet structural work, warm ink talks, and one working green marks where something happens. Photos are labeled the way television labels people, with lower-third caption bars, and scarcity is stamped on with a SOLD badge because the scarcity is real. Type carries the show's two registers: Archivo set a touch wide (115% width, bold, uppercase) is the episode title, and the same face at 110% semibold caps is the lower-third caption voice; Newsreader talks like a person from North Mississippi in between. Motion is the reveal grammar in five authored moments and nothing else: the hero settles like a locked-off camera move, photos wipe in once like a segment cut, lower-thirds rise behind them, the SOLD badge pops, and a broadcast ticker runs store facts under the hero until the visitor hits Stop. Everything collapses under prefers-reduced-motion with the content left visible.",
+    "northStar": "The lit sign on a clean shop",
+    "overview": "The site is a clean, fast, obviously professional shop at night with one working neon sign burning on the wall. The field is crisp flat charcoal structured by hairlines; the text is lamp and fog; the merchandise is real floor photographs seated in deep shadow; and all of the character lives in the sign system: a live open/closed sign that knows the store clock, hums while the store is open, and re-flickers when you tap it, static neon signs leading page headers, a drawn tube arrow pointing at the signup form, and a tube glow that primary buttons borrow on hover. The fixtures are interactive by client demand: FAQ accordions, a floor lightbox, live filter counts, a today-lit hours table.\n\nThis world is a client-pinned refinement of the previous \"showroom at night\" rendition (direction rolls e1b2fdb5 and 6e5352b2 are retained for the world lineage and the floor-board structure). The client pinned four words: neon vibe, clean and professional, character, interactive. The palette token set carried over unchanged, but the atmosphere changed: the radial lamp pools are gone, the Caslon serif voice is gone, and the room is now crisp and flat with a single grotesk family doing every job.",
     "keyCharacteristics": [
-      "Bright warm paper field (#FAF7F1) everywhere; the dark world is dead and must not return",
-      "One working green as the action color; green surfaces always carry ink text, and only lq-deep may appear as green text on the light field",
-      "Two type voices from one show: Archivo wide shouting episode titles and captioning photos, Newsreader talking",
-      "Square full-bleed floor photography labeled by lower-third caption bars, never boxed in cards",
-      "Depth is one soft lift shadow on raised controls only; everything else separates with 1px sand hairlines",
-      "Five authored motion moments in reveal grammar, all reduced-motion safe"
+      "Crisp flat charcoal field with hairline night-3 structure; no atmospheric pools, no washes",
+      "One family, Schibsted Grotesk (variable, with italic): heavy tight display in sentence case, regular body, small semibold caps labels",
+      "A working neon sign system is the character: the live tappable sign, static signs, the tube arrow, glow on primary green actions",
+      "Photographs presented as lit displays: square-cornered, deep soft shadows, brightness lift on hover",
+      "Interactive fixtures built on native elements: details/summary FAQs, a dialog lightbox, data-driven filter counts, a Central-time clock",
+      "Rural-4G light: no animation/UI/icon libraries, real floor photos only"
     ],
     "rules": [
-      { "name": "The Ink-on-Green Rule", "body": "Green surfaces always take ink text (6.8:1). White on green measures 2.6:1 and is never used.", "section": "colors" },
-      { "name": "The Deep Green Text Rule", "body": "On the light field, the only green that may be text is lq-deep. Bright lq-green as text on paper measures 2.4:1 and never ships; when a green accent must read, it reads in lq-deep.", "section": "colors" },
-      { "name": "The Lit Set Rule", "body": "The field stays bright and warm so the floor photography does the selling. No dark sections, no dark theme, no washes or gradients over photos; the client rejected the dark rendition after seeing it built.", "section": "colors" },
-      { "name": "The Two Registers Rule", "body": "Uppercase happens only in the two Archivo voices: .display shouts, .lower-third captions. Newsreader is always sentence case and never uppercase, bold, or letter-spaced.", "section": "typography" },
-      { "name": "The Caption Bar Rule", "body": "A photo is labeled by a .lower-third plate sitting on its bottom-left edge, in the tag size, never by a caption below it or text over an unplated image.", "section": "typography" },
-      { "name": "The Raised Control Rule", "body": "shadow-lift appears only on something a visitor can press or on a paper plate sitting over a photo or a cream band. Sections, photos, tables, and text never cast shadows.", "section": "elevation" },
-      { "name": "The Inner Wrapper Rule", "body": "Chromium computes IntersectionObserver geometry after clip-path, so a fully clipped observed element never intersects. Wipes therefore always clip an inner wrapper while the observed outer element stays unclipped. Never put wipe-hidden on the element the observer watches.", "section": "components" },
-      { "name": "The Five Moments Rule", "body": "New motion must be one of the five moments or speak the reveal grammar (settles, wipes, lower-thirds, badge pops, tickers). Generic fade-up-on-scroll on every section, parallax, and hover zooms are outside the world.", "section": "components" },
-      { "name": "The Reduced Motion Rule", "body": "Under prefers-reduced-motion: reduce, every animation class is set to animation: none, hidden states resolve to fully visible, wipe clips resolve to clip-path: none, the SOLD badge keeps its resting -3deg, and a global rule zeroes all remaining animation and transition durations. Content is never lost when motion is off.", "section": "components" }
+      { "name": "The Night Text Rule", "body": "Green surfaces always carry night text, never white. White on LQ green fails contrast; night on LQ green passes. No exceptions on any surface.", "section": "colors" },
+      { "name": "The Sign System Rule", "body": "Neon is a lit object from the store's world, never a decorative accent. The device family is closed: the live NeonSign (lit during store hours, tubes dark via neon-dim with the next lighting-up time when closed), static header signs, the drawn tube arrow, and the btn-glow hover glow on green primary actions. One primary sign per page; the arrow may accompany it. Neon text or borders on things that are not signs are defects.", "section": "colors" },
+      { "name": "The Flat Charcoal Rule", "body": "The field is crisp, flat #131311 with hairline structure. No radial lamp pools, no ambient washes, no decorative gradients. The only gradients in the system are the scrims over hero photographs, which exist to keep text legible, not to decorate.", "section": "colors" },
+      { "name": "The Dark Band Rule", "body": "Hero photographs get a two-layer night scrim (a radial vignette plus a bottom linear ramp). The scrim geometry must keep the band behind the mobile headline dark enough that lamp text stays legible over any photo. Re-check whenever the hero photo or scrim stops change.", "section": "colors" },
+      { "name": "The Sentence Case Rule", "body": "The display voice is always sentence case, never uppercase. Uppercase belongs exclusively to the 12px semibold tracked .label voice.", "section": "typography" },
+      { "name": "The No Eyebrow Rule", "body": "No eyebrow or kicker labels above headings. The one element that may sit above a page's H1 is a neon sign, and it is a lit object from the store's world, not a category label.", "section": "typography" },
+      { "name": "The Window Display Rule", "body": "Shadows exist to present merchandise; glow exists to mark signs and the actions that matter. Buttons at rest, inputs, panels, the header, and the lightbox cast nothing; a shadowed card or dropdown is out of world. Hard offset shadows do not exist here.", "section": "elevation" }
     ],
     "dos": [
-      "Do keep the TCPA/SMS consent language verbatim from src/lib/consent.ts (SMS_CONSENT_TEXT, versioned as SMS_CONSENT_VERSION). It is regulated content, not marketing copy: never shortened, reworded, or restructured for conversion, always beside an unchecked checkbox, with the version bumped on any legally reviewed change.",
-      "Do give every interactive element a 48px minimum tap target (min-h-12 / min-w-12), even inline footer links, and rely on the global 2px ink focus ring.",
-      "Do run photography square, full bleed, and real: shot on the LQ floor (IMG_8587-8637 set, 2200px wide, 4:3, object-cover), never stock, never AI, never boxed in a padded card, always labeled by a lower-third.",
-      "Do write copy in the store's voice: plain, warm, direct, sentence case, their words not ours (the tagline is Limited Quantities + Unlimited Savings). No em dashes. No marketing filler (elevate, curated, seamless, transform, unlock, discover). Buttons say what happens. Urgency must be factually true.",
-      "Do end every page at one of the two doors: join the text list or financing. The store is the store; the site sells the visit.",
-      "Do keep pages light: no animation, UI, icon, or state libraries; rural 4G is the baseline (LCP < 2.0s, CLS < 0.05, first-load JS < 120KB gzipped)."
+      "Do put night text (#131311) on every green surface, per The Night Text Rule.",
+      "Do keep the field flat crisp charcoal with hairline night-3 structure; the character belongs to the sign system, not to washes.",
+      "Do give every tap target 48px minimum height and 8px minimum spacing, with the global lamp focus ring intact.",
+      "Do use the store's own words and real floor photographs: \"Limited Quantities + Unlimited Savings\", tag-price language, photos from the LQ floor only. No stock, no AI imagery, no fabricated testimonials.",
+      "Do write buttons that say what happens, in plain speech: \"Walk the floor\", \"Get directions\", \"Call (662) 841-5959\".",
+      "Do keep the TCPA consent language verbatim from src/lib/consent.ts wherever an SMS opt-in appears; it is regulated content. Any change goes through legal review and bumps SMS_CONSENT_VERSION.",
+      "Do keep FAQ answers inside verified store facts, per the header contract in src/lib/faq.ts; no operational claims LQ hasn't confirmed.",
+      "Do keep the hero scrim dark behind the mobile headline band (The Dark Band Rule) and re-check it when photos change.",
+      "Do render clock-driven components (NeonSign, OpenNow, HoursTable) neutral before hydration, on America/Chicago time, reserved so nothing shifts.",
+      "Do collapse every animation under prefers-reduced-motion with the content left fully visible.",
+      "Do end every page at one of the two doors: join the text list, or call/visit/finance in person."
     ],
     "donts": [
-      "Don't put lq-green text on the light field (2.4:1) or white text on green (2.6:1); green text on light is always lq-deep, and green surfaces always take ink.",
-      "Don't reintroduce anything from the dead dark world: no ink page fields, no dark sections, no DM Mono.",
-      "Don't add gradients, glows, glassmorphism, blur, icons, emoji, carousels, numbered marker sequences, icon feature grids, or fabricated testimonials. All are confirmed client rejections.",
-      "Don't round anything past 6px, round structural corners at all, or put shadow-lift on non-raised surfaces.",
-      "Don't imply anything can be bought online, show prices, or fake scarcity; sold flags come from the real floor, not from copywriting.",
-      "Don't ship motion outside the five moments, clip an IntersectionObserver target directly, or let any animation survive prefers-reduced-motion."
+      "Don't imply anything can be bought online. No prices on the site (prices live on the tags), no carts, no \"shop\" or \"buy\" language. The footer's closing line is doctrine: the store is the store.",
+      "Don't reintroduce the radial lamp pools or any decorative gradient; the photo scrims are the only gradients. The prior serif rendition is retired, not dormant.",
+      "Don't put neon (#8ade4a) on anything that is not a sign device, and don't give more than one primary sign to a page. The btn-glow hover is the only neon the buttons get.",
+      "Don't set the display voice in uppercase, and don't add eyebrow/kicker labels above headings; only a neon sign may lead an H1.",
+      "Don't use em dashes or marketing filler (elevate, curated, seamless, transform, unlock, discover), and don't make unverified operational claims. Urgency must be factual: limited quantities is true, so say it plainly.",
+      "Don't treat the sold flags in src/lib/floor.ts as live inventory; they are placeholder demonstration data pending the client's real board.",
+      "Don't round structural corners or shadow UI chrome; 6px is for controls, the deep shadow is for photographs, glow is for signs.",
+      "Don't add runtime dependencies (animation, UI, icon, or state libraries); rural 4G is the baseline."
     ]
   }
 }
