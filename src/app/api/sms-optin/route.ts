@@ -6,11 +6,23 @@ import { isTenure } from "@/lib/signup";
 // timestamp, IP, page URL, and checkbox state to the deployment log stream,
 // then forwards the contact to the CRM webhook in GHL_SMS_WEBHOOK_URL.
 //
-// The log write happens first and always, so a webhook outage never loses
-// the consent record; a configured webhook that fails returns an error to
-// the visitor rather than telling them they joined when they did not.
+// The log write happens first and always, so an outage never loses the
+// consent record. Everything after that fails loudly: a missing webhook
+// URL and a webhook that errors both return a failure to the visitor,
+// because a sign-up that never reaches the CRM is a lost customer, and
+// silently answering "you're on the list" hides that from the store.
 
 const WEBHOOK_TIMEOUT_MS = 8000;
+
+// Health probe: says whether the CRM webhook is wired up, without ever
+// revealing the URL. Lets a deploy be verified from outside.
+export function GET() {
+  return NextResponse.json({
+    ok: true,
+    webhookConfigured: Boolean(process.env.GHL_SMS_WEBHOOK_URL),
+    consentVersion: SMS_CONSENT_VERSION,
+  });
+}
 
 export async function POST(req: NextRequest) {
   let body: unknown;
@@ -74,12 +86,20 @@ export async function POST(req: NextRequest) {
 
   const webhookUrl = process.env.GHL_SMS_WEBHOOK_URL;
   if (!webhookUrl) {
-    // Unconfigured is not a visitor-facing failure: the consent record is
-    // already durable in the log above and can be replayed by hand.
-    console.warn(
-      JSON.stringify({ type: "sms_consent_webhook_unconfigured", timestamp }),
+    // Loud on purpose. A silent success here would drop every sign-up on
+    // the floor while telling the visitor they had joined.
+    console.error(
+      JSON.stringify({
+        type: "sms_consent_webhook_unconfigured",
+        detail: "GHL_SMS_WEBHOOK_URL is not set in this environment",
+        phone,
+        timestamp,
+      }),
     );
-    return NextResponse.json({ ok: true });
+    return NextResponse.json(
+      { ok: false, error: "webhook_unconfigured" },
+      { status: 503 },
+    );
   }
 
   // Flat keys, E.164 phone: the shape the CRM maps fields from.
