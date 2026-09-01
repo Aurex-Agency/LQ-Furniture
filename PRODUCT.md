@@ -34,7 +34,8 @@ Shoppers browse on a phone, often from a Facebook ad or post, then drive to the 
 - Performance budget: LCP under 2.0s on 4G, CLS under 0.05, first-load JS under 120KB gzipped.
 - Store facts (verified against the store's own Facebook posts and Google listing, Aug 2026): 589 North Coley Rd, Tupelo, MS 38801. Phone (662) 841-5959. Open Wednesday through Saturday 10am to 6pm, Sunday 12pm to 6pm, closed Monday and Tuesday. Existing domain: lqfurniture.com.
 - Financing partners (client-confirmed, links in src/lib/financing.ts, same links as the in-store QR codes): Synchrony (up to 12 months no interest over $2,000, shorter windows below), Tower Loans (12 months no interest, occasional limited-time 24-month promos), Acima (90 days no interest, no credit check), Snap (100 days no interest, no credit check).
-- Undecided (ask the client): SMS platform/provider.
+- SMS platform: GoHighLevel. Text list sign-ups POST from /api/sms-optin to a GHL inbound webhook whose URL lives in the GHL_SMS_WEBHOOK_URL environment variable (never in the repo, which is public). The sign-up collects first name, mobile number, and an optional "how long have you shopped with us" answer alongside the consent record.
+- Undecided (ask the client): where /api/contact messages should land (still log-only).
 
 ## Brand Commitments
 
