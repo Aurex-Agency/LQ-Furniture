@@ -1,5 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import localFont from "next/font/local";
+import Script from "next/script";
 import "./globals.css";
 
 const bebas = localFont({
@@ -44,6 +45,12 @@ export default function RootLayout({
       <body>
         <span hidden dangerouslySetInnerHTML={{ __html: directionContract }} />
         {children}
+        {/* Metricool visitor analytics, the client's own tracking hash.
+            Loaded after the page is interactive so it never competes with
+            the hero photograph for bandwidth. Disclosed in /privacy. */}
+        <Script id="metricool-tracker" strategy="afterInteractive">
+          {`function loadScript(a){var b=document.getElementsByTagName("head")[0],c=document.createElement("script");c.type="text/javascript",c.src="https://tracker.metricool.com/resources/be.js",c.onreadystatechange=a,c.onload=a,b.appendChild(c)}loadScript(function(){beTracker.t({hash:"7acaecc99a26af78f513bcc4c2da4451"})});`}
+        </Script>
       </body>
     </html>
   );
