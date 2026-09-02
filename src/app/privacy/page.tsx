@@ -61,11 +61,22 @@ export default function Privacy() {
         <section>
           <h2 className="display text-h3 text-lamp">Cookies and tracking</h2>
           <p className="mt-3">
-            This website does not use tracking cookies, advertising pixels,
-            or third-party analytics to follow you around the web. We don&apos;t
-            build an ad profile on you, because we don&apos;t collect the
-            browsing data that would take. If that ever changes, we&apos;ll
-            update this policy first and say so plainly.
+            This website uses Metricool, a third-party analytics service, to
+            count visits and see which pages people spend time on. To do
+            that it may set a cookie or a similar identifier in your
+            browser. We use it to learn which furniture people look at and
+            when the site is busy, not to follow you around the internet.
+          </p>
+          <p className="mt-3">
+            We run no advertising pixels and no ad networks on this site,
+            and we do not sell or share what the analytics collect. We never
+            hand the analytics service anything you type into the text list
+            form or the contact page; your phone number goes to us, not to
+            it.
+          </p>
+          <p className="mt-3">
+            Most browsers let you block or clear cookies in their settings,
+            and the site works fine if you do.
           </p>
         </section>
 
