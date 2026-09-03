@@ -66,11 +66,10 @@ export default function TheFloor() {
                   sizes="(min-width: 1024px) 25vw, (min-width: 640px) 34vw, 50vw"
                   className="window-photo aspect-square w-full object-cover transition-[filter] duration-500 group-hover:brightness-110"
                 />
-                <figcaption className="mt-2 flex items-baseline justify-between gap-3">
-                  <span className="text-[0.9375rem] text-lamp">{item.name}</span>
-                  <span className="label hidden shrink-0 text-fog sm:inline">
-                    {CATEGORY_LABELS[item.category]}
-                  </span>
+                {/* Department only. Product names are not claimed here:
+                    see the note in src/lib/archive.ts. */}
+                <figcaption className="label mt-2 text-fog">
+                  {CATEGORY_LABELS[item.category]}
                 </figcaption>
               </figure>
             ))}
