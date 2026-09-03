@@ -19,7 +19,7 @@ export const FAQS: Faq[] = [
   },
   {
     q: "Can I take it home the same day?",
-    a: "If it fits your vehicle, we'll help you load it. If it doesn't, we'll hold your piece while you sort out getting it home.",
+    a: "If it fits your vehicle, we'll help you load it. If it doesn't, we have partnered with a 3rd party vendor to provide you delivery services, or we'll hold your piece while you arrange the trip home.",
   },
   {
     q: "Will you hold something while I think about it?",
@@ -30,8 +30,12 @@ export const FAQS: Faq[] = [
     a: "The floor turns over every week, and the text list hears about new loads first. Wednesday and Thursday shoppers get the widest pick of whatever the last truck brought.",
   },
   {
+    q: "Do you deliver?",
+    a: "We have partnered with a 3rd party vendor to provide you delivery services. Delivery is handled by that vendor and is not included in the price on the tag, so ask at the counter and we'll get you set up with them.",
+  },
+  {
     q: "Do you sell mattresses?",
-    a: "Yes. The Shema Sleep gallery runs along the back of the building, mattresses and adjustable bases included. Lie down on as many as you need to.",
+    a: "Yes. We carry most of your favorite name brands at discounted prices. The sleep gallery runs along the back of the building, mattresses and adjustable bases included. Lie down on as many as you need to.",
   },
   {
     q: "What about warranties?",

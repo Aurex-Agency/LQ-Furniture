@@ -180,8 +180,8 @@ export default function Home() {
                 it to leave.
               </p>
               <p>
-                That&apos;s the whole trick. There isn&apos;t one. Come walk the
-                aisles and read the tags yourself.
+                Buying by the truckload is how the price gets where it is.
+                Come walk the aisles and see for yourself.
               </p>
             </div>
           </div>

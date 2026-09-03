@@ -77,14 +77,15 @@ export default function Visit() {
             <p className="text-body text-fog">
               It&apos;s a real warehouse, so wear comfortable shoes. The aisles
               run deep: living rooms up front, dining and bedrooms in the
-              middle, the Shema Sleep mattress gallery and the lamp wall
-              toward the back. Prices are on the tags, and the tag price is
-              the price.
+              middle, the mattress gallery and the lamp wall toward the
+              back. Prices are on the tags, and the tag price is the price.
             </p>
             <p className="text-body text-fog">
-              See something you love, tell one of us and it&apos;s yours. We&apos;ll help you load it or hold it while you sort
-              out delivery. And if you&apos;re financing, give yourself a few
-              extra minutes at the counter on the way in.
+              See something you love, tell one of us and it&apos;s yours. We&apos;ll
+              help you load it if it fits your vehicle. If it doesn&apos;t, we
+              have partnered with a 3rd party vendor to provide you delivery
+              services. And if you&apos;re financing, give yourself a few extra
+              minutes at the counter on the way in.
             </p>
           </div>
         </section>
