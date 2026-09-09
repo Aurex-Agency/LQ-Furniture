@@ -26,7 +26,7 @@ export const FINANCING_PARTNERS: FinancingPartner[] = [
     detail:
       "A straightforward 12 months interest free. Every so often a limited-time promotion stretches it to 24, so ask what's running.",
     applyUrl:
-      "https://creditapp.towerloan.com/LoanApp?siteType=ConsumerApp",
+      "https://creditapp.towerloan.com/Apps/ConsumerApp/3e1b8396-f774-468b-9783-876684340f3e",
   },
   {
     name: "Acima",
