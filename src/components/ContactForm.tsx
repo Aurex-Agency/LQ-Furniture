@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import { track } from "@/lib/analytics";
 
 type Status = "idle" | "sending" | "done" | "error";
 type Field = "name" | "phone" | "message";
@@ -76,6 +77,9 @@ export default function ContactForm() {
         return;
       }
       if (!res.ok) throw new Error(String(res.status));
+      // Fired only after the server confirms delivery, so the count in GA
+      // matches what actually reached the store rather than what was typed.
+      track("generate_lead", { form: "contact", page_path: window.location.pathname });
       setStatus("done");
     } catch {
       setStatus("error");

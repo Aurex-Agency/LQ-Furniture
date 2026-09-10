@@ -11,13 +11,17 @@ import type { NextConfig } from "next";
 // Stated honestly: with 'unsafe-inline' present, this CSP is a defence in
 // depth measure that constrains which hosts can be reached, not a strict XSS
 // barrier. Tightening it further means adopting nonces throughout.
+// GA4 touches three hosts, and missing any one of them fails quietly:
+// googletagmanager.com serves gtag.js, google-analytics.com receives the
+// measurement hits, and regional endpoints such as region1.google-analytics.com
+// receive them for some visitors. Wildcards cover the regional variants.
 const CSP = [
   "default-src 'self'",
-  "script-src 'self' 'unsafe-inline' https://tracker.metricool.com",
+  "script-src 'self' 'unsafe-inline' https://tracker.metricool.com https://www.googletagmanager.com",
   "style-src 'self' 'unsafe-inline'",
-  "img-src 'self' data: blob: https://tracker.metricool.com",
+  "img-src 'self' data: blob: https://tracker.metricool.com https://www.google-analytics.com https://*.google-analytics.com https://www.googletagmanager.com",
   "font-src 'self'",
-  "connect-src 'self' https://tracker.metricool.com",
+  "connect-src 'self' https://tracker.metricool.com https://www.google-analytics.com https://*.google-analytics.com https://*.analytics.google.com https://www.googletagmanager.com",
   "frame-ancestors 'none'",
   "base-uri 'self'",
   "form-action 'self'",

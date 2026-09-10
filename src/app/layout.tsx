@@ -2,6 +2,8 @@ import type { Metadata, Viewport } from "next";
 import localFont from "next/font/local";
 import Script from "next/script";
 import { SITE_URL } from "@/lib/site";
+import { GA_MEASUREMENT_ID } from "@/lib/analytics";
+import AnalyticsEvents from "@/components/AnalyticsEvents";
 import "./globals.css";
 
 const bebas = localFont({
@@ -67,6 +69,25 @@ export default function RootLayout({
     <html lang="en" className={`${bebas.variable} ${switzer.variable}`}>
       <body>
         {children}
+        <AnalyticsEvents />
+        {/* Google Analytics 4. Loaded after the page is interactive, like the
+            Metricool tag, so measurement never competes with the hero
+            photograph for bandwidth on a rural mobile connection.
+
+            googletagmanager.com and google-analytics.com are allowlisted in
+            the Content Security Policy in next.config.ts. Adding the tag
+            without that would fail silently. Disclosed in /privacy. */}
+        <Script
+          id="ga4-src"
+          strategy="afterInteractive"
+          src={`https://www.googletagmanager.com/gtag/js?id=${GA_MEASUREMENT_ID}`}
+        />
+        <Script id="ga4-init" strategy="afterInteractive">
+          {`window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', '${GA_MEASUREMENT_ID}');`}
+        </Script>
         {/* Metricool visitor analytics, the client's own tracking hash.
             Loaded after the page is interactive so it never competes with
             the hero photograph for bandwidth. Disclosed in /privacy. */}

@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { SMS_CONSENT_TEXT } from "@/lib/consent";
 import { TENURE_OPTIONS, type Tenure } from "@/lib/signup";
+import { track } from "@/lib/analytics";
 
 type Status = "idle" | "sending" | "done" | "error";
 type Field = "firstName" | "phone" | "consent";
@@ -62,6 +63,9 @@ export default function SmsForm() {
         }),
       });
       if (!res.ok) throw new Error(String(res.status));
+      // Only after the CRM confirms the contact landed. The route fails loudly
+      // when the webhook is down, so this cannot count a sign-up that was lost.
+      track("join_text_list", { form: "sms_optin", page_path: window.location.pathname });
       setStatus("done");
     } catch {
       fail("phone", "Something broke on our end. Try again, or just call us.");

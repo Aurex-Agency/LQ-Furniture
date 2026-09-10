@@ -63,18 +63,28 @@ export default function Privacy() {
         <section>
           <h2 className="display text-h3 text-lamp">Cookies and tracking</h2>
           <p className="mt-3">
-            This website uses Metricool, a third-party analytics service, to
-            count visits and see which pages people spend time on. To do
-            that it may set a cookie or a similar identifier in your
-            browser. We use it to learn which furniture people look at and
-            when the site is busy, not to follow you around the internet.
+            This website uses two third-party analytics services, Metricool
+            and Google Analytics, to count visits and see which pages people
+            spend time on. To do that they may set a cookie or a similar
+            identifier in your browser, and Google Analytics receives your
+            approximate location, based on your IP address, along with your
+            browser and device type. We use all of this to learn which
+            furniture people look at and when the site is busy, not to follow
+            you around the internet.
           </p>
           <p className="mt-3">
-            We run no advertising pixels and no ad networks on this site,
-            and we do not sell or share what the analytics collect. We never
-            hand the analytics service anything you type into the text list
-            form or the contact page; your phone number goes to us, not to
-            it.
+            We also count a small number of actions so we know which parts of
+            the site actually help: sending the contact form, joining the text
+            list, tapping the phone number, asking for directions, and opening
+            a financing application. What is recorded is that the action
+            happened and which page it happened on. Nothing you type is
+            included. Your name, your phone number, and your message go to us
+            and to the services that deliver them, never to the analytics.
+          </p>
+          <p className="mt-3">
+            We run no advertising pixels and no ad networks on this site, and
+            we do not sell what the analytics collect. Google processes the
+            Google Analytics data on our behalf under its own privacy policy.
           </p>
           <p className="mt-3">
             Most browsers let you block or clear cookies in their settings,
