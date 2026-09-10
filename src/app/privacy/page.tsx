@@ -1,15 +1,17 @@
 import type { Metadata } from "next";
+import { pageMetadata } from "@/lib/seo";
 import Image from "next/image";
 import Reveal from "@/components/Reveal";
 import SiteFooter from "@/components/SiteFooter";
 import SiteHeader from "@/components/SiteHeader";
 import { STORE } from "@/lib/store";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMetadata({
   title: "Privacy policy",
   description:
     "How LQ Furniture in Tupelo, MS handles your phone number, text message consent, and personal information.",
-};
+  path: "/privacy",
+});
 
 export default function Privacy() {
   return (

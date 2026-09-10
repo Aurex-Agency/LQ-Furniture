@@ -1,4 +1,7 @@
 import type { Metadata } from "next";
+import { pageMetadata } from "@/lib/seo";
+import JsonLd from "@/components/JsonLd";
+import { breadcrumbSchema } from "@/lib/schema";
 import Link from "next/link";
 import Image from "next/image";
 import FloorBoard from "@/components/FloorBoard";
@@ -9,15 +12,19 @@ import { STORE } from "@/lib/store";
 import { ARCHIVE_ITEMS } from "@/lib/archive";
 import { CATEGORY_LABELS } from "@/lib/floor";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMetadata({
   title: "The floor this week",
   description:
     "What's on the floor at LQ Furniture in Tupelo, MS this week: sectionals, dining sets, bedrooms, recliners, mattresses and lamps at warehouse prices. Limited quantities, priced on the tags.",
-};
+  path: "/the-floor",
+});
 
 export default function TheFloor() {
   return (
     <>
+      <JsonLd
+        data={breadcrumbSchema([{ name: "The floor this week", path: "/the-floor" }])}
+      />
       <SiteHeader current="/the-floor" />
       <main>
         <section className="px-5 pt-10 sm:px-10 sm:pt-20 lg:px-16">

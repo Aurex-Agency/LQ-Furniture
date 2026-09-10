@@ -1,4 +1,7 @@
 import type { Metadata } from "next";
+import { pageMetadata } from "@/lib/seo";
+import JsonLd from "@/components/JsonLd";
+import { breadcrumbSchema } from "@/lib/schema";
 import Image from "next/image";
 import Link from "next/link";
 import NeonIcon from "@/components/NeonIcon";
@@ -6,11 +9,12 @@ import SiteFooter from "@/components/SiteFooter";
 import SiteHeader from "@/components/SiteHeader";
 import { POSTS } from "@/lib/posts";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMetadata({
   title: "Notes from the floor",
   description:
     "Notes from the LQ Furniture floor in Tupelo, MS: how warehouse pricing works, how to shop the floor, and what's moving through the building.",
-};
+  path: "/blog",
+});
 
 function fmtDate(iso: string): string {
   return new Date(`${iso}T12:00:00Z`).toLocaleDateString("en-US", {
@@ -24,6 +28,9 @@ function fmtDate(iso: string): string {
 export default function Blog() {
   return (
     <>
+      <JsonLd
+        data={breadcrumbSchema([{ name: "Notes from the floor", path: "/blog" }])}
+      />
       <SiteHeader current="/blog" />
       <main>
         <section className="px-5 pt-10 sm:px-10 sm:pt-20 lg:px-16">

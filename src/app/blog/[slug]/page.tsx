@@ -5,6 +5,8 @@ import { notFound } from "next/navigation";
 import SiteFooter from "@/components/SiteFooter";
 import SiteHeader from "@/components/SiteHeader";
 import { getPost, POSTS } from "@/lib/posts";
+import { blogPostingSchema, breadcrumbSchema, jsonLdScript } from "@/lib/schema";
+import { pageMetadata } from "@/lib/seo";
 
 export function generateStaticParams() {
   return POSTS.map((p) => ({ slug: p.slug }));
@@ -18,7 +20,24 @@ export async function generateMetadata({
   const { slug } = await params;
   const post = getPost(slug);
   if (!post) return {};
-  return { title: post.title, description: post.description };
+  return {
+    ...pageMetadata({
+      title: post.title,
+      description: post.description,
+      path: `/blog/${post.slug}`,
+      type: "article",
+    }),
+    openGraph: {
+      type: "article",
+      siteName: "LQ Furniture",
+      locale: "en_US",
+      url: `/blog/${post.slug}`,
+      title: `${post.title} | LQ Furniture`,
+      description: post.description,
+      publishedTime: `${post.date}T12:00:00Z`,
+      images: [{ url: post.image.src, alt: post.image.alt }],
+    },
+  };
 }
 
 function fmtDate(iso: string): string {
@@ -41,6 +60,31 @@ export default async function PostPage({
 
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: jsonLdScript(
+            blogPostingSchema({
+              slug: post.slug,
+              title: post.title,
+              description: post.description,
+              date: post.date,
+              image: post.image.src,
+            }),
+          ),
+        }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: jsonLdScript(
+            breadcrumbSchema([
+              { name: "Notes from the floor", path: "/blog" },
+              { name: post.title, path: `/blog/${post.slug}` },
+            ]),
+          ),
+        }}
+      />
       <SiteHeader current="/blog" />
       <main>
         <article className="px-5 pt-16 sm:px-10 sm:pt-20 lg:px-16">

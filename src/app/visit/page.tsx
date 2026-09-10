@@ -1,4 +1,7 @@
 import type { Metadata } from "next";
+import { pageMetadata } from "@/lib/seo";
+import JsonLd from "@/components/JsonLd";
+import { breadcrumbSchema } from "@/lib/schema";
 import Image from "next/image";
 import HoursTable from "@/components/HoursTable";
 import NeonSign from "@/components/NeonSign";
@@ -7,15 +10,19 @@ import SiteFooter from "@/components/SiteFooter";
 import SiteHeader from "@/components/SiteHeader";
 import { STORE } from "@/lib/store";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMetadata({
   title: "Visit the store",
   description:
     "Visit LQ Furniture at 589 N Coley Rd, Tupelo, MS 38801. Open Wednesday through Saturday 10 to 6 and Sunday 12 to 6. Call (662) 841-5959.",
-};
+  path: "/visit",
+});
 
 export default function Visit() {
   return (
     <>
+      <JsonLd
+        data={breadcrumbSchema([{ name: "Visit the store", path: "/visit" }])}
+      />
       <SiteHeader current="/visit" />
       <main>
         <section className="px-5 pt-10 sm:px-10 sm:pt-20 lg:px-16">

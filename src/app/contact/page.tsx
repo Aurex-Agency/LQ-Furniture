@@ -1,4 +1,7 @@
 import type { Metadata } from "next";
+import { pageMetadata } from "@/lib/seo";
+import JsonLd from "@/components/JsonLd";
+import { breadcrumbSchema } from "@/lib/schema";
 import Image from "next/image";
 import ContactForm from "@/components/ContactForm";
 import Reveal from "@/components/Reveal";
@@ -7,15 +10,19 @@ import SiteFooter from "@/components/SiteFooter";
 import SiteHeader from "@/components/SiteHeader";
 import { STORE } from "@/lib/store";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMetadata({
   title: "Contact us",
   description:
     "Reach LQ Furniture in Tupelo, MS. Call (662) 841-5959 during store hours, send a message, or come by 589 N Coley Rd. Open Wed thru Sat 10 to 6, Sun 12 to 6.",
-};
+  path: "/contact",
+});
 
 export default function Contact() {
   return (
     <>
+      <JsonLd
+        data={breadcrumbSchema([{ name: "Contact us", path: "/contact" }])}
+      />
       <SiteHeader current="/contact" />
       <main>
         <section className="px-5 pt-10 sm:px-10 sm:pt-20 lg:px-16">

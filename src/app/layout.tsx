@@ -1,6 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import localFont from "next/font/local";
 import Script from "next/script";
+import { SITE_URL } from "@/lib/site";
 import "./globals.css";
 
 const bebas = localFont({
@@ -16,26 +17,48 @@ const switzer = localFont({
 });
 
 export const metadata: Metadata = {
+  // Absolute base for canonical URLs, Open Graph images, and anything else
+  // that must not resolve relative. Without it Next emits relative social
+  // image paths, which every scraper rejects.
+  metadataBase: new URL(SITE_URL),
   title: {
     default: "LQ Furniture | Furniture Warehouse in Tupelo, MS",
     template: "%s | LQ Furniture",
   },
   description:
     "LQ Furniture is a high-volume furniture warehouse in Tupelo, Mississippi. Limited Quantities + Unlimited Savings. Financing available. Come see the floor.",
+  alternates: { canonical: "/" },
+  openGraph: {
+    type: "website",
+    siteName: "LQ Furniture",
+    locale: "en_US",
+    url: "/",
+    title: "LQ Furniture | Furniture Warehouse in Tupelo, MS",
+    description:
+      "A high-volume furniture warehouse in Tupelo, Mississippi. Limited Quantities + Unlimited Savings. Financing available. Come see the floor.",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "LQ Furniture | Furniture Warehouse in Tupelo, MS",
+    description:
+      "A high-volume furniture warehouse in Tupelo, Mississippi. Limited Quantities + Unlimited Savings. Financing available. Come see the floor.",
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+      "max-video-preview": -1,
+    },
+  },
 };
 
 export const viewport: Viewport = {
   themeColor: "#131311",
 };
-
-const directionContract = `<!--
-THESIS: The lit sign on a clean shop. A professional, crisply structured dark site whose character lives in working neon: signs that know the store clock, fixtures you can touch. Refuses the moody serif showroom, the cream build, and the brutalist ink build.
-OWN-WORLD: Night charcoal field with crisp hairline structure, no atmospheric pools. Lamp text, fog secondary. Client-supplied pairing: Bebas Neue, the American signage letter, for display and the signs; Switzer for body and small tracked labels. Neon green sign system: the live open/closed sign with tube buzz, static signs, the tube arrow, glow on primary actions. 6px controls, deep shadows under photographs only.
-STORY: A North Mississippi family gets a clean, fast, obviously professional site with a lit sign burning in the corner, plays with the floor filters and the FAQ, and either joins the text list, calls about financing, or drives to Tupelo.
-FIRST VIEWPORT: Full-bleed floor photo, heavy grotesk statement, the live sign burning top right, both doors beneath.
-FORM: Client-pinned refinement of the night world (rolls e1b2fdb5, 6e5352b2 retained): neon vibe, clean and professional, character, interactive. Pages: home, the-floor, financing, text-list, visit, blog, contact, privacy.
-FINISH: unreviewed and undocumented is unfinished; this build ends with the finish review, the verdict, and DESIGN.md
--->`;
 
 export default function RootLayout({
   children,
@@ -43,7 +66,6 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${bebas.variable} ${switzer.variable}`}>
       <body>
-        <span hidden dangerouslySetInnerHTML={{ __html: directionContract }} />
         {children}
         {/* Metricool visitor analytics, the client's own tracking hash.
             Loaded after the page is interactive so it never competes with
