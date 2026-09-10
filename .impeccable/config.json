@@ -1,0 +1,14 @@
+{
+  "detector": {
+    "ignoreRules": [],
+    "ignoreFiles": [],
+    "ignoreValues": [
+      {
+        "rule": "design-system-font-size",
+        "value": "0.9375rem",
+        "createdAt": "2026-09-10T19:21:57.492Z",
+        "reason": "DESIGN.md line 152 documents this as the Small step, written as the arbitrary utility text-[0.9375rem] and deliberately not a named token; pre-existing usage for error messages and consent copy"
+      }
+    ]
+  }
+}

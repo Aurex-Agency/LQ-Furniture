@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 type Status = "idle" | "sending" | "done" | "error";
 type Field = "name" | "phone" | "message";
@@ -9,6 +9,13 @@ export default function ContactForm() {
   const [status, setStatus] = useState<Status>("idle");
   const [message, setMessage] = useState("");
   const [badField, setBadField] = useState<Field | null>(null);
+  // When the visitor was first able to type. Set after mount so it measures
+  // real time in front of the form, and so the server can reject submissions
+  // that arrive faster than a person could fill it in.
+  const startedAt = useRef<number | null>(null);
+  useEffect(() => {
+    startedAt.current = Date.now();
+  }, []);
 
   function fieldProps(field: Field) {
     const bad = status === "error" && badField === field;
@@ -56,14 +63,28 @@ export default function ContactForm() {
           phone: digits.slice(-10),
           message: body,
           pageUrl: window.location.href,
+          company: String(data.get("company") ?? ""),
+          startedAt: startedAt.current,
         }),
       });
+      if (res.status === 429) {
+        setStatus("error");
+        setBadField(null);
+        setMessage(
+          "That's a few messages in a row. Give it a few minutes, or call the store and we'll pick up.",
+        );
+        return;
+      }
       if (!res.ok) throw new Error(String(res.status));
       setStatus("done");
     } catch {
       setStatus("error");
       setBadField(null);
-      setMessage("Something broke on our end. Try again, or just call us.");
+      // The phone number is the reliable fallback whenever delivery fails, so
+      // the visitor is never left with a dead end.
+      setMessage(
+        "Your message didn't go through. Please call the store at (662) 841-5959 and we'll take care of it.",
+      );
     }
   }
 
@@ -82,6 +103,29 @@ export default function ContactForm() {
 
   return (
     <form onSubmit={submit} noValidate>
+      {/* Honeypot. Positioned off-screen rather than display:none, which some
+          bots check for, and hidden from assistive tech and the tab order so
+          no real visitor can reach it. A filled value means a bot. */}
+      <div
+        aria-hidden
+        style={{
+          position: "absolute",
+          width: 1,
+          height: 1,
+          overflow: "hidden",
+          clipPath: "inset(50%)",
+          whiteSpace: "nowrap",
+        }}
+      >
+        <label htmlFor="ct-company">Company</label>
+        <input
+          id="ct-company"
+          name="company"
+          type="text"
+          tabIndex={-1}
+          autoComplete="off"
+        />
+      </div>
       <label htmlFor="ct-name" className="label text-fog">
         Your name
       </label>
