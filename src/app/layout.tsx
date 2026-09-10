@@ -5,13 +5,13 @@ import { SITE_URL } from "@/lib/site";
 import "./globals.css";
 
 const bebas = localFont({
-  src: "../fonts/BebasNeue-Regular.otf",
+  src: "../fonts/BebasNeue-Regular.woff2",
   variable: "--font-bebas",
   display: "swap",
 });
 
 const switzer = localFont({
-  src: "../fonts/Switzer-Regular.otf",
+  src: "../fonts/Switzer-Regular.woff2",
   variable: "--font-switzer",
   display: "swap",
 });

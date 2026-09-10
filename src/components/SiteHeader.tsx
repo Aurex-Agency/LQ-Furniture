@@ -19,6 +19,11 @@ export default function SiteHeader({ current }: { current?: string }) {
           width={712}
           height={548}
           priority
+          // The mark renders 47px wide on phones and 62px from sm up. Without
+          // sizes, Next falls back to a 1x/2x srcset built from the device
+          // widths and preloads a 750px-wide logo for a 62px slot, spending
+          // roughly 48KB on it and starving the hero image it competes with.
+          sizes="(min-width: 640px) 62px, 47px"
           className="h-9 w-auto sm:h-12"
         />
       </Link>

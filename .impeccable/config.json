@@ -8,6 +8,12 @@
         "value": "0.9375rem",
         "createdAt": "2026-09-10T19:21:57.492Z",
         "reason": "DESIGN.md line 152 documents this as the Small step, written as the arbitrary utility text-[0.9375rem] and deliberately not a named token; pre-existing usage for error messages and consent copy"
+      },
+      {
+        "rule": "design-system-font-size",
+        "value": "0.6875rem",
+        "createdAt": "2026-09-10T19:41:06.177Z",
+        "reason": "Pre-existing mobile down-step of the label token, used consistently in SiteHeader nav and homepage figcaptions; both scale up to documented steps (text-label / 0.9375rem) at sm. Not user confirmed; flagged to the user in the PR notes."
       }
     ]
   }
