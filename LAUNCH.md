@@ -70,6 +70,35 @@ From the Google Business Profile, get:
 
 Add them to `src/lib/store.ts` and thread them through `schema.ts`.
 
+### 4. Confirm Google Analytics is receiving data
+
+GA4 (`G-DZ7R9W7GJH`) is in the site, and the Content Security Policy in
+`next.config.ts` allowlists the three hosts it needs. After the cutover, open
+GA4 Realtime, load the site, tap the phone number and submit the contact form,
+and confirm these events arrive:
+
+| Event | Fires when |
+| --- | --- |
+| `generate_lead` | contact form delivery is confirmed by the server |
+| `join_text_list` | SMS opt-in reaches the CRM |
+| `click_to_call` | any `tel:` link is tapped |
+| `get_directions` | any maps link is opened |
+| `financing_apply` | an outbound financing application is opened |
+
+Then mark `generate_lead`, `join_text_list` and `click_to_call` as **key
+events** in GA4 (Admin → Events), or they will be counted but not reported as
+conversions.
+
+Two things worth knowing:
+
+- The form events fire only after the server confirms delivery, never on
+  submit. If the Resend domain or the CRM webhook is misconfigured, the
+  conversion count stays at zero rather than inflating. A zero here is a real
+  signal, not a tracking bug.
+- Tracker blockers are common on phones. GA will undercount. Treat it as a
+  trend line, not a ledger; the store's own phone log is the ground truth for
+  calls.
+
 ## The cutover
 
 1. Point the apex and `www` at Vercel and add both domains to the project.
