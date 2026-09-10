@@ -1,15 +1,17 @@
 import type { Metadata } from "next";
+import { pageMetadata } from "@/lib/seo";
 import Image from "next/image";
 import Reveal from "@/components/Reveal";
 import SiteFooter from "@/components/SiteFooter";
 import SiteHeader from "@/components/SiteHeader";
 import { STORE } from "@/lib/store";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMetadata({
   title: "Terms and conditions",
   description:
     "Terms and conditions for the LQ Furniture website and text message program, including message frequency, opt-out instructions, and carrier disclosures.",
-};
+  path: "/terms",
+});
 
 export default function Terms() {
   return (

@@ -25,11 +25,30 @@ export default function Reveal({
   useEffect(() => {
     const el = ref.current;
     if (!el) return;
-    if (el.getBoundingClientRect().top <= window.innerHeight) return;
-    setState("hidden");
+
+    // The observer's first callback reports position without a synchronous
+    // layout read. Calling getBoundingClientRect() here instead forced a
+    // layout flush per instance during hydration, and this component is
+    // mounted a dozen times on the homepage alone.
+    //
+    // Anything already at or above the fold on that first callback stays
+    // visible; only elements still below it go dark and light up on scroll.
+    let settled = false;
     const observer = new IntersectionObserver(
       (entries) => {
         for (const entry of entries) {
+          if (!settled) {
+            settled = true;
+            // boundingClientRect comes from the observer, already measured.
+            const below = entry.boundingClientRect.top > window.innerHeight;
+            if (!below) {
+              observer.disconnect();
+              return;
+            }
+            setState("hidden");
+            // Not yet on screen: wait for the intersection that follows.
+            if (!entry.isIntersecting) continue;
+          }
           if (entry.isIntersecting) {
             setState("revealed");
             observer.disconnect();

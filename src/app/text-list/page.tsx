@@ -1,19 +1,26 @@
 import type { Metadata } from "next";
+import { pageMetadata } from "@/lib/seo";
+import JsonLd from "@/components/JsonLd";
+import { breadcrumbSchema } from "@/lib/schema";
 import Image from "next/image";
 import Reveal from "@/components/Reveal";
 import SiteFooter from "@/components/SiteFooter";
 import SiteHeader from "@/components/SiteHeader";
 import SmsForm from "@/components/SmsForm";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMetadata({
   title: "Join the text list",
   description:
     "Join the LQ Furniture text list and hear about new truckloads and markdowns in Tupelo, MS before anyone else. About 4 to 6 texts a month. Reply STOP any time.",
-};
+  path: "/text-list",
+});
 
 export default function TextList() {
   return (
     <>
+      <JsonLd
+        data={breadcrumbSchema([{ name: "Join the text list", path: "/text-list" }])}
+      />
       <SiteHeader current="/text-list" />
       <main>
         <section className="px-5 pt-10 sm:px-10 sm:pt-20 lg:px-16">

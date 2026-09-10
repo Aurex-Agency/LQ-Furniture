@@ -410,6 +410,10 @@ details > summary::-webkit-details-marker {
   }
 }
 
+/* Global backstop. The block above resolves each named effect to its
+   finished state so content is fully visible; this catches anything added
+   later that forgets to. Kept separate and last so its !important cannot
+   fight the specific rules above. */
 @media (prefers-reduced-motion: reduce) {
   *,
   *::before,

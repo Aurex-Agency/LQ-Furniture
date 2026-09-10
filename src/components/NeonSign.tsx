@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { HOURS_BY_DAY } from "@/lib/store";
 
 const DAY_NAMES = [
@@ -61,6 +61,7 @@ function readClock(now: Date): SignState {
 export default function NeonSign({ big = false }: { big?: boolean }) {
   const [state, setState] = useState<SignState>({ lit: null });
   const [flickerKey, setFlickerKey] = useState(0);
+  const ref = useRef<HTMLButtonElement>(null);
 
   useEffect(() => {
     const update = () => setState(readClock(new Date()));
@@ -72,6 +73,25 @@ export default function NeonSign({ big = false }: { big?: boolean }) {
     };
   }, []);
 
+  // The tube hum is an infinite animation. Left alone it keeps compositing
+  // after the sign has scrolled away, which costs battery on the phones most
+  // of this audience arrives on, for something nobody can see. Pausing is
+  // invisible while the sign is on screen and free once it is not.
+  //
+  // Re-runs on flickerKey because tapping the sign remounts the button.
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry) el.style.animationPlayState = entry.isIntersecting ? "" : "paused";
+      },
+      { threshold: 0 },
+    );
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, [flickerKey]);
+
   const lit = state.lit !== false;
   const headline =
     state.lit === true ? "We're open" : state.lit === false ? "Closed" : "Open Wed thru Sun";
@@ -80,6 +100,7 @@ export default function NeonSign({ big = false }: { big?: boolean }) {
 
   return (
     <button
+      ref={ref}
       type="button"
       aria-live="polite"
       key={flickerKey}

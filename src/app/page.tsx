@@ -12,52 +12,15 @@ import SmsForm from "@/components/SmsForm";
 import { STORE } from "@/lib/store";
 import { FLOOR_ITEMS } from "@/lib/floor";
 import { FAQS } from "@/lib/faq";
+import { faqSchema, jsonLdScript, storeSchema } from "@/lib/schema";
+import { pageMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMetadata({
+  title: "LQ Furniture | Furniture Warehouse in Tupelo, MS",
   description:
     "LQ Furniture is a furniture warehouse at 589 N Coley Rd in Tupelo, MS. Sectionals, dining, bedroom, recliners and mattresses at volume prices. Limited Quantities + Unlimited Savings. Open Wed thru Sat 10 to 6, Sun 12 to 6.",
-};
-
-const jsonLd = {
-  "@context": "https://schema.org",
-  "@type": "FurnitureStore",
-  name: STORE.name,
-  slogan: STORE.tagline,
-  telephone: "+1-662-841-5959",
-  address: {
-    "@type": "PostalAddress",
-    streetAddress: STORE.address,
-    addressLocality: STORE.city,
-    addressRegion: STORE.state,
-    postalCode: STORE.zip,
-    addressCountry: "US",
-  },
-  openingHoursSpecification: [
-    {
-      "@type": "OpeningHoursSpecification",
-      dayOfWeek: ["Wednesday", "Thursday", "Friday", "Saturday"],
-      opens: "10:00",
-      closes: "18:00",
-    },
-    {
-      "@type": "OpeningHoursSpecification",
-      dayOfWeek: "Sunday",
-      opens: "12:00",
-      closes: "18:00",
-    },
-  ],
-  image: "/photos/IMG_8587.jpg",
-};
-
-const faqJsonLd = {
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
-  mainEntity: FAQS.map((f) => ({
-    "@type": "Question",
-    name: f.q,
-    acceptedAnswer: { "@type": "Answer", text: f.a },
-  })),
-};
+  path: "/",
+});
 
 const previewIds = ["8617", "8620", "8602", "8627"];
 const urgencyIds = ["8594", "8632", "8612"];
@@ -69,11 +32,11 @@ export default function Home() {
     <>
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        dangerouslySetInnerHTML={{ __html: jsonLdScript(storeSchema()) }}
       />
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
+        dangerouslySetInnerHTML={{ __html: jsonLdScript(faqSchema(FAQS)) }}
       />
       <SiteHeader />
 

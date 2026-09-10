@@ -12,6 +12,7 @@ export default function SiteFooter() {
             alt="LQ Furniture"
             width={712}
             height={548}
+            sizes="52px"
             className="h-10 w-auto"
           />
           <p className="mt-4 max-w-xs text-[0.9375rem] leading-relaxed text-fog">

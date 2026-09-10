@@ -1,4 +1,7 @@
 import type { Metadata } from "next";
+import { pageMetadata } from "@/lib/seo";
+import JsonLd from "@/components/JsonLd";
+import { breadcrumbSchema } from "@/lib/schema";
 import Image from "next/image";
 import Reveal from "@/components/Reveal";
 import SiteFooter from "@/components/SiteFooter";
@@ -8,15 +11,19 @@ import { FINANCING_PARTNERS } from "@/lib/financing";
 import FaqList from "@/components/FaqList";
 import { FAQS } from "@/lib/faq";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMetadata({
   title: "Financing",
   description:
     "Four ways to finance furniture at LQ Furniture in Tupelo, MS: Synchrony and Tower Loans with up to 12 months no interest, plus Acima and Snap with no credit check. Apply online or at the counter.",
-};
+  path: "/financing",
+});
 
 export default function Financing() {
   return (
     <>
+      <JsonLd
+        data={breadcrumbSchema([{ name: "Financing", path: "/financing" }])}
+      />
       <SiteHeader current="/financing" />
       <main>
         <section className="px-5 pt-10 sm:px-10 sm:pt-20 lg:px-16">

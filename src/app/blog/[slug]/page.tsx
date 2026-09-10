@@ -5,6 +5,9 @@ import { notFound } from "next/navigation";
 import SiteFooter from "@/components/SiteFooter";
 import SiteHeader from "@/components/SiteHeader";
 import { getPost, POSTS } from "@/lib/posts";
+import PostBody from "@/components/PostBody";
+import { blogPostingSchema, breadcrumbSchema, jsonLdScript } from "@/lib/schema";
+import { pageMetadata } from "@/lib/seo";
 
 export function generateStaticParams() {
   return POSTS.map((p) => ({ slug: p.slug }));
@@ -18,7 +21,24 @@ export async function generateMetadata({
   const { slug } = await params;
   const post = getPost(slug);
   if (!post) return {};
-  return { title: post.title, description: post.description };
+  return {
+    ...pageMetadata({
+      title: post.title,
+      description: post.description,
+      path: `/blog/${post.slug}`,
+      type: "article",
+    }),
+    openGraph: {
+      type: "article",
+      siteName: "LQ Furniture",
+      locale: "en_US",
+      url: `/blog/${post.slug}`,
+      title: `${post.title} | LQ Furniture`,
+      description: post.description,
+      publishedTime: `${post.date}T12:00:00Z`,
+      images: [{ url: post.image.src, alt: post.image.alt }],
+    },
+  };
 }
 
 function fmtDate(iso: string): string {
@@ -41,14 +61,51 @@ export default async function PostPage({
 
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: jsonLdScript(
+            blogPostingSchema({
+              slug: post.slug,
+              title: post.title,
+              description: post.description,
+              date: post.date,
+              updated: post.updated,
+              author: post.author,
+              image: post.image.src,
+            }),
+          ),
+        }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: jsonLdScript(
+            breadcrumbSchema([
+              { name: "Notes from the floor", path: "/blog" },
+              { name: post.title, path: `/blog/${post.slug}` },
+            ]),
+          ),
+        }}
+      />
       <SiteHeader current="/blog" />
       <main>
         <article className="px-5 pt-16 sm:px-10 sm:pt-20 lg:px-16">
           <h1 className="display max-w-3xl text-h1 text-lamp">
             {post.title}
           </h1>
+          {/* Byline and dates. Both Google and the answer engines weigh who
+              stands behind a claim and how fresh it is, and a shop's own
+              floor knowledge is a truthful thing to attribute to the shop. */}
           <p className="mt-3 text-[0.9375rem] italic text-fog">
-            {fmtDate(post.date)}
+            By {post.author} &middot;{" "}
+            <time dateTime={post.date}>{fmtDate(post.date)}</time>
+            {post.updated ? (
+              <>
+                {" "}&middot; Updated{" "}
+                <time dateTime={post.updated}>{fmtDate(post.updated)}</time>
+              </>
+            ) : null}
           </p>
           <div className="mt-10 overflow-hidden">
             <Image
@@ -62,17 +119,7 @@ export default async function PostPage({
             />
           </div>
           <div className="mt-12 max-w-2xl pb-16">
-            {post.body.map((block, i) =>
-              block.startsWith("## ") ? (
-                <h2 key={i} className="display mt-10 text-h3 text-lamp">
-                  {block.slice(3)}
-                </h2>
-              ) : (
-                <p key={i} className="mt-5 text-body-lg leading-relaxed text-lamp">
-                  {block}
-                </p>
-              ),
-            )}
+            <PostBody body={post.body} />
           </div>
         </article>
         <section className="border-t border-night-3 px-5 py-14 sm:px-10 lg:px-16">
