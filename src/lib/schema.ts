@@ -108,6 +108,8 @@ export function blogPostingSchema(post: {
   title: string;
   description: string;
   date: string;
+  updated?: string;
+  author?: string;
   image?: string;
 }) {
   const url = absoluteUrl(`/blog/${post.slug}`);
@@ -118,13 +120,15 @@ export function blogPostingSchema(post: {
     headline: post.title,
     description: post.description,
     datePublished: `${post.date}T12:00:00Z`,
-    dateModified: `${post.date}T12:00:00Z`,
+    dateModified: `${post.updated ?? post.date}T12:00:00Z`,
     mainEntityOfPage: { "@type": "WebPage", "@id": url },
     url,
     // The store itself is the author and publisher. There is no individual
     // byline on these posts, and inventing one would be a false E-E-A-T
     // signal, so the organization carries the authorship.
-    author: { "@id": ORG_ID },
+    author: post.author
+      ? { "@type": "Organization", name: post.author, "@id": ORG_ID }
+      : { "@id": ORG_ID },
     publisher: { "@id": ORG_ID },
     ...(post.image ? { image: [absoluteUrl(post.image)] } : {}),
   };
