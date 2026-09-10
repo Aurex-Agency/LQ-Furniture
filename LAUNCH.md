@@ -6,47 +6,75 @@ migration between two running sites, so the order below matters.
 
 ## Before the cutover
 
-### 1. Resend: verify a sending domain
+### 1. Resend: the environment variables must exist in Vercel
 
-**This is the one step that cannot be tested until it is done, and the contact
-form does not work in production without it.**
+**This is what actually broke the contact form after launch.** The code shipped
+and worked; the credentials only ever existed in a gitignored `.env.local` on a
+developer machine, so in production `RESEND_API_KEY` was simply unset and every
+submission failed. Code and credentials do not travel together, and nothing in
+a deploy will warn you.
 
-The API key currently in the project is authorised for exactly one sender:
-`resend.dev`, Resend's shared sandbox. Resend refuses any other domain, and the
-sandbox delivers only to the Resend account owner's own address. Verified
-against the live API:
+Four variables belong in the Vercel project, for Production and Preview:
 
-```
-from: businessoffice@lqfurniture.com  ->  403, not authorized to send from lqfurniture.com
-from: onboarding@resend.dev, to: businessoffice@lqfurniture.com
-  ->  403, "You can only send testing emails to your own email address"
-```
+| Variable | Value |
+| --- | --- |
+| `RESEND_API_KEY` | the Resend key |
+| `CONTACT_FROM_EMAIL` | `support@team.lqfurniture.com` |
+| `CONTACT_TO_EMAIL` | where messages should land |
+| `CONTACT_FROM_NAME` | optional; defaults to "LQ Furniture Website" |
 
-So:
+Environment variables only apply to **new** deployments. After setting them,
+redeploy, or the running deployment keeps the old empty environment.
 
-1. Add `lqfurniture.com` (or a subdomain such as `send.lqfurniture.com`) at
-   <https://resend.com/domains> and publish the DKIM, SPF and return-path
-   records it gives you. These are DNS records on the domain, so do them while
-   you still have the DNS panel open for the cutover.
-2. Wait for Resend to show the domain as verified.
-3. Set the Vercel environment variables:
-   - `RESEND_API_KEY`
-   - `CONTACT_FROM_EMAIL` — an address on the verified domain, e.g.
-     `website@lqfurniture.com`
-   - `CONTACT_TO_EMAIL` — where messages should land
-
-Until step 3 is complete, leave `CONTACT_TO_EMAIL` pointed at the Resend
-account owner's address. That combination is tested and works.
-
-Check it from outside at any time:
+Check from outside at any time:
 
 ```
 curl -s https://lqfurniture.com/api/contact
 ```
 
-`deliverable: true` means a verified domain is in use. `deliverable: false`
-means the site is still on the sandbox and only the account owner will receive
-anything. The endpoint never reveals the key.
+`deliverable: true` means a real verified sender is in use. `deliverable:
+false` means the site is on Resend's sandbox and only the Resend account owner
+will receive anything. The endpoint never reveals the key.
+
+#### A verified domain and an authorised key are two different things
+
+A restricted Resend key is scoped to specific domains. `team.lqfurniture.com`
+can be verified in the Resend dashboard while a given key still returns
+`403 not authorized to send emails from ...` for it. If the health probe says
+`deliverable: true` but nothing arrives, send a test straight at the API to see
+which of the two is wrong:
+
+```
+curl -X POST https://api.resend.com/emails \
+  -H "Authorization: Bearer $RESEND_API_KEY" \
+  -H "Content-Type: application/json" \
+  -d '{"from":"support@team.lqfurniture.com","to":["delivered@resend.dev"],"subject":"probe","text":"probe"}'
+```
+
+A message id means the key is authorised. A 403 names the domain it refused.
+
+#### Deliverability: add a DMARC record
+
+As of this writing `team.lqfurniture.com` has DKIM, SPF and a bounce MX, all
+correct, but **neither `lqfurniture.com` nor `team.lqfurniture.com` has a DMARC
+record**. Mail still sends, but a brand-new sending domain with no reputation
+and no DMARC is a strong candidate for the spam folder, and Google and Yahoo
+both now expect DMARC from anyone sending at volume.
+
+Add this TXT record and let it sit before tightening it:
+
+```
+Name:  _dmarc.lqfurniture.com
+Type:  TXT
+Value: v=DMARC1; p=none; rua=mailto:dmarc@lqfurniture.com; fo=1
+```
+
+`p=none` only monitors, so it cannot break existing mail. Once the reports look
+clean, move to `p=quarantine`.
+
+Until the domain has a track record, **check the spam folder** before
+concluding a submission was lost. Resend returning a message id means Resend
+accepted it, not that the inbox filed it where you were looking.
 
 ### 2. Confirm the SMS webhook
 
