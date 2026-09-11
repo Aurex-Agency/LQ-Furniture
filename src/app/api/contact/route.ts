@@ -1,5 +1,10 @@
 import { NextRequest, NextResponse } from "next/server";
-import { getEmailConfig, isSandboxSender, sendContactEmail } from "@/lib/email";
+import {
+  getEmailConfig,
+  isSandboxSender,
+  sendConfirmationEmail,
+  sendContactEmail,
+} from "@/lib/email";
 import { checkBotSignals, clientIp, rateLimit } from "@/lib/rate-limit";
 
 // Contact messages are emailed to the address in CONTACT_TO_EMAIL via Resend.
@@ -19,6 +24,9 @@ import { checkBotSignals, clientIp, rateLimit } from "@/lib/rate-limit";
 // SEND_LIMIT caps how many emails one address can actually cause, and only
 // counts submissions that passed validation. That is the expensive operation
 // and the one worth guarding tightly.
+// Deliberately loose: it only rejects addresses that cannot be delivered to.
+const EMAIL_SHAPE = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
+
 const REQUEST_LIMIT = { limit: 30, windowMs: 10 * 60 * 1000 };
 const SEND_LIMIT = { limit: 5, windowMs: 10 * 60 * 1000 };
 
@@ -70,10 +78,11 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ ok: false }, { status: 400 });
   }
 
-  const { name, phone, message, pageUrl, honeypot, startedAt } = (body ?? {}) as {
+  const { name, phone, message, email, pageUrl, honeypot, startedAt } = (body ?? {}) as {
     name?: unknown;
     phone?: unknown;
     message?: unknown;
+    email?: unknown;
     pageUrl?: unknown;
     honeypot?: unknown;
     startedAt?: unknown;
@@ -117,6 +126,14 @@ export async function POST(req: NextRequest) {
   if (typeof pageUrl !== "string" || pageUrl.length > 500) {
     return NextResponse.json({ ok: false, error: "invalid_page" }, { status: 400 });
   }
+  // The email field is optional. Anything present must look like an address,
+  // but an absent one is not an error: the page promises a phone call, and
+  // requiring an address to leave a message would cost real leads.
+  const visitorEmail =
+    typeof email === "string" && email.trim().length > 0 ? email.trim() : "";
+  if (visitorEmail && (visitorEmail.length > 254 || !EMAIL_SHAPE.test(visitorEmail))) {
+    return NextResponse.json({ ok: false, error: "invalid_email" }, { status: 400 });
+  }
 
   // Only well-formed submissions reach this counter, so failed validation
   // never eats a visitor's budget.
@@ -139,6 +156,7 @@ export async function POST(req: NextRequest) {
       name: trimmedName,
       phone,
       message: trimmedMessage,
+      email: visitorEmail,
       pageUrl,
       timestamp,
     }),
@@ -166,6 +184,7 @@ export async function POST(req: NextRequest) {
     message: trimmedMessage,
     pageUrl,
     timestamp,
+    email: visitorEmail || undefined,
     suspicion: botCheck.bot ? botCheck.reason : undefined,
   });
 
@@ -187,6 +206,29 @@ export async function POST(req: NextRequest) {
   console.log(
     JSON.stringify({ type: "contact_email_sent", id: result.id, timestamp }),
   );
+
+  // Best effort, and deliberately after the store copy has already
+  // succeeded. The visitor has been helped the moment the store has their
+  // message; a bounced confirmation must never turn that into a failure, so
+  // the outcome is logged and the response stays a success either way.
+  if (visitorEmail && !botCheck.bot) {
+    const confirmation = await sendConfirmationEmail(config, {
+      name: trimmedName,
+      email: visitorEmail,
+    });
+    console.log(
+      JSON.stringify(
+        confirmation.ok
+          ? { type: "contact_confirmation_sent", id: confirmation.id, timestamp }
+          : {
+              type: "contact_confirmation_failed",
+              error: confirmation.error,
+              detail: confirmation.detail,
+              timestamp,
+            },
+      ),
+    );
+  }
 
   return NextResponse.json({ ok: true });
 }

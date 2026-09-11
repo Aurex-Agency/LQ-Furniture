@@ -4,7 +4,7 @@ import { useEffect, useRef, useState } from "react";
 import { track } from "@/lib/analytics";
 
 type Status = "idle" | "sending" | "done" | "error";
-type Field = "name" | "phone" | "message";
+type Field = "name" | "phone" | "email" | "message";
 
 export default function ContactForm() {
   const [status, setStatus] = useState<Status>("idle");
@@ -46,6 +46,15 @@ export default function ContactForm() {
       setMessage("We call back rather than email, so we need a ten digit number.");
       return;
     }
+    const email = String(data.get("email") ?? "").trim();
+    // Optional, so an empty value is fine. A typo is not: the confirmation
+    // would silently go nowhere, so it is worth catching here.
+    if (email && !/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email)) {
+      setStatus("error");
+      setBadField("email");
+      setMessage("That email doesn't look right. Fix it, or leave it blank and we'll just call.");
+      return;
+    }
     if (!body) {
       setStatus("error");
       setBadField("message");
@@ -63,6 +72,7 @@ export default function ContactForm() {
           name,
           phone: digits.slice(-10),
           message: body,
+          email,
           pageUrl: window.location.href,
           honeypot: String(data.get("lq_hp_9f2") ?? ""),
           startedAt: startedAt.current,
@@ -167,6 +177,18 @@ export default function ContactForm() {
         autoComplete="tel"
         required
         {...fieldProps("phone")}
+        className="mt-2 block min-h-12 w-full rounded-ctl border border-night-3 bg-night-2 px-4 text-body text-lamp"
+      />
+      <label htmlFor="ct-email" className="label mt-5 block text-fog">
+        Email <span className="normal-case tracking-normal">(optional, for a copy of this)</span>
+      </label>
+      <input
+        id="ct-email"
+        name="email"
+        type="email"
+        inputMode="email"
+        autoComplete="email"
+        {...fieldProps("email")}
         className="mt-2 block min-h-12 w-full rounded-ctl border border-night-3 bg-night-2 px-4 text-body text-lamp"
       />
       <label htmlFor="ct-message" className="label mt-5 block text-fog">
