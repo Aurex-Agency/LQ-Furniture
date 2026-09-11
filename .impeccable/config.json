@@ -14,6 +14,12 @@
         "value": "0.6875rem",
         "createdAt": "2026-09-10T19:41:06.177Z",
         "reason": "Pre-existing mobile down-step of the label token, used consistently in SiteHeader nav and homepage figcaptions; both scale up to documented steps (text-label / 0.9375rem) at sm. Not user confirmed; flagged to the user in the PR notes."
+      },
+      {
+        "rule": "design-system-radius",
+        "value": "6px\">",
+        "createdAt": "2026-09-11T15:48:22.075Z",
+        "reason": "6px is the documented rounded.ctl token (DESIGN.md:55, and line 186 'Controls carry 6px'). Transcribed as a literal because HTML email cannot consume Tailwind classes or CSS variables; matches the pre-existing 6px in the store-notification template in the same file. Not user confirmed."
       }
     ]
   }
