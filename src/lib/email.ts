@@ -1,4 +1,6 @@
 import { Resend } from "resend";
+import { STORE } from "@/lib/store";
+import { SITE_URL } from "@/lib/site";
 
 // Outbound email for the contact form.
 //
@@ -15,6 +17,11 @@ import { Resend } from "resend";
 //   CONTACT_FROM_EMAIL  defaults to the sandbox sender
 //   CONTACT_TO_EMAIL    defaults to the account owner, the only address the
 //                       sandbox can currently reach
+
+const SITE = SITE_URL;
+
+// Written once so the confirmation cannot drift from the hours on /visit.
+const HOURS_LINE = "Wednesday to Saturday 10 to 6, Sunday 12 to 6";
 
 const SANDBOX_FROM = "onboarding@resend.dev";
 const SANDBOX_DOMAIN = "resend.dev";
@@ -38,7 +45,10 @@ function withDisplayName(from: string): string {
 export type EmailConfig = {
   apiKey: string;
   from: string;
-  to: string;
+  // One or more store recipients. CONTACT_TO_EMAIL accepts a comma-separated
+  // list so the shop inbox and anyone watching it can both be addressed
+  // without a code change.
+  to: string[];
   replyTo?: string;
 };
 
@@ -57,8 +67,11 @@ export function getEmailConfig(): EmailConfig | ConfigProblem {
   }
 
   const from = withDisplayName(process.env.CONTACT_FROM_EMAIL ?? SANDBOX_FROM);
-  const to = process.env.CONTACT_TO_EMAIL;
-  if (!to) {
+  const to = (process.env.CONTACT_TO_EMAIL ?? "")
+    .split(",")
+    .map((address) => address.trim())
+    .filter(Boolean);
+  if (to.length === 0) {
     return {
       ok: false,
       error: "email_unconfigured",
@@ -92,6 +105,8 @@ export async function sendContactEmail(
     message: string;
     pageUrl: string;
     timestamp: string;
+    // Optional: the form asks for it but does not require it.
+    email?: string;
     // Set when the bot heuristics flagged this submission. It is delivered
     // either way; this only marks it so the reader can judge.
     suspicion?: string;
@@ -110,6 +125,7 @@ export async function sendContactEmail(
     ``,
     `Name:    ${fields.name}`,
     `Phone:   ${prettyPhone}`,
+    ...(fields.email ? [`Email:   ${fields.email}`] : []),
     ``,
     `Message:`,
     fields.message,
@@ -135,6 +151,7 @@ export async function sendContactEmail(
   <table cellpadding="0" cellspacing="0" style="margin-bottom:20px">
     <tr><td style="${label}">Name</td><td style="padding:4px 0"><strong>${escapeHtml(fields.name)}</strong></td></tr>
     <tr><td style="${label}">Phone</td><td style="padding:4px 0"><a href="tel:+1${fields.phone}" style="color:#131311"><strong>${prettyPhone}</strong></a></td></tr>
+    ${fields.email ? `<tr><td style="${label}">Email</td><td style="padding:4px 0"><a href="mailto:${escapeHtml(fields.email)}" style="color:#131311">${escapeHtml(fields.email)}</a></td></tr>` : ""}
   </table>
   <div style="padding:16px;background:#f4f2ec;border-radius:6px;white-space:pre-wrap">${escapeHtml(fields.message)}</div>
   <p style="margin-top:20px;font-size:15px">
@@ -146,12 +163,13 @@ export async function sendContactEmail(
   try {
     const { data, error } = await resend.emails.send({
       from: config.from,
-      to: [config.to],
+      to: config.to,
       subject: `${flag}LQ Furniture website: ${fields.name}`,
       text,
       html,
-      // Replies go to the store's own thread, not to the sandbox sender.
-      ...(config.replyTo ? { replyTo: config.replyTo } : {}),
+      // When the visitor supplied an email, hitting reply in the shop inbox
+      // should reach them rather than the unattended sending address.
+      ...(fields.email ? { replyTo: fields.email } : {}),
     });
 
     if (error) {
@@ -182,4 +200,81 @@ function escapeHtml(s: string): string {
     .replace(/</g, "&lt;")
     .replace(/>/g, "&gt;")
     .replace(/"/g, "&quot;");
+}
+
+// The confirmation sent back to a visitor who supplied an email address.
+//
+// Deliberately does not quote the message they typed. The address is
+// whatever was entered in a public form, so echoing free text back to it
+// would turn the contact page into a way to send arbitrary words to any
+// inbox. Rate limiting caps the volume; not repeating attacker-controlled
+// content removes the motive. The store's own copy keeps the full message.
+//
+// Sending this must never decide whether a submission succeeded. The store
+// copy is the one that matters, so a failure here is logged and swallowed.
+export async function sendConfirmationEmail(
+  config: EmailConfig,
+  fields: { name: string; email: string },
+): Promise<SendResult> {
+  const resend = new Resend(config.apiKey);
+
+  const text = [
+    `Hi ${fields.name},`,
+    ``,
+    `We have your message, and somebody from the store will call you back.`,
+    ``,
+    `If you need an answer sooner, the phone is faster than email:`,
+    `${STORE.phone}, ${HOURS_LINE}.`,
+    ``,
+    `The floor changes every week and we usually cannot reorder, so if you`,
+    `had your eye on something, it is worth calling.`,
+    ``,
+    `LQ Furniture`,
+    `${STORE.address}, ${STORE.city}, ${STORE.state} ${STORE.zip}`,
+    `${SITE}`,
+    ``,
+    `This is an automated confirmation. You do not need to reply.`,
+  ].join("\n");
+
+  const html = `<div style="font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;font-size:17px;line-height:1.6;color:#131311">
+  <h2 style="font-size:22px;margin:0 0 16px">We have your message</h2>
+  <p style="margin:0 0 16px">Hi ${escapeHtml(fields.name)}, thanks for getting in touch. Somebody from the store will call you back.</p>
+  <p style="margin:0 0 16px">If you need an answer sooner, the phone is faster than email:<br>
+    <a href="tel:+16628415959" style="color:#131311"><strong>${STORE.phone}</strong></a>, ${HOURS_LINE}.</p>
+  <p style="margin:0 0 20px">The floor changes every week and we usually cannot reorder, so if you had your eye on something, it is worth calling.</p>
+  <div style="padding:16px;background:#f4f2ec;border-radius:6px">
+    <strong>LQ Furniture</strong><br>
+    ${STORE.address}, ${STORE.city}, ${STORE.state} ${STORE.zip}<br>
+    <a href="${SITE}" style="color:#131311">${SITE.replace("https://", "")}</a>
+  </div>
+  <p style="margin-top:20px;font-size:15px">This is an automated confirmation. You do not need to reply.</p>
+</div>`;
+
+  try {
+    const { data, error } = await resend.emails.send({
+      from: config.from,
+      to: [fields.email],
+      subject: "We have your message | LQ Furniture",
+      text,
+      html,
+      ...(config.to[0] ? { replyTo: config.to[0] } : {}),
+    });
+    if (error) {
+      return {
+        ok: false,
+        error: "confirmation_rejected",
+        detail: `${error.name ?? "error"}: ${error.message ?? "unknown"}`,
+      };
+    }
+    if (!data?.id) {
+      return { ok: false, error: "confirmation_rejected", detail: "no message id" };
+    }
+    return { ok: true, id: data.id };
+  } catch (err) {
+    return {
+      ok: false,
+      error: "confirmation_failed",
+      detail: err instanceof Error ? err.message : "unknown transport error",
+    };
+  }
 }
