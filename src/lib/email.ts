@@ -240,7 +240,7 @@ export async function sendConfirmationEmail(
   <h2 style="font-size:22px;margin:0 0 16px">We have your message</h2>
   <p style="margin:0 0 16px">Hi ${escapeHtml(fields.name)}, thanks for getting in touch. Somebody from the store will call you back.</p>
   <p style="margin:0 0 16px">If you need an answer sooner, the phone is faster than email:<br>
-    <a href="tel:+16628415959" style="color:#131311"><strong>${STORE.phone}</strong></a>, ${HOURS_LINE}.</p>
+    <a href="${STORE.phoneHref}" style="color:#131311"><strong>${STORE.phone}</strong></a>, ${HOURS_LINE}.</p>
   <p style="margin:0 0 20px">The floor changes every week and we usually cannot reorder, so if you had your eye on something, it is worth calling.</p>
   <div style="padding:16px;background:#f4f2ec;border-radius:6px">
     <strong>LQ Furniture</strong><br>

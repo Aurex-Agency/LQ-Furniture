@@ -21,6 +21,9 @@ type Entry = {
 const PAGES: Entry[] = [
   { path: "", changeFrequency: "weekly", priority: 1 },
   { path: "/the-floor", changeFrequency: "weekly", priority: 0.9 },
+  // Not in the navigation: the way in is the weekly text message. Still a
+  // real public page with fresh local content, so it belongs here.
+  { path: "/weekly-drop", changeFrequency: "weekly", priority: 0.8 },
   { path: "/visit", changeFrequency: "monthly", priority: 0.8 },
   { path: "/financing", changeFrequency: "monthly", priority: 0.8 },
   { path: "/text-list", changeFrequency: "monthly", priority: 0.7 },

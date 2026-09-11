@@ -111,7 +111,7 @@ export const POSTS: Post[] = [
       "You can [apply from the financing page](/financing) before you come in, or at the counter while you are here. Either way you will know where you stand before you buy a thing. The tag price is the price, so there is no negotiating step to wait on and no surprise at the register.",
       "## The short version",
       "Good credit and a bigger room: Synchrony or Tower Loans, and use the full 12 months. Bruised credit or no credit history: Acima or Snap, and finish inside 90 to 100 days. Either way, apply before you shop, bring your measurements, and ask whether the no-interest offer is deferred.",
-      "Questions the page did not answer are best asked out loud. Call the store at (662) 841-5959 during store hours, or [send us a message](/contact), and we will walk you through it.",
+      "Questions the page did not answer are best asked out loud. Call the store at (662) 584-5282 during store hours, or [send us a message](/contact), and we will walk you through it.",
     ],
   },
   {

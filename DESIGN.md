@@ -240,7 +240,7 @@ Scroll-triggered photographs use the one-time mask reveal (`Reveal.tsx`, and inl
 - **Do** keep the field flat crisp charcoal with hairline night-3 structure; the character belongs to the sign system, not to washes.
 - **Do** give every tap target 48px minimum height and 8px minimum spacing, with the global lamp focus ring intact.
 - **Do** use the store's own words and real floor photographs: "Limited Quantities + Unlimited Savings", tag-price language, photos from the LQ floor only. No stock, no AI imagery, no fabricated testimonials.
-- **Do** write buttons that say what happens, in plain speech: "Walk the floor", "Get directions", "Call (662) 841-5959".
+- **Do** write buttons that say what happens, in plain speech: "Walk the floor", "Get directions", "Call (662) 584-5282".
 - **Do** keep the TCPA consent language verbatim from `src/lib/consent.ts` wherever an SMS opt-in appears; it is regulated content. Any change goes through legal review and bumps `SMS_CONSENT_VERSION`.
 - **Do** keep FAQ answers inside verified store facts, per the header contract in `src/lib/faq.ts`; no operational claims LQ hasn't confirmed.
 - **Do** keep the hero scrim dark behind the mobile headline band (The Dark Band Rule) and re-check it when photos change.

@@ -62,7 +62,7 @@ export function storeSchema() {
     legalName: STORE.legalName,
     slogan: STORE.tagline,
     url: SITE_URL,
-    telephone: "+1-662-841-5959",
+    telephone: STORE.phoneE164,
     email: STORE.email,
     address: {
       "@type": "PostalAddress",
