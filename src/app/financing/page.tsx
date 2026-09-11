@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { pageMetadata } from "@/lib/seo";
 import JsonLd from "@/components/JsonLd";
-import { breadcrumbSchema } from "@/lib/schema";
+import { breadcrumbSchema, faqSchema, storeSchema } from "@/lib/schema";
 import Image from "next/image";
 import Reveal from "@/components/Reveal";
 import SiteFooter from "@/components/SiteFooter";
@@ -11,10 +11,21 @@ import { FINANCING_PARTNERS } from "@/lib/financing";
 import FaqList from "@/components/FaqList";
 import { FAQS } from "@/lib/faq";
 
+// The three questions this page answers on screen. Declared once so the
+// visible list and the JSON-LD below it cannot drift apart, which is exactly
+// the mismatch structured-data guidelines exist to prevent.
+const FINANCING_FAQS = FAQS.filter((f) =>
+  [
+    "Do y'all really do financing?",
+    "Is the tag price the price?",
+    "Can I take it home the same day?",
+  ].includes(f.q),
+);
+
 export const metadata: Metadata = pageMetadata({
   title: "Financing",
   description:
-    "Four ways to finance furniture at LQ Furniture in Tupelo, MS: Synchrony and Tower Loans with up to 12 months no interest, plus Acima and Snap with no credit check. Apply online or at the counter.",
+    "Four ways to finance furniture at LQ in Tupelo, MS: Synchrony and Tower Loans with up to 12 months no interest, plus no-credit-check Acima and Snap.",
   path: "/financing",
 });
 
@@ -24,6 +35,8 @@ export default function Financing() {
       <JsonLd
         data={breadcrumbSchema([{ name: "Financing", path: "/financing" }])}
       />
+      <JsonLd data={storeSchema()} />
+      <JsonLd data={faqSchema(FINANCING_FAQS)} />
       <SiteHeader current="/financing" />
       <main>
         <section className="px-5 pt-10 sm:px-10 sm:pt-20 lg:px-16">
@@ -34,7 +47,7 @@ export default function Financing() {
             Take it home now. Pay as you go.
           </h1>
           <p className="mt-6 max-w-xl text-body-lg text-fog">
-            Four partners, four ways to say yes. Up to 12 months with no
+            Four partners, four ways to say yes at our Tupelo warehouse. Up to 12 months with no
             interest if you have credit, and two roads that never run a
             credit check if you don&apos;t.
           </p>
@@ -160,9 +173,7 @@ export default function Financing() {
           </h2>
           <div className="mt-8 max-w-3xl">
             <FaqList
-              items={FAQS.filter((f) =>
-                ["Do y'all really do financing?", "Is the tag price the price?", "Can I take it home the same day?"].includes(f.q),
-              )}
+              items={FINANCING_FAQS}
             />
           </div>
         </section>

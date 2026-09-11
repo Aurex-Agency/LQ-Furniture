@@ -40,7 +40,7 @@ export default function Blog() {
           </h1>
           <p className="mt-6 max-w-xl text-body-lg text-fog">
             How the warehouse works, how to shop it, and what&apos;s moving
-            through the building. Written by the people who work here.
+            through the building. Written by the people who work the floor here in Tupelo.
           </p>
         </section>
 

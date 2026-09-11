@@ -68,6 +68,17 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${bebas.variable} ${switzer.variable}`}>
       <head>
+        {/* Warm the connections the measurement scripts need before they ask.
+            gtag.js is 171KB, the heaviest single asset on the page, and on a
+            rural mobile connection the DNS lookup, TCP handshake and TLS
+            negotiation in front of it cost more than they do on a desk.
+            preconnect opens those in parallel with the HTML parse rather
+            than after it. google-analytics.com is listed separately because
+            the measurement hits go there, not to the tag server. */}
+        <link rel="preconnect" href="https://www.googletagmanager.com" />
+        <link rel="preconnect" href="https://www.google-analytics.com" crossOrigin="" />
+        <link rel="dns-prefetch" href="https://tracker.metricool.com" />
+
         {/* Google Analytics 4, written as the plain gtag snippet rather than
             through next/script.
 

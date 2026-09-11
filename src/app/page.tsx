@@ -18,7 +18,7 @@ import { pageMetadata } from "@/lib/seo";
 export const metadata: Metadata = pageMetadata({
   title: "LQ Furniture | Furniture Warehouse in Tupelo, MS",
   description:
-    "LQ Furniture is a furniture warehouse at 589 N Coley Rd in Tupelo, MS. Sectionals, dining, bedroom, recliners and mattresses at volume prices. Limited Quantities + Unlimited Savings. Open Wed thru Sat 10 to 6, Sun 12 to 6.",
+    `LQ Furniture is a furniture warehouse at ${STORE.address} in Tupelo, MS. Sectionals, dining, bedroom, recliners and mattresses at volume prices.`,
   path: "/",
 });
 
@@ -85,6 +85,16 @@ export default function Home() {
                   like the old display lines did; the baked white outline
                   keeps it crisp over the photo. */}
               <h1 className="max-w-2xl">
+                {/* The slogan artwork is the visible h1, by client direction,
+                    and it stays untouched. But its accessible name is
+                    "Never pay retail again!", which names neither the trade
+                    nor the town, so the page's most heavily weighted heading
+                    says nothing about furniture in Tupelo. This adds that in
+                    text for screen readers and search engines without
+                    altering the artwork or the layout. */}
+                <span className="sr-only">
+                  LQ Furniture, a furniture warehouse in Tupelo, Mississippi.{" "}
+                </span>
                 <span className="line-mask">
                   <span style={{ animationDelay: "450ms" }}>
                     <Image

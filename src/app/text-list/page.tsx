@@ -31,7 +31,7 @@ export default function TextList() {
             Hear about it before it&apos;s gone
           </h1>
           <p className="mt-6 max-w-xl text-body-lg text-fog">
-            The floor doesn&apos;t hold your spot. When a truckload lands or a
+            The floor in Tupelo doesn&apos;t hold your spot. When a truckload lands or a
             markdown hits, the text list hears first, and the best pieces
             never last the weekend.
           </p>

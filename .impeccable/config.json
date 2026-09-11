@@ -20,6 +20,12 @@
         "value": "6px\">",
         "createdAt": "2026-09-11T15:48:22.075Z",
         "reason": "6px is the documented rounded.ctl token (DESIGN.md:55, and line 186 'Controls carry 6px'). Transcribed as a literal because HTML email cannot consume Tailwind classes or CSS variables; matches the pre-existing 6px in the store-notification template in the same file. Not user confirmed."
+      },
+      {
+        "rule": "design-system-color",
+        "value": "rgb(0 0 0 / 0.7)",
+        "createdAt": "2026-09-11T22:13:43.214Z",
+        "reason": "Pre-existing text-shadow over a full-bleed photograph, not a surface colour. Matches the documented hero pattern in DESIGN.md (sm:[text-shadow:0_2px_28px_rgb(0_0_0/0.65)]) which exists to keep type legible over imagery. Present in main before this branch; not introduced here. Not user confirmed."
       }
     ]
   }
