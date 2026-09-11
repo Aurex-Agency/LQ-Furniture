@@ -67,27 +67,42 @@ export default function RootLayout({
 }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="en" className={`${bebas.variable} ${switzer.variable}`}>
+      <head>
+        {/* Google Analytics 4, written as the plain gtag snippet rather than
+            through next/script.
+
+            This matters for more than style. next/script with
+            afterInteractive does not put a script element in the served
+            HTML: the page ships a <link rel="preload"> plus the script's
+            definition inside React's serialized payload, and the real
+            elements only exist once React has hydrated in the browser.
+            Google Tag Assistant, GA's own "test installation" check, and
+            anything else that reads the raw HTML therefore find no tag and
+            report the site as untagged.
+
+            Rendered here in <head> as a real element, the tag is present in
+            the first byte of HTML. `async` keeps it off the critical path,
+            so this does not block the hero photograph.
+
+            googletagmanager.com and google-analytics.com are allowlisted in
+            the Content Security Policy in next.config.ts; without that this
+            would fail silently. Disclosed in /privacy. */}
+        <script
+          async
+          src={`https://www.googletagmanager.com/gtag/js?id=${GA_MEASUREMENT_ID}`}
+        />
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', '${GA_MEASUREMENT_ID}');`,
+          }}
+        />
+      </head>
       <body>
         {children}
         <AnalyticsEvents />
-        {/* Google Analytics 4. Loaded after the page is interactive, like the
-            Metricool tag, so measurement never competes with the hero
-            photograph for bandwidth on a rural mobile connection.
-
-            googletagmanager.com and google-analytics.com are allowlisted in
-            the Content Security Policy in next.config.ts. Adding the tag
-            without that would fail silently. Disclosed in /privacy. */}
-        <Script
-          id="ga4-src"
-          strategy="afterInteractive"
-          src={`https://www.googletagmanager.com/gtag/js?id=${GA_MEASUREMENT_ID}`}
-        />
-        <Script id="ga4-init" strategy="afterInteractive">
-          {`window.dataLayer = window.dataLayer || [];
-function gtag(){dataLayer.push(arguments);}
-gtag('js', new Date());
-gtag('config', '${GA_MEASUREMENT_ID}');`}
-        </Script>
         {/* Metricool visitor analytics, the client's own tracking hash.
             Loaded after the page is interactive so it never competes with
             the hero photograph for bandwidth. Disclosed in /privacy. */}
