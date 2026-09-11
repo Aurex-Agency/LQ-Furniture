@@ -73,15 +73,42 @@ export function storeSchema() {
       addressCountry: "US",
     },
     // Absolute URLs: a relative path here is silently discarded by consumers.
-    image: [absoluteUrl("/opengraph-image.jpg")],
+    //
+    // Real photographs of the building carry more weight as an entity signal
+    // than a single social card, and these are the store's own: the floor,
+    // the lamp wall, the sleep gallery, the accessories aisle.
+    image: [
+      absoluteUrl("/opengraph-image.jpg"),
+      absoluteUrl("/photos/IMG_8587.jpg"),
+      absoluteUrl("/photos/IMG_8605.jpg"),
+      absoluteUrl("/photos/IMG_8627.jpg"),
+      absoluteUrl("/photos/IMG_8606.jpg"),
+    ],
     logo: absoluteUrl("/brand/lq-logo.png"),
     hasMap: STORE.directionsUrl,
+    // The towns the store actually draws from. Named here rather than given a
+    // thin landing page each: a dozen near-identical city pages for a
+    // single-location store is a doorway pattern, and this signal costs
+    // nothing and overstates nothing.
     areaServed: [
       { "@type": "City", name: "Tupelo" },
+      { "@type": "City", name: "Saltillo" },
+      { "@type": "City", name: "Verona" },
+      { "@type": "City", name: "Plantersville" },
+      { "@type": "City", name: "Belden" },
+      { "@type": "City", name: "New Albany" },
+      { "@type": "City", name: "Pontotoc" },
+      { "@type": "City", name: "Amory" },
+      { "@type": "City", name: "Fulton" },
+      { "@type": "City", name: "Booneville" },
+      { "@type": "City", name: "Corinth" },
+      { "@type": "City", name: "Oxford" },
       { "@type": "AdministrativeArea", name: "Lee County, Mississippi" },
       { "@type": "AdministrativeArea", name: "North Mississippi" },
     ],
     currenciesAccepted: "USD",
+    // Already stated publicly on /financing; no new claim is being made.
+    paymentAccepted: "Cash, Credit Card, Debit Card, Financing",
     openingHoursSpecification: openingHours(),
   };
 }

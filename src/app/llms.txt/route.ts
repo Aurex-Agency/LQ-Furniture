@@ -48,6 +48,7 @@ ${FINANCING_PARTNERS.map(
 
 - [Home](${SITE_URL}/): what the store is and what is on the floor now
 - [The floor](${SITE_URL}/the-floor): current inventory by category
+- [This week's drop](${SITE_URL}/weekly-drop): the newest load, updated weekly
 - [Financing](${SITE_URL}/financing): the four ways to finance and how to apply
 - [Visit](${SITE_URL}/visit): address, hours, and directions
 - [Contact](${SITE_URL}/contact): phone and message form

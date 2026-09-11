@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { pageMetadata } from "@/lib/seo";
 import JsonLd from "@/components/JsonLd";
-import { breadcrumbSchema } from "@/lib/schema";
+import { breadcrumbSchema, storeSchema } from "@/lib/schema";
 import Image from "next/image";
 import HoursTable from "@/components/HoursTable";
 import NeonSign from "@/components/NeonSign";
@@ -13,7 +13,7 @@ import { STORE } from "@/lib/store";
 export const metadata: Metadata = pageMetadata({
   title: "Visit the store",
   description:
-    "Visit LQ Furniture at 589 N Coley Rd, Tupelo, MS 38801. Open Wednesday through Saturday 10 to 6 and Sunday 12 to 6. Call (662) 584-5282.",
+    `Visit LQ Furniture at ${STORE.address}, Tupelo, MS 38801. Open Wednesday through Saturday 10 to 6 and Sunday 12 to 6. Call ${STORE.phone}.`,
   path: "/visit",
 });
 
@@ -23,6 +23,7 @@ export default function Visit() {
       <JsonLd
         data={breadcrumbSchema([{ name: "Visit the store", path: "/visit" }])}
       />
+      <JsonLd data={storeSchema()} />
       <SiteHeader current="/visit" />
       <main>
         <section className="px-5 pt-10 sm:px-10 sm:pt-20 lg:px-16">

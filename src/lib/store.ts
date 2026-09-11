@@ -8,12 +8,14 @@ export const STORE = {
   city: "Tupelo",
   state: "MS",
   zip: "38801",
-  // Store number, changed by the client September 2026. Three shapes, one
-  // source: the display string, the dial link, and E.164 for structured data.
-  // Anything that needs the number reads it from here, never a literal.
-  phone: "(662) 584-5282",
-  phoneE164: "+16625845282",
-  phoneHref: "tel:+16625845282",
+  // The number live on the store's Google Business Profile, confirmed by the
+  // client September 2026. Three shapes, one source: the display string, the
+  // dial link, and E.164 for structured data. Anything that needs the number
+  // reads it from here, never a literal, so the site and the profile cannot
+  // drift apart again.
+  phone: "(662) 841-5959",
+  phoneE164: "+16628415959",
+  phoneHref: "tel:+16628415959",
   email: "businessoffice@lqfurniture.com",
   directionsUrl:
     "https://www.google.com/maps/dir/?api=1&destination=LQ+Furniture+589+N+Coley+Rd+Tupelo+MS+38801",

@@ -23,7 +23,7 @@ const PAGES: Entry[] = [
   { path: "/the-floor", changeFrequency: "weekly", priority: 0.9 },
   // Not in the navigation: the way in is the weekly text message. Still a
   // real public page with fresh local content, so it belongs here.
-  { path: "/weekly-drop", changeFrequency: "weekly", priority: 0.8 },
+  { path: "/weekly-drop", changeFrequency: "weekly", priority: 0.6 },
   { path: "/visit", changeFrequency: "monthly", priority: 0.8 },
   { path: "/financing", changeFrequency: "monthly", priority: 0.8 },
   { path: "/text-list", changeFrequency: "monthly", priority: 0.7 },
@@ -43,7 +43,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
   const posts = POSTS.map((p) => ({
     url: `${SITE_URL}/blog/${p.slug}`,
-    lastModified: new Date(`${p.date}T12:00:00Z`),
+    lastModified: new Date(`${p.updated ?? p.date}T12:00:00Z`),
     changeFrequency: "yearly" as const,
     priority: 0.5,
   }));

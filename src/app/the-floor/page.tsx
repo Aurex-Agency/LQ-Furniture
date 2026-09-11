@@ -15,7 +15,7 @@ import { CATEGORY_LABELS } from "@/lib/floor";
 export const metadata: Metadata = pageMetadata({
   title: "The floor this week",
   description:
-    "What's on the floor at LQ Furniture in Tupelo, MS this week: sectionals, dining sets, bedrooms, recliners, mattresses and lamps at warehouse prices. Limited quantities, priced on the tags.",
+    "What's on the LQ Furniture floor in Tupelo this week: sectionals, dining, bedrooms, recliners, mattresses and lamps at warehouse prices.",
   path: "/the-floor",
 });
 
@@ -35,9 +35,15 @@ export default function TheFloor() {
             What&apos;s here this week
           </h1>
           <p className="mt-6 max-w-xl text-body-lg text-fog">
-            Real photos from our aisles, not a catalog. The floor turns over
+            Real photos from our aisles in Tupelo, not a catalog. The floor turns over
             every week and prices live on the tags, so the only way to know
             what something costs is to come see it.
+          {" "}
+            Newest load first on{" "}
+            <Link href="/weekly-drop" className="text-lq-green underline underline-offset-2">
+              this week&apos;s drop
+            </Link>
+            .
           </p>
         </section>
         <div aria-hidden className="mt-10 flex flex-wrap items-center gap-x-8 gap-y-4 px-5 sm:gap-x-12 sm:px-10 lg:px-16">
