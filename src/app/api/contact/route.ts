@@ -70,28 +70,38 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ ok: false }, { status: 400 });
   }
 
-  const { name, phone, message, pageUrl, company, startedAt } = (body ?? {}) as {
+  const { name, phone, message, pageUrl, honeypot, startedAt } = (body ?? {}) as {
     name?: unknown;
     phone?: unknown;
     message?: unknown;
     pageUrl?: unknown;
-    company?: unknown;
+    honeypot?: unknown;
     startedAt?: unknown;
   };
 
-  // Bots are answered with the same shape a person gets, so a scraper cannot
-  // tell a silent drop from a real delivery and keep tuning against it.
-  const botCheck = checkBotSignals({ honeypot: company, startedAt });
+  // Suspicion is recorded and flagged, never used to discard a message.
+  //
+  // This route used to drop suspected bots silently and answer {ok:true}, so a
+  // scraper could not tell a drop from a delivery. That is sound against
+  // scrapers and catastrophic when the detector is wrong: a browser autofill
+  // quirk filled the honeypot for real visitors, and every one of their
+  // messages was discarded while the page told them it had been sent.
+  //
+  // For a store whose leads arrive one at a time, the arithmetic is not close.
+  // A false positive costs a customer. A false negative costs one junk email
+  // that rate limiting already caps. So everything that passes validation is
+  // delivered, and anything suspicious arrives marked in the subject line for
+  // the reader to judge.
+  const botCheck = checkBotSignals({ honeypot, startedAt });
   if (botCheck.bot) {
     console.warn(
       JSON.stringify({
-        type: "contact_rejected_bot",
+        type: "contact_flagged_suspicious",
         reason: botCheck.reason,
         ip,
         timestamp: new Date().toISOString(),
       }),
     );
-    return NextResponse.json({ ok: true });
   }
 
   if (typeof name !== "string" || name.length === 0 || name.length > 200) {
@@ -156,6 +166,7 @@ export async function POST(req: NextRequest) {
     message: trimmedMessage,
     pageUrl,
     timestamp,
+    suspicion: botCheck.bot ? botCheck.reason : undefined,
   });
 
   if (!result.ok) {

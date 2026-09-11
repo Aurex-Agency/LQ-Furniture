@@ -64,7 +64,7 @@ export default function ContactForm() {
           phone: digits.slice(-10),
           message: body,
           pageUrl: window.location.href,
-          company: String(data.get("company") ?? ""),
+          honeypot: String(data.get("lq_hp_9f2") ?? ""),
           startedAt: startedAt.current,
         }),
       });
@@ -107,9 +107,20 @@ export default function ContactForm() {
 
   return (
     <form onSubmit={submit} noValidate>
-      {/* Honeypot. Positioned off-screen rather than display:none, which some
-          bots check for, and hidden from assistive tech and the tab order so
-          no real visitor can reach it. A filled value means a bot. */}
+      {/* Honeypot. Off-screen rather than display:none, which some bots check
+          for, and hidden from assistive tech and the tab order so no real
+          visitor can reach it.
+
+          The field name matters more than any of that. This was previously
+          called "company", which is a standard browser autofill token: Chrome
+          maps it to `organization` and fills it from the saved profile even
+          on a hidden field, and it ignores autocomplete="off" for profile
+          fields. Every real visitor with autofill enabled therefore tripped
+          the honeypot and had their message silently discarded, while
+          scripted tests that posted an empty value sailed through.
+
+          The name is now one no autofill heuristic recognises, and
+          autocomplete is set to a value browsers treat as "do not fill". */}
       <div
         aria-hidden
         style={{
@@ -121,13 +132,16 @@ export default function ContactForm() {
           whiteSpace: "nowrap",
         }}
       >
-        <label htmlFor="ct-company">Company</label>
+        <label htmlFor="ct-lq-hp">Leave this field empty</label>
         <input
-          id="ct-company"
-          name="company"
+          id="ct-lq-hp"
+          name="lq_hp_9f2"
           type="text"
           tabIndex={-1}
-          autoComplete="off"
+          autoComplete="new-password"
+          data-1p-ignore
+          data-lpignore="true"
+          data-form-type="other"
         />
       </div>
       <label htmlFor="ct-name" className="label text-fog">

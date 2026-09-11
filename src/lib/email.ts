@@ -92,6 +92,9 @@ export async function sendContactEmail(
     message: string;
     pageUrl: string;
     timestamp: string;
+    // Set when the bot heuristics flagged this submission. It is delivered
+    // either way; this only marks it so the reader can judge.
+    suspicion?: string;
   },
 ): Promise<SendResult> {
   const resend = new Resend(config.apiKey);
@@ -100,8 +103,10 @@ export async function sendContactEmail(
 
   // Plain text alongside HTML: the store reads this on a phone, and a text
   // part keeps it out of the promotions bucket.
+  const flag = fields.suspicion ? "[Possible spam] " : "";
+
   const text = [
-    `New message from the LQ Furniture website`,
+    `${flag}New message from the LQ Furniture website`,
     ``,
     `Name:    ${fields.name}`,
     `Phone:   ${prettyPhone}`,
@@ -112,6 +117,7 @@ export async function sendContactEmail(
     `---`,
     `Sent from: ${fields.pageUrl}`,
     `Received:  ${fields.timestamp}`,
+    ...(fields.suspicion ? [`Flagged:   ${fields.suspicion}`] : []),
   ].join("\n");
 
   // Inline px styles: email clients do not support CSS variables or rem
@@ -125,7 +131,7 @@ export async function sendContactEmail(
     "font-size:12px;letter-spacing:0.08em;text-transform:uppercase;padding:4px 16px 4px 0;vertical-align:top";
 
   const html = `<div style="font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;font-size:17px;line-height:1.6;color:#131311">
-  <h2 style="font-size:22px;margin:0 0 16px">New message from the LQ Furniture website</h2>
+  <h2 style="font-size:22px;margin:0 0 16px">${flag}New message from the LQ Furniture website</h2>
   <table cellpadding="0" cellspacing="0" style="margin-bottom:20px">
     <tr><td style="${label}">Name</td><td style="padding:4px 0"><strong>${escapeHtml(fields.name)}</strong></td></tr>
     <tr><td style="${label}">Phone</td><td style="padding:4px 0"><a href="tel:+1${fields.phone}" style="color:#131311"><strong>${prettyPhone}</strong></a></td></tr>
@@ -133,6 +139,7 @@ export async function sendContactEmail(
   <div style="padding:16px;background:#f4f2ec;border-radius:6px;white-space:pre-wrap">${escapeHtml(fields.message)}</div>
   <p style="margin-top:20px;font-size:15px">
     Sent from ${escapeHtml(fields.pageUrl)}<br>Received ${fields.timestamp}
+    ${fields.suspicion ? `<br>Flagged by the spam check: ${escapeHtml(fields.suspicion)}. It was delivered anyway.` : ""}
   </p>
 </div>`;
 
@@ -140,7 +147,7 @@ export async function sendContactEmail(
     const { data, error } = await resend.emails.send({
       from: config.from,
       to: [config.to],
-      subject: `LQ Furniture website: ${fields.name}`,
+      subject: `${flag}LQ Furniture website: ${fields.name}`,
       text,
       html,
       // Replies go to the store's own thread, not to the sandbox sender.
