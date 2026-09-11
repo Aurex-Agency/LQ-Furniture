@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import { track } from "@/lib/analytics";
+import { STORE } from "@/lib/store";
 
 type Status = "idle" | "sending" | "done" | "error";
 type Field = "name" | "phone" | "email" | "message";
@@ -97,7 +98,7 @@ export default function ContactForm() {
       // The phone number is the reliable fallback whenever delivery fails, so
       // the visitor is never left with a dead end.
       setMessage(
-        "Your message didn't go through. Please call the store at (662) 841-5959 and we'll take care of it.",
+        `Your message didn't go through. Please call the store at ${STORE.phone} and we'll take care of it.`,
       );
     }
   }

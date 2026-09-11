@@ -13,7 +13,7 @@ import { STORE } from "@/lib/store";
 export const metadata: Metadata = pageMetadata({
   title: "Visit the store",
   description:
-    "Visit LQ Furniture at 589 N Coley Rd, Tupelo, MS 38801. Open Wednesday through Saturday 10 to 6 and Sunday 12 to 6. Call (662) 841-5959.",
+    "Visit LQ Furniture at 589 N Coley Rd, Tupelo, MS 38801. Open Wednesday through Saturday 10 to 6 and Sunday 12 to 6. Call (662) 584-5282.",
   path: "/visit",
 });
 
