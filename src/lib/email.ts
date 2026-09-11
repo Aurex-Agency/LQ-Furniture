@@ -19,6 +19,22 @@ import { Resend } from "resend";
 const SANDBOX_FROM = "onboarding@resend.dev";
 const SANDBOX_DOMAIN = "resend.dev";
 
+// A From header with a display name is both friendlier in an inbox list and
+// measurably better for deliverability than a bare address. A new sending
+// domain has no reputation to lean on, so it should not give a spam filter
+// any more reason to doubt it than necessary.
+//
+// CONTACT_FROM_EMAIL may be set either way. If it already carries a display
+// name, it is used untouched; a bare address gets the default name.
+const DEFAULT_FROM_NAME = "LQ Furniture Website";
+
+function withDisplayName(from: string): string {
+  const value = from.trim();
+  if (value.includes("<")) return value;
+  const name = process.env.CONTACT_FROM_NAME ?? DEFAULT_FROM_NAME;
+  return `${name} <${value}>`;
+}
+
 export type EmailConfig = {
   apiKey: string;
   from: string;
@@ -40,7 +56,7 @@ export function getEmailConfig(): EmailConfig | ConfigProblem {
     };
   }
 
-  const from = process.env.CONTACT_FROM_EMAIL ?? SANDBOX_FROM;
+  const from = withDisplayName(process.env.CONTACT_FROM_EMAIL ?? SANDBOX_FROM);
   const to = process.env.CONTACT_TO_EMAIL;
   if (!to) {
     return {
@@ -57,7 +73,11 @@ export function getEmailConfig(): EmailConfig | ConfigProblem {
 // deliver to arbitrary recipients, so a deploy in this state is testing-only
 // and says so in its health probe rather than looking production-ready.
 export function isSandboxSender(from: string): boolean {
-  return from.trim().toLowerCase().endsWith(`@${SANDBOX_DOMAIN}`);
+  // `from` may be a bare address or "Display Name <address>", so the address
+  // is extracted first. A suffix match on the whole string would miss the
+  // second form and report a sandbox deploy as production-ready.
+  const address = /<([^>]+)>/.exec(from)?.[1] ?? from;
+  return address.trim().toLowerCase().endsWith(`@${SANDBOX_DOMAIN}`);
 }
 
 export type SendResult =
