@@ -80,29 +80,43 @@ export function clientIp(headers: Headers): string {
 
 export const MIN_FILL_MS = 2500;
 
-export type BotCheck = { bot: false } | { bot: true; reason: string };
+// Two confidences, because the two signals are not equally trustworthy and
+// treating them alike is what caused real messages to be thrown away.
+//
+//   "certain"  the honeypot was filled. No person can reach that field: it is
+//              off-screen, out of the tab order, hidden from assistive tech,
+//              and named so no autofill heuristic recognises it. Safe to drop.
+//
+//   "likely"   a timing signal. A fast typist, a prefetched page, a restored
+//              tab or a clock skew can all produce these honestly, so they
+//              are delivered with a mark on them rather than discarded.
+export type BotConfidence = "certain" | "likely";
+
+export type BotCheck =
+  | { bot: false }
+  | { bot: true; reason: string; confidence: BotConfidence };
 
 export function checkBotSignals(input: {
   honeypot?: unknown;
   startedAt?: unknown;
 }): BotCheck {
   if (typeof input.honeypot === "string" && input.honeypot.trim().length > 0) {
-    return { bot: true, reason: "honeypot_filled" };
+    return { bot: true, reason: "honeypot_filled", confidence: "certain" };
   }
 
   // A missing or malformed timestamp is treated as suspicious rather than
   // waved through: the real form always sends one.
   if (typeof input.startedAt !== "number" || !Number.isFinite(input.startedAt)) {
-    return { bot: true, reason: "missing_timing" };
+    return { bot: true, reason: "missing_timing", confidence: "likely" };
   }
 
   const elapsed = Date.now() - input.startedAt;
   if (elapsed < MIN_FILL_MS) {
-    return { bot: true, reason: "submitted_too_fast" };
+    return { bot: true, reason: "submitted_too_fast", confidence: "likely" };
   }
   // A clock far in the future means a forged or broken timestamp.
   if (elapsed < 0) {
-    return { bot: true, reason: "timestamp_in_future" };
+    return { bot: true, reason: "timestamp_in_future", confidence: "likely" };
   }
 
   return { bot: false };
