@@ -88,20 +88,44 @@ export async function POST(req: NextRequest) {
     startedAt?: unknown;
   };
 
-  // Suspicion is recorded and flagged, never used to discard a message.
+  // How a suspected bot is handled depends on how sure we are.
   //
-  // This route used to drop suspected bots silently and answer {ok:true}, so a
-  // scraper could not tell a drop from a delivery. That is sound against
-  // scrapers and catastrophic when the detector is wrong: a browser autofill
-  // quirk filled the honeypot for real visitors, and every one of their
-  // messages was discarded while the page told them it had been sent.
+  // The honeypot is now trustworthy. It was not before: the field was named
+  // "company", which Chrome maps to `organization` and fills from the saved
+  // profile even on a hidden field, so real visitors tripped it on every
+  // submission and their messages were silently discarded. The field is now
+  // named so no autofill heuristic touches it, no person can reach it, and a
+  // filled value means a script. Those are dropped, and the response is the
+  // same {ok:true} a person gets so a scraper learns nothing from probing.
   //
-  // For a store whose leads arrive one at a time, the arithmetic is not close.
-  // A false positive costs a customer. A false negative costs one junk email
-  // that rate limiting already caps. So everything that passes validation is
-  // delivered, and anything suspicious arrives marked in the subject line for
-  // the reader to judge.
+  // Timing signals are not trustworthy in the same way. A fast typist, a
+  // prefetched page, a restored tab or a skewed clock all produce them
+  // honestly, so those submissions are delivered with a mark on them and a
+  // person decides.
+  //
+  // The safeguard that was missing last time: a dropped message is logged in
+  // full, not just as a reason code. If this detector is ever wrong again,
+  // the message is recoverable from the log rather than gone.
   const botCheck = checkBotSignals({ honeypot, startedAt });
+
+  if (botCheck.bot && botCheck.confidence === "certain") {
+    console.warn(
+      JSON.stringify({
+        type: "contact_dropped_bot",
+        reason: botCheck.reason,
+        ip,
+        timestamp: new Date().toISOString(),
+        // Logged so a false positive is recoverable, never lost.
+        name: typeof name === "string" ? name.slice(0, 200) : null,
+        phone: typeof phone === "string" ? phone.slice(0, 20) : null,
+        email: typeof email === "string" ? email.slice(0, 254) : null,
+        message: typeof message === "string" ? message.slice(0, 2000) : null,
+        pageUrl: typeof pageUrl === "string" ? pageUrl.slice(0, 500) : null,
+      }),
+    );
+    return NextResponse.json({ ok: true });
+  }
+
   if (botCheck.bot) {
     console.warn(
       JSON.stringify({
