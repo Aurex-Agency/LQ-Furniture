@@ -16,7 +16,11 @@ export const STORE = {
   phone: "(662) 841-5959",
   phoneE164: "+16628415959",
   phoneHref: "tel:+16628415959",
-  email: "businessoffice@lqfurniture.com",
+  // The store's public contact address, changed from businessoffice@ by the
+  // client September 2026. This is what the site displays and what goes into
+  // structured data. Where the contact form actually delivers is a separate
+  // thing: the CONTACT_TO_EMAIL environment variable, which has to match.
+  email: "info@lqfurniture.com",
   directionsUrl:
     "https://www.google.com/maps/dir/?api=1&destination=LQ+Furniture+589+N+Coley+Rd+Tupelo+MS+38801",
   tagline: "Limited Quantities + Unlimited Savings",
