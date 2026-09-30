@@ -1,3 +1,4 @@
+import Link from "next/link";
 import type { Metadata } from "next";
 import { pageMetadata } from "@/lib/seo";
 import Image from "next/image";
@@ -95,12 +96,12 @@ export default function Terms() {
               including our promise that mobile numbers and text consent are
               never shared with or sold to third parties for marketing, is
               spelled out in our{" "}
-              <a
+              <Link
                 href="/privacy"
                 className="text-lamp underline underline-offset-4 hover:text-lq-press"
               >
                 privacy policy
-              </a>
+              </Link>
               .
             </p>
           </section>

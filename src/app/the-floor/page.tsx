@@ -1,3 +1,4 @@
+import DepartmentLinks from "@/components/DepartmentLinks";
 import type { Metadata } from "next";
 import { pageMetadata } from "@/lib/seo";
 import JsonLd from "@/components/JsonLd";
@@ -13,7 +14,7 @@ import { ARCHIVE_ITEMS } from "@/lib/archive";
 import { CATEGORY_LABELS } from "@/lib/floor";
 
 export const metadata: Metadata = pageMetadata({
-  title: "The floor this week",
+  title: "Furniture on the floor in Tupelo",
   description:
     "What's on the LQ Furniture floor in Tupelo this week: sectionals, dining, bedrooms, recliners, mattresses and lamps at warehouse prices.",
   path: "/the-floor",
@@ -46,6 +47,7 @@ export default function TheFloor() {
             .
           </p>
         </section>
+        <div className="mt-10"><DepartmentLinks /></div>
         <div aria-hidden className="mt-10 flex flex-wrap items-center gap-x-8 gap-y-4 px-5 sm:gap-x-12 sm:px-10 lg:px-16">
           <NeonIcon kind="sofa" className="w-12 sm:w-16" />
           <NeonIcon kind="dining" className="w-12 sm:w-16" />

@@ -37,7 +37,7 @@ export const FLOOR_ITEMS: FloorItem[] = [
   {
     id: "8587",
     src: "/photos/IMG_8587.jpg",
-    alt: "Oversized light gray sectional with chaise and ottoman on the LQ showroom floor",
+    alt: "Oversized light gray sectional with ottoman on the LQ showroom floor",
     name: "Oversized gray sectional with ottoman",
     category: "living",
   },
@@ -72,8 +72,8 @@ export const FLOOR_ITEMS: FloorItem[] = [
   {
     id: "8620",
     src: "/photos/IMG_8620.jpg",
-    alt: "Bedroom grouping with upholstered bed, dresser and mirror",
-    name: "Upholstered bed with dresser and mirror",
+    alt: "Bedroom display with panel bed, dresser and mirror",
+    name: "Panel bed with dresser and mirror",
     category: "bedroom",
   },
   {

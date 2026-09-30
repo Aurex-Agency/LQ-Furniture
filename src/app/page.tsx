@@ -1,3 +1,4 @@
+import DepartmentLinks from "@/components/DepartmentLinks";
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
@@ -16,7 +17,7 @@ import { faqSchema, jsonLdScript, storeSchema } from "@/lib/schema";
 import { pageMetadata } from "@/lib/seo";
 
 export const metadata: Metadata = pageMetadata({
-  title: "LQ Furniture | Furniture Warehouse in Tupelo, MS",
+  title: "Furniture Store in Tupelo, MS | LQ Furniture",
   description:
     `LQ Furniture is a furniture warehouse at ${STORE.address} in Tupelo, MS. Sectionals, dining, bedroom, recliners and mattresses at volume prices.`,
   path: "/",
@@ -287,12 +288,12 @@ export default function Home() {
             </Reveal>
             <div className="px-5 py-20 sm:px-10 lg:self-center lg:px-16">
               <h2 className="display mt-4 max-w-xl text-h1 text-lamp">
-                You don&apos;t need perfect credit to leave with furniture.
+                Compare your payment options.
               </h2>
               <p className="mt-5 max-w-md text-body text-fog">
-                Four financing partners, including two that never run a
-                credit check. Up to 12 months with no interest, and you can
-                apply from your phone before you ever drive over.
+                Review four providers, compare the terms for your purchase, and
+                apply from your phone or ask at the counter. Approval and costs
+                depend on the provider and agreement.
               </p>
               <div className="mt-8 flex flex-wrap gap-4">
                 <Link
@@ -393,6 +394,7 @@ export default function Home() {
             </div>
           </div>
         </section>
+        <DepartmentLinks />
       </main>
 
       <SiteFooter />

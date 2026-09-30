@@ -134,6 +134,7 @@ export default async function PostPage({
               >
                 Join the text list
               </Link>
+              <Link href="/visit" className="label flex min-h-12 items-center rounded-ctl border border-lamp/60 px-7 text-lamp hover:bg-night-2">Plan a visit</Link>
               <Link
                 href="/blog"
                 className="label flex min-h-12 items-center rounded-ctl border border-lamp/60 px-7 text-lamp hover:border-lamp hover:bg-night-2"

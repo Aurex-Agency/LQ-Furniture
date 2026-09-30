@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect } from "react";
+import { classifyStoreLink } from "@/lib/link-events";
 import { trackOutbound } from "@/lib/analytics";
 
 // One delegated click listener for the actions that are plain links.
@@ -23,29 +24,12 @@ export default function AnalyticsEvents() {
       const href = link.getAttribute("href") ?? "";
       if (!href) return;
 
-      if (href.startsWith("tel:")) {
-        trackOutbound("click_to_call", {
+      const action = classifyStoreLink(href, window.location.origin);
+      if (action) {
+        trackOutbound(action.event, {
           link_location: pageArea(link),
           page_path: window.location.pathname,
-        });
-        return;
-      }
-
-      if (href.includes("google.com/maps")) {
-        trackOutbound("get_directions", {
-          link_location: pageArea(link),
-          page_path: window.location.pathname,
-        });
-        return;
-      }
-
-      // Financing applications are the other outbound intent worth counting.
-      // Matched by host so a changed campaign query string cannot break it.
-      const financingHost = FINANCING_HOSTS.find((h) => href.includes(h.host));
-      if (financingHost) {
-        trackOutbound("financing_apply", {
-          partner: financingHost.partner,
-          page_path: window.location.pathname,
+          ...(action.partner ? { partner: action.partner } : {}),
         });
       }
     }
@@ -56,13 +40,6 @@ export default function AnalyticsEvents() {
 
   return null;
 }
-
-const FINANCING_HOSTS = [
-  { host: "synchrony.com", partner: "Synchrony" },
-  { host: "towerloan.com", partner: "Tower Loans" },
-  { host: "acima.com", partner: "Acima" },
-  { host: "snapfinance.com", partner: "Snap" },
-] as const;
 
 // Which part of the page the link sat in, so the store can tell a tap on the
 // header number from one at the bottom of the financing page.

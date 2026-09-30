@@ -53,16 +53,6 @@ const nextConfig: NextConfig = {
     return [
       { source: "/:path*", headers: SECURITY_HEADERS },
       {
-        // Fingerprinted build output is immutable, so it can be cached hard.
-        source: "/_next/static/:path*",
-        headers: [
-          {
-            key: "Cache-Control",
-            value: "public, max-age=31536000, immutable",
-          },
-        ],
-      },
-      {
         // Photographs are content-addressed by filename and never edited in
         // place; a changed photo ships under a new name.
         source: "/photos/:path*",
@@ -94,6 +84,10 @@ const nextConfig: NextConfig = {
       { source: "/contact-us.html", destination: "/contact", statusCode: 301 },
 
       // The same paths were also reachable with the GoDaddy mobile prefix.
+      { source: "/mobile/our-furniture-.html", destination: "/the-floor", statusCode: 301 },
+      { source: "/mobile/about-us.html", destination: "/visit", statusCode: 301 },
+      { source: "/mobile/contact-us.html", destination: "/contact", statusCode: 301 },
+      { source: "/mobile/faq.html", destination: "/#faq", statusCode: 301 },
       { source: "/mobile/:path*.html", destination: "/", statusCode: 301 },
 
       // Convenience paths people type or that old print material may carry.

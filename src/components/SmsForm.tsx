@@ -1,5 +1,7 @@
 "use client";
 
+import Link from "next/link";
+
 import { useState } from "react";
 import { SMS_CONSENT_TEXT } from "@/lib/consent";
 import { TENURE_OPTIONS, type Tenure } from "@/lib/signup";
@@ -165,19 +167,19 @@ export default function SmsForm() {
         />
         <span className="text-[0.9375rem] leading-relaxed text-fog">
           {SMS_CONSENT_TEXT}{" "}
-          <a
+          <Link
             href="/terms"
             className="text-lamp underline underline-offset-4 hover:text-lq-press"
           >
             Terms and conditions
-          </a>{" "}
+          </Link>{" "}
           and{" "}
-          <a
+          <Link
             href="/privacy"
             className="text-lamp underline underline-offset-4 hover:text-lq-press"
           >
             privacy policy
-          </a>
+          </Link>
           .
         </span>
       </label>

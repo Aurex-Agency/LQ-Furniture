@@ -1,3 +1,4 @@
+import { DEPARTMENTS } from "@/lib/departments";
 import { HOURS, STORE } from "@/lib/store";
 import { POSTS } from "@/lib/posts";
 import { SITE_URL } from "@/lib/site";
@@ -54,6 +55,10 @@ ${FINANCING_PARTNERS.map(
 - [Contact](${SITE_URL}/contact): phone and message form
 - [Text list](${SITE_URL}/text-list): new truckload and markdown alerts
 - [Notes from the floor](${SITE_URL}/blog): buying guides written by the store
+
+## Departments
+
+${DEPARTMENTS.map((d) => `- [${d.label}](${SITE_URL}/${d.slug}): ${d.description}`).join("\n")}
 
 ## Guides
 

@@ -11,7 +11,7 @@ export const FAQS: Faq[] = [
   },
   {
     q: "Do y'all really do financing?",
-    a: "Yes, four ways. Synchrony and Tower Loans run up to 12 months with no interest, and Acima and Snap say yes without a credit check, with 90 to 100 days no interest. Apply on the financing page or at the counter, and you'll know where you stand before you buy a thing.",
+    a: "Yes. Review options from Synchrony, Tower Loans, Acima and Snap on our financing page or at the counter. Products, approval requirements, costs and promotional terms vary. Review the provider's agreement before choosing.",
   },
   {
     q: "Why is it so cheap? What's wrong with it?",
@@ -39,7 +39,7 @@ export const FAQS: Faq[] = [
   },
   {
     q: "What about warranties?",
-    a: "The banners in the store say 100% warranties. Ask at the counter about the piece you're looking at and we'll give you the straight answer for that piece.",
+    a: "Ask about the warranty on the exact piece before buying. Coverage, exclusions and service arrangements depend on the product; keep the written terms with your receipt.",
   },
   {
     q: "Do I need an appointment?",

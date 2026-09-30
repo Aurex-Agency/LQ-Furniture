@@ -1,3 +1,4 @@
+import Link from "next/link";
 import type { Metadata } from "next";
 import { pageMetadata } from "@/lib/seo";
 import Image from "next/image";
@@ -149,12 +150,12 @@ export default function Privacy() {
             The full terms of the text message program, including message
             frequency, opt-out keywords, and carrier disclosures, are in
             our{" "}
-            <a
+            <Link
               href="/terms"
               className="text-lamp underline underline-offset-4 hover:text-lq-press"
             >
               terms and conditions
-            </a>
+            </Link>
             .
           </p>
         </section>

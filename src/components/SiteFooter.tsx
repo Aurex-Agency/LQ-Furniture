@@ -1,3 +1,4 @@
+import { DEPARTMENTS } from "@/lib/departments";
 import Image from "next/image";
 import Link from "next/link";
 import { STORE } from "@/lib/store";
@@ -58,6 +59,7 @@ export default function SiteFooter() {
           <ul className="mt-3 space-y-2">
             {[
               { href: "/the-floor", label: "The floor" },
+              ...DEPARTMENTS.map((d) => ({ href: `/${d.slug}`, label: d.label })),
               { href: "/financing", label: "Financing" },
               { href: "/text-list", label: "Join the text list" },
               { href: "/visit", label: "Visit the store" },

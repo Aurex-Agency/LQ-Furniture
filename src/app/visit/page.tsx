@@ -11,7 +11,7 @@ import SiteHeader from "@/components/SiteHeader";
 import { STORE } from "@/lib/store";
 
 export const metadata: Metadata = pageMetadata({
-  title: "Visit the store",
+  title: "Store hours and directions in Tupelo",
   description:
     `Visit LQ Furniture at ${STORE.address}, Tupelo, MS 38801. Open Wednesday through Saturday 10 to 6 and Sunday 12 to 6. Call ${STORE.phone}.`,
   path: "/visit",

@@ -23,9 +23,9 @@ const FINANCING_FAQS = FAQS.filter((f) =>
 );
 
 export const metadata: Metadata = pageMetadata({
-  title: "Financing",
+  title: "Furniture financing in Tupelo",
   description:
-    "Four ways to finance furniture at LQ in Tupelo, MS: Synchrony and Tower Loans with up to 12 months no interest, plus no-credit-check Acima and Snap.",
+    "Review furniture payment options at LQ in Tupelo: Synchrony, Tower Loans, Acima and Snap. Compare current terms, costs and application requirements.",
   path: "/financing",
 });
 
@@ -47,9 +47,9 @@ export default function Financing() {
             Take it home now. Pay as you go.
           </h1>
           <p className="mt-6 max-w-xl text-body-lg text-fog">
-            Four partners, four ways to say yes at our Tupelo warehouse. Up to 12 months with no
-            interest if you have credit, and two roads that never run a
-            credit check if you don&apos;t.
+            Compare options from four providers at our Tupelo warehouse.
+            Credit and lease-to-own products work differently. Check the
+            current terms, total cost and eligibility before choosing.
           </p>
         </section>
 
@@ -66,7 +66,7 @@ export default function Financing() {
                   <h2 className="display text-h3 text-lamp">{p.name}</h2>
                   <span
                     className={`label shrink-0 ${
-                      p.kind === "No credit check" ? "text-lq-press" : "text-fog"
+                      p.kind === "Lease-to-own" ? "text-lq-press" : "text-fog"
                     }`}
                   >
                     {p.kind}
