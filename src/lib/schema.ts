@@ -63,7 +63,6 @@ export function storeSchema() {
     slogan: STORE.tagline,
     url: SITE_URL,
     telephone: STORE.phoneE164,
-    email: STORE.email,
     address: {
       "@type": "PostalAddress",
       streetAddress: STORE.address,

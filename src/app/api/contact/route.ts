@@ -49,8 +49,7 @@ export function GET() {
     ok: true,
     emailConfigured: true,
     deliverable: !sandbox,
-    from: config.from,
-    to: config.to,
+    // Delivery addresses stay server-side; public health probes need only status.
     ...(sandbox
       ? {
           warning:
