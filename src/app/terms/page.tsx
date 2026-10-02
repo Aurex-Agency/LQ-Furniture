@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { pageMetadata } from "@/lib/seo";
 import Image from "next/image";
+import Link from "next/link";
 import Reveal from "@/components/Reveal";
 import SiteFooter from "@/components/SiteFooter";
 import SiteHeader from "@/components/SiteHeader";
@@ -32,7 +33,7 @@ export default function Terms() {
               LQ Furniture, a trade name of {STORE.legalName}, is a furniture
               store at {STORE.address}, {STORE.city}, {STORE.state}{" "}
               {STORE.zip}. You can reach us at {STORE.phone} or{" "}
-              {STORE.email}. These terms cover this website and the LQ
+              through our <Link href="/contact" className="underline underline-offset-4">contact form</Link>. These terms cover this website and the LQ
               Furniture text message program. By using the site or joining
               the text list, you agree to them.
             </p>
@@ -95,12 +96,12 @@ export default function Terms() {
               including our promise that mobile numbers and text consent are
               never shared with or sold to third parties for marketing, is
               spelled out in our{" "}
-              <a
+              <Link
                 href="/privacy"
                 className="text-lamp underline underline-offset-4 hover:text-lq-press"
               >
                 privacy policy
-              </a>
+              </Link>
               .
             </p>
           </section>

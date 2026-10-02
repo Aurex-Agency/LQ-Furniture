@@ -55,10 +55,10 @@ export default function Contact() {
                 {STORE.city}, {STORE.state} {STORE.zip}
                 <br />
                 <a
-                  href={`mailto:${STORE.email}`}
+                  href="#contact-form"
                   className="underline-offset-4 hover:underline"
                 >
-                  {STORE.email}
+                  Send us a message
                 </a>
               </address>
               <p className="mt-6 text-body text-fog">
@@ -73,7 +73,7 @@ export default function Contact() {
                 Get directions
               </a>
             </div>
-            <div className="lg:col-span-6 lg:col-start-7">
+            <div id="contact-form" className="scroll-mt-24 lg:col-span-6 lg:col-start-7">
               <ContactForm />
             </div>
           </div>
