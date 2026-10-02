@@ -16,7 +16,6 @@ export const STORE = {
   phone: "(662) 841-5959",
   phoneE164: "+16628415959",
   phoneHref: "tel:+16628415959",
-  email: "businessoffice@lqfurniture.com",
   directionsUrl:
     "https://www.google.com/maps/dir/?api=1&destination=LQ+Furniture+589+N+Coley+Rd+Tupelo+MS+38801",
   tagline: "Limited Quantities + Unlimited Savings",

@@ -34,12 +34,12 @@ export default function SiteFooter() {
           >
             {STORE.phone}
           </a>
-          <a
-            href={`mailto:${STORE.email}`}
+          <Link
+            href="/contact"
             className="flex min-h-12 items-center text-[0.9375rem] text-lamp underline-offset-4 hover:underline"
           >
-            {STORE.email}
-          </a>
+            Send us a message
+          </Link>
         </div>
         <div>
           <p className="label text-fog">Hours</p>

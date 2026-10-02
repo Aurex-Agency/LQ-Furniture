@@ -34,7 +34,8 @@ export default function Privacy() {
           <p className="mt-3">
             LQ Furniture, a trade name of {STORE.legalName}, is a furniture
             store at {STORE.address}, {STORE.city}, {STORE.state} {STORE.zip}.
-            You can reach us at {STORE.phone} or {STORE.email}. This policy
+            You can reach us at {STORE.phone} or through our{" "}
+            <Link href="/contact" className="underline underline-offset-4">contact form</Link>. This policy
             covers this website and our text message program.
           </p>
         </section>

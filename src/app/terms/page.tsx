@@ -33,7 +33,7 @@ export default function Terms() {
               LQ Furniture, a trade name of {STORE.legalName}, is a furniture
               store at {STORE.address}, {STORE.city}, {STORE.state}{" "}
               {STORE.zip}. You can reach us at {STORE.phone} or{" "}
-              {STORE.email}. These terms cover this website and the LQ
+              through our <Link href="/contact" className="underline underline-offset-4">contact form</Link>. These terms cover this website and the LQ
               Furniture text message program. By using the site or joining
               the text list, you agree to them.
             </p>
