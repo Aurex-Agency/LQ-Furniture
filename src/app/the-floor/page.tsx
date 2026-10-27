@@ -13,9 +13,9 @@ import { ARCHIVE_ITEMS } from "@/lib/archive";
 import { CATEGORY_LABELS } from "@/lib/floor";
 
 export const metadata: Metadata = pageMetadata({
-  title: "The floor this week",
+  title: "Furniture floor photos in Tupelo",
   description:
-    "What's on the LQ Furniture floor in Tupelo this week: sectionals, dining, bedrooms, recliners, mattresses and lamps at warehouse prices.",
+    "Explore real LQ Furniture floor photos in Tupelo: sectionals, dining, bedrooms, recliners and mattresses. Ask about current availability before your visit.",
   path: "/the-floor",
 });
 
@@ -32,12 +32,12 @@ export default function TheFloor() {
             New loads weekly
           </p>
           <h1 className="display mt-4 max-w-3xl text-display text-lamp">
-            What&apos;s here this week
+            Explore the furniture floor
           </h1>
           <p className="mt-6 max-w-xl text-body-lg text-fog">
             Real photos from our aisles in Tupelo, not a catalog. The floor turns over
-            every week and prices live on the tags, so the only way to know
-            what something costs is to come see it.
+            every week. Photos are not live inventory. Ask about current availability,
+            dimensions and tag prices before making a special trip.
           {" "}
             Newest load first on{" "}
             <Link href="/weekly-drop" className="text-lq-green underline underline-offset-2">
@@ -55,7 +55,12 @@ export default function TheFloor() {
           <NeonIcon kind="lamp" className="w-12 sm:w-16" />
         </div>
         <div className="mt-10 pb-20 sm:mt-12">
-          <FloorBoard />
+          <nav aria-label="Furniture buying guides" className="flex flex-wrap gap-6 px-5 py-8 sm:px-10 lg:px-16">
+          <Link href="/furniture/sofas-sectionals" className="inline-flex min-h-12 items-center text-lq-green underline">Sofas and sectionals</Link>
+          <Link href="/furniture/dining" className="inline-flex min-h-12 items-center text-lq-green underline">Dining furniture</Link>
+          <Link href="/visit" className="inline-flex min-h-12 items-center text-lq-green underline">Hours and directions</Link>
+        </nav>
+        <FloorBoard />
         </div>
         {/* The running record */}
         <section className="border-t border-night-3 px-5 py-16 sm:px-10 lg:px-16">

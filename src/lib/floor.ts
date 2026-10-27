@@ -112,3 +112,9 @@ export const FLOOR_ITEMS: FloorItem[] = [
     category: "recliners",
   },
 ];
+
+/** Only known public photo references can prefill an inquiry. */
+export function floorInquiry(itemId: unknown): string {
+  const item = typeof itemId === "string" ? FLOOR_ITEMS.find((entry) => entry.id === itemId) : undefined;
+  return item ? `Please confirm availability, dimensions and current price for ${item.name} (photo ${item.id}).` : "";
+}

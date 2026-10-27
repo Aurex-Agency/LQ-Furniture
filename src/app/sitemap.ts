@@ -2,14 +2,7 @@ import type { MetadataRoute } from "next";
 import { POSTS } from "@/lib/posts";
 import { SITE_URL } from "@/lib/site";
 
-// Every entry carries a lastModified date. Without one a crawler has no signal
-// about freshness and falls back to guessing, which on a small site means the
-// floor page gets recrawled no more often than the privacy policy.
-//
-// The build date is an honest answer for pages whose content is compiled in:
-// they genuinely change when the site is redeployed.
-const BUILD_DATE = new Date();
-
+// Dates reflect actual content changes, not deployment time.
 type Entry = {
   path: string;
   changeFrequency: MetadataRoute.Sitemap[number]["changeFrequency"];
@@ -28,6 +21,8 @@ const PAGES: Entry[] = [
   { path: "/financing", changeFrequency: "monthly", priority: 0.8 },
   { path: "/text-list", changeFrequency: "monthly", priority: 0.7 },
   { path: "/contact", changeFrequency: "monthly", priority: 0.7 },
+  { path: "/furniture/sofas-sectionals", changeFrequency: "monthly", priority: 0.8 },
+  { path: "/furniture/dining", changeFrequency: "monthly", priority: 0.8 },
   { path: "/blog", changeFrequency: "monthly", priority: 0.6 },
   { path: "/privacy", changeFrequency: "yearly", priority: 0.3 },
   { path: "/terms", changeFrequency: "yearly", priority: 0.3 },
@@ -36,7 +31,6 @@ const PAGES: Entry[] = [
 export default function sitemap(): MetadataRoute.Sitemap {
   const pages = PAGES.map((p) => ({
     url: `${SITE_URL}${p.path}`,
-    lastModified: BUILD_DATE,
     changeFrequency: p.changeFrequency,
     priority: p.priority,
   }));

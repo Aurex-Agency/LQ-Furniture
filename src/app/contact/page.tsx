@@ -1,3 +1,4 @@
+import { floorInquiry } from "@/lib/floor";
 import type { Metadata } from "next";
 import { pageMetadata } from "@/lib/seo";
 import JsonLd from "@/components/JsonLd";
@@ -17,7 +18,8 @@ export const metadata: Metadata = pageMetadata({
   path: "/contact",
 });
 
-export default function Contact() {
+export default async function Contact({ searchParams }: { searchParams: Promise<{ item?: string | string[] }> }) {
+  const initialInquiry = floorInquiry((await searchParams).item);
   return (
     <>
       <JsonLd
@@ -74,7 +76,7 @@ export default function Contact() {
               </a>
             </div>
             <div id="contact-form" className="scroll-mt-24 lg:col-span-6 lg:col-start-7">
-              <ContactForm />
+              <ContactForm initialInquiry={initialInquiry} />
             </div>
           </div>
         </section>

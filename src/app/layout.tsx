@@ -68,6 +68,7 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${bebas.variable} ${switzer.variable}`}>
       <head>
+        {process.env.VERCEL_ENV === "production" && <>
         {/* Warm the connections the measurement scripts need before they ask.
             gtag.js is 171KB, the heaviest single asset on the page, and on a
             rural mobile connection the DNS lookup, TCP handshake and TLS
@@ -110,6 +111,7 @@ gtag('js', new Date());
 gtag('config', '${GA_MEASUREMENT_ID}');`,
           }}
         />
+        </>}
       </head>
       <body>
         {children}
@@ -117,9 +119,9 @@ gtag('config', '${GA_MEASUREMENT_ID}');`,
         {/* Metricool visitor analytics, the client's own tracking hash.
             Loaded after the page is interactive so it never competes with
             the hero photograph for bandwidth. Disclosed in /privacy. */}
-        <Script id="metricool-tracker" strategy="afterInteractive">
+        {process.env.VERCEL_ENV === "production" && <Script id="metricool-tracker" strategy="afterInteractive">
           {`function loadScript(a){var b=document.getElementsByTagName("head")[0],c=document.createElement("script");c.type="text/javascript",c.src="https://tracker.metricool.com/resources/be.js",c.onreadystatechange=a,c.onload=a,b.appendChild(c)}loadScript(function(){beTracker.t({hash:"7acaecc99a26af78f513bcc4c2da4451"})});`}
-        </Script>
+        </Script>}
       </body>
     </html>
   );
