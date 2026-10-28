@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
+import Link from "next/link";
 import {
   CATEGORY_LABELS,
   FLOOR_ITEMS,
@@ -167,6 +168,7 @@ export default function FloorBoard() {
                   {CATEGORY_LABELS[item.category]}
                 </span>
               </figcaption>
+              <Link href={`/contact?item=${item.id}#contact-form`} className="mt-2 inline-flex min-h-12 items-center text-lq-green underline">Ask about availability and dimensions</Link>
             </figure>
           );
         })}
@@ -194,8 +196,9 @@ export default function FloorBoard() {
               sizes="96vw"
               className="max-h-[78svh] w-full object-contain"
             />
-            <div className="flex items-center justify-between gap-4 px-1 py-4">
+            <div className="flex flex-wrap items-center justify-between gap-4 px-1 py-4">
               <p className="display text-h3 text-lamp">{openItem.name}</p>
+              <Link href={`/contact?item=${openItem.id}#contact-form`} className="inline-flex min-h-12 items-center text-lq-green underline">Ask about this piece</Link>
               <div className="flex items-center gap-4">
                 <span className="label hidden text-fog sm:inline">
                   {CATEGORY_LABELS[openItem.category]}

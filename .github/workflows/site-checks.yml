@@ -1,0 +1,26 @@
+name: Site checks
+on: [push, pull_request]
+permissions:
+  contents: read
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+      - run: npm ci
+      - run: npm audit --audit-level=high
+      - run: npm run lint && npm run typecheck && npm test
+      - run: npm run build
+      - name: Verify production output without analytics traffic
+        run: |
+          npm run start -- --port 3010 > /tmp/site.log 2>&1 &
+          trap 'kill $!' EXIT
+          for attempt in $(seq 1 30); do
+            if curl --silent --fail http://127.0.0.1:3010/sitemap.xml > /dev/null; then break; fi
+            sleep 1
+          done
+          npm run verify:seo

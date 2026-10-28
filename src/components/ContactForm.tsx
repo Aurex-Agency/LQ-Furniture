@@ -7,8 +7,10 @@ import { STORE } from "@/lib/store";
 type Status = "idle" | "sending" | "done" | "error";
 type Field = "name" | "phone" | "email" | "message";
 
-export default function ContactForm() {
+export default function ContactForm({ initialInquiry = "" }: { initialInquiry?: string }) {
   const [status, setStatus] = useState<Status>("idle");
+  const sending = useRef(false);
+  const accepted = useRef(false);
   const [message, setMessage] = useState("");
   const [badField, setBadField] = useState<Field | null>(null);
   // When the visitor was first able to type. Set after mount so it measures
@@ -29,6 +31,7 @@ export default function ContactForm() {
 
   async function submit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
+    if (sending.current || accepted.current) return;
     const form = e.currentTarget;
     const data = new FormData(form);
     const name = String(data.get("name") ?? "").trim();
@@ -62,6 +65,7 @@ export default function ContactForm() {
       setMessage("Tell us what you need and we'll take it from there.");
       return;
     }
+    sending.current = true;
     setStatus("sending");
     setBadField(null);
     setMessage("");
@@ -88,6 +92,9 @@ export default function ContactForm() {
         return;
       }
       if (!res.ok) throw new Error(String(res.status));
+      const result = await res.json();
+      if (result?.ok !== true) throw new Error("Delivery not confirmed");
+      accepted.current = true;
       // Fired only after the server confirms delivery, so the count in GA
       // matches what actually reached the store rather than what was typed.
       track("generate_lead", { form: "contact", page_path: window.location.pathname });
@@ -100,6 +107,8 @@ export default function ContactForm() {
       setMessage(
         `Your message didn't go through. Please call the store at ${STORE.phone} and we'll take care of it.`,
       );
+    } finally {
+      sending.current = false;
     }
   }
 
@@ -196,6 +205,7 @@ export default function ContactForm() {
         What can we help with
       </label>
       <textarea
+        defaultValue={initialInquiry}
         id="ct-message"
         name="message"
         rows={5}

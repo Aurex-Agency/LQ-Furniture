@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { SMS_CONSENT_TEXT } from "@/lib/consent";
 import { TENURE_OPTIONS, type Tenure } from "@/lib/signup";
 import { track } from "@/lib/analytics";
@@ -14,6 +14,8 @@ export default function SmsForm() {
   const [tenure, setTenure] = useState<Tenure | "">("");
   const [consented, setConsented] = useState(false);
   const [status, setStatus] = useState<Status>("idle");
+  const sending = useRef(false);
+  const accepted = useRef(false);
   const [message, setMessage] = useState("");
   const [badField, setBadField] = useState<Field | null>(null);
 
@@ -33,6 +35,7 @@ export default function SmsForm() {
 
   async function submit(e: React.FormEvent) {
     e.preventDefault();
+    if (sending.current || accepted.current) return;
     const name = firstName.trim();
     if (!name) {
       fail("firstName", "Tell us your first name so the texts aren't from a stranger.");
@@ -47,6 +50,7 @@ export default function SmsForm() {
       fail("consent", "Check the box first so we know you want the texts.");
       return;
     }
+    sending.current = true;
     setStatus("sending");
     setBadField(null);
     setMessage("");
@@ -63,12 +67,17 @@ export default function SmsForm() {
         }),
       });
       if (!res.ok) throw new Error(String(res.status));
+      const result = await res.json();
+      if (result?.ok !== true) throw new Error("Delivery not confirmed");
+      accepted.current = true;
       // Only after the CRM confirms the contact landed. The route fails loudly
       // when the webhook is down, so this cannot count a sign-up that was lost.
       track("join_text_list", { form: "sms_optin", page_path: window.location.pathname });
       setStatus("done");
     } catch {
       fail("phone", "Something broke on our end. Try again, or just call us.");
+    } finally {
+      sending.current = false;
     }
   }
 

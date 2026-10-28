@@ -1,3 +1,4 @@
+import { SELECTION_POSTS } from "./selection-posts";
 import { STORE } from "@/lib/store";
 
 export type Post = {
@@ -27,6 +28,7 @@ export type Post = {
 // dependencies. To publish, add a new object to the top of this array.
 // Keep claims inside what the store can stand behind.
 export const POSTS: Post[] = [
+  ...SELECTION_POSTS,
   {
     slug: "getting-furniture-home-truck-suv-delivery",
     title: "Getting it home: truck, SUV, or car",
